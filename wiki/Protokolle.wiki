@@ -1,8 +1,8 @@
-Protokoll des 15.08.2011
+== Protokoll des 15.08.2011 ==
 
-Anwesend: Denis und Nicolas
+*Anwesend:* Denis und Nicolas
 
-Traktanden:
+*Traktanden:*
 
 - Wissensaustausch
 
@@ -10,12 +10,12 @@ Traktanden:
 
 - Grobe Einteilung der nächsten Schritte
 
-Wissensaustausch:
+*Wissensaustausch:*
 
 Wir haben die groben Mathematischen Themen zusammengefasst. Einzelne Funktionen (Eulersche Funktion) angeschaut.
 Zusammen den RSA Algorithmus angeschaut und anhand eines Beispiel den Algorithmus durchgemacht.
 
-Leitfrage erstellen:
+*Leitfrage erstellen:*
 
 Folgende Fragen haben sich in der Diskussion herausgefiltert.
 
@@ -26,18 +26,18 @@ Folgende Fragen haben sich in der Diskussion herausgefiltert.
 - Wo liegt die Schwierigkeit des Faktorisierungs Problems bei grossen 
 Primzahlen.
 
-Grobe Einteilung:
+*Grobe Einteilung:*
 
 Wir haben unsere Arbeit in 3 Teile geglidert. 
 
-- Allgemein:
+*1. Allgemein:*
 
 Verschlüsselung Allgemen (Nicolas) erklärt. Geschichtlicher Hintergrund (Denis) sowie Erklärung der Modernen Kryptographie anhand der symmetrischen (Denis) und asymmetrischen (Nicolas) Verschlüsselung.
 
 Diese Themen sollten bis und mit 5. September 2011 fertig sein.
 
-- RSA Algorithmus erklären
+*2. RSA Algorithmus erklären*
 
 Wie funktioniert der RSA Algorithmus für die Verschlüsselung wie auch Entschlüsselung. Wie muss ein Schlüssel aussehen damit er "sicher" ist.
 
-- Leitfrage bearbeiten und beantworten
+*3. Leitfrage bearbeiten und beantworten*
