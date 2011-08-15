@@ -24,3 +24,8 @@ Wir haben unsere Arbeit in 3 Teile geglidert.
 Verschlüsselung Allgemen (Nicolas) erklärt. Geschichtlicher Hintergrund (Denis) sowie Erklärung der Modernen Kryptographie anhand der symmetrischen (Denis) und asymmetrischen (Nicolas) Verschlüsselung.
 
 Diese Themen sollten bis und mit 5. September 2011 fertig sein.
+
+- RSA Algorithmus erklären
+Wie funktioniert der RSA Algorithmus für die Verschlüsselung wie auch Entschlüsselung. Wie muss ein Schlüssel aussehen damit er "sicher" ist.
+
+- Leitfrage bearbeiten und beantworten
