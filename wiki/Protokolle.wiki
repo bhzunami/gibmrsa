@@ -12,27 +12,27 @@
 
 *Wissensaustausch:*
 
-Wir haben die groben Mathematischen Themen zusammengefasst. Einzelne Funktionen (Eulersche Funktion) angeschaut.
-Zusammen den RSA Algorithmus angeschaut und anhand eines Beispiel den Algorithmus durchgemacht.
+Wir haben die groben Mathematischen Themen zusammengefasst. Einzelne Funktionen wie zum Beispiel die Eulersche Funktion angeschaut.
+Zusammen den RSA Algorithmus angeschaut anhand eines Beispiels.
 
 *Leitfrage erstellen:*
 
 Folgende Fragen haben sich in der Diskussion herausgefiltert.
 
-- Ist RSA sicher heute und in 20 Jahren?
+- Ist RSA sicher, heute und in 20 Jahren?
 
-- Beispiel einer Verwendung eines Protokoll mit RSA (Wieso?)
+- Beispiel einer Verwendung eines Protokoll mit RSA (Wieso wird hier RSA verwendet?)
 
 - Wo liegt die Schwierigkeit des Faktorisierungs Problems bei grossen 
 Primzahlen.
 
 *Grobe Einteilung:*
 
-Wir haben unsere Arbeit in 3 Teile geglidert. 
+Wir haben unsere Arbeit in 3 Teile gegliedert. 
 
 *1. Allgemein:*
 
-Verschlüsselung Allgemen (Nicolas) erklärt. Geschichtlicher Hintergrund (Denis) sowie Erklärung der Modernen Kryptographie anhand der symmetrischen (Denis) und asymmetrischen (Nicolas) Verschlüsselung.
+Verschlüsselung Allgemein (Nicolas) erklärt. Geschichtlicher Hintergrund (Denis) sowie Erklärung der Modernen Kryptographie anhand der symmetrischen (Denis) und asymmetrischen (Nicolas) Verschlüsselung.
 
 Diese Themen sollten bis und mit 5. September 2011 fertig sein.
 
