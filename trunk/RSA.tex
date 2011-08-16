@@ -5,9 +5,24 @@
 
 \documentclass[12pt,a4paper,german]{article}
 
-\usepackage[left=3cm,right=2cm,includeheadfoot]{geometry}
-\pagenumbering{Roman}
+\usepackage[left=3cm,right=2cm,bottom=3cm,includeheadfoot]{geometry}
 \usepackage[pdftex]{graphicx}
+\usepackage{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+% KOPF UND FUSS ZEILEN
+\pagestyle{fancy}
+
+
+\fancyhf{}
+%
+\fancyfoot[L]{IDPA}
+\fancyfoot[R]{Seite \thepage \  von  \pageref{LastPage}}
+
+%Linie unten
+\renewcommand{\footrulewidth}{0.5pt}
 
 \begin{document}
 
@@ -21,15 +36,15 @@
 {\bfseries\Huge RSA-Verschlüsselung}\\
 \vfill
 
-{\bfseries\Large "Frage zur RSA Maturarbeit"}\\
+{\bfseries\Large Wieso ist RSA auch heute noch sicher}\\
 \vfill
 Verfasser\\[1ex]
 Denis Augsburger\\
 Nicolas Mauchle\\
 \vfill
 Betreuer\\[1ex]
-{\large Kuster}\\
-{\large Collin}\\
+{\large Stefan Kuster}\\
+{\large Gary Collins}\\
 \vfill
 
 \raggedright
@@ -45,25 +60,66 @@ Schule: \> GIBM - Pratteln
 
 % PLACE TEXT HERE
 \tableofcontents
-\part{Part A}
-\section{section a}
-\subsection{subsection a }
-\subsubsection{subsubsection a}
-\paragraph{paragraph a}
-\subparagraph{subparagraph a}
-Lorem ipsum dolor sit amet, eget semper elementum quisque etiam. Taciti ut consectetuer mattis rhoncus scelerisque, mollis commodo, nullam placerat sit enim dolor. Id donec magna elit mauris sed, risus mi urna pede sociis conubia, aliquam quis aliquam eu. Quisque at, in sociis bibendum quis turpis at. Tempor arcu sollicitudin magna soluta enim ac, massa lacus convallis aliquam et consequat cras, etiam nibh, lorem orci. Ut pede tempore duis risus fermentum, tortor aliqua tincidunt porta. Pellentesque in, aenean in venenatis tortor orci eu, enim proin, arcu nec ut et at, in etiam a sapien.
-Egestas sodales tristique. Metus nibh consectetuer eros metus et. Cras purus egestas congue nunc vel sit, condimentum eleifend amet pellentesque in, sed nulla ante, a consectetuer sem ante tincidunt sociosqu. Massa pellentesque risus, habitasse cras. Praesent phasellus class, mi ut tellus eleifend lacus. Aliqua donec ac id pretium dui.
-Non et odio et ultrices faucibus. Lectus bibendum, rutrum semper porta vel eu varius, vestibulum aliquam maecenas ipsum. Odio rhoncus pede sem risus pellentesque, condimentum sed curabitur duis nunc non, amet suscipit dui molestie amet dolor, a aliquam aliquam. Id euismod auctor, aliquam nibh nulla vitae ut pulvinar, tristique commodo maecenas orci, nulla nec felis integer nisl quisque. Proin nulla mauris voluptas vestibulum a penatibus, eleifend duis felis libero, purus fermentum nulla sociosqu donec, vivamus volutpat maecenas nisl. Vestibulum sed nulla vitae repudiandae, interdum etiam diam lorem beatae, id porttitor vitae nunc in turpis, turpis potenti. Amet consequat eget, quam in mauris ornare vestibulum aliquam, orci vivamus eleifend, nec sed, laoreet risus ut nibh amet orci. Lectus pede vehicula eros ac, ac at. Justo vel irure integer auctor vestibulum et, hymenaeos justo nonummy, nullam sed ante vivamus. Ante arcu ultricies eget, vel non, venenatis urna rhoncus, varius nonummy, iaculis et porttitor. Sit id nisl posuere nonummy, mi blandit aenean etiam metus ante metus, vivamus tortor maecenas velit cras, tincidunt quis diam suspendisse quam, dui sed arcu.
 
-\part{Part B}
-\section{section b}
-\subsection{subsection b }
-\subsubsection{subsubsection b}
-\paragraph{paragraph b}
-\subparagraph{subparagraph b}
+% EINLEITUNG
+\newpage
+\part{Einleitung}
+\section{Vorwort}
+\section{Leitfrage}
 
-Lorem ipsum dolor sit amet, eget semper elementum quisque etiam. Taciti ut consectetuer mattis rhoncus scelerisque, mollis commodo, nullam placerat sit enim dolor. Id donec magna elit mauris sed, risus mi urna pede sociis conubia, aliquam quis aliquam eu. Quisque at, in sociis bibendum quis turpis at. Tempor arcu sollicitudin magna soluta enim ac, massa lacus convallis aliquam et consequat cras, etiam nibh, lorem orci. Ut pede tempore duis risus fermentum, tortor aliqua tincidunt porta. Pellentesque in, aenean in venenatis tortor orci eu, enim proin, arcu nec ut et at, in etiam a sapien.
-Egestas sodales tristique. Metus nibh consectetuer eros metus et. Cras purus egestas congue nunc vel sit, condimentum eleifend amet pellentesque in, sed nulla ante, a consectetuer sem ante tincidunt sociosqu. Massa pellentesque risus, habitasse cras. Praesent phasellus class, mi ut tellus eleifend lacus. Aliqua donec ac id pretium dui.
-Non et odio et ultrices faucibus. Lectus bibendum, rutrum semper porta vel eu varius, vestibulum aliquam maecenas ipsum. Odio rhoncus pede sem risus pellentesque, condimentum sed curabitur duis nunc non, amet suscipit dui molestie amet dolor, a aliquam aliquam. Id euismod auctor, aliquam nibh nulla vitae ut pulvinar, tristique commodo maecenas orci, nulla nec felis integer nisl quisque. Proin nulla mauris voluptas vestibulum a penatibus, eleifend duis felis libero, purus fermentum nulla sociosqu donec, vivamus volutpat maecenas nisl. Vestibulum sed nulla vitae repudiandae, interdum etiam diam lorem beatae, id porttitor vitae nunc in turpis, turpis potenti. Amet consequat eget, quam in mauris ornare vestibulum aliquam, orci vivamus eleifend, nec sed, laoreet risus ut nibh amet orci. Lectus pede vehicula eros ac, ac at. Justo vel irure integer auctor vestibulum et, hymenaeos justo nonummy, nullam sed ante vivamus. Ante arcu ultricies eget, vel non, venenatis urna rhoncus, varius nonummy, iaculis et porttitor. Sit id nisl posuere nonummy, mi blandit aenean etiam metus ante metus, vivamus tortor maecenas velit cras, tincidunt quis diam suspendisse quam, dui sed arcu.
+% Allgemeines über die Verschlüsselung und ihre Geschichte
+\newpage
+\part{Verschlüsselung}
+\section{Geschichte der Verschlüsselung}
+\subsection{Caesar Verschlüsselung}
+\subsection{Sicherheit bei alten Verschlüsselungen}
+\subsection{Vergleich zu heutigen Verschlüsslungen}
 
+\section{Verschlüsselung Allgemein}
+\subsection{Moderne Kryptographie}
+\subsubsection{Symmetrische Verschlüsselung}
+\subsubsection{Asymmetrische Verschlüsselung}
+
+%RSA-Algorithmus erklären anhand von Beispielen
+\newpage
+\part{Der RSA-Algorithmus}
+\section{Verfahren}
+\subsection{Eulersche Funktion}
+\subsection{Erweiterter euklidischer Algorithmus}
+\subsection{RSA mit dem Chinesischen Restsatz}
+\subsection{Modulo}
+\section{Verschlüsselung}
+\subsection{Formel Verschlüsselung}
+\section{Entschlüsselung}
+\subsection{Formel Entschlüsselung}
+\section{Schlüssel}
+\subsection{Sicherer Schlüssel generieren}
+\subsubsection{Zufallszahlen generieren}
+\paragraph{Entropie}
+\paragraph{Zahlentheoretische Funktionen}
+\section{Beispiel}
+\subsection{Einfaches Zahlenbeispiel}
+\subsection{Beispiel an einem Text}
+\section{Anwendung}
+\subsection{SSH - Secure Shell}
+
+% Was macht den RSA-Algorithmus so sicher, wie kann man ihn brechen, kann man ihn brechen
+\newpage
+\part{Sicherheit}
+\section{Primzahlen}
+\subsection{Faktorisierungsproblem}
+\section{Angriffe auf den RSA-Algorithmus}
+\subsection{Timing Attack}
+\subsection{Exponent Attacks}
+\section{Ausblick in die Zukunft}
+
+%SCHLUSS, Quellen, Zusammenfassung usw.
+\newpage
+\part{Schluss}
+\section{Zusammenfassung}
+\section{Abstract}
+\section{Quellen}
+\section{Erklärung}
+Hiermit erklären wir, dass wir die Intersiziplinäre Projektarbeit ohne fremde Hilfe angefertigt haben und nur die im Quellenverzeichnis angeführten Quellen und Hilfsmittel benutzt haben.
+\section{Anhang}
 \end{document}
