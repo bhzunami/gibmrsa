@@ -1,128 +1,71 @@
 %
-% Maturarbeit Denis Augsburger und Nicolas Mauchle
+% Maturarbeit von Denis Augsburger und Nicolas Mauchle
+%
+% Betreuer S. Kuster G. Colins
 %
 % GIBM 2011
-
+%
 \documentclass[12pt,a4paper,german]{article}
-
+%
 \usepackage[left=3cm,right=2cm,bottom=3cm,includeheadfoot]{geometry}
 \usepackage[pdftex]{graphicx}
 \usepackage{babel}
 \usepackage[utf8]{inputenc}
 \usepackage{fancyhdr}
 \usepackage{lastpage}
-
+%
 % KOPF UND FUSS ZEILEN
 \pagestyle{fancy}
-
-
-\fancyhf{}
 %
-\fancyfoot[L]{IDPA}
+\fancyhf[R]{Wieso ist RSA auch heute noch sicher}
+\fancyhf[L]{\leftmark}
+%
+\fancyfoot[L]{D. Augsburger \& N. Mauchle}
 \fancyfoot[R]{Seite \thepage \  von  \pageref{LastPage}}
-
+%
 %Linie unten
 \renewcommand{\footrulewidth}{0.5pt}
-
+%
 \begin{document}
-
+%
+%-----------------------------------------------------------
 % Title Page
-\begin{titlepage}
-\sffamily
-\centering
-\includegraphics{images/gibm_logo.png}
-
-\vfill
-{\bfseries\Huge RSA-Verschlüsselung}\\
-\vfill
-
-{\bfseries\Large Wieso ist RSA auch heute noch sicher}\\
-\vfill
-Verfasser\\[1ex]
-Denis Augsburger\\
-Nicolas Mauchle\\
-\vfill
-Betreuer\\[1ex]
-{\large Stefan Kuster}\\
-{\large Gary Collins}\\
-\vfill
-
-\raggedright
-\small
-Muttenz, im August 2011\\[2cm]
-\begin{tabbing}
-Klasse:\quad\quad\quad \=BMI 4B\\
-Fächer: \> Englisch Physik \\
-Schule: \> GIBM - Pratteln
-\end{tabbing}
-\end{titlepage}
-
-
+%-----------------------------------------------------------
+\input{./titlePage.tex}
+%
+%-----------------------------------------------------------
 % PLACE TEXT HERE
+%-----------------------------------------------------------
 \tableofcontents
-
+%
+%-----------------------------------------------------------
 % EINLEITUNG
+%-----------------------------------------------------------
 \newpage
-\part{Einleitung}
-\section{Vorwort}
-\section{Leitfrage}
-
+\input{./einleitung.tex}
+%
+%-----------------------------------------------------------
 % Allgemeines über die Verschlüsselung und ihre Geschichte
+%-----------------------------------------------------------
 \newpage
-\part{Verschlüsselung}
-\section{Geschichte der Verschlüsselung}
-\subsection{Caesar Verschlüsselung}
-\subsection{Sicherheit bei alten Verschlüsselungen}
-\subsection{Vergleich zu heutigen Verschlüsslungen}
-
-\section{Verschlüsselung Allgemein}
-\subsection{Sinn und Zweck der Verschlüsselung}
-\subsection{Moderne Kryptographie}
-\subsubsection{Symmetrische Verschlüsselung}
-\subsubsection{Asymmetrische Verschlüsselung}
-
+\input{./verschluesselung.tex}
+%
+%-----------------------------------------------------------
 %RSA-Algorithmus erklären anhand von Beispielen
+%-----------------------------------------------------------
 \newpage
-\part{Der RSA-Algorithmus}
-\section{Mathematisches Verfahren}
-\subsection{Eulersche Funktion}
-\subsection{Modulo}
-\subsection{Erweiterter euklidischer Algorithmus}
-\subsection{RSA mit dem Chinesischen Restsatz}
-\section{Der Schlüssel}
-\subsection{Sicherer Schlüssel generieren}
-\subsubsection{Zufallszahlen generieren}
-\paragraph{Entropie}
-\paragraph{Zahlentheoretische Funktionen}
-\subsection{Schlüssel austauschen}
-\section{RSA Verschlüsselung}
-\subsection{Formel Verschlüsselung}
-\section{RSA Entschlüsselung}
-\subsection{Formel Entschlüsselung}
-\section{Beispiel}
-\subsection{Einfaches Zahlenbeispiel}
-\subsection{Komplexeres Zahlenbeispiel}
-\subsection{Beispiel an einem Text}
-\section{Anwendung}
-\subsection{SSH - Secure Shell}
-
+\input{./rsa-algorithmus.tex}
+%
+%---------------------------------------------------------------------------------------------
 % Was macht den RSA-Algorithmus so sicher, wie kann man ihn brechen, kann man ihn brechen
+%---------------------------------------------------------------------------------------------
 \newpage
-\part{Sicherheit}
-\section{Primzahlen}
-\subsection{Faktorisierungsproblem}
-\section{Angriffe auf den RSA-Algorithmus}
-\subsection{Timing Attack}
-\subsection{Exponent Attacks}
-\section{Ausblick in die Zukunft}
-
+\input{./sicherheit.tex}
+%
+%-----------------------------------------------------------
 %SCHLUSS, Quellen, Zusammenfassung usw.
+%-----------------------------------------------------------
 \newpage
-\part{Schluss}
-\section{Zusammenfassung}
-\section{Abstract}
-\section{Quellen}
-\section{Erklärung}
-Hiermit erklären wir, dass wir die Intersiziplinäre Projektarbeit ohne fremde Hilfe angefertigt haben und nur die im Quellenverzeichnis angeführten Quellen und Hilfsmittel benutzt haben.
-\section{Anhang}
+\input{./schluss.tex}
+%
 \end{document}
