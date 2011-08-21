@@ -5,5 +5,19 @@ http://en.wikibooks.org/wiki/Cryptography/History
 
 http://www.cpp-home.com/archives/333.html
 
+== RSA ==
+
+=== Eulersche Funktion ==
+http://math-it.org/Mathematik/Zahlentheorie/Euler_de.html
+
+http://de.wikipedia.org/wiki/Eulersche_%CF%86-Funktion
+
+=== Teilerfremd === 
+http://www.mathe-lexikon.at/arithmetik/natuerliche-zahlen/teilbarkeit/groesster-gemeinsamer-teiler-ggt.html
+
+http://de.wikipedia.org/wiki/Teilerfremdheit
+
+== 
+
 == Anwendugnen == 
 http://www.linuxjournal.com/article/6695?page=0,0
