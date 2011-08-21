@@ -1,0 +1,9 @@
+#summary Linksammlung zum Thema RSA
+
+== Geschichte zu Verschlüsselung ==
+http://en.wikibooks.org/wiki/Cryptography/History
+
+http://www.cpp-home.com/archives/333.html
+
+== Anwendugnen == 
+http://www.linuxjournal.com/article/6695?page=0,0
