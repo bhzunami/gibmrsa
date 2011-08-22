@@ -7,16 +7,16 @@
 Die Kryptographie bezeichnet die Entwicklung von Methoden zur Verheimlichung von Nachrichten.
 Solche Methoden wurden schon 3000 Jahre vor Christus bei den Ägyptern verwendet(Hyrogliphen). \\
 Die Hebräer haben 600 vor Christus das Atbash entwickelt. Dabei wurde das Alphabet umgekehrt und entsprechend verschlüsselt.
-Als kleines Beispiel\\
+Als kleines Beispiel
+
 \begin{table}[ht]
 \caption{Atbash Verschlüsselung}
-\begin{tabular}{p|p|p|p|p}
-  \midrule
-  a & b & c & d \\
-   \midrule
-  z & y & x & w \\
-  \bottomrule
+\begin{center}
+\begin{tabular}{|l|l|l|l|l|l|l|}
+  a & b & c & d & e & f\\
+  z & y & x & w & v & u\\
 \end{tabular}
+\end{center}
 \end{table}
 
 
@@ -34,7 +34,7 @@ Im zweiten Weltkrieg wurden erste kompliziertere mathematische Verfahren verwend
 
 
 
-\section{Moderne Kryptographie}
+\section{Moderne Kryptographie}[hb]
 
 \subsubsection{Symmetrische Verschlüsselung}
 \subsubsection{Asymmetrische Verschlüsselung}
@@ -45,7 +45,25 @@ Anfang 1970 stellten W. Diffe und M.Hellman ein konzept vor, das die Grundidee v
 Später entwickelten James Ellis, Clifford Cockes und Malcom Willamson, alle vom Britischen Geheimdienst, an einer Asymmetrischen Verschlüsselung. Sie durften aber ihre Ergebnisse nicht veröffentlichen geschweige ein Patent anmelden.\\
 Der grosse Durchbruch gelang Ronald L. \textbf{R}ivest, Adi \textbf{S}hamir und Leonard M. \textbf{A}dleman im Jahre 1977. Sie entwickelten den RSA-Algorithmus der bis heute als eines der sichersten Verfahren giltet.\\[2ex]
 %
-Bei einem assymetrischen Verfahren kann jede Sender einem Empfänger eine verschlüsselte Nachricht senden, die nur der Empfänger entschlüsseln kann. Das Funktioniert dank einem öffentlichen Schlüssel \textbf{Public-Key} und eine privaten Schlüssel \textbf{Private-Key}. \\
-Deshalb spricht man auch von einer  \textbf{Public Key-Kryptographie}.
+\paragraph{Verschlüsseln}
+Bei einem assymetrischen Verfahren kann jede Sender einem Empfänger mit hilfe einer Funktion f eine verschlüsselte Nachricht c senden, die nur der Empfänger mit seinem privaten Schlüssel entschlüsseln kann. Das Funktioniert dank einem öffentlichen Schlüssel \textbf{Public-Key} e und eine privaten Schlüssel \textbf{Private-Key} d. \\
+Deshalb spricht man auch von einer  \textbf{Public Key-Kryptographie}. Es ist praktisch unmöglich vom öffentlichen Schlüssel auf den privaten Schlüssel zu kommen. Dass macht die Public Key-Kryptographie extrem sicher. 
+% Mehr dazu im Kapitel Sicherheit %
+Der Verschlüsselungsalgorithmus verschlüsselt den klartext in ein verschlüsselten Text. So ergibt sich die Formel.
+\begin{center}
+$ c = f_e (m) $
+\end{center}
+\paragraph{Entschlüsseln}
+Beim Entschlüsseln ist es gearde umgekehrt. Hierfür wird mit der Entschlüsselungsfunktion f und dem privaten Schlüssel d aus dem verschlüsseltem Text c den klartext umgewandelt.
+\begin{center}
+$ m' = f_d (c) $
+\end{center}
+Damit der richtige Text heraus kommt bei der Entschlüsselung muss 
+\begin{center}
+$ m' = f_d (c) = f_d(f_e(m))  = m$
+\end{center}
+sein.
+
+
 Der Empfänger erstellt zwei Schlüssel. Einen öffentlichen den er verteilen kann und einen geheimen privaten Schlüssel denn er keinem zeigt. 
 
