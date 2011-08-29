@@ -75,36 +75,3 @@ Die Verfahren bis zum zweiten Weltkrieg konnten relativ einfach geknackt werden.
 
 
 
-\section{Moderne Kryptographie}[hb]
-
-\subsubsection{Symmetrische Verschlüsselung}
-\subsubsection{Asymmetrische Verschlüsselung}
-Vor den 1970er Jahre, als es die asymmetrische Verschlüsselung noch nicht gab, wurden Schlüssel für eine symmetrische Verschlüsselung streng bewacht transportiert.
-Vorallem bei Botschaften, wenn man einen neuen Schlüssel brauchte, waren dass die Personen, die den Koffer an ihren Arm mit einer Handschelle befestigten und noch zusätzlich von 5 Bodyguards beschützt in eine Panzerfesten Limusinen von einer Botschaft zur anderen fuhren.\\
-Dieses Verfahren war sehr umständlich. Es kostete viel und dauerte zu lang. Wie aber sollte man einen Schlüssel sicher von einem Ort zum andern transportieren und dabei sicher sein, dass niemand einen Blick auf den Schlüssel werfen kann.\\
-Anfang 1970 stellten W. Diffe und M.Hellman ein konzept vor, das die Grundidee von einer Asymmetrischen Verschlüsselung zeigte. Sie kannten das Verfahren aber nicht.
-Später entwickelten James Ellis, Clifford Cockes und Malcom Willamson, alle vom Britischen Geheimdienst, an einer Asymmetrischen Verschlüsselung. Sie durften aber ihre Ergebnisse nicht veröffentlichen geschweige ein Patent anmelden.\\
-Der grosse Durchbruch gelang Ronald L. \textbf{R}ivest, Adi \textbf{S}hamir und Leonard M. \textbf{A}dleman im Jahre 1977. Sie entwickelten den RSA-Algorithmus der bis heute als eines der sichersten Verfahren giltet.\\[2ex]
-%
-\paragraph{Verschlüsseln}
-Bei einem assymetrischen Verfahren kann jede Sender einem Empfänger mit hilfe einer Funktion f eine verschlüsselte Nachricht c senden, die nur der Empfänger mit seinem privaten Schlüssel entschlüsseln kann. Das Funktioniert dank einem öffentlichen Schlüssel \textbf{Public-Key} e und eine privaten Schlüssel \textbf{Private-Key} d. \\
-Deshalb spricht man auch von einer  \textbf{Public Key-Kryptographie}. Es ist praktisch unmöglich vom öffentlichen Schlüssel auf den privaten Schlüssel zu kommen. Dass macht die Public Key-Kryptographie extrem sicher. 
-% Mehr dazu im Kapitel Sicherheit %
-Der Verschlüsselungsalgorithmus verschlüsselt den klartext in ein verschlüsselten Text. So ergibt sich die Formel.
-\begin{center}
-$ c = f_e (m) $
-\end{center}
-\paragraph{Entschlüsseln}
-Beim Entschlüsseln ist es gearde umgekehrt. Hierfür wird mit der Entschlüsselungsfunktion f und dem privaten Schlüssel d aus dem verschlüsseltem Text c den klartext umgewandelt.
-\begin{center}
-$ m' = f_d (c) $
-\end{center}
-Damit der richtige Text heraus kommt bei der Entschlüsselung muss 
-\begin{center}
-$ m' = f_d (c) = f_d(f_e(m))  = m$
-\end{center}
-sein.
-
-
-Der Empfänger erstellt zwei Schlüssel. Einen öffentlichen den er verteilen kann und einen geheimen privaten Schlüssel denn er keinem zeigt. 
-
