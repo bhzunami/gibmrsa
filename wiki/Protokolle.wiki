@@ -57,3 +57,17 @@ Wie funktioniert der RSA Algorithmus f체r die Verschl체sselung wie auch Entschl�
 - Vorbereitung Fixpunktgespr채ch
 
 *Fixpunktgespr채cht*
+
+
+
+== Protokoll des 29.08.2011 ==
+
+*Anwesend:* Denis und Nicolas
+
+*Traktanden:*
+
+- Wissensaustausch
+
+- Jeder hat an seinem Gebiet gearbeitet
+
+- Aufteilung f체r 5. September
