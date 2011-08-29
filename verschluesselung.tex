@@ -41,17 +41,39 @@ des Algorythmus abhängen
 \subsection{Kryptographie im zweiten Weltkrieg}
 Im zweiten Weltkrieg nutzten die Deutsche Wehrmacht die ENIGMA zur Verschlüsselung ihres Funkverkehrs. Die ENIGMA ist wie eine Schreibmaschine zu bedienen. Die ENIGMA besteht aus der Tastatur, einem Walzensatz und einer Anzeige über Lampen. 
 
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[width=15cm]{images/Enigma_Verkehrshaus_Luzern_cropped.jpg}
+\caption{Enigma Maschine}
+\end{center}
+\end{figure}
+
 \subsubsection{Funktion der ENIGMA Maschine}
-Die Walzen können sich drehen und sind mit Elektrischen Kontakten miteinander verbunden. Wird eine Taste gedrückt, fliesst Strom durch den Walzenssatz und es leuchtet die Lampe des verschlüsselten Buchstabens auf. Die Walze dreht sich bei jedem Tastendruck weiter, so das der gleiche Buchstaben jeweils anders verschlüsselt wird. Z. B. AAA wird zu DEF. Nach 26 Umdrehungen der ersten Walze wird die nächste Walze gedreht. \\
+Die Walzen können sich drehen und sind mit Elektrischen Kontakten miteinander verbunden. Wird eine Taste gedrückt, fliesst Strom durch den Walzenssatz und es leuchtet die Lampe des verschlüsselten Buchstabens auf. Die Walze dreht sich bei jedem Tastendruck weiter, so das der gleiche Buchstaben jeweils anders verschlüsselt wird. Z. B. AAA wird zu DEF. Nach 26 Umdrehungen der ersten Walze wird die zweite Walze gedreht. \\
+
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[width=5cm]{images/Enigma-action.png}
+\caption{Enigma Stromfluss}
+\end{center}
+\end{figure}
+
 Dabei gehen jeweils elektrische Impulse durch die Walze. Nach jeder Drehung legt der Strom eine andere Strecke durch die Walzen zurück. 
 Über das Steckbrett konnte der Verschlüsselte Buchstaben nochmals ersetzt werden. z. B. wurde E mit J verbunden. Falls nach dem verschlüsseln ein E herauskam, wurde dieses mit J ersetzt. 
 
 \subsubsection{Anwendung}
 Die Deutsche Wehrmacht nutzte die ENIGMA um ihre Funksprüche zu verschlüsseln. Dazu wurden jeweils um Mitternacht die Walzen und die Steckverbindungen ausgetauscht bzw. umgesteckt. Ein neuer Schlüsselsatz sah beispielsweise so aus:
 
-Quelle Wikipedia: Schlüsseltafel der Wehrmacht: Täglich um 
-Tag UKW  Walzenlage  Ringstellung  ---- Steckerverbindungen ----
- 31  B   I   IV III    16 26 08    AD CN ET FL GI JV KZ PU QY WX 
+%Quelle Wikipedia%
+\begin{table}[ht]
+\caption{Schlüsseltafel der Wehrmacht}
+\begin{center}
+\begin{tabular}{|l|l|l|l|l}
+Tag & UKW & Walzenlage & Ringstellung &  ---- Steckerverbindungen ---- \\
+ 31  &   B   &  I   IV III   &    16 26 08   &  AD CN ET FL GI JV KZ PU QY WX \\
+\end{tabular}
+\end{center}
+\end{table}
 
 Die eigentliche Verschlüsselung war relativ simpel zu bewerkstelligen. Es musste nur die entsprechende Funknachricht eingegeben werden und die ENIGMA erledigte die Verschlüsselung. Der Austausch der aktuellen Walzenstellung und das Morsen der Nachricht waren jedoch wesentlich komplizierter.
 
