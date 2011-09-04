@@ -1,13 +1,40 @@
 \section{Moderne Kryptographie}
+Die Moderne Kryptographie unterscheidet sich zur \textit{klassischen} Kryptographie vor allem in der Technik. Was früher mechanisch erstellt wurde, wird in der modernen Kryptographie digital gemacht. Es werden keine langen Buchstabenkolonen analysiert und keine Chiffriermaschienen benötigt, um einen Geheimtext zu erstellen.\\
+Auch die immer besser bzw. schnelleren Computer machten die klassischen Kryptographie sehr unsicher, da sie durch Brute-Force\footnote{Brute-Force nennt man ein Vorgehen, wenn man ein Passwort durch ausprobieren knackt.} schnell gelöst werden konnten.\\
+Man brauchte also sichere Verschlüssselungs-Methoden, die durch ausprobieren, nicht geknackt werden konnten.\\
+Wichtig für die moderne Kryptographie sind die Jahreszahlen 1976 und 1985.\\
+1976 wurde das Problem, dass immer beide Seiten einen \textbf{gemeinsamen} Schlüssel benötigen gelöst. Das ist die Geburtstunde des RSA-Algorithmus.\\
+1985 entwickelten drei Mathematiker/Innen das \textbf{Zero-Knowlede-Verfahren}. Mit diesem Verfahren ist es möglich, dass ich mit jemanden über ein Geheimniss kommuniziere, ohne dass dieser etwas über mein Geheimnis erfährt. Das Zero-Knowlede-Verfahren baut auf die Public Key-Kryptographie auf. Der wesentliche Unterschied liegt im Protokol.
+%
 \subsubsection{Symmetrische Verschlüsselung}
+Grundsätzlich braucht es für eine einfache symmetrische Verschlüsselung einen Schlüssel, Text zum verschlüsseln und eine Verschlüsselungsfunktion.
+Die Verschlüsselungsfunktion verschlüsselt mit Hilfe des Schlüssel die Nachricht.
+In einer Formel ausgedrückt heisst das
+ \begin{center}
+$c = f ( k, m )$
+ \end{center}
+wobei \textit{c} für den verschlüsselten Text steht, \textit{f} für die Verschlüsselungsfunktion, \textit{k} für den Schlüssel und \textit{m} für den Text den man verschlüsseln möchte.\\
+
+Dieser Verschlüsselte Text gibt er jetzt dem Empfänger. Hat der Empfänger keinen Schlüssel k, um die Nachricht zu entschlüsseln, kann der die Nachricht nicht lesen. Somit braucht der Empfänger den \textbf{selben} Schlüssel k, die verschlüsselte Nachricht c und eine umkehrfunktion von f. Man möchte ja am Schluss den gleichen Text wieder haben.\\
+Daraus ensteht die Formel 
+ \begin{center}
+$m = f^*(k,c)$
+ \end{center}
+Man geht davon aus, das die Funktion der Ver- und Entschlüsslung bekannt sind. Das die Funktionen bekannt sind, ist nicht ein sicherheitsproblem.\\
+Nach dem Kerckoffs' Prinzip geht der Grundsatz hervor, dass die Sicherheit eines Verschlüsslungsverfahren nicht auf der Geheimhaltung des Algorithmus beruht, sondern auf die geheimhaltung des Schlüssels.
+Denn ein Algorithmus kann durch Reverse-Engineering\footnote{Unter dem Begriff Reverse-Engineering versteht man, dass aus einem fertigen Produkt durch Untersuchen der Strukturen und der Verhaltensweise den Source-Code heraus zu finden.} rekonstruiert werden.\\
+Auch hat die Geschichte gezeigt dass bis heute \textbf{jeder} Verschlüsselungsalgorithmus gebrochen werden konnte. (siehe Gemstar Development, RC4).\\[2ex]
+%
+Somit muss die Verschlüsselungsfunktion so komplex sein, dass man nur mit dem Schlüssel das richtige Ergebnis erhaltet.
+%
 \subsubsection{Asymmetrische Verschlüsselung}
 Vor den 1970er Jahre, als es die asymmetrische Verschlüsselung noch nicht gab, wurden Schlüssel für eine symmetrische Verschlüsselung unter grossem Schutz transportiert.
 % Besser ausdeutschen
 % --->
-Vorallem bei Botschaften, wenn man einen neuen Schlüssel brauchte, waren dass die Personen, die den Koffer an ihren Arm mit einer Handschelle befestigten und noch zusätzlich von 5 Bodyguards beschützt in eine Panzerfesten Limusinen von einer Botschaft zur anderen fuhren.\\
+Vorallem bei Botschaften, wenn man einen neuen Schlüssel brauchte, waren dass die Personen, die den Koffer an ihren Arm mit einer Handschelle befestigten und noch zusätzlich von 5 Bodyguards beschützt in einer panzerfesten Limusinen von einer Botschaft zur anderen fuhren.\\
 Dieses Verfahren war sehr umständlich. Es kostete viel und dauerte zu lang. Wie aber sollte man einen Schlüssel sicher von einem Ort zum andern transportieren und dabei sicher sein, dass niemand einen Blick auf den Schlüssel werfen kann.\\
 % <---
-Anfang 1970 stellten W. Diffe und M.Hellman ein Konzept vor, dass die Grundidee von einer Asymmetrischen Verschlüsselung zeigte. Sie kannten das Verfahren aber nicht exakt sondern stellten theoretische Ansätze vor.\\
+Anfang 1976 stellten W. Diffe und M.Hellman ein Konzept vor, dass die Grundidee von einer Asymmetrischen Verschlüsselung zeigte. Sie kannten das Verfahren aber nicht exakt sondern stellten theoretische Ansätze vor.\\ % Stellten das Prinzip vor
 Später entwickelten James Ellis, Clifford Cockes und Malcom Willamson, alle vom Britischen Geheimdienst, ein Asymmetrisches Verschlüsselungsverfahren. Sie durften aber ihre Ergebnisse nicht veröffentlichen geschweige ein Patent anmelden. 
 Der Erfolg gelang Ronald L. \textbf{R}ivest, Adi \textbf{S}hamir und Leonard M. \textbf{A}dleman im Jahre 1977. Sie entwickelten den RSA-Algorithmus der bis heute als eines der sichersten asymmetrischen Verfahren giltet.\\[2ex]
 %
@@ -27,21 +54,26 @@ Der Verschlüsselungsalgorithmus f verschlüsselt den Klartext m in ein verschl�
 % c = f(e,m)
 \paragraph{Entschlüsseln}
 Der Empfänger nimmt jetzt den verschlüsselten Text und entschlüsselt ihn mit hilfe seines privaten Schlüssel und erhält den Klartext.
-Auch hier kann man eine Funktion erstellen die das Entschlüsseln schematisch darstellt.
+Auch hier kann man eine Funktion erstellen die das Entschlüsseln schematisch darstellt.\\
 Mit der Entschlüsselungsfunktion f und dem privaten Schlüssel d wird aus dem verschlüsseltem Text c den klartext m' gewonnen.
 \begin{center}
 $ m' = f_d (c) $
 \end{center}
-Das wichtigste bei der asymmetrischen Verschlüsselung ist, dass beim entschlüsseln wieder der \textbf{gleiche} Text reproduziert wird, auch wenn zwei unterschiedliche Schlüssel verwednet wurden.\\
+Das wichtigste bei der asymmetrischen Verschlüsselung ist, dass beim entschlüsseln wieder der \textbf{gleiche} Text reproduziert wird, auch wenn zwei unterschiedliche Schlüssel verwendet wurden.\\
 Damit das der Fall ist, kann man c Parametrisieren und erhält
 \begin{center}
 $ m' = f_d (c) = f_d (f_e (m) ) = m $\\
+\end{center}
 gekürzt\\
+\begin{center}
 $ m = f_d ( f_e (m) )$
 \end{center}
-Im wirklichkeit sieht das Verfahren so aus. Eine Person A erstellt zwei Schlüssel. Einen privaten Schlüssel, der nur sie kennt und einen öffentlichen, den sie Person B gibt. Jetzt möchte B an A einen Text senden. Hierfür nimmt es den öffentichen Schlüssel von A und verschlüsselt den Text.
-Diesen Verschlüsselten Text sendet Person B an A. 
-A nimmt jetzt den verschlüsselten Text entgegen und entschlüsselt ihn mit Hilfe des privaten Schlüssel.
-Da A nur den privaten Schlüssel hat, mit der sich den verschlüsselten Text entschlüsseln lässt, kann nur A den Text lesen.
+\paragraph{Beispiel \footnote{Dieses Beispiel zeigt einen schematischen Ablauf. Es geht nicht auf das Verschlüsselungsverfahren ein.} }
+Herr Müller möchte gern Herrn Spinnler seine sensiblen Daten übergeben. Dafür benötigt er den öffentlichen Schlüssel von Herr Spinnler.\\
+Jetzt verschlüsselt Herr Müller mit dem öffentlichen Schlüssel seine Daten, die er an Herr Spinnler senden möchte. Das verschlüsselte Paket sendet Herr Müller an Herr Spinnler. Dieser wiederum entschlüsselt sein Paket mit seinem geheimen gut aufbewarten privaten Schlüssel. Somit kann er die Daten lesen.
 
-Der Empfänger erstellt zwei Schlüssel. Einen öffentlichen den er verteilen kann und einen geheimen privaten Schlüssel denn er keinem zeigt. 
+%Im wirklichkeit sieht das Verfahren so aus. Eine Person A erstellt zwei Schlüssel. Einen privaten Schlüssel, der nur sie kennt und einen öffentlichen, d%en sie Person B gibt. Jetzt möchte B an A einen Text senden. Hierfür nimmt es den öffentichen Schlüssel von A und verschlüsselt den Text.
+%Diesen Verschlüsselten Text sendet Person B an A. 
+%A nimmt jetzt den verschlüsselten Text entgegen und entschlüsselt ihn mit Hilfe des privaten Schlüssel.
+%Da A nur den privaten Schlüssel hat, mit der sich den verschlüsselten Text entschlüsseln lässt, kann nur A den Text lesen.
+%Der Empfänger erstellt zwei Schlüssel. Einen öffentlichen den er verteilen kann und einen geheimen privaten Schlüssel denn er keinem zeigt. 
