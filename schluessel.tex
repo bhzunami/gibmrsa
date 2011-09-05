@@ -1,13 +1,15 @@
 \section{Der Schlüssel}
-Für eine sichere Verschlüsslung kommt es auf den Schlüssel an. Denn nur mit diesem Schlüssel, kann man die verschlüsselte Nachricht enschlüsseln. Der Schlüssel spielt also eine zentrale Rolle und muss sicher sein.
-
+Für eine sichere Verschlüsslung kommt es auf den Schlüssel an. Denn nur mit diesem Schlüssel, kann man die verschlüsselte Nachricht enschlüsseln. Der Schlüssel spielt also eine zentrale und wichtige Rolle. Dazu muss er so komplex sein, dass man ihn nicht erraten kann, oder durch ausprobieren den Schlüssel herausfindet.
 \subsection{Sicherer Schlüssel generieren}
-Für einen sicheren Schlüssel sollte man immer Zufallszahlen verwenden. Zufallszahlen sind Zahlenfolgen bei denen man die nächste Zahl nicht durch mathematische Berechunungen vorhersagen kann - also Zufällige Zahlen. 
+Für einen sicheren Schlüssel sollte man immer Zufallszahlen verwenden. Zufallszahlen sind Zahlenfolgen bei denen man die nächste Zahl nicht durch mathematische Berechunungen vorhersagen kann - also Zufällige Zahlen.\\
+TBC
 \subsubsection{Zufallszahlen generieren}
-Um solche Zufallszahlen zu generieren hat man Zufallszahlengeneratoren (engl random number generator = RNG) gebaut. Diese messten den Radioaktiven Zerfall oder beobachteten die atmosphärischen Bedingungen in der Umgebung. Die Zahlen die der RNG zurückgibt, kann man dann Verwenden um eine Zufallszahl zu generieren, da der Output auf einem Input basiert, der sich permanent ändert und nicht wiederholbar ist.
+In der Informatik sind zufallszahlen eine sehr komplexe angelegenheit. 
+Um solche Zufallszahlen zu generieren haben grössere Firmen einen Zufallszahlengeneratoren beziehungsweise einen \textit{random number generator}, kurz RNG entwickelt. Diese messten den Radioaktiven Zerfall oder beobachteten die atmosphärischen Bedingungen in der Umgebung. \\
+Die Zahlen die der RNG auswertet, nennt man \textbf{Seed-Zahlen}. Mit den gewonnen Seed-Zahlen, kann man jetzt einen Algorithums füttern, der eine Zahl oder eine Zahlenfolge zurückgibt. Das sind dann die benötigten Zufallszahlen, die für einen Schlüssel gebraucht werden können.
+%
+Für den normalen Benutzer sind solche Apparate viel zu aufwendig. Deshalb entwickelten Computerhersteller einen Pseudozufallszahlengenerator bzw einen \textit{pseudo random number generator} kurz PRNG.
 
-Was, wenn man keine solchen Messgeräte hat, die solche Zahlen generieren können. 
-Für das gibt es Pseudozufallszahlengeneratoren (engl pseudo random number generator = PRNG)
 
 \paragraph{Entropie}
 \paragraph{Zahlentheoretische Funktionen}
