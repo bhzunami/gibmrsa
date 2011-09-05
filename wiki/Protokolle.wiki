@@ -71,3 +71,21 @@ Wie funktioniert der RSA Algorithmus für die Verschlüsselung wie auch Entschl�
 - Jeder hat an seinem Gebiet gearbeitet
 
 - Aufteilung für 5. September
+
+
+
+== Protokoll des 05.09.2011 ==
+
+*Anwesend:* Denis und Nicolas
+
+*Traktanden:*
+
+- Milestone 1 abgeschlossen, muss noch überarbeitet werden.
+
+- Denis: RSA-Verschlüsselung angefangen
+
+- Nicolas: Schlüssel angefangen
+
+- Kurs für Layout der uns mind. 30 Minuten unserer sehr kostbaren Zeit geraubt hat. Völliger UNSINN!!!!!!!!!!
+
+- Weiteres Vorgehen besprochen: Bis in 3 Wochen muss Kapitel 3 abgeschlossen sein. Falls es nicht reicht, muss über die Ferien gearbeitet werden.
