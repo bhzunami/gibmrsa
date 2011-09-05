@@ -1,6 +1,14 @@
 \section{Der Schlüssel}
+Für eine sichere Verschlüsslung kommt es auf den Schlüssel an. Denn nur mit diesem Schlüssel, kann man die verschlüsselte Nachricht enschlüsseln. Der Schlüssel spielt also eine zentrale Rolle und muss sicher sein.
+
 \subsection{Sicherer Schlüssel generieren}
+Für einen sicheren Schlüssel sollte man immer Zufallszahlen verwenden. Zufallszahlen sind Zahlenfolgen bei denen man die nächste Zahl nicht durch mathematische Berechunungen vorhersagen kann - also Zufällige Zahlen. 
 \subsubsection{Zufallszahlen generieren}
+Um solche Zufallszahlen zu generieren hat man Zufallszahlengeneratoren (engl random number generator = RNG) gebaut. Diese messten den Radioaktiven Zerfall oder beobachteten die atmosphärischen Bedingungen in der Umgebung. Die Zahlen die der RNG zurückgibt, kann man dann Verwenden um eine Zufallszahl zu generieren, da der Output auf einem Input basiert, der sich permanent ändert und nicht wiederholbar ist.
+
+Was, wenn man keine solchen Messgeräte hat, die solche Zahlen generieren können. 
+Für das gibt es Pseudozufallszahlengeneratoren (engl pseudo random number generator = PRNG)
+
 \paragraph{Entropie}
 \paragraph{Zahlentheoretische Funktionen}
 \subsection{Schlüssel austauschen}
