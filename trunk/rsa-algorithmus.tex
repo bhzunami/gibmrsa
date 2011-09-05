@@ -3,7 +3,17 @@
 
 \input{./schluessel.tex}
 \section{RSA Verschlüsselung}
+Die RSA Verschlüsselung wurde 1977 von Ronald L. Riverst, Adi Shamir und Leonard Adleman entwickelt. Der Name RSA setzt sich aus den Anfangsbuchstaben der Nachnamen der Entwickler zusammen. Es handelt sich um ein aymetrisches Verfahren. (Siehe Kapitel moderne Kryptographie) %Verweis%
+Das RSA Verfahren wird auch heute noch oft eingesetzt. Das Verfahren gilt bei einer bestimmten Schlüssellänge als sicher. Es gibt verschiedenste Angriffsmöglichkeiten, diese führen jedoch nicht in einem vernünftigen Zeitraum zu Ergebnissen. Das Verfahren wird zur Signierung und zur Verschlüsselung verwendet. (Siehe Anwendung) %Verweis%
+
 \subsection{Formel Verschlüsselung}
+Wenn der Schlüssel erstellt wurde kann ein Text relativ einfach verschlüsselt werden. Dazu dient folgende Formel:
+
+$ C \equiv K^e  \bmod N $
+
+C steht für Cipher und bezeichnet den Geheimtext. Dieser ist abhängig vom Klartext, dem öffentlichen Schlüssel e und dem RSA-Modul N. 
+
+
 \section{RSA Entschlüsselung}
 \subsection{Formel Entschlüsselung}
 \section{Beispiel}
