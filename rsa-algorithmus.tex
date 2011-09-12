@@ -7,15 +7,45 @@ Die RSA Verschlüsselung wurde 1977 von Ronald L. Riverst, Adi Shamir und Leonar
 Das RSA Verfahren wird auch heute noch oft eingesetzt. Das Verfahren gilt bei einer bestimmten Schlüssellänge als sicher. Es gibt verschiedenste Angriffsmöglichkeiten, diese führen jedoch nicht in einem vernünftigen Zeitraum zu Ergebnissen. Das Verfahren wird zur Signierung und zur Verschlüsselung verwendet. (Siehe Anwendung) %Verweis%
 
 \subsection{Formel Verschlüsselung}
-Wenn der Schlüssel erstellt wurde kann ein Text relativ einfach verschlüsselt werden. Dazu dient folgende Formel:
+Wenn der Schlüssel erstellt wurde kann ein Text einfach verschlüsselt werden. Dazu dient folgende Formel:
 
 $ C \equiv K^e  \bmod N $
 
 C steht für Cipher und bezeichnet den Geheimtext. Dieser ist abhängig vom Klartext, dem öffentlichen Schlüssel e und dem RSA-Modul N. 
 
-
 \section{RSA Entschlüsselung}
+Die RSA Entschlüsselung ist ohne den Geheimschlüssel zu wissen nach aktuellem Wissensstand nicht möglich. Da die Sicherheit von diesem Geheimschlüssel abhängt, gilt es diesen möglichst lang zu wählen und geheim zu halten. Aktuell gilt eine Schlüssellänge von 2048 Bit als sicher. Als Dezimalzahl ausgedrückt, ist dies eine Zahl von 3,2 * 10^616.
+Die Angriffe auf die RSA Verschlüsselung zielen darauf ab, den Geheimschlüssel zu ermitteln. Das Problem dabei ist die Primfaktoren Zerlegung von grossen Zahlen. Mehr dazu im Kapitel Angriffe %Verweis%
+
 \subsection{Formel Entschlüsselung}
+Die Entschlüsselung der Nachricht wird mit folgender Formel realisiert
+
+$ K \equiv C^d \mod N $
+
+Der Klartext K hängt in diesem Fall vom verschlüsselten Text C, dem privaten Schlüssel d und dem RSA-Modul N ab. 
+
+\subsection{Beweis der Funktionsweise}
+Jede Verschlüsselung muss bei der korrekten Entschlüsselung des Geheimtextes wieder den Klartext ergeben. Dies muss beim RSA-Algorithmus auch der Fall sein. Wir möchten hier mathematisch beweisen, dass die Entschlüsselung des Textes, wieder den Klartext ergibt.
+
+Die allgemeine Formel zur Entschlüsselung ist:
+$ K \equiv C^d \mod N $
+
+Setzen wir nun für den verschlüsselten Text die verschlüsselte Form von K ein muss dies immer noch K ergeben.
+$ K \equiv (K^e)^d \mod N $
+
+$ K \equiv K^e*d \mod N $
+Wenn diese Bedingung erfüllt ist, arbeitet der Algorithmus korrekt.
+
+Um die Richtigkeit zu beweisen kommen wir auf die Anfangszahlen p und q zurück, welche das RSA-Modul N bilden. Es handelt sich um Primzahlen. Wir zeigen das Vorgehen anhand von p:
+$ 0 \equiv K^e*d \mod p - K \mod p $
+
+$ 0 \equiv (K^e*d-K) \mod p $
+
+Da wir e und d so gewählt haben, dass 
+$ ed mod Φ(n) = 1 $ 
+%Verweis% 
+
+
 \section{Beispiel}
 \subsection{Einfaches Zahlenbeispiel}
 \subsection{Komplexeres Zahlenbeispiel}
