@@ -9,9 +9,9 @@ Das RSA Verfahren wird auch heute noch oft eingesetzt. Das Verfahren gilt bei ei
 \subsection{Formel Verschlüsselung}
 Wenn der Schlüssel erstellt wurde kann ein Text einfach verschlüsselt werden. Dazu dient folgende Formel:
 
-$ C \equiv K^e  \bmod N $
+$ C \equiv m^e  \bmod N $
 
-C steht für Cipher und bezeichnet den Geheimtext. Dieser ist abhängig vom Klartext, dem öffentlichen Schlüssel e und dem RSA-Modul N. 
+C steht für Cipher und bezeichnet den Geheimtext. Dieser ist abhängig vom Klartext m, dem öffentlichen Schlüssel e und dem RSA-Modul N. 
 
 \section{RSA Entschlüsselung}
 Die RSA Entschlüsselung ist ohne den Geheimschlüssel zu wissen nach aktuellem Wissensstand nicht möglich. Da die Sicherheit von diesem Geheimschlüssel abhängt, gilt es diesen möglichst lang zu wählen und geheim zu halten. Aktuell gilt eine Schlüssellänge von 2048 Bit als sicher. Als Dezimalzahl ausgedrückt, ist dies eine Zahl von $ 3,2 * 10^(616) $
@@ -20,26 +20,46 @@ Die Angriffe auf die RSA Verschlüsselung zielen darauf ab, den Geheimschlüssel
 \subsection{Formel Entschlüsselung}
 Die Entschlüsselung der Nachricht wird mit folgender Formel realisiert
 %
-$ K \equiv C^d \bmod N $
+$ m \equiv C^d \bmod N $
 %
-Der Klartext K hängt in diesem Fall vom verschlüsselten Text C, dem privaten Schlüssel d und dem RSA-Modul N ab. 
+Der Klartext m hängt in diesem Fall vom verschlüsselten Text C, dem privaten Schlüssel d und dem RSA-Modul N ab. 
 %
 \subsection{Beweis der Funktionsweise}
-Jede Verschlüsselung muss bei der korrekten Entschlüsselung des Geheimtextes wieder den Klartext ergeben. Dies muss beim RSA-Algorithmus auch der Fall sein. Wir möchten hier mathematisch beweisen, dass die Entschlüsselung des Textes, wieder den Klartext ergibt.
+Jede Verschlüsselung muss bei der korrekten Entschlüsselung des Geheimtextes wieder den Klartext ergeben. Wir möchten hier mathematisch beweisen, dass der RSA-Algorithmus korrekt funktioniert.
 
+Es wird folgende Behauptung aufgestellt:
+$ m^e*d \equiv m (mod n) $
+
+Eine Nachricht zu verschlüsseln und danach wieder zu entschlüsseln, ergibt wieder die Nachricht selbst. Dabei ergibt der Modulo mit dem RSA-Modul immer noch die selbe Nachricht
+
+Für den Beweis brauchen wir die Primzahlen p und q. Aus diesem wurde das RSA-Modul N gebildet
+$ n = p * q $
+
+Zusätzlich wurde und e und d so gewählt, dass folgendes zählt:
+$ e * d \bmod \varphi(n) = 1 $
+
+Lösen wir dies nach e*d kommt k hinzu:
+$ e * d = 1 + k * \varphi(n) $
+Die Modulo-Operation ergibt den Rest, welcher bei der Division durch eine Zahl anfällt. In unserem Fall ist der Rest immer 1.
+
+Nun können wir e * d einsetzen:
+$ m^e*d = m^k*\varphi(n)+1 $
+
+
+% Alt %
 Die allgemeine Formel zur Entschlüsselung ist:
-$ K \equiv C^d \bmod N $
+$ m \equiv C^d \bmod N $
 
 Setzen wir nun für den verschlüsselten Text die verschlüsselte Form von K ein muss dies immer noch K ergeben.
-$ K \equiv (K^e)^d \bmod N $
+$ m \equiv (m^e)^d \bmod N $
 
-$ K \equiv K^e*d \bmod N $
+$ m \equiv m^e*d \bmod N $
 Wenn diese Bedingung erfüllt ist, arbeitet der Algorithmus korrekt.
 
 Um die Richtigkeit zu beweisen kommen wir auf die Anfangszahlen p und q zurück, welche das RSA-Modul N bilden. Es handelt sich um Primzahlen. Wir zeigen das Vorgehen anhand von p:
-$ 0 \equiv K^e*d \bmod p - K \bmod p $
+$ 0 \equiv m^e*d \bmod p - K \bmod p $
 
-$ 0 \equiv (K^e*d-K) \bmod p $
+$ 0 \equiv (m^e*d-m) \bmod p $
 
 Da wir e und d so gewählt haben, dass 
 $ ed \bmod \varphi(n) = 1 $ 
