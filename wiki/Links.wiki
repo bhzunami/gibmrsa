@@ -23,3 +23,6 @@ http://de.wikipedia.org/wiki/Teilerfremdheit
 
 == Anwendugnen == 
 http://www.linuxjournal.com/article/6695?page=0,0
+
+== Primzahlen Liste ==
+http://www.umrechnung.org/_img/primzahlen-liste.pdf
