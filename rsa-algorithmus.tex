@@ -44,6 +44,79 @@ Wir setzen C der Verschlüsselungsformel mit C der Entschlüsselungsformel gleic
 \begin{align}
   m^e mod N = \sqrt[d]{m+k*N}\\
   m^{e*d} mod N = m + k * N
+  m^{e*d} mod N = m
+\end{align}
+Die Formel $ m^{e*d} mod N = m + k * N $ kann gekürzt werden, da k in jedem Fall 0 sein muss. Wir arbeiten auf beiden Seiten mit Modulo N. Eine Zahl mod N kann 1 bis N-1 gross sein.
+Wenn die Zahl N gross wär, würde es ja keinen Rest geben. Daher muss k in diesem Fall 0 sein. 
+
+
+\subsubsection{Grundlagen zur Erklärung}
+Das RSA-Modul N wird aus den ausgewählten Primzahlen p und q erstellt.
+\begin{align}
+  N = p * q
+\end{align}
+
+e wurde teilerfremd zu $ \varphi(n) $ gewählt. 
+$ \varphi(n) = (p-1)*(q-1) $
+
+Zusätzlich wurde d so gewählt, dass folgendes zählt:
+\begin{align}
+ e * d + k * \varphi(N) = 1 = ggT(e,\varphi(N))
+\end{align}
+
+Für den Beweis müssen wir ausschweifen auf den Satz von Euler Fermat. Dieser bildet die Grundlage 
+zur Verschlüsselung. Er lautet wie folgt:
+\begin{align}
+	a^{\varphi(n)} \equiv 1\,(\mathrm{mod}\,n)
+\end{align}
+Da wir mit Primzahlen arbeiten, kann dieser Satz auch anders ausgedrückt werden. $ \varphi(n) $ gibt alle Teilerfremden Zahlen zu n an. Primzahlen 
+sind nur die Zahl selbst und 1 teilbar. Dabei wird 1 jedoch ebenfalls als Teilerfremde Zahl gewertet. Daher bleiben für $ \varphi(n) = n-1 $ Möglichkeiten übrig.
+\part{Der RSA-Algorithmus}
+\input{./mathematische_verfahren.tex}
+
+\input{./schluessel.tex}
+\section{RSA Verschlüsselung}
+Die RSA Verschlüsselung wurde 1977 von Ronald L. Riverst, Adi Shamir und Leonard Adleman entwickelt. Der Name RSA setzt sich aus den Anfangsbuchstaben der Nachnamen der Entwickler zusammen. Es handelt sich um ein aymetrisches Verfahren. (Siehe Kapitel moderne Kryptographie) %Verweis%
+Das RSA Verfahren wird auch heute noch oft eingesetzt. Das Verfahren gilt bei einer bestimmten Schlüssellänge als sicher. Es gibt verschiedenste Angriffsmöglichkeiten, diese führen jedoch nicht in einem vernünftigen Zeitraum zu Ergebnissen. Das Verfahren wird zur Signierung und zur Verschlüsselung verwendet. (Siehe Anwendung) %Verweis%
+
+\subsection{Formel Verschlüsselung}
+Wenn der Schlüssel erstellt wurde kann ein Text einfach verschlüsselt werden. Dazu dient folgende Formel:
+
+$ C \equiv m^e  \bmod N $
+
+C steht für Cipher und bezeichnet den Geheimtext. Dieser ist abhängig vom Klartext m, dem öffentlichen Schlüssel e und dem RSA-Modul N. 
+
+\section{RSA Entschlüsselung}
+Die RSA Entschlüsselung ist ohne den Geheimschlüssel zu wissen nach aktuellem Wissensstand nicht möglich. Da die Sicherheit von diesem Geheimschlüssel abhängt, gilt es diesen möglichst lang zu wählen und geheim zu halten. Aktuell gilt eine Schlüssellänge von 2048 Bit als sicher. Als Dezimalzahl ausgedrückt, ist dies eine Zahl von $ 3,2 * 10^{616} $
+Die Angriffe auf die RSA Verschlüsselung zielen darauf ab, den Geheimschlüssel zu ermitteln. Das Problem dabei ist die Primfaktoren Zerlegung von grossen Zahlen. Mehr dazu im Kapitel Angriffe %Verweis%
+
+\subsection{Formel Entschlüsselung}
+Die Entschlüsselung der Nachricht wird mit folgender Formel realisiert
+%
+$ m \equiv C^d \bmod N $
+%
+Der Klartext m hängt in diesem Fall vom verschlüsselten Text C, dem privaten Schlüssel d und dem RSA-Modul N ab. 
+%
+\subsection{Beweis der Funktionsweise}
+Jede Verschlüsselung muss bei der korrekten Entschlüsselung des Geheimtextes wieder den Klartext ergeben. Wir möchten hier mathematisch beweisen, dass der RSA-Algorithmus korrekt funktioniert.\\
+
+\subsubsection{Verschlüsselung und Entschlüsselung gleichsetzen}
+Zuerst müssen wir die Entschlüsselung und Verschlüsselung in einer Gleichung kombinieren. Dazu dienen uns die Formeln zur Verschlüsselung und Entschlüsselung\\
+\begin{align}
+  C = m^e mod N \\
+  m = C^d mod N
+\end{align}
+Wir lösen Entschlüsselungsformel nach C auf:
+\begin{align}
+  m = C^d mod N \\
+  m + k * N = C^d \\
+  \sqrt[d]{m+k*N} = C \\
+  C = \sqrt[d]{m+k*N}
+\end{align}
+Wir setzen C der Verschlüsselungsformel mit C der Entschlüsselungsformel gleich:
+\begin{align}
+  m^e mod N = \sqrt[d]{m+k*N}\\
+  m^{e*d} mod N = m + k * N
 \end{align}
 
 \subsubsection{Grundlagen zur Erklärung}
@@ -67,6 +140,72 @@ Es wird folgende Behauptung aufgestellt: \\
 $ m^{e*d} \equiv m (mod n) $
 
 Eine Nachricht zu verschlüsseln und danach wieder zu entschlüsseln, ergibt wieder die Nachricht selbst. Dabei ergibt der Modulo mit dem RSA-Modul immer noch die selbe Nachricht
+
+Für unser RSA-Modul N haben wir zwei Primzahlen multipliziert. Zu diesem RSA-Modul sind alle Zahlen Teilerfremd, ausser sie sind durch p oder q teilbar. 
+$ \varphi(n) $ kann auch mit $ (p-1) * (q-1) $ ausgedrückt werden. Folgender abgeleiteter Satz entsteht 
+\begin{align}
+	a^{(p-1) * (q-1)} \equiv 1\,(\mathrm{mod}\,p*q)
+\end{align}
+
+Durch den erweiterten euklidischen Algorithmus wurde d bestimmt. Dazu haben wir folgende Gleichung verwendet:
+\begin{align}   
+	e \cdot d \equiv 1 \pmod{\varphi(N)} 
+\end{align}
+
+
+\subsubsection{Beweis der Funktionsweise}
+Wir machen folgende Aussage:
+\begin{align}   
+ m^{e*d} mod N = m
+\end{align}
+
+Dazu drücken wir e*d anders aus. Wir nehmen die Formel zum die multiplikative Inverse auszudrücken und lösen diese nach e*d auf:
+ \begin{align}    
+	e \cdot d \equiv 1 \pmod{\varphi(N)} 
+	
+	% Kuster fragen wie das gemeint ist?
+	Wegen e*d=1 (mod j(n)) gibt es ein k Î N mit e*d=k* j(n)+1
+\end{align}
+
+Nun ersetzen wir in unserer Aussage $ e*d $ durch $ k* \varphi(n)+1 $
+ \begin{align}
+	m^{k*\varphi(n)+1} = m
+	m^{k*\varphi(n)} * m = m
+	m^{\varphi(n)}^k * m = m
+ \end{align}
+ 
+Durch den Satz von Fermat wissen wir dass $ \varphi(n) $ 1 sein muss:
+\begin{align}
+  m^{(p-1)} = 1 \bmod p
+  m^{(p-1)*(q-1)} = 1^{q-1} \bmod p*q
+  m^{(p-1)*(q-1)} = 1 \bmod p*q
+  m^{\varphi(N)} = 1 \bmod N
+\end{align}
+1. Eine Zahl hoch die Anzahl der Teilerfremden Zahlen bei einer Primzahl ergibt 1 mod die Zahl
+2. Wir rechnen beide Seiten hoch (q-1), was in unserem Fall die zweite Primzahl ist % a = b mod m ist wie a^k = b^k mod m
+3. 1 hoch eine Zahl ergibt immer 1
+
+Schlussfolgerung daraus:
+ \begin{align}
+	m^{\varphi(n)}^k * m = m
+	1(mod N)^k * m = m
+	1^k * m = m
+	1 * m = m
+ \end{align}
+ 
+ Der Algorithmus funktioniert korrekt. 
+
+
+
+%Verweis% 
+
+
+\section{Beispiel}
+\subsection{Einfaches Zahlenbeispiel}
+\subsection{Komplexeres Zahlenbeispiel}
+\subsection{Beispiel an einem Text}
+\section{Anwendung}
+\subsection{SSH - Secure Shell}
 
 Für den Beweis brauchen wir die Primzahlen p und q. Aus diesem wurde das RSA-Modul N gebildet
 $ n = p * q $
