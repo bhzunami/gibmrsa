@@ -89,3 +89,31 @@ Wie funktioniert der RSA Algorithmus für die Verschlüsselung wie auch Entschl�
 - Kurs für Layout der uns mind. 30 Minuten unserer sehr kostbaren Zeit geraubt hat. Völliger UNSINN!!!!!!!!!!
 
 - Weiteres Vorgehen besprochen: Bis in 3 Wochen muss Kapitel 3 abgeschlossen sein. Falls es nicht reicht, muss über die Ferien gearbeitet werden.
+
+
+== Protokoll des 12.09.2011 ==
+
+*Anwesend:* Denis und Nicolas
+
+*Traktanden:*
+Bearbeitung der zugewiesenen Themen.
+
+
+== Protokoll des 19.09.2011 ==
+
+*Anwesend:* Denis und Nicolas
+
+*Traktanden:*
+Arbeiten am RSA-Algorithmus und am Schlüssel erstellen
+
+
+
+== Protokoll des 26.09.2011 ==
+
+*Anwesend:* Denis und Nicolas
+
+*Traktanden:*
+Bearbeitung der zugewiesenen Themen.
+- RSA-Verschlüsselung Beweis (Denis)
+- Schlüssel erstellen (Nicolas)
+- 2. Fixpunktgespräch
