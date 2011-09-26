@@ -29,6 +29,7 @@ Jede Verschlüsselung muss bei der korrekten Entschlüsselung des Geheimtextes w
 
 \subsubsection{Verschlüsselung und Entschlüsselung gleichsetzen}
 Zuerst müssen wir die Entschlüsselung und Verschlüsselung in einer Gleichung kombinieren. Dazu dienen uns die Formeln zur Verschlüsselung und Entschlüsselung\\
+
 \begin{align}
   C = m^e mod N \\
   m = C^d mod N
@@ -41,6 +42,7 @@ Wir lösen Entschlüsselungsformel nach C auf:
   C = \sqrt[d]{m+k*N}
 \end{align}
 Wir setzen C der Verschlüsselungsformel mit C der Entschlüsselungsformel gleich:
+%$ m^e mod N = \sqrt[d]{m+k*N} $ \\
 \begin{align}
   m^e mod N = \sqrt[d]{m+k*N}\\
   m^{e*d} mod N = m + k * N
@@ -144,7 +146,7 @@ Eine Nachricht zu verschlüsseln und danach wieder zu entschlüsseln, ergibt wie
 Für unser RSA-Modul N haben wir zwei Primzahlen multipliziert. Zu diesem RSA-Modul sind alle Zahlen Teilerfremd, ausser sie sind durch p oder q teilbar. 
 $ \varphi(n) $ kann auch mit $ (p-1) * (q-1) $ ausgedrückt werden. Folgender abgeleiteter Satz entsteht 
 \begin{align}
-	a^{(p-1) * (q-1)} \equiv 1\,(\mathrm{mod}\,p*q)
+  a^{(p-1) * (q-1)} \equiv 1\,(\mathrm{mod}\,p*q)
 \end{align}
 
 Durch den erweiterten euklidischen Algorithmus wurde d bestimmt. Dazu haben wir folgende Gleichung verwendet:
@@ -159,21 +161,26 @@ Wir machen folgende Aussage:
  m^{e*d} mod N = m
 \end{align}
 
-Dazu drücken wir e*d anders aus. Wir nehmen die Formel zum die multiplikative Inverse auszudrücken und lösen diese nach e*d auf:
- \begin{align}    
-	e \cdot d \equiv 1 \pmod{\varphi(N)} 
-	
-	% Kuster fragen wie das gemeint ist?
-	Wegen e*d=1 (mod j(n)) gibt es ein k Î N mit e*d=k* j(n)+1
-\end{align}
+Dazu drücken wir e*d anders aus. Wir nehmen die Formel zum die multiplikative Inverse auszudrücken und lösen diese nach $ e*d $ auf:\\
+$ e \cdot d \equiv 1 \bmod{\varphi(N)} $
+% \begin{align}
+%e \cdot d \equiv 1 \bmod{\varphi(N)} 
+ % Kuster fragen wie das gemeint ist?
+%   Wegen e*d=1 (mod j(n)) gibt es ein k Î N mit e*d=k* j(n)+1
+%\end{align}
 
 Nun ersetzen wir in unserer Aussage $ e*d $ durch $ k* \varphi(n)+1 $
- \begin{align}
-	m^{k*\varphi(n)+1} = m
-	m^{k*\varphi(n)} * m = m
-	m^{\varphi(n)}^k * m = m
- \end{align}
- 
+\begin{center}
+$ m^{ k* \varphi(n) +1} = m $ \\
+$ m^{k* \varphi(n)} * m = m $ \\
+$ { m^{ \varphi(n) }} ^k * m = m $ \\
+\end{center}
+% \begin{align}
+%   m^{k*\varphi(n)+1} = m
+%   m^{k*\varphi(n)} * m = m
+%   m^{\varphi(n)}^k * m = m
+% \end{align}
+
 Durch den Satz von Fermat wissen wir dass $ \varphi(n) $ 1 sein muss:
 \begin{align}
   m^{(p-1)} = 1 \bmod p
@@ -186,26 +193,15 @@ Durch den Satz von Fermat wissen wir dass $ \varphi(n) $ 1 sein muss:
 3. 1 hoch eine Zahl ergibt immer 1
 
 Schlussfolgerung daraus:
- \begin{align}
-	m^{\varphi(n)}^k * m = m
-	1(mod N)^k * m = m
-	1^k * m = m
-	1 * m = m
- \end{align}
+% \begin{align}
+%	m^{\varphi(n)}^k * m = m
+%	1(mod N)^k * m = m
+%	1^k * m = m
+%	1 * m = m
+% \end{align}
  
  Der Algorithmus funktioniert korrekt. 
 
-
-
-%Verweis% 
-
-
-\section{Beispiel}
-\subsection{Einfaches Zahlenbeispiel}
-\subsection{Komplexeres Zahlenbeispiel}
-\subsection{Beispiel an einem Text}
-\section{Anwendung}
-\subsection{SSH - Secure Shell}
 
 Für den Beweis brauchen wir die Primzahlen p und q. Aus diesem wurde das RSA-Modul N gebildet
 $ n = p * q $
