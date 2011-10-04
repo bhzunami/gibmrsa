@@ -9,6 +9,10 @@ http://www.cpp-home.com/archives/333.html
 
 http://www.matheprisma.uni-wuppertal.de/Module/RSA/index.htm
 
+http://www.hh.schule.de/julius-leber-schule/melatob/beweisrsa.html
+
+http://www.hh.schule.de/julius-leber-schule/melatob/referat1.html
+
 === Eulersche Funktion ==
 http://math-it.org/Mathematik/Zahlentheorie/Euler_de.html
 
@@ -19,7 +23,10 @@ http://www.mathe-lexikon.at/arithmetik/natuerliche-zahlen/teilbarkeit/groesster-
 
 http://de.wikipedia.org/wiki/Teilerfremdheit
 
-== 
+== Euklid ==
+http://www.hh.schule.de/julius-leber-schule/melatob/eukidschera.html
+
+http://de.wikipedia.org/wiki/Erweiterter_euklidischer_Algorithmus
 
 == Anwendugnen == 
 http://www.linuxjournal.com/article/6695?page=0,0
