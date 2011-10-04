@@ -1,16 +1,32 @@
+\newpage
 \section{Der Schlüssel}
-Für eine sichere Verschlüsslung kommt es auf den Schlüssel an. Denn nur mit diesem Schlüssel, kann man die verschlüsselte Nachricht enschlüsseln. Der Schlüssel spielt also eine zentrale und wichtige Rolle. Dazu muss er so komplex sein, dass man ihn nicht erraten kann, oder durch ausprobieren den Schlüssel herausfindet.
-\subsection{Sicherer Schlüssel generieren}
-Für einen sicheren Schlüssel sollte man immer Zufallszahlen verwenden. Zufallszahlen sind Zahlenfolgen bei denen man die nächste Zahl nicht durch mathematische Berechunungen vorhersagen kann - also Zufällige Zahlen.\\
-TBC
-\subsubsection{Zufallszahlen generieren}
-In der Informatik sind zufallszahlen eine sehr komplexe angelegenheit. 
-Um solche Zufallszahlen zu generieren haben grössere Firmen einen Zufallszahlengeneratoren beziehungsweise einen \textit{random number generator}, kurz RNG entwickelt. Diese messten den Radioaktiven Zerfall oder beobachteten die atmosphärischen Bedingungen in der Umgebung. \\
-Die Zahlen die der RNG auswertet, nennt man \textbf{Seed-Zahlen}. Mit den gewonnen Seed-Zahlen, kann man jetzt einen Algorithums füttern, der eine Zahl oder eine Zahlenfolge zurückgibt. Das sind dann die benötigten Zufallszahlen, die für einen Schlüssel gebraucht werden können.
+Für eine sichere Verschlüsslung kommt es auf einen guten Schlüssel an. Denn nur mit diesem Schlüssel, kann man die verschlüsselte Nachricht enschlüsseln. Der Schlüssel spielt also eine zentrale und wichtige Rolle. Dazu muss er so komplex sein, dass man ihn nicht erraten kann, oder durch ausprobieren den Schlüssel herausfindet.\\
+Darum ist es auch sehr wichtig dass man Zufallszahlen nimmt, die man nicht vorhersagen kann, bzw. im nachhinein berechnen kann.
+\subsection{Zufallszahlen generieren}
+In der Informatik sind Zufallszahlen eine sehr komplexe angelegenheit. Um solche Zufallszahlen zu generieren haben grössere Firmen einen Zufallszahlengeneratoren eng. \textit{random number generator}, kurz RNG entwickelt. Diese messen den Radioaktiven Zerfall oder beobachteten die atmosphärischen Bedingungen in der Umgebung. Die Zahlen die der RNG auswertet, nennt man \textbf{Seed-Zahlen}. Mit den gewonnen Seed-Zahlen, kann man jetzt einen Algorithums füttern, der eine Zahl oder eine Zahlenfolge zurückgibt. Hat man eine solche Zufallszahl, muss sie noch überprüft werden, ob es eine Primzahl ist. Dies kann man zum Beispiel mit dem Miller-Rabin-Tests prüfen.\\
 %
-Für den normalen Benutzer sind solche Apparate viel zu aufwendig. Deshalb entwickelten Computerhersteller einen Pseudozufallszahlengenerator bzw einen \textit{pseudo random number generator} kurz PRNG.
-
-
-\paragraph{Entropie}
-\paragraph{Zahlentheoretische Funktionen}
-\subsection{Schlüssel austauschen}
+Für den normalen Benutzer sind solche Apparate viel zu aufwendig und teuer. Deshalb entwickelten Computerhersteller einen Pseudozufallszahlengenerator eng. \textit{pseudo random number generator} kurz PRNG. Dieser PRNG erstellt die Seed-Zahlen zum Beispiel aus der momentanen Position der Maus, momentane CPU auslastung oder andere nicht vorhersehbare Elemente.\\
+Ob die Zufallszahlen geeignet sind oder nicht, ist schwierig zu sagen. Denn wie will man eine Folge von Zufallszahlen beurteilen?\\
+Das einzige was man ausrechnen kann, ist die Entopie \footnote{Die Entropie beschreibt das Mass der Unordnung.}. Je höher die Entropie desto unwarscheinlicher ist es, dass diese Zahlenfolge ein zweites mal vorkommt und somit geeignete Zahlen sind. Was aber bei nur zwei Zahlen unmöglich ist zu beschreiben.
+\subsection{RSA-Schlüssel generieren}
+Für eine RSA-Verschlüsselung brauchen wir zwei Schlüssel, einen private Key und einen public Key die voneinander abhängig sind. Den public Key zu erstellen ist nicht so komplex wie der private Key zu erstellen.
+\subsubsection{Public-Key erstellen}
+Als erstes brauchen wir zwei Primzahlen p und q. Je grösser desto besser und sicherer. Wie man solche Primzahlen erstellt möchten wir hier nicht erläutern. Es gibt Methoden, bei denen man mit grosser Wahrscheinlichkeit eine Primzahl generieren kann. Man muss die Zahl nachher immer überprüfen.\\
+Sind beide Primzahlen gefunden errechnen wir uns N mit dieser Formel.
+\begin{center}
+$ N = p * q $
+\end{center}
+Als nächstes rechnen wir mit der Eulerschen Funktion $\varphi$(N) von p und q aus. 
+\begin{center}
+$ \varphi(N) = (p - 1) * (q - 1) $
+\end{center}
+Zu der Zahl $\varphi$(N) nehmen wir eine weiter \textbf{teilfremde} Zahl e, die zufällig gewählt wurde.\\
+So nun haben wir unseren öffentlichen Schlüssel. Es sind die Zaheln N und e.
+\subsubsection{Private-Key erstellen}
+Wir haben vorher bei der Erstellung des public Keys die Zahlen N und e erstellt. Jetzt müssen wir zu diesen Zaheln d ausrechnen, dass die Gleichung
+\begin{center}
+$ e * d \bmod(\varphi(n)) = 1 $
+\end{center}
+stimmt. Dies wird mit dem erweiterten Euklidischen Algorithmus und der modularen Inverse gemacht.\\ 
+Hat man d ausgerechnet, ist man im Besitz seines privaten Schlüssel. Das sind die Zaheln d und N. Die Zahlen p, q und $\varphi$(N) sollte man löschen, da sie nicht mehr gebraucht werden.
+%\subsection{Schlüssel austauschen} Sprengt den Rahmen!!!!
