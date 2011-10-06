@@ -1,10 +1,13 @@
 \section{Mathematisches Verfahren}
+Dieses Kapitel wurde unteranderem mit Hilfe von dem Buch \textit{Moderne Verfahren der Kryptographie} und \textit{Kryptologie} erarbeitet\\[2ex]
+%
 Der RSA-Algorithmus baut grundsätzlich auf Primzahlen, Modulo, Eulersche-Funktion, Satz von Euler und den erweiterten euklidischen Algorithmus auf. Verstehn man diese mathematischen Verfahren nicht, kann man auch nicht den RSA-Algorithmus verstehen und verwenden. \\
 Im nächsten Abschnitt wollen wir die einzelnen mathematischen Verfahren kurz in ihren Funktionen erläutern.  
 \subsection{Modulo}
 Modulo oder auch \textit{Division mit Rest} gibt den Rest von einer ganzzahligen Division an. Modulo erklärt sich am einfachsten an einem Beispiel.\\
-$ 21 / 5 = 4.2 $ \\
-4.2 ist keine ganze Zahl. $ 4 * 5 = 20 $. \\
+$ 21 \bmod 5 = 1 $ \\
+Man sucht die nächst kleinere Zahl die durch 5 eine natürliche Zahl ergibt. Der Rest, der bis zu 21 fehlt, ist dann das Resultat.\\
+ $ 4 * 5 = 20 $. \\
 Bis auf 21 fehlt genau 1. Somit ist $ 21 \bmod 5 = 1 $
 \paragraph{Kongruent Modulo}
 Kongruent modulo heisst nichts anders, als dass zwei Zahlen modulo eine Zahl den selben Rest haben. Man sagt auch, dass sie in der gleichen Restklasse sind.\\
@@ -17,17 +20,18 @@ $ 9 \bmod(2) \equiv 7 \bmod(2) $ \\
 \end{center}
 Denn beide ergeben als Resultat 1.
 \subsection{Eulersche Funktion}
-Die Eulersche Funktion sagt aus, wieviele teilfremde \footnote{Zahlen sind sich teilfremd, wenn ihr grösster gemeinsamer Teiler 1 ist.} natürliche Zahlen zu einer Zahl es gibt.\\
+Die Eulersche Funktion sagt aus, wieviele teilfremde \footnote{Zahlen sind sich teilfremd, wenn ihr grösster gemeinsamer Teiler 1 ist.} natürliche Zahlen zu einer Zahl es gibt.(Wikipedia)\\
 Für den RSA-Algorithmus verwenden wir die Eulersche Funktion nur bei Primzahlen. Deshalb schauen wir uns nur die spezial Formel bei Primzahlen an.\\
 Primzahlen sind nur durch sich selber und 1 dividirbar und ihr grösster gemeinsamer Teiler ist immer 1. Somit ist die Eulersche Funktion einer Primzahl p immer p - 1.
 \begin{center}
-$ \varphi(p) = p - 1 $
+\boxed{ \varphi(p) = p - 1 }
 \end{center}
 Wenn wir jetzt also zwei verschiedene Primzahlen haben, gilt
 \begin{center}
 $ \varphi(pq) = (p - 1) * (q - 1) $
 \end{center}
-Der Beweis dafür liefert folgende Überlugungen. Es gibt insgesamt $ p * q -1 $ ganze Zahlen die kleiner sind als $ p * q $. Es ist bei Primzahlen einfacher die \textbf{nicht teilfremden} Zahlen zu zählen und diese dann von allen möglichen Zahlen abzuziehen als allte teilfremden Zahlen zu zählen. Nicht teilfremd zu p sind $ (q - 1) * p $ und für q gilt $ (p - 1) * q $\\
+Der Beweis dafür liefert folgende Überlugungen. Es gibt insgesamt $ p * q -1 $ ganze Zahlen die kleiner sind als $ p * q $.\\
+Es ist bei Primzahlen einfacher die \textbf{nicht teilfremden} Zahlen zu zählen und diese dann von allen möglichen Zahlen abzuziehen als alle teilfremden Zahlen zu zählen. Nicht teilfremd zu p sind $ (q - 1) * p $ und für q gilt $ (p - 1) * q $\\
 Als Formel geschrieben
 \begin{center}
 $ \varphi(pq) = p * q -1 - (p - 1) - (q - 1) $ \\
@@ -55,12 +59,12 @@ Hat man zwei verschiedene Primzahlen p und q und eine natürliche Zahl m die kle
 \boxed{m^{k * (p - 1) * (q - 1) +1} \bmod(p * q) = m}
 \end{center}
 Dieser Satz wird in der Mathematik auch als \textit{kleiner Satz von Fermat} genannt.
+% Buch S 109 / 110
 \subsection{Euklidischer Algorithmus}
 Der Euklidischer Algorithmus errechnet den grössten gemeinsamen Teiler (ggT) von zwei natürlichen Zahlen. Um den ggT herauszufinden gibt es eine ältere das Subtraktions-Verfahren und eine modernere Methode das Modulo-Verfahren. Da das ältere Verfahren nicht so effizient ist, konzentrieren wir uns auf das moderne Verfahren.\\
 Die Formel für das modernere Verfahren $a = q * p + r$ ist eine modulo Rechnung. Der Rest r wird zum neuen b und b wird zum neuen a. \\
-Zu veranschaulichung nehmen wir zwei Zahlen a = 5984 und b = 302 und setzen diese in usere Gleichung ein.
+Zu veranschaulichung nehmen wir zwei Zahlen a = 302 und b = 146 und setzen diese in usere Gleichung ein.
 \begin{center}
-$ 5984 = 19 * 302 + 146 $\\
 $ 302 = 2 * 146 + 10 $\\
 $ 146 = 14 * 10 + 6 $ \\
 $ 10 = 1 * 6 + 4 $ \\
@@ -77,7 +81,52 @@ Wenn also eine Zahl a und b teilt, muss diese Zahl auch r teilen. Denn sonst wü
 $ ggT(5984,302) = ggT(302,146) = ggT(146,10) = ggT(10,6) = ggT(6,4) = 2 $
 \end{center}
 \subsubsection{Erweiterter Euklidischer Algorithmus}
+Der erweiterte Euklidischer Algorithmus oder auch die Vielfachsummendarstellung besagt folgende Gleichung.
+\begin{center}
+$ d = x * a + y * b $
+\end{center}
+Das wollen wir am Besten an einem Beispiel zeigen. Wir nehem dazu die gleichen Zahlen wie vorhin beim Euklidischer Algorithmus.
+\begin{center}
+$ 302 = 2 * 146 + 10 $\\
+$ 146 = 14 * 10 + 6 $ \\
+$ 10 = 1 * 6 + 4 $ \\
+$ 6 = 1 * 4 + 2 $ \\
+$ 4 = 2 * 2 + 0 $\\
+\end{center}
+Jetzt müssen wir x und y herausfinden.
+Wir schreiben uns für jeden Rest eine neue Gleichung.
+\begin{center}
+$ 2 = 6 - 1 * 4 $ \\
+$ 4 = 10 - 1 * 6 $ \\
+$ 6 = 146 - 14 * 10 $\\
+$ 10 = 302 - 2 * 146 $\\
+\end{center}
+Wir nehmen die Gleichung $ 2 = 6 - 1 * 4 $ und ersetzen 4 mit der Formel $ 4 = 10 - 1 * 6 $. So erhalten wir\\
+\begin{center}
+$ 2 = 6 - 1 * 4  =  6 - 1 * (10 - 1 * 6) =  6 - 1 * 10 + 1 * 6 = 2 * 6 - 1 * 10 $\\
+\end{center}
+Ersetzen nun 6 mit der Gleichung $146 - 14 * 10$.
+\begin{center}
+$   = 2 * 6 - 1 * 10  = 2 * (146 - 14 * 10) - 1 * 10 = 2*146 -2*14*10 - 1*10 = 2*146 - 29*10   $\\
+\end{center}
+Ersetzen nun 10 mit der Gleichung $ 302 - 2 * 146 $.
+\begin{center}
+$   = 2*146 - 29*10 = 2 * 146 - 29 (302 - 2 * 146) = 2 * 146 - 29 * 302 + 58 * 146 = 60 * 146 - 29 * 302 $\\
+\end{center}
+Jetzt haben wir unsere Formel
+\begin{center}
+$ 2 = 60 * 146 + (-29) * 302 = (-29) * 302 + 60 * 146 $ 
+\end{center}
 %
-
-
+Nun haben 
+\subsubsection{Modularen Inverse}
+Haben wir nun die Vielfachsumme gebildet, bilden wir aus diesen Zahlen die modulare Inverse. Die modulare Inverse drückt folgende Gleichung aus.
+\begin{center}
+$ a * x \bmod n = 1  $\\
+\end{center}
+Das geht nur wen der ggT von a n 1 ist also diese Zahlen teilfremd sind. a ist also modulo n inventierbar.\\
+$ 1 = x*a + y*b $\\
+Weil n * y teilbar ist durch n ergibt $ (a * x) / N $ einen Rest von 1. Deshalb ist \\
+$ a * x \bmod n = 1  $\\
+So hat man mit x die modulare Inverse von $ a \bmod n $
 

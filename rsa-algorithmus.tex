@@ -171,7 +171,82 @@ $ ed \bmod \varphi(n) = 1 $
 
 \section{Beispiel}
 \subsection{Einfaches Zahlenbeispiel}
-\subsection{Komplexeres Zahlenbeispiel}
+Ein einfaches Beispiel für den RSA-Algorithmus
+\subsubsection{Schlüssel-Paar erstellen}
+Ein einfaches Zahlenbeispiel. Wir suchen uns zwei kleine Primzahlen.\\
+$ p = 13 $ \\
+$ q = 19 $ \\
+Somit ist N das ja aus q * p gebildet wird 247. Und $ \varphi(N) $ = 216.\\
+$ N = 13 * 19 = 247 $ \\
+$ \varphi(N) = (13 - 1) * (19 - 1) = 216 $ \\
+Zu $ \varphi(N) $ suchen wir uns jetzt noch eine zweite Zahl e, die teilfremd zu $ \varphi(N) $ ist, sprich den ggT(N,e) = 1. Am Besten man verwendet eine weitere Primzahl. Wir nehemn für e die Primzahl 23.
+$ e = 23 $\\
+ggt(23,216) ausrechnen:\\
+$ 216 = 9 * 23 + 9 $\\
+$  23 = 2 *  9 + 5 $\\
+$   9 = 1 *  5 + 4 $\\
+$   5 = 1 *  4 + 1 $\\
+Erweiterter Euklidischer Algorithmus andwenden um auf die Formel:
+$e * d + k * N = 1 = ggt(23,216) $\\
+$1 = 5 - 1 * 4 = 5 - 1 *(9 - 1 * 5) = 5 - 1*9 + 1 * 5 = 2*5 - 1*9$\\
+$1 = 2*5 - 1*9 = 2 *(23 - 2 * 9) - 1*9 = 2*23 - 4*9 - 1*9 = 2*23 - 5*9$\\
+$1 = 2*23 - 5*9=2*23 - 5 *(216 - 9 * 23) = 2*23 - 5*216 +45*23 = 47*23 - 5*216 $\\
+Somit haben wir die Formel
+$ 23 * 47 + -(5) * 216 = 1 = ggT(23,216) $
+$ d = 47 $\\
+$ k = -5 $\\
+Jetzt haben wir alle nötigen Zahlen die wir für eine Verschlüsselung sowie Entschlüsselung benötigen.
+\subsubsection{Verschlüsseln}
+Da man Text nicht verschlüsseln kann, braucht man für den Text Zahlen. Wir nehemn jetzt zur Vereinfachung eine Zahl.\\
+$ m = 15 $ \\
+$ 15^{23} \bmod 247 = 59$ \\
+Die Zahl 15 verschlüsselt mit unserem öffentlichen Schlüssel (23,247) ergibt die Zahl 59.
+\subsubsection{Entschlüsseln}
+Um zu überprüfen ob unserer privater Schlüssel auch wirklich funktioniert, entschlüsseln wir die Zahl 59 mit unserem privaten Schlüssel.\\
+$ c = 59 $ \\
+$ 59^{47} \bmod 247 = 15$ \\
+Somit sehen wir, dass unser kleines Beispiel funktioniert hat.
+%\subsection{Komplexeres Zahlenbeispiel}
 \subsection{Beispiel an einem Text}
+Wir nehmen für unser Beispiel an unserem Text das gleiche Schlüssel Paar wie aus unserem obigen Beispiel.
+$ N = 247 $\\
+$ e = 23 $\\
+$ d = 47 $\\
+Wir müssen nur noch ein Verfahren wählen, wie wir einen Buchstaben in eine Zahl umwandeln. Für das gibt es \textit{ASCII} Tabellen, die für jedes Zeichen, eine Zahl darstellen.\\
+Wir würden gerne das Wort \textit{Hello World} verschlüsseln. Als erstes müssen wir unseren Text in Zahlen umwandeln. Dazu verwenden wir die Dezmial schreibweise.\\
+\textit{Hello World} würde in dieser Schreibweise \textit{721011081081113287111114108100} heissen. Jetzt ist das natürlich eine viel zu hohe Zahl. Deshalb wird sie immer nach zwei Ziffern getrennt. Unser Text zum verschlüsseln würde dann so aussehen \textit{72 10 11 08 10 81 11 32 87 11 11 14 10 81 00}. Jetzt können wir uns ans Verschlüsseln machen. \\
+$ 72^{23} \bmod 247 = 002 $ \\
+$ 10^{23} \bmod 247 = 212 $ \\
+$ 11^{23} \bmod 247 = 045 $ \\
+$ 08^{23} \bmod 247 = 031 $ \\
+$ 10^{23} \bmod 247 = 212 $ \\
+$ 81^{23} \bmod 247 = 009 $ \\
+$ 11^{23} \bmod 247 = 045 $ \\
+$ 32^{23} \bmod 247 = 128 $ \\
+$ 87^{23} \bmod 247 = 159 $ \\
+$ 11^{23} \bmod 247 = 045 $ \\
+$ 11^{23} \bmod 247 = 045 $ \\
+$ 14^{23} \bmod 247 = 105 $ \\
+$ 10^{23} \bmod 247 = 212 $ \\
+$ 81^{23} \bmod 247 = 009 $ \\
+$ 00^{23} \bmod 247 = 000 $ \\
+Somit würder det Text verschlüsselt \textit{002212045031212009045128159045045105212009000} lauten.
+Um zu testen ob es stimmt verschlüsseln wir unser Text. Auch hier wieder die Zahlen in Unterteilen.
+$ 002^{47} \bmod 247 = 72 $ \\
+$ 212^{47} \bmod 247 = 10 $ \\
+$ 045^{47} \bmod 247 = 11 $ \\
+$ 031^{47} \bmod 247 = 08 $ \\
+$ 212^{47} \bmod 247 = 10 $ \\
+$ 009^{47} \bmod 247 = 81 $ \\
+$ 045^{47} \bmod 247 = 11 $ \\
+$ 128^{47} \bmod 247 = 32 $ \\
+$ 159^{47} \bmod 247 = 87 $ \\
+$ 045^{47} \bmod 247 = 11 $ \\
+$ 045^{47} \bmod 247 = 11 $ \\
+$ 105^{47} \bmod 247 = 14 $ \\
+$ 212^{47} \bmod 247 = 10 $ \\
+$ 009^{47} \bmod 247 = 81 $ \\
+$ 000^{47} \bmod 247 = 00 $ \\
+Das 000 ist ein bisschen problematisch, denn eigentlich gibt es nur 0 aber da wir ja auf zwei Stellen kommen müssen, wissen wir dass es 00 sein mus. Wie wir sehen haben wir unseren Text \textit{721011081081113287111114108100}  wieder.
 \section{Anwendung}
 \subsection{SSH - Secure Shell}
