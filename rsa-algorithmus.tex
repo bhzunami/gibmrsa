@@ -3,7 +3,7 @@
 
 \input{./schluessel.tex}
 \section{RSA Verschlüsselung}
-Die RSA Verschlüsselung wurde 1977 von Ronald L. Riverst, Adi Shamir und Leonard Adleman entwickelt. Der Name RSA setzt sich aus den Anfangsbuchstaben der Nachnamen der Entwickler zusammen. Es handelt sich um ein aymetrisches Verfahren. (Siehe Kapitel moderne Kryptographie) %Verweis%
+Die RSA Verschlüsselung wurde 1977 von Ronald L. Riverst, Adi Shamir und Leonard Adleman entwickelt. Der Name RSA setzt sich aus den Anfangsbuchstaben der Nachnamen der Entwickler zusammen. Es handelt sich um ein asymmetrisches Verfahren. (Siehe Kapitel moderne Kryptographie) %Verweis%
 Das RSA Verfahren wird auch heute noch oft eingesetzt. Das Verfahren gilt bei einer bestimmten Schlüssellänge als sicher. Es gibt verschiedenste Angriffsmöglichkeiten, diese führen jedoch nicht in einem vernünftigen Zeitraum zu Ergebnissen. Das Verfahren wird zur Signierung und zur Verschlüsselung verwendet. (Siehe Anwendung) %Verweis%
 
 \subsection{Formel Verschlüsselung}
@@ -42,9 +42,11 @@ Wir setzen nun die beiden Formeln gleich, so das nur noch die Ursprungsnachricht
 \begin{align}
   m^e mod N = \sqrt[d]{m+k*N}\\
   m^{e*d} mod N = m + k * N\\
-  m^{e*d} mod N = m
+  m^{e*d} mod N = m \\ 
+  {m^e}^d mod N = m \\
+  {m^d}^e mod N = m
 \end{align}
-Die Formel $ m^{e*d} mod N = m + k * N $ kann gekürzt werden, da k in jedem Fall 0 sein muss. Dies liegt daran, dass wir auf der linken Seite mit Modulo N den Rest ausgeben. Der Rest kann 1 bis N-1 gross sein. Da m schon einen Wert hat muss k in diesem Fall 0 sein. \\
+Die Formel $ m^{e*d} mod N = m + k * N $ kann gekürzt werden, da k in jedem Fall 0 sein muss. Dies liegt daran, dass wir auf der linken Seite mit Modulo N den Rest ausgeben. Der Rest kann 1 bis N-1 gross sein. Da m einen Wert hat, muss k in diesem Fall 0 sein. \\
 Somit möchten wir beweisen, dass die Verschlüsselung (hoch e) und nachherige Entschlüsselung (hoch p) wieder die ursprüngliche Nachricht ergibt:
 $ m^{e*d} mod N = m $
 
@@ -76,25 +78,19 @@ Die Gleichsetzung der Entschlüsselung und Verschlüsselung dient uns als Grundl
 \end{align}
 %
 Wir nehmen nun die Formel der multiplikativen Inverse um $ e*d $ anders auszudrücken. Diese lösen wir gleich nach $ e*d $ auf:\\
-$ e \cdot d \equiv 1 \bmod{\varphi(N)} $
-% \begin{align}
-%e \cdot d \equiv 1 \bmod{\varphi(N)} 
- % Kuster fragen wie das gemeint ist?
-%   Wegen e*d=1 (mod j(n)) gibt es ein k Î N mit e*d=k* j(n)+1
-%\end{align}
-
+$ e \cdot d \equiv 1 \bmod{\varphi(N)} $ \\
+$ e \cdot d + k \cdot \varphi(N) = 1 $ \\
+$ e \cdot d + k \cdot \varphi(N) + 1 $ \\
+$ e \cdot d \equiv k \cdot \varphi(N)+1 $ \\
+Wenn die Formel Modulo beinhaltet, kann diese jeweils auch mit k * den Rest ausgedrückt werden. \\
+%
 Nun ersetzen wir in unserer Aussage $ e*d $ durch $ k* \varphi(n)+1 $
 \begin{center}
-$ m^{ k* \varphi(n) +1} = m $ \\
+$ m^{ k* \varphi(n) + 1} = m $ \\
 $ m^{k* \varphi(n)} * m = m $ \\
 $ { m^{ \varphi(n) }} ^k * m = m $ \\
 \end{center}
-% \begin{align}
-%   m^{k*\varphi(n)+1} = m
-%   m^{k*\varphi(n)} * m = m
-%   m^{\varphi(n)}^k * m = m
-% \end{align}
-
+%
 Durch den Satz von Fermat wissen wir dass $ \varphi(n) $ 1 sein muss:
 \begin{align}
   m^{(p-1)} = 1 \bmod p
@@ -102,54 +98,18 @@ Durch den Satz von Fermat wissen wir dass $ \varphi(n) $ 1 sein muss:
   m^{(p-1)*(q-1)} = 1 \bmod p*q
   m^{\varphi(N)} = 1 \bmod N
 \end{align}
-1. Eine Zahl hoch die Anzahl der Teilerfremden Zahlen bei einer Primzahl ergibt 1 mod die Zahl
+1. Die Nachricht hoch die Anzahl der Teilerfremden Zahlen bei einer Primzahl ergibt 1 Modulo die Zahl
 2. Wir rechnen beide Seiten hoch (q-1), was in unserem Fall die zweite Primzahl ist % a = b mod m ist wie a^k = b^k mod m
-3. 1 hoch eine Zahl ergibt immer 1
+3. 1 hoch eine Zahl ergibt immer 1, es kann daher gekürzt werden
 
-Schlussfolgerung daraus:
-% \begin{align}
-%	m^{\varphi(n)}^k * m = m
-%	1(mod N)^k * m = m
-%	1^k * m = m
-%	1 * m = m
-% \end{align}
- 
- Der Algorithmus funktioniert korrekt. 
+Daraus resultiert das $ 1 \bmod N $ das gleiche ist wie $ m^\varphi(n) $ und entsprechend eingesetzt werden kann. Nun lösen wir die Formel noch auf. 
+$ { m^{ \varphi(n) }} ^k * m = m $ \\
+$ {1 \bmod N }^k * m = m $ \\
+$ 1^k * m = m $ \\
+$ 1 * m = m $ \\
+$ m = m $
 
-
-Für den Beweis brauchen wir die Primzahlen p und q. Aus diesem wurde das RSA-Modul N gebildet
-$ n = p * q $
-
-Zusätzlich wurde und e und d so gewählt, dass folgendes zählt:
-$ e * d \bmod \varphi(n) = 1 $
-
-Lösen wir dies nach e*d kommt k hinzu:
-$ e * d = 1 + k * \varphi(n) $
-Die Modulo-Operation ergibt den Rest, welcher bei der Division durch eine Zahl anfällt. In unserem Fall ist der Rest immer 1.
-
-Nun können wir e * d einsetzen:
-$ m^e*d = m^k*\varphi(n)+1 $
-
-% Alt 2 %
-
-Die allgemeine Formel zur Entschlüsselung ist:
-$ m \equiv C^d \bmod N $
-
-Setzen wir nun für den verschlüsselten Text die verschlüsselte Form von K ein muss dies immer noch K ergeben.
-$ m \equiv (m^e)^d \bmod N $
-
-$ m \equiv m^{e*d} \bmod N $
-Wenn diese Bedingung erfüllt ist, arbeitet der Algorithmus korrekt.
-
-Um die Richtigkeit zu beweisen kommen wir auf die Anfangszahlen p und q zurück, welche das RSA-Modul N bilden. Es handelt sich um Primzahlen. Wir zeigen das Vorgehen anhand von p:
-$ 0 \equiv m^{e*d} \bmod p - K \bmod p $
-
-$ 0 \equiv (m^e*d-m) \bmod p $
-
-Da wir e und d so gewählt haben, dass 
-$ ed \bmod \varphi(n) = 1 $ 
-%Verweis% 
-
+Wir stellen fest, dass m = m ist und beweisen somit die korrekte Funktionsweise des RSA-Algorithmus. Die Verschlüsselung und darauffolgende Entschlüsselung ergibt immer die Ursprungsnachricht aus, bei korrektem öffentlichen und privaten Schlüssel.
 
 \section{Beispiel}
 \subsection{Einfaches Zahlenbeispiel}
@@ -229,6 +189,20 @@ $ 105^{47} \bmod 247 = 14 $ \\
 $ 212^{47} \bmod 247 = 10 $ \\
 $ 009^{47} \bmod 247 = 81 $ \\
 $ 000^{47} \bmod 247 = 00 $ \\
-Das 000 ist ein bisschen problematisch, denn eigentlich gibt es nur 0 aber da wir ja auf zwei Stellen kommen müssen, wissen wir dass es 00 sein mus. Wie wir sehen haben wir unseren Text \textit{721011081081113287111114108100}  wieder.
+Das 000 ist ein bisschen problematisch, denn eigentlich gibt es nur 0 aber da wir ja auf zwei Stellen kommen müssen, wissen wir dass es 00 sein muss. Wie wir sehen haben wir unseren Text \textit{721011081081113287111114108100}  wieder.
+
+
 \section{Anwendung}
+Asymmetrische Verschlüsselungen werden häufig verwendet.  Obwohl verschiedene neue asymmetrische Verschlüsselungen erfunden wurden, deckt der RSA-Algorithmus weiterhin eine grosse Menge der asymmetrischen Verschlüsselung ab.\\
+Wir möchten hier einige Beispiele aufzeigen, in denen der RSA-Algorithmus zu tragen kommt. Prinzipiell kommt ein asymmetrisches Verfahren dann zum Einsatz, wenn sich zwei Parteien ohne vorherigen Kontakt eine sichere Kommunikation aufbauen möchten. Es ist naheliegend, dass im IT-Bereich, über ein Netzwerk bzw. das Internet, solche Anforderungen bestehen.
+
 \subsection{SSH - Secure Shell}
+Die secure shell dient zum Aufbau einer Verbindung auf ein Gerät. Dies sind meistens Netzwerkkomponente oder Server. Die shell ist eine Konsole mit der Befehle an das Gerät gesendet werden kann.\\
+Ohne RSA-Verschlüsselung müsste die Wartung vor Ort mit einem Kabel gemacht werden oder ein gleichbleibender Schlüssel vergeben werden. Aus Sicherheits- und Zeitgründen wären beide Möglichkeiten ziemlich schlecht.
+
+\subsection{RFID}
+RFID ist eine Technologie für den Kontaktlosen Austausch von Informationen. Dies funktioniert über elektromagnetische Wellen. Der Einsatz ist sehr unterschiedlich. In der Logistik wird es gebraucht um Waren schneller zu finden und direkt mit Listen abzugleichen, ohne jedes Produkt einzeln über einen Strichcode zu scannen. Das RSA-Kryptosystem wird zum Austausch des Schlüssels bei RFID basierten Zugangssystemen verwendet. Ohne ein solches asymmetrisches Verfahren, könnte jemand die Verbindung abhören und die Karte somit kopieren bzw. den Schlüssel der Karte herausfinden.
+
+\subsection{PGP}
+PGP ist ein Programm zur Verschlüsselung von Daten mit verschiedenen Methoden. Seit der ersten Version 1991 kann RSA verwendet werden. Das Programm wurde ausserhalb der USA weiterentwickelt und liegt seit 1998 auch Quelloffen(open source) bereit. Da in den USA Exportbeschränkungen auf Kryptografische Software vorhanden sind, durfte die Software nicht in der üblichen Form vertrieben werden. Um dieses Exportverbot zu Umgehen, wurde der Quellcode der Software in Buchform vertrieben und exportiert. In Europa wurde er dann wieder abgeschrieben und kompiliert(ausführbar gemacht). 
+
