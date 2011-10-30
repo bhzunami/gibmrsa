@@ -5,6 +5,8 @@
 %
 % GIBM 2011
 %
+% Version 0.3
+%
 \documentclass[12pt,a4paper,german]{article}
 %
 \usepackage[left=3cm,right=2cm,bottom=3cm,includeheadfoot]{geometry}
@@ -18,7 +20,12 @@
 \usepackage{amssymb}
 
 % suppress boxes around links:
-\usepackage[pdfborder='0 0 0']{hyperref}
+%\usepackage[pdfborder='0 0 0']{hyperref}
+
+\usepackage{hyperref}
+\hypersetup{
+    pdfborder = {0 0 0}
+}
 
 %Damit man label setzten kann wo man will
 \usepackage[all]{hypcap}
