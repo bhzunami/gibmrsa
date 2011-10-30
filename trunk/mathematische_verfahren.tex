@@ -4,129 +4,195 @@ Dieses Kapitel wurde unteranderem mit Hilfe von dem Buch \textit{Moderne Verfahr
 Der RSA-Algorithmus baut grundsätzlich auf Primzahlen, Modulo, Eulersche-Funktion, Satz von Euler und den erweiterten euklidischen Algorithmus auf. Verstehn man diese mathematischen Verfahren nicht, kann man auch nicht den RSA-Algorithmus verstehen und verwenden. \\
 Im nächsten Abschnitt wollen wir die einzelnen mathematischen Verfahren kurz in ihren Funktionen erläutern.  
 \subsection{Modulo}
-Modulo oder auch \textit{Division mit Rest} gibt den Rest von einer ganzzahligen Division an. Modulo erklärt sich am einfachsten an einem Beispiel.\\
-$ 21 \bmod 5 = 1 $ \\
-Man sucht die nächst kleinere Zahl die durch 5 eine natürliche Zahl ergibt. Der Rest, der bis zu 21 fehlt, ist dann das Resultat.\\
- $ 4 * 5 = 20 $. \\
-Bis auf 21 fehlt genau 1. Somit ist $ 21 \bmod 5 = 1 $
+Modulo oder auch \textit{Division mit Rest} gibt den Rest von einer ganzzahligen Division an. Modulo erklärt sich am einfachsten an einem Beispiel.
+%
+\begin{equation*}
+  21 \bmod(5) = 1
+\end{equation*}
+%
+Man sucht die nächst kleinere Zahl die durch 5 eine natürliche Zahl ergibt. Der Rest, der bis zu 21 fehlt, ist dann das Resultat.
+%
+\begin{equation*}
+  4 * 5 = 20
+\end{equation*}
+%
+Bis auf 21 fehlt genau 1. Somit ist 
+%
+\begin{equation*}
+  21 \bmod(5) = 1
+\end{equation*}
+%
 \paragraph{Kongruent Modulo}
-Kongruent modulo heisst nichts anders, als dass zwei Zahlen modulo eine Zahl den selben Rest haben. Man sagt auch, dass sie in der gleichen Restklasse sind.\\
-Als Beispiel nehmen wir die Zahlen 9 und 7 die modulo 2 gerechnet werden.\\
-\begin{center}
-$ 9 \bmod(2) = 1 $ \\
-$ 7 \bmod(2) = 1 $ \\
-%$ 9 \bmod(2) $ ist kongruent zu $ 7 \bmod(2) $ \\
-$ 9 \bmod(2) \equiv 7 \bmod(2) $ \\
-\end{center}
+Kongruent Modulo heisst nichts anders, als dass zwei verschiedene Zahlen modulo eine gleiche Zahl den selben Rest haben. Man sagt auch, dass sie in der gleichen Restklasse sind.\\
+Als Beispiel nehmen wir die Zahlen 9 und 7 die modulo 2 gerechnet werden.
+%
+\begin{flalign*}
+  9 \bmod(2) &= 1 \\
+  7 \bmod(2) &= 1  \\
+  9 \bmod(2) & \equiv 7 \bmod(2)
+\end{flalign*}
+%
 Denn beide ergeben als Resultat 1.
+%
+%******************************************************************************
+% Eulersche Funktion
+%******************************************************************************
 \subsection{Eulersche Funktion}
 Die Eulersche Funktion sagt aus, wieviele teilfremde \footnote{Zahlen sind sich teilfremd, wenn ihr grösster gemeinsamer Teiler 1 ist.} natürliche Zahlen zu einer Zahl es gibt.(Wikipedia)\\
 Für den RSA-Algorithmus verwenden wir die Eulersche Funktion nur bei Primzahlen. Deshalb schauen wir uns nur die spezial Formel bei Primzahlen an.\\
 Primzahlen sind nur durch sich selber und 1 dividirbar und ihr grösster gemeinsamer Teiler ist immer 1. Somit ist die Eulersche Funktion einer Primzahl p immer p - 1.
-\begin{center}
-\boxed{ \varphi(p) = p - 1 }
-\end{center}
+%
+\begin{equation*}
+  \varphi(p) = p - 1
+\end{equation*}
+%
 Wenn wir jetzt also zwei verschiedene Primzahlen haben, gilt
-\begin{center}
-$ \varphi(pq) = (p - 1) * (q - 1) $
-\end{center}
+\begin{equation}
+  \varphi(pq) = (p - 1) \cdot (q - 1)
+  \label{eqn:eulersche_func}
+\end{equation}
 Der Beweis dafür liefert folgende Überlugungen. Es gibt insgesamt $ p * q -1 $ ganze Zahlen die kleiner sind als $ p * q $.\\
 Es ist bei Primzahlen einfacher die \textbf{nicht teilfremden} Zahlen zu zählen und diese dann von allen möglichen Zahlen abzuziehen als alle teilfremden Zahlen zu zählen. Nicht teilfremd zu p sind $ (q - 1) * p $ und für q gilt $ (p - 1) * q $\\
-Als Formel geschrieben
-\begin{center}
-$ \varphi(pq) = p * q -1 - (p - 1) - (q - 1) $ \\
-$ \varphi(pq) = p * q -1 - p + 1 - q + 1 $ \\
-$ \varphi(pq) = p * q -q - p + 1 $ \\
-$ \varphi(pq) = (p -1) * (q - 1) $ 
-\end{center}
+Als Formel geschrieben:
+%
+\begin{equation*}
+  \begin{split}
+    \varphi(pq) & = p \cdot q -1 - (p - 1) - (q - 1)  \\
+    \varphi(pq) & = p \cdot q -1 - p + 1 - q + 1  \\
+    \varphi(pq) & = p \cdot q -q - p + 1  \\
+    \varphi(pq) & = (p -1) \cdot (q - 1)
+    \label{eqn:herleitung_eulersche_func}
+  \end{split}
+\end{equation*}
+%
+% Satz von Euler
+%=====================
 \subsection{Satz von Euler}
 Der Satz von Euler sagt über zwei teilfremde Zahlen folgende Gleichung aus
-\begin{center}
-$ m^{\varphi(n)} \bmod(n) = 1 $
-\end{center}
-Nehem wir zwei Primzahlen p = 3 und q = 5. Und als m wählen wir 4 und setzten das ganze in unsere Formel ein.\\
-\begin{center}
-$ 4^{\varphi(3 * 5)} \bmod(3 * 5) = 1 $ \\
-$ 4^8 \bmod(15) = 1 $ \\
-\end{center}
-Wenn wir jetzt noch eine natürliche Zahl k nehmen, gilt für diese folgende Aussage \\
-\begin{center}
-$ m^{1 + k * \varphi(n)} \bmod(n)  = m * 1$ \\
-%$ m*m^{k * \varphi(n)} \bmod(n)  = m$ \\
-\end{center}
-Hat man zwei verschiedene Primzahlen p und q und eine natürliche Zahl m die kleiner ist als p * q. Dann gilt für jede natürliche Zahl k \\
-\begin{center}
-\boxed{m^{k * (p - 1) * (q - 1) +1} \bmod(p * q) = m}
-\end{center}
+%
+\begin{equation}
+  m^{\varphi(n)} \bmod(n) = 1
+  \label{eqn:satz_von_euler}
+\end{equation}
+%
+Nehem wir zwei Primzahlen p = 3 und q = 5. Und als m wählen wir 4 und setzten das ganze in unsere Formel ein.
+%
+\begin{flalign*}
+  4^{\varphi(3 * 5)} \bmod(3 * 5) = 1  \\
+  4^8 \bmod(15) = 1
+\end{flalign*}
+%
+Wenn wir jetzt noch eine natürliche Zahl k nehmen, gilt für diese folgende Aussage:
+%
+\begin{equation}
+  m^{1 + k * \varphi(n)} \bmod(n)  = m * 1 \\
+  \label{eqn:satz_von_euler_erweitert}
+\end{equation}
+%
+Hat man zwei verschiedene Primzahlen p und q und eine natürliche Zahl m die kleiner ist als p * q. Dann gilt für jede natürliche Zahl k:
+%
+\begin{equation}
+  m^{k * (p - 1) * (q - 1) +1} \bmod(p * q) = m
+  \label{eqn:kleiner_satz_fermat}
+\end{equation}
+%
 Dieser Satz wird in der Mathematik auch als \textit{kleiner Satz von Fermat} genannt.
 % Buch S 109 / 110
+%
+%******************************************************************************
+% Euklidischer Algorithmus
+%******************************************************************************
 \subsection{Euklidischer Algorithmus}
 Der Euklidischer Algorithmus errechnet den grössten gemeinsamen Teiler (ggT) von zwei natürlichen Zahlen. Um den ggT herauszufinden gibt es eine ältere das Subtraktions-Verfahren und eine modernere Methode das Modulo-Verfahren. Da das ältere Verfahren nicht so effizient ist, konzentrieren wir uns auf das moderne Verfahren.\\
-Die Formel für das modernere Verfahren $a = q * p + r$ ist eine modulo Rechnung. Der Rest r wird zum neuen b und b wird zum neuen a. \\
-Zu veranschaulichung nehmen wir zwei Zahlen a = 302 und b = 146 und setzen diese in usere Gleichung ein.
-\begin{center}
-$ 302 = 2 * 146 + 10 $\\
-$ 146 = 14 * 10 + 6 $ \\
-$ 10 = 1 * 6 + 4 $ \\
-$ 6 = 1 * 4 + 2 $ \\
-$ 4 = 2 * 2 + 0 $\\
-\end{center}
-Der grösstegGemeinsame Teiler von 5984 und 19 ist somit 2. \\[2ex]
-Um dieses Verfahren zu beweisen gehen wir davon aus das a, b, r und q alles natürliche Zahlen sind. Da wir im zweiten Schritt den grössten gemeinsamen Teiler von b und r errechnet haben, kann man folgende Gleichung aufstellen.
-\begin{center}
-$ ggT(a,b) = ggT(b,r) $\\
-\end{center}
-Wenn also eine Zahl a und b teilt, muss diese Zahl auch r teilen. Denn sonst würde die Gleichung oben nicht aufgehen. Umgekehrt muss eine Zahl die b und r teilt auch a teilen. Gehen wir zurück zu unserem Beispiel. Da diese Gleichung stimmt, stimmt auch unseres Verfahren.
-\begin{center}
-$ ggT(5984,302) = ggT(302,146) = ggT(146,10) = ggT(10,6) = ggT(6,4) = 2 $
-\end{center}
+Die Formel für das modernere Verfahren 
+%
+\begin{equation}
+  p = a \cdot q + r
+\end{equation}
+%
+ist eine modulo Rechnung. Der Rest r wird zum neuen q und q wird zum neuen p. \\
+Zur Veranschaulichung nehmen wir zwei Zahlen $q = 302$ und $p = 146$ und setzen diese in usere Gleichung ein.
+%
+\begin{equation}
+  \begin{split}
+    302 & = 2 \cdot 146 + 10 \\
+    146 & = 14 \cdot 10 + 6  \\
+    10 & = 1 \cdot 6 + 4  \\
+    6 & = 1 \cdot 4 + 2  \\
+    4 & = 2 \cdot 2 + 0
+    \label{eqn:euqulid_beweis}
+  \end{split}
+\end{equation}
+%
+Der grösste Gemeinsame Teiler von 302 und 146 ist somit 2. \\[2ex]
+Um dieses Verfahren zu beweisen gehen wir davon aus das q, p, r und a alles natürliche Zahlen sind. Da wir im zweiten Schritt den grössten gemeinsamen Teiler von q und r errechnet haben, kann man folgende Gleichung aufstellen:
+%
+\begin{equation}
+  ggT(q,p) = ggT(q,r)
+\end{equation}
+%
+Wenn also eine Zahl q und p teilt, muss diese Zahl auch r teilen. Denn sonst würde die Gleichung \ref{eqn:euqulid_beweis} nicht aufgehen. Umgekehrt muss eine Zahl die q und r teilt auch p teilen. Gehen wir zurück zu unserem Beispiel. Da diese Gleichung stimmt, stimmt auch unseres Verfahren.
+%
+\begin{equation*}
+ ggT(5984,302) = ggT(302,146) = ggT(146,10) = ggT(10,6) = ggT(6,4) = 2 
+\end{equation*}
+%
+%******************************************************************************
+% Erweiterter Euklidischer Algorithmus
+%******************************************************************************
 \subsubsection{Erweiterter Euklidischer Algorithmus}
 Der erweiterte Euklidischer Algorithmus oder auch die Vielfachsummendarstellung besagt folgende Gleichung.
-\begin{center}
-$ d = x * a + y * b $
-\end{center}
-Das wollen wir am Besten an einem Beispiel zeigen. Wir nehem dazu die gleichen Zahlen wie vorhin beim Euklidischer Algorithmus.
-\begin{center}
-$ 302 = 2 * 146 + 10 $\\
-$ 146 = 14 * 10 + 6 $ \\
-$ 10 = 1 * 6 + 4 $ \\
-$ 6 = 1 * 4 + 2 $ \\
-$ 4 = 2 * 2 + 0 $\\
-\end{center}
-Jetzt müssen wir x und y herausfinden.
-Wir schreiben uns für jeden Rest eine neue Gleichung.
-\begin{center}
-$ 2 = 6 - 1 * 4 $ \\
-$ 4 = 10 - 1 * 6 $ \\
-$ 6 = 146 - 14 * 10 $\\
-$ 10 = 302 - 2 * 146 $\\
-\end{center}
-Wir nehmen die Gleichung $ 2 = 6 - 1 * 4 $ und ersetzen 4 mit der Formel $ 4 = 10 - 1 * 6 $. So erhalten wir\\
-\begin{center}
-$ 2 = 6 - 1 * 4  =  6 - 1 * (10 - 1 * 6) =  6 - 1 * 10 + 1 * 6 = 2 * 6 - 1 * 10 $\\
-\end{center}
-Ersetzen nun 6 mit der Gleichung $146 - 14 * 10$.
-\begin{center}
-$   = 2 * 6 - 1 * 10  = 2 * (146 - 14 * 10) - 1 * 10 = 2*146 -2*14*10 - 1*10 = 2*146 - 29*10   $\\
-\end{center}
-Ersetzen nun 10 mit der Gleichung $ 302 - 2 * 146 $.
-\begin{center}
-$   = 2*146 - 29*10 = 2 * 146 - 29 (302 - 2 * 146) = 2 * 146 - 29 * 302 + 58 * 146 = 60 * 146 - 29 * 302 $\\
-\end{center}
+%
+\begin{equation}
+  d = x \cdot q + y \cdot p 
+\end{equation}
+%
+Das wollen wir am Besten an einem Beispiel zeigen. Wir nehem dazu die gleichen Zahlen wie vorhin beim Euklidischer Algorithmus \ref{eqn:euqulid_beweis}.
+\\
+Um x und y heraus zu finden, schreibt man sich am Besten eine neue Gleichung bei der der Rest alleine auf der rechten Seite steht.
+%
+\begin{flalign*}
+  2 & = 6 - 1 \cdot 4  \\
+  4 & = 10 - 1 \cdot 6  \\
+  6 & = 146 - 14 \cdot 10 \\
+  10 & = 302 - 2 \cdot 146
+  \label{eqn:erw_eukl_rest}
+\end{flalign*}
+%
+% TODO: AUSSCHREIBEN
+Dann startet man vom kleinsten Rest aus. gleichung $2 = 6 - 1 \cdot 4$ 
+Wir nehmen die Gleichung  $2 = 6 - 1 \cdot 4$  und ersetzen 4 mit der Formel  $4 = 10 - 1 \cdot 6$. So erhalten wir:
+%
+\begin{flalign*}
+  2  &= 6 - 1 \cdot 4  =  6 - 1 \cdot (10 - 1 \cdot 6) =  6 - 1 \cdot 10 + 1 \cdot 6 = 2 \cdot 6 - 1 \cdot 10 \\
+  &= 2 \cdot 6 - 1 \cdot 10  = 2 \cdot (146 - 14 \cdot 10) - 1 \cdot 10 = 2 \cdot 146 - 2 \cdot 14 \cdot 10 - 1 \cdot 10 = 2 \cdot 146 - 29 \cdot 10   \\
+  &= 2 \cdot 146 - 29 \cdot 10 = 2 \cdot 146 - 29 (302 - 2 \cdot 146) = 2 \cdot 146 - 29 \cdot 302 + 58 \cdot 146 = 60 \cdot 146 - 29 \cdot 302
+\end{flalign*}
+%
 Jetzt haben wir unsere Formel
-\begin{center}
-$ 2 = 60 * 146 + (-29) * 302 = (-29) * 302 + 60 * 146 $ 
-\end{center}
+%
+\begin{equation}
+ 2 = 60 \cdot 146 + (-29) \cdot 302 = (-29) \cdot 302 + 60 \cdot 146  
+\end{equation}
 %
 Nun haben 
 \subsubsection{Modularen Inverse}
 Haben wir nun die Vielfachsumme gebildet, bilden wir aus diesen Zahlen die modulare Inverse. Die modulare Inverse drückt folgende Gleichung aus.
-\begin{center}
-$ a * x \bmod n = 1  $\\
-\end{center}
-Das geht nur wen der ggT von a n 1 ist also diese Zahlen teilfremd sind. a ist also modulo n inventierbar.\\
-$ 1 = x*a + y*b $\\
-Weil n * y teilbar ist durch n ergibt $ (a * x) / N $ einen Rest von 1. Deshalb ist \\
-$ a * x \bmod n = 1  $\\
+%
+\begin{equation}
+ a \cdot x \bmod n = 1
+\end{equation}
+%
+Das geht nur wen der ggT von a n 1 ist also diese Zahlen teilfremd sind. a ist also modulo n inventierbar.
+%
+\begin{equation}
+  1 = x \cdot a + y \cdot b
+\end{equation}
+%
+Weil $n \cdot y$ teilbar ist durch n ergibt $ (a \cdot x) / N $ einen Rest von 1. Deshalb ist
+%
+\begin{equation}
+  a \cdot x \bmod n = 1
+\end{equation}
+%
 So hat man mit x die modulare Inverse von $ a \bmod n $
-
