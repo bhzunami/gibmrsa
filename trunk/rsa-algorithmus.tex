@@ -12,7 +12,7 @@ $ C \equiv m^e  \bmod N $\\
 C steht für Cipher und bezeichnet den Geheimtext. Dieser ist abhängig von der Nachricht m, dem öffentlichen Schlüssel e und dem RSA-Modul N.
 
 \section{RSA Entschlüsselung}
-Die RSA Entschlüsselung ist ohne den Geheimschlüssel zu wissen nicht möglich. Da die Sicherheit von diesem Geheimschlüssel abhängt, gilt es diesen möglichst lang zu wählen und geheim zu halten. Aktuell gilt eine Schlüssellänge von 2048 Bit als sicher. Als Dezimalzahl ausgedrückt, ist dies eine Zahl von $ 3,2 * 10^{616} $
+Die RSA Entschlüsselung ist ohne den Geheimschlüssel zu wissen nicht möglich. Da die Sicherheit von diesem Geheimschlüssel abhängt, gilt es diesen möglichst lang zu wählen und geheim zu halten. Aktuell gilt eine Schlüssellänge von 2048 Bit als sicher. Als Dezimalzahl ausgedrückt, ist dies eine Zahl von $ 3,2 \cdot 10^{616} $
 Die Angriffe auf die RSA Verschlüsselung zielen darauf ab, den Geheimschlüssel zu ermitteln. Das Problem dabei ist die Primfaktoren Zerlegung von grossen Zahlen. Mehr dazu im Kapitel Angriffe %Verweis%
 
 \subsection{Formel Entschlüsselung}
@@ -20,94 +20,100 @@ Die Entschlüsselung der Nachricht wird mit folgender Formel realisiert
 $ m \equiv C^d \bmod N $ \\
 Der Klartext m hängt in diesem Fall vom verschlüsselten Text C, dem privaten Schlüssel d und dem RSA-Modul N ab. 
 %
+%
+%******************************************************************************
+% Mathematischer Beweis
+%******************************************************************************
 \section{Mathematisches Beweis der Funktionsweise}
 Bisher nahmen wir an, dass der RSA-Algorithmus korrekt arbeitet. Diese Annahme möchten wir nun beweisen. Der Algorithmus arbeitet korrekt, wenn die Verschlüsselung und Entschlüsselung wieder das gleiche ergibt. Dies darf nur mit dem zugehörigen privaten Schlüssel möglich sein.
 
 \subsection{Verschlüsselung und Entschlüsselung gleichsetzen}
 Für den Beweis benötigen wir die ursprünglichen Formeln zu Verschlüsselung und Entschlüsselung. Diese lauten:
-%Damit wir die korrekte Funktionsweise beweisen können setzen wir die Entschlüsselung und Verschlüsselung gleich. Dazu dienen uns die ursprünglichen Formeln zur Verschlüsselung und Entschlüsselung \\%
-
-\begin{align}
-  C = m^e mod N \\
-  m = C^d mod N
-\end{align}
+\begin{flalign*}
+  C & = m^e mod N \\
+  m & = C^d mod N
+\end{flalign*}
 Da in beiden Formeln die Ursprungsnachricht m und die verschlüsselte Nachricht C vorkommen, können wir diese Formeln gleichsetzen. Dazu lösen wir die Entschlüsselungsformel nach C auf:
-\begin{align}
-  m = C^d mod N \\
-  m + k * N = C^d \\
-  \sqrt[d]{m+k*N} = C \\
-  C = \sqrt[d]{m+k*N}
-\end{align}
+\begin{flalign*}
+  m & = C^d mod N \\
+  m + k \cdot N & = C^d \\
+  \sqrt[d]{m + k \cdot N} & = C
+\end{flalign*}
 Wir setzen nun die beiden Formeln gleich, so das nur noch die Ursprungsnachricht m in der Gleichung vorhanden ist:
-\begin{align}
-  m^e mod N = \sqrt[d]{m+k*N}\\
-  m^{e*d} mod N = m + k * N\\
-  m^{e*d} mod N = m \\ 
-  {m^e}^d mod N = m \\
-  {m^d}^e mod N = m
-\end{align}
-Die Formel $ m^{e*d} mod N = m + k * N $ kann gekürzt werden, da k in jedem Fall 0 sein muss. Dies liegt daran, dass wir auf der linken Seite mit Modulo N den Rest ausgeben. Der Rest kann 1 bis N-1 gross sein. Da m einen Wert hat, muss k in diesem Fall 0 sein. \\
+\begin{flalign*}
+  m^e mod N & = \sqrt[d]{m + k \cdot N}\\
+  m^{e \cdot d} mod N & = m + k \cdot N\\
+  m^{e \cdot d} mod N & = m \\ 
+  {m^e}^d mod N & = m \\
+  {m^d}^e mod N & = m
+\end{flalign*}
+Die Formel $ m^{e \cdot d} mod N = m + k \cdot N $ kann gekürzt werden, da k in jedem Fall 0 sein muss. Dies liegt daran, dass wir auf der linken Seite mit Modulo N den Rest ausgeben. Der Rest kann 1 bis N-1 gross sein. Da m einen Wert hat, muss k in diesem Fall 0 sein. \\
 Somit möchten wir beweisen, dass die Verschlüsselung (hoch e) und nachherige Entschlüsselung (hoch p) wieder die ursprüngliche Nachricht ergibt:
-$ m^{e*d} mod N = m $
+$ m^{e \cdot d} mod N = m $
 
 \subsection{Grundlagen zur Erklärung}
 Für den Beweis benötigen wir vorherige Kenntnisse und bestimmte Sätze. Diese möchten wir hier nochmals kurz in Erinnerung rufen.\\ 
 Das RSA-Modul N wird aus den ausgewählten Primzahlen p und q erstellt.
-\begin{align}
-  N = p * q
-\end{align}
+\begin{equation*}
+  N = p \cdot q
+\end{equation*}
 
 e wurde teilerfremd zu $ \varphi(n) $ gewählt. 
-$ \varphi(n) = (p-1)*(q-1) $
+$ \varphi(n) = (p-1) \cdot (q-1) $
 
 Zusätzlich wurde d so gewählt, dass folgendes zählt:
-\begin{align}
- e * d + k * \varphi(N) = 1 = ggT(e,\varphi(N))
-\end{align}
+\begin{equation*}
+ e \cdot d + k \cdot \varphi(N) = 1 = ggT(e,\varphi(N))
+\end{equation*}
 
 Für den Beweis müssen wir ausschweifen auf den Satz von Euler Fermat. Dieser bildet die Grundlage zur RSA-Verschlüsselung. Er lautet wie folgt:
-\begin{align}
+\begin{equation*}
 	a^{\varphi(n)} \equiv 1\,(\mathrm{mod}\,n)
-\end{align}
-Da wir mit Primzahlen arbeiten, kann dieser Satz auch anders ausgedrückt werden. $ \varphi(n) $ gibt alle teilerfremden Zahlen zu n an. Da n durch zwei Primzahlen gebildet wurde, gibt es $ (p-1)*(q-1) $ teilerfremde Zahlen. 
-
+\end{equation*}
+Da wir mit Primzahlen arbeiten, kann dieser Satz auch anders ausgedrückt werden. $ \varphi(n) $ gibt alle teilerfremden Zahlen zu n an. Da n durch zwei Primzahlen gebildet wurde, gibt es $ (p-1) \cdot (q-1) $ teilerfremde Zahlen. 
+%
 \subsection{Beweis der Funktionsweise}
 Die Gleichsetzung der Entschlüsselung und Verschlüsselung dient uns als Grundlage des Beweises:
-\begin{align}   
- m^{e*d} mod N = m
-\end{align}
+\begin{equation*}   
+ m^{e \cdot d} mod N = m
+\end{equation*}
 %
-Wir nehmen nun die Formel der multiplikativen Inverse um $ e*d $ anders auszudrücken. Diese lösen wir gleich nach $ e*d $ auf:\\
-$ e \cdot d \equiv 1 \bmod{\varphi(N)} $ \\
-$ e \cdot d + k \cdot \varphi(N) = 1 $ \\
-$ e \cdot d + k \cdot \varphi(N) + 1 $ \\
-$ e \cdot d \equiv k \cdot \varphi(N)+1 $ \\
-Wenn die Formel Modulo beinhaltet, kann diese jeweils auch mit k * den Rest ausgedrückt werden. \\
+Wir nehmen nun die Formel der multiplikativen Inverse um $ e \cdot d $ anders auszudrücken. Diese lösen wir gleich nach $ e \cdot d $ auf:\\
+\begin{flalign*}
+ e \cdot d & \equiv 1 \bmod{\varphi(N)}  \\
+ e \cdot d - k \cdot \varphi(N) &\equiv 1  \\
+ e \cdot d & \equiv k \cdot \varphi(N)+1  
+\end{flalign*}
+Wenn die Formel Modulo beinhaltet, kann diese jeweils auch mit k Mal den Rest ausgedrückt werden. \\
 %
-Nun ersetzen wir in unserer Aussage $ e*d $ durch $ k* \varphi(n)+1 $
-\begin{center}
-$ m^{ k* \varphi(n) + 1} = m $ \\
-$ m^{k* \varphi(n)} * m = m $ \\
-$ { m^{ \varphi(n) }} ^k * m = m $ \\
-\end{center}
+Nun ersetzen wir in unserer Aussage $ e \cdot d $ durch $ k \cdot \varphi(n)+1 $
+\begin{flalign*}
+ m^{ k \cdot \varphi(n) + 1} = m  \\
+ m^{k \cdot \varphi(n)} \cdot m = m  \\
+ { m^{ \varphi(n) }} ^k \cdot m = m
+\end{flalign*}
 %
-Durch den Satz von Fermat wissen wir dass $ \varphi(n) $ 1 sein muss:
-\begin{align}
-  m^{(p-1)} = 1 \bmod p
-  m^{(p-1)*(q-1)} = 1^{q-1} \bmod p*q
-  m^{(p-1)*(q-1)} = 1 \bmod p*q
-  m^{\varphi(N)} = 1 \bmod N
-\end{align}
-1. Die Nachricht hoch die Anzahl der Teilerfremden Zahlen bei einer Primzahl ergibt 1 Modulo die Zahl
-2. Wir rechnen beide Seiten hoch (q-1), was in unserem Fall die zweite Primzahl ist % a = b mod m ist wie a^k = b^k mod m
+%Durch den kleinen Satz von Fermat wissen wir dass $ \varphi(N) $ 1 sein muss. 
+Mit dem kleinen fermatschen Satz können wir nun nach $ m^{\varphi(N)} $ auflösen.
+\begin{flalign*}
+  m^{(p-1)} &= 1 \bmod p \\
+  m^{(p-1) \cdot (q-1)} &= 1 \bmod p \cdot q \\
+  m^{\varphi(N)} & = 1 \bmod N 
+\end{flalign*}
+1. Die Nachricht hoch die Anzahl der Teilerfremden Zahlen bei einer Primzahl ergibt 1 Modulo die Zahl \\
+%TODO Denis: Kleiner fermatscher Satz
+2. Wir rechnen beide Seiten hoch (q-1), was in unserem Fall die zweite Primzahl ist 
+% a = b mod m ist wie a^k = b^k mod m
 3. 1 hoch eine Zahl ergibt immer 1, es kann daher gekürzt werden
 
 Daraus resultiert das $ 1 \bmod N $ das gleiche ist wie $ m^\varphi(n) $ und entsprechend eingesetzt werden kann. Nun lösen wir die Formel noch auf. 
-$ { m^{ \varphi(n) }} ^k * m = m $ \\
-$ {1 \bmod N }^k * m = m $ \\
-$ 1^k * m = m $ \\
-$ 1 * m = m $ \\
-$ m = m $
+\begin{flalign*}
+ { m^{ \varphi(n) }} ^k \cdot m &= m  \\
+ {1 \bmod N }^k \cdot m &= m  \\
+ 1^k \cdot m &= m \\
+ 1 \cdot m &= m \\
+ m &= m 
+\end{flalign*}
 
 Wir stellen fest, dass m = m ist und beweisen somit die korrekte Funktionsweise des RSA-Algorithmus. Die Verschlüsselung und darauffolgende Entschlüsselung ergibt immer die Ursprungsnachricht aus, bei korrektem öffentlichen und privaten Schlüssel.
 
