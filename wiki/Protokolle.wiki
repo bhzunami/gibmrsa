@@ -115,7 +115,9 @@ Arbeiten am RSA-Algorithmus und am Schlüssel erstellen
 *Traktanden:*
 Bearbeitung der zugewiesenen Themen.
 - RSA-Verschlüsselung Beweis (Denis)
+
 - Schlüssel erstellen (Nicolas)
+
 - 2. Fixpunktgespräch
 
 
@@ -126,5 +128,18 @@ Bearbeitung der zugewiesenen Themen.
 
 *Traktanden:*
 - Arbeiten während den Ferien besprochen
+
 - Weiters Vorgehen geplant
+
 - Der Zeitplan wird gut eingehalten
+
+== Protokoll des 31.10.2011 ==
+
+*Anwesend:* Denis und Nicolas
+
+*Traktanden:*
+- Wir haben uns für die Darstellung der Formeln geeinigt und haben diese gleich umgesetzt.
+
+- Denis arbeitet am Primfaktoren Problem und Nicolas an den Angriffen auf den RSA Algorithmus
+
+- Milestone 3: Beispiele und Anwendungen wurde erfolgreich erreicht!
