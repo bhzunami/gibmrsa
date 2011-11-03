@@ -121,28 +121,50 @@ Wir stellen fest, dass m = m ist und beweisen somit die korrekte Funktionsweise 
 \subsection{Einfaches Zahlenbeispiel}
 Ein einfaches Beispiel für den RSA-Algorithmus
 \subsubsection{Schlüssel-Paar erstellen}
-Ein einfaches Zahlenbeispiel. Wir suchen uns zwei kleine Primzahlen.\\
-$ p = 13 $ \\
-$ q = 19 $ \\
-Somit ist N das ja aus q * p gebildet wird 247. Und $ \varphi(N) $ = 216.\\
-$ N = 13 * 19 = 247 $ \\
-$ \varphi(N) = (13 - 1) * (19 - 1) = 216 $ \\
-Zu $ \varphi(N) $ suchen wir uns jetzt noch eine zweite Zahl e, die teilerfremd zu $ \varphi(N) $ ist, sprich den ggT(N,e) = 1. Am Besten man verwendet eine weitere Primzahl. Wir nehmen für e die Primzahl 23.
-$ e = 23 $\\
-ggT(23,216) ausrechnen:\\
-$ 216 = 9 * 23 + 9 $\\
-$  23 = 2 *  9 + 5 $\\
-$   9 = 1 *  5 + 4 $\\
-$   5 = 1 *  4 + 1 $\\
-Erweiterter Euklidischer Algorithmus anwenden um auf die Formel:
-$e * d + k * N = 1 = ggt(23,216) $\\
-$1 = 5 - 1 * 4 = 5 - 1 *(9 - 1 * 5) = 5 - 1*9 + 1 * 5 = 2*5 - 1*9$\\
-$1 = 2*5 - 1*9 = 2 *(23 - 2 * 9) - 1*9 = 2*23 - 4*9 - 1*9 = 2*23 - 5*9$\\
-$1 = 2*23 - 5*9=2*23 - 5 *(216 - 9 * 23) = 2*23 - 5*216 +45*23 = 47*23 - 5*216 $\\
-Somit haben wir die Formel
-$ 23 * 47 + -(5) * 216 = 1 = ggT(23,216) $
-$ d = 47 $\\
-$ k = -5 $\\
+Ein einfaches Zahlenbeispiel. Wir suchen uns zwei kleine Primzahlen.
+%
+\begin{flalign*}
+  p = 13 \\
+  q = 19
+\end{flalign*}
+%
+Wir berechnen nun das RSA-Modul N [\ref{eqn:rsa_modul}] und $\varphi(N) $ [\ref{eqn:eulersche_func}] aus p und q.
+\begin{equation*}
+  \tag{RSA-Modul}
+  247 = 13 \cdot 19
+\end{equation*}
+%
+\begin{equation*}
+  \tag{$\varphi(N)$}
+  216 = (13 - 1) \cdot (19 - 1)
+\end{equation*}
+%
+Zu $ \varphi(N) $ suchen wir uns eine zweite Zahl e, die teilerfremd zu $ \varphi(N) $ ist, sprich den ggT(N,e) = 1. Am Besten man verwendet eine weitere Primzahl. Wir nehmen für e die Primzahl 23.
+%
+\begin{equation*}
+    e = 23
+\end{equation*}
+%
+Der öffentliche Schlüssel ist nun berechnet [siehe Section \ref{sec:public_key}]\\
+Um den entschlüsselungs Exponenten zu errechnen, müssen wir zuerst den ggT [\ref{eqn:euklidischer_algo}] aus 23 und 216 ausrechnen.
+\begin{flalign*}
+  216 & = 9 * 23 + 9 \\
+  23 & = 2 *  9 + 5 \\
+  9 & = 1 *  5 + 4 \\
+  5 & = 1 *  4 + 1
+\end{flalign*}
+%
+Jetzt weneden wir den Erweiterter Euklidischer Algorithmus [\ref{eqn:erw_euklid_algo}] an.
+\begin{flalign*}
+  1 &= 5 - 1 \cdot 4 = 5 - 1 \cdot(9 - 1 \cdot 5) = 5 - 1 \cdot 9 + 1 \cdot 5 = 2 \cdot 5 - 1 \cdot 9\\
+  1 &= 2 \cdot 5 - 1 \cdot 9 = 2 \cdot (23 - 2 \cdot 9) - 1 \cdot 9 = 2 \cdot 23 - 4 \cdot 9 - 1 \cdot 9 = 2 \cdot 23 - 5 \cdot 9\\
+  1 &= 2 \cdot 23 - 5 \cdot 9 = 2 \cdot 23 - 5 \cdot (216 - 9 \cdot 23) = 2 \cdot 23 - 5 \cdot 216 + 45 \cdot 23 = \textbf{47} \cdot 23 \textbf{- 5} \cdot 216
+\end{flalign*}
+Aus der letzen Formel können wir d und k herauslesen.
+\begin{flalign*}
+  d = 47\\
+  k = -5
+\end{flalign*}
 Jetzt haben wir alle nötigen Zahlen die wir für eine Verschlüsselung sowie Entschlüsselung benötigen.
 \subsubsection{Verschlüsseln}
 Da man Text nicht verschlüsseln kann, braucht man für den Text Zahlen. Wir nehmen jetzt zur Vereinfachung eine Zahl.\\
