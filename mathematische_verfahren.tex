@@ -1,8 +1,8 @@
 \section{Mathematisches Verfahren}
-Dieses Kapitel wurde unteranderem mit Hilfe von dem Buch \textit{Moderne Verfahren der Kryptographie} und \textit{Kryptologie} erarbeitet\\[2ex]
+Dieses Kapitel wurde mit Hilfe von dem Buch \textit{Moderne Verfahren der Kryptographie} und \textit{Kryptologie} erarbeitet\\[2ex]
 %
-Der RSA-Algorithmus baut grundsätzlich auf Primzahlen, Modulo, Eulersche-Funktion, Satz von Euler und den erweiterten euklidischen Algorithmus auf. Verstehn man diese mathematischen Verfahren nicht, kann man auch nicht den RSA-Algorithmus verstehen und verwenden. \\
-Im nächsten Abschnitt wollen wir die einzelnen mathematischen Verfahren kurz in ihren Funktionen erläutern.  
+Der RSA-Algorithmus baut grundsätzlich auf Primzahlen, Modulo, Eulersche-Funktion, den Satz von Euler und den erweiterten euklidischen Algorithmus auf. Versteht man diese mathematischen Verfahren nicht, kann man ebensowenig den RSA-Algorithmus verstehen oder verwenden. \\
+Im nächsten Abschnitt werden die einzelnen mathematischen Verfahren kurz in ihren Funktionen erläutert.  
 \subsection{Modulo}
 Modulo oder auch \textit{Division mit Rest} gibt den Rest von einer ganzzahligen Division an. Modulo erklärt sich am einfachsten an einem Beispiel.
 %
@@ -23,7 +23,7 @@ Bis auf 21 fehlt genau 1. Somit ist
 \end{equation*}
 %
 \paragraph{Kongruent Modulo}
-Kongruent Modulo heisst nichts anders, als dass zwei verschiedene Zahlen modulo eine gleiche Zahl den selben Rest haben. Man sagt auch, dass sie in der gleichen Restklasse sind.\\
+Kongruent Modulo bedeutet nichts anders, als dass zwei verschiedene Zahlen modulo einer gleichen Zahl den selben Rest haben. Man sagt auch, dass sie in der gleichen Restklasse sind.\\
 Als Beispiel nehmen wir die Zahlen 9 und 7 die modulo 2 gerechnet werden.
 %
 \begin{flalign*}
@@ -32,15 +32,14 @@ Als Beispiel nehmen wir die Zahlen 9 und 7 die modulo 2 gerechnet werden.
   9 \bmod(2) & \equiv 7 \bmod(2)
 \end{flalign*}
 %
-Denn beide ergeben als Resultat 1.
-%
 %******************************************************************************
 % Eulersche Funktion
 %******************************************************************************
+%Verbessern die Zahlen sind kleiner als die Zahl -> HAHA
 \subsection{Eulersche Funktion}
 Die Eulersche Funktion sagt aus, wieviele teilfremde \footnote{Zahlen sind sich teilfremd, wenn ihr grösster gemeinsamer Teiler 1 ist.} natürliche Zahlen zu einer Zahl es gibt.(Wikipedia)\\
-Für den RSA-Algorithmus verwenden wir die Eulersche Funktion nur bei Primzahlen. Deshalb schauen wir uns nur die spezial Formel bei Primzahlen an.\\
-Primzahlen sind nur durch sich selber und 1 dividirbar und ihr grösster gemeinsamer Teiler ist immer 1. Somit ist die Eulersche Funktion einer Primzahl p immer p - 1.
+Für den RSA-Algorithmus verwenden wir die Eulersche Funktion nur bei Primzahlen. Deshalb schauen wir uns nur die Spezialformel bei Primzahlen an.\\
+Primzahlen sind durch sich selbst und durch 1 dividierbar und ihr grösster gemeinsamer Teiler ist immer 1. Somit ist die Eulersche Funktion einer Primzahl p immer $p - 1$.
 %
 \begin{equation*}
   \varphi(p) = p - 1
@@ -51,8 +50,8 @@ Wenn wir jetzt also zwei verschiedene Primzahlen haben, gilt
   \varphi(pq) = (p - 1) \cdot (q - 1)
   \label{eqn:eulersche_func}
 \end{equation}
-Der Beweis dafür liefert folgende Überlugungen. Es gibt insgesamt $ p * q -1 $ ganze Zahlen die kleiner sind als $ p * q $.\\
-Es ist bei Primzahlen einfacher die \textbf{nicht teilfremden} Zahlen zu zählen und diese dann von allen möglichen Zahlen abzuziehen als alle teilfremden Zahlen zu zählen. Nicht teilfremd zu p sind $ (q - 1) * p $ und für q gilt $ (p - 1) * q $\\
+Der Beweis dafür liefert folgende Überlegung. Es gibt insgesamt $p \cdot q -1$ ganze Zahlen die kleiner sind als $p \cdot q$.\\
+Es ist bei Primzahlen einfacher, die \textbf{nicht teilfremden} Zahlen zu zählen und diese dann von allen möglichen Zahlen abzuziehen, als alle teilfremden Zahlen zu zählen. Nicht teilfremd zu p sind $(q - 1) \cdot p$ und für q gilt $ (p - 1) \cdot q$.\\
 Als Formel geschrieben:
 %
 \begin{equation*}
@@ -68,35 +67,35 @@ Als Formel geschrieben:
 % Satz von Euler
 %=====================
 \subsection{Satz von Euler}
-Der Satz von Euler sagt über zwei teilfremde Zahlen folgende Gleichung aus
+Der Satz von Euler sagt über zwei teilfremde Zahlen Folgendes aus
 %
 \begin{equation}
   m^{\varphi(n)} \bmod(n) = 1
   \label{eqn:satz_von_euler}
 \end{equation}
 %
-Nehem wir zwei Primzahlen p = 3 und q = 5. Und als m wählen wir 4 und setzten das ganze in unsere Formel ein.
+Nehmen wir zwei Primzahlen p = 3 und q = 5. Als m wählen wir 4 und setzten das ganze in die obige Formel ein.
 %
 \begin{flalign*}
   4^{\varphi(3 * 5)} \bmod(3 * 5) = 1  \\
   4^8 \bmod(15) = 1
 \end{flalign*}
 %
-Wenn wir jetzt noch eine natürliche Zahl k nehmen, gilt für diese folgende Aussage:
+Wenn wir jetzt eine natürliche Zahl k nehmen, gilt für diese folgende Gleichung:
 %
 \begin{equation}
   m^{1 + k * \varphi(n)} \bmod(n)  = m * 1 \\
   \label{eqn:satz_von_euler_erweitert}
 \end{equation}
 %
-Hat man zwei verschiedene Primzahlen p und q und eine natürliche Zahl m die kleiner ist als p * q. Dann gilt für jede natürliche Zahl k:
+Hat man zwei verschiedene Primzahlen p und q und eine natürliche Zahl m, die kleiner ist als $p \cdot q$, dann gilt für jede natürliche Zahl k:
 %
 \begin{equation}
   m^{k * (p - 1) * (q - 1) +1} \bmod(p * q) = m
   \label{eqn:kleiner_satz_fermat}
 \end{equation}
 %
-Dieser Satz wird in der Mathematik auch als \textit{kleiner Satz von Fermat} genannt.
+Dieser Satz wird in der Mathematik auch \textit{kleiner Satz von Fermat} genannt.
 % Buch S 109 / 110
 %
 %******************************************************************************
@@ -107,6 +106,7 @@ Der Euklidischer Algorithmus errechnet den grössten gemeinsamen Teiler (ggT) vo
 Die Formel für das modernere Verfahren 
 %
 \begin{equation}
+  \label{eqn:euklidischer_algo}
   p = a \cdot q + r
 \end{equation}
 %
@@ -145,6 +145,7 @@ Der erweiterte Euklidischer Algorithmus oder auch die Vielfachsummendarstellung 
 %
 \begin{equation}
   d = x \cdot q + y \cdot p 
+  \label{eqn:erw_euklid_algo}
 \end{equation}
 %
 Das wollen wir am Besten an einem Beispiel zeigen. Wir nehem dazu die gleichen Zahlen wie vorhin beim Euklidischer Algorithmus \ref{eqn:euqulid_beweis}.
