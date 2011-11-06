@@ -25,7 +25,7 @@ Der Klartext m hängt in diesem Fall vom verschlüsselten Text C, dem privaten S
 % Mathematischer Beweis
 %******************************************************************************
 \section{Mathematisches Beweis der Funktionsweise}
-Bisher nahmen wir an, dass der RSA-Algorithmus korrekt arbeitet. Diese Annahme möchten wir nun beweisen. Der Algorithmus arbeitet korrekt, wenn die Verschlüsselung und Entschlüsselung wieder das gleiche ergibt. Dies darf nur mit dem zugehörigen privaten Schlüssel möglich sein.
+Bisher nahmen wir an, dass der RSA-Algorithmus korrekt arbeitet. Diese Annahme möchten wir nun beweisen. Der Algorithmus arbeitet korrekt, wenn die Verschlüsselung und nachherige Entschlüsselung wieder das gleiche ergibt. Dies darf nur mit dem zugehörigen privaten und öffentlichen Schlüssel möglich sein.
 
 \subsection{Verschlüsselung und Entschlüsselung gleichsetzen}
 Für den Beweis benötigen wir die ursprünglichen Formeln zu Verschlüsselung und Entschlüsselung. Diese lauten:
@@ -101,21 +101,23 @@ Mit dem kleinen fermatschen Satz können wir nun nach $ m^{\varphi(N)} $ auflös
   m^{\varphi(N)} & = 1 \bmod N 
 \end{flalign*}
 1. Die Nachricht hoch die Anzahl der Teilerfremden Zahlen bei einer Primzahl ergibt 1 Modulo die Zahl \\
-%TODO Denis: Kleiner fermatscher Satz
-2. Wir rechnen beide Seiten hoch (q-1), was in unserem Fall die zweite Primzahl ist 
-% a = b mod m ist wie a^k = b^k mod m
-3. 1 hoch eine Zahl ergibt immer 1, es kann daher gekürzt werden
-
-Daraus resultiert das $ 1 \bmod N $ das gleiche ist wie $ m^\varphi(n) $ und entsprechend eingesetzt werden kann. Nun lösen wir die Formel noch auf. 
+2. Bei der RSA-Verschlüsselung haben wir nicht hoch eine Primzahl gerechnet, sondern hoch $ (p-1) \cdot (q-1) $. Daher können wir den kleinen fermatschen Satz so darstellen.\\
+3. $ p \cdot q $ ist das RSA-Modul N. $ (p-1) \cdot (q-1) $ sind die Teilerfremden Zahlen von N, das es sich bei p und q um Primzahlen handelt. \\ %Verweis phi(N) und Primzahlen%
+%
+Daraus resultiert das $ 1 \bmod N $ das gleiche ist wie $ m^\varphi(N) $ und entsprechend eingesetzt werden kann. Danach lösen wir die Formel auf. 
 \begin{flalign*}
- { m^{ \varphi(n) }} ^k \cdot m &= m  \\
+ { m^{ \varphi(N) }} ^k \cdot m &= m  \\
  {1 \bmod N }^k \cdot m &= m  \\
  1^k \cdot m &= m \\
  1 \cdot m &= m \\
  m &= m 
 \end{flalign*}
-
-Wir stellen fest, dass m = m ist und beweisen somit die korrekte Funktionsweise des RSA-Algorithmus. Die Verschlüsselung und darauffolgende Entschlüsselung ergibt immer die Ursprungsnachricht aus, bei korrektem öffentlichen und privaten Schlüssel.
+%
+Wir stellen fest, dass m = m ist und beweisen somit die korrekte Funktionsweise des RSA-Algorithmus. Die Verschlüsselung und darauffolgende Entschlüsselung ergibt immer die Ursprungsnachricht.
+% ToDo Denis: Warum geht nur zugehöriger Schlüssel?
+% Falls versucht wird ein anderer privater Schlüssel zu einem nicht zugehörigen Öffentlichen Schlüssel zu verwenden %funktioniert die Entschlüsselung nicht korrekt. Es kommt eine andere Zahl heraus, 
+%
+%Falls der bei korrektem öffentlichen und privaten Schlüssel.
 
 \section{Beispiel}
 \subsection{Einfaches Zahlenbeispiel}
