@@ -77,21 +77,21 @@ Der Satz von Euler sagt über zwei teilfremde Zahlen Folgendes aus
 Nehmen wir zwei Primzahlen p = 3 und q = 5. Als m wählen wir 4 und setzten das ganze in die obige Formel ein.
 %
 \begin{flalign*}
-  4^{\varphi(3 * 5)} \bmod(3 * 5) = 1  \\
+  4^{\varphi(3 \cdot 5)} \bmod(3 \cdot 5) = 1  \\
   4^8 \bmod(15) = 1
 \end{flalign*}
 %
 Wenn wir jetzt eine natürliche Zahl k nehmen, gilt für diese folgende Gleichung:
 %
 \begin{equation}
-  m^{1 + k * \varphi(n)} \bmod(n)  = m * 1 \\
+  m^{1 + k \cdot \varphi(n)} \bmod(n)  = m \cdot 1 \\
   \label{eqn:satz_von_euler_erweitert}
 \end{equation}
 %
 Hat man zwei verschiedene Primzahlen p und q und eine natürliche Zahl m, die kleiner ist als $p \cdot q$, dann gilt für jede natürliche Zahl k:
 %
 \begin{equation}
-  m^{k * (p - 1) * (q - 1) +1} \bmod(p * q) = m
+  m^{k \cdot (p - 1) \cdot (q - 1) +1} \bmod(p \cdot q) = m
   \label{eqn:kleiner_satz_fermat}
 \end{equation}
 %
@@ -102,15 +102,15 @@ Dieser Satz wird in der Mathematik auch \textit{kleiner Satz von Fermat} genannt
 % Euklidischer Algorithmus
 %******************************************************************************
 \subsection{Euklidischer Algorithmus}
-Der Euklidischer Algorithmus errechnet den grössten gemeinsamen Teiler (ggT) von zwei natürlichen Zahlen. Um den ggT herauszufinden gibt es eine ältere das Subtraktions-Verfahren und eine modernere Methode das Modulo-Verfahren. Da das ältere Verfahren nicht so effizient ist, konzentrieren wir uns auf das moderne Verfahren.\\
-Die Formel für das modernere Verfahren 
+Der Euklidische Algorithmus errechnet den grössten gemeinsamen Teiler (ggT) von zwei natürlichen Zahlen. Um den grössten gemeinsamen Teiler herauszufinden gibt es zwei Methoden: dass etwas ältere Subtraktionsverfahren und das moderne Modulo-Verfahren. Da das Subtraktions-Verfahren nicht die gleiche Effizenz hat, konzentrieren wir uns auf das Modulo-Verfahren.\\
+Die Formel für das Modulo-Verfahren lautet:
 %
 \begin{equation}
   \label{eqn:euklidischer_algo}
   p = a \cdot q + r
 \end{equation}
 %
-ist eine modulo Rechnung. Der Rest r wird zum neuen q und q wird zum neuen p. \\
+und ist, wie es der Name schon sagt, eine modulo Rechnung. Der Rest r wird zum neuen q, und q wird zum neuen p. \\
 Zur Veranschaulichung nehmen wir zwei Zahlen $q = 302$ und $p = 146$ und setzen diese in usere Gleichung ein.
 %
 \begin{equation}
@@ -124,14 +124,16 @@ Zur Veranschaulichung nehmen wir zwei Zahlen $q = 302$ und $p = 146$ und setzen 
   \end{split}
 \end{equation}
 %
-Der grösste Gemeinsame Teiler von 302 und 146 ist somit 2. \\[2ex]
-Um dieses Verfahren zu beweisen gehen wir davon aus das q, p, r und a alles natürliche Zahlen sind. Da wir im zweiten Schritt den grössten gemeinsamen Teiler von q und r errechnet haben, kann man folgende Gleichung aufstellen:
+Der grösste gemeinsame Teiler von 302 und 146 ist somit 2. \\[2ex]
+Um dieses Verfahren zu beweisen, gehen wir davon aus, dass q, p, r und a alles natürliche Zahlen sind. Da wir im zweiten Schritt den grössten gemeinsamen Teiler von q und r errechnet haben, kann man folgende Gleichung aufstellen:
 %
 \begin{equation}
   ggT(q,p) = ggT(q,r)
 \end{equation}
 %
-Wenn also eine Zahl q und p teilt, muss diese Zahl auch r teilen. Denn sonst würde die Gleichung \ref{eqn:euqulid_beweis} nicht aufgehen. Umgekehrt muss eine Zahl die q und r teilt auch p teilen. Gehen wir zurück zu unserem Beispiel. Da diese Gleichung stimmt, stimmt auch unseres Verfahren.
+Wenn also eine Zahl q und p teilt, muss diese Zahl auch r teilen. Ansonsten würde die Gleichung \ref{eqn:euqulid_beweis} nicht aufgehen. Umgekehrt muss eine Zahl die q und r teilt auch p teilen. 
+% TODO: Besser schreiben
+Gehen wir zurück zu unserem Beispiel. Da diese Gleichung stimmt, stimmt auch unseres Verfahren.
 %
 \begin{equation*}
  ggT(5984,302) = ggT(302,146) = ggT(146,10) = ggT(10,6) = ggT(6,4) = 2 
@@ -141,16 +143,19 @@ Wenn also eine Zahl q und p teilt, muss diese Zahl auch r teilen. Denn sonst wü
 % Erweiterter Euklidischer Algorithmus
 %******************************************************************************
 \subsubsection{Erweiterter Euklidischer Algorithmus}
-Der erweiterte Euklidischer Algorithmus oder auch die Vielfachsummendarstellung besagt folgende Gleichung.
+Der erweiterte Euklidische Algorithmus, berechnet den grössten gemeinsamen Teiler aus zwei natürlichen Zahlen und die dazu gehörigen natürlichen Zahlen x und y, dass folgende Gleichung stimmt.
 %
 \begin{equation}
   d = x \cdot q + y \cdot p 
   \label{eqn:erw_euklid_algo}
 \end{equation}
 %
-Das wollen wir am Besten an einem Beispiel zeigen. Wir nehem dazu die gleichen Zahlen wie vorhin beim Euklidischer Algorithmus \ref{eqn:euqulid_beweis}.
-\\
-Um x und y heraus zu finden, schreibt man sich am Besten eine neue Gleichung bei der der Rest alleine auf der rechten Seite steht.
+Dieser Algorithmus wird auch \textit{Vielfachsummendarstellung} gennant, denn um auf die Zahlen x und y zu kommen, muss man die Vielfachsummendarstellung anwenden.\\
+Es ist eine erweiterte Form des Euklidischen Algorithmus folglich benötigt man den Euklidischen Algorithmus auch.
+Das wollen wir an einem Beispiel zeigen. Wir nehem dazu die gleichen Zahlen wie vorhin beim Euklidischen Algorithmus (Siehe Rechnung \ref{eqn:euqulid_beweis}).\\
+% TODO: Viel besser schreiben
+Der ganze Prozess ist ein herauf angeln. Wir fangen bei der untersten Gleichung an. Da d der grösste gemeinsame Teiler ist, 
+Um x und y heraus zu finden, schreibt man sich eine neue Gleichung, bei der der Rest alleine auf der rechten Seite steht.
 %
 \begin{flalign*}
   2 & = 6 - 1 \cdot 4  \\
@@ -161,13 +166,17 @@ Um x und y heraus zu finden, schreibt man sich am Besten eine neue Gleichung bei
 \end{flalign*}
 %
 % TODO: AUSSCHREIBEN
-Dann startet man vom kleinsten Rest aus. gleichung $2 = 6 - 1 \cdot 4$ 
+Dann startet man vom kleinsten Rest aus.\\
+\begin{equation}
+  2 = 6 - 1 \cdot 4
+\end{equation}
 Wir nehmen die Gleichung  $2 = 6 - 1 \cdot 4$  und ersetzen 4 mit der Formel  $4 = 10 - 1 \cdot 6$. So erhalten wir:
 %
 \begin{flalign*}
   2  &= 6 - 1 \cdot 4  =  6 - 1 \cdot (10 - 1 \cdot 6) =  6 - 1 \cdot 10 + 1 \cdot 6 = 2 \cdot 6 - 1 \cdot 10 \\
-  &= 2 \cdot 6 - 1 \cdot 10  = 2 \cdot (146 - 14 \cdot 10) - 1 \cdot 10 = 2 \cdot 146 - 2 \cdot 14 \cdot 10 - 1 \cdot 10 = 2 \cdot 146 - 29 \cdot 10   \\
-  &= 2 \cdot 146 - 29 \cdot 10 = 2 \cdot 146 - 29 (302 - 2 \cdot 146) = 2 \cdot 146 - 29 \cdot 302 + 58 \cdot 146 = 60 \cdot 146 - 29 \cdot 302
+%  &= 2 \cdot 6 - 1 \cdot 10  = 2 \cdot (146 - 14 \cdot 10) - 1 \cdot 10 = 2 \cdot 146 - 2 \cdot 14 \cdot 10 - 1 \cdot 10 = 2 \cdot 146 - 29 \cdot 10   \\
+  &= 2 \cdot 6 - 1 \cdot 10  = 2 \cdot 146 - 2 \cdot 14 \cdot 10 - 1 \cdot 10 = 2 \cdot 146 - 29 \cdot 10   \\
+  &= 2 \cdot 146 - 29 \cdot 10 = 2 \cdot 146 - 29 \cdot 302 + 58 \cdot 146 = 60 \cdot 146 - 29 \cdot 302
 \end{flalign*}
 %
 Jetzt haben wir unsere Formel
@@ -176,24 +185,18 @@ Jetzt haben wir unsere Formel
  2 = 60 \cdot 146 + (-29) \cdot 302 = (-29) \cdot 302 + 60 \cdot 146  
 \end{equation}
 %
-Nun haben 
-\subsubsection{Modularen Inverse}
-Haben wir nun die Vielfachsumme gebildet, bilden wir aus diesen Zahlen die modulare Inverse. Die modulare Inverse drückt folgende Gleichung aus.
+\subsubsection{Modulare Inverse}
+Haben wir nun die Vielfachsumme gebildet, bilden wir aus diesen Zahlen die modulare Inverse. Die modulare Inverse drückt folgende Gleichung aus:
 %
 \begin{equation}
  a \cdot x \bmod n = 1
+ \label{eqn:mod_inverse}
 \end{equation}
 %
-Das geht nur wen der ggT von a n 1 ist also diese Zahlen teilfremd sind. a ist also modulo n inventierbar.
+Das geht nur wen der grösste gemeiname Teiler von a und n 1 ist, also diese Zahlen teilfremd sind. a ist folglich modulo n inventierbar.
 %
 \begin{equation}
   1 = x \cdot a + y \cdot b
 \end{equation}
 %
-Weil $n \cdot y$ teilbar ist durch n ergibt $ (a \cdot x) / N $ einen Rest von 1. Deshalb ist
-%
-\begin{equation}
-  a \cdot x \bmod n = 1
-\end{equation}
-%
-So hat man mit x die modulare Inverse von $ a \bmod n $
+Weil $n \cdot y$ teilbar durch n ist, ergibt $ (a \cdot x) / N $ einen Rest von 1. Deshalb gilt die Formel \ref{eqn:mod_inverse}. So hat man mit x die modulare Inverse von $ a \bmod n $.
