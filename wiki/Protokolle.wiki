@@ -143,3 +143,22 @@ Bearbeitung der zugewiesenen Themen.
 - Denis arbeitet am Primfaktoren Problem und Nicolas an den Angriffen auf den RSA Algorithmus
 
 - Milestone 3: Beispiele und Anwendungen wurde erfolgreich erreicht!
+
+
+== Protokoll des 07.11.2011 ==
+
+*Anwesend:* Denis und Nicolas
+
+*Traktanden:*
+- Verknüpfung von Beweis des RSA und den mathematischen Grundwissen
+
+- Anpassungen des Beweises und der 
+
+== Protokoll des 14.11.2011 ==
+
+*Anwesend:* Denis und Nicolas
+
+*Traktanden:*
+- Abschluss des Beweises und der mathematischen Verfahren. Gespräch mit Herr Kuster, Fragen klären
+
+- Auf nächste Woche wird der lezte Teil der Arbeit in Angriff genommen.
