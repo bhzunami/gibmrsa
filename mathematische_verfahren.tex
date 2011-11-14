@@ -2,7 +2,8 @@
 Dieses Kapitel wurde mit Hilfe von dem Buch \textit{Moderne Verfahren der Kryptographie} und \textit{Kryptologie} erarbeitet\\[2ex]
 %
 Der RSA-Algorithmus baut grundsätzlich auf Primzahlen, Modulo, Eulersche-Funktion, den Satz von Euler und den erweiterten euklidischen Algorithmus auf. Versteht man diese mathematischen Verfahren nicht, kann man ebensowenig den RSA-Algorithmus verstehen oder verwenden. \\
-Im nächsten Abschnitt werden die einzelnen mathematischen Verfahren kurz in ihren Funktionen erläutert.  
+Im nächsten Abschnitt werden die einzelnen mathematischen Verfahren kurz in ihren Funktionen erläutert.\\
+Wir werden durchgehend für die beiden Primzahlen die Variabeln $p$ und $q$ verwenden. $N$ steht immer für das Produkt von $p \cdot q$. Die Variable $r$ wird für den Rest bei Modulorechungen verwendet.
 \subsection{Modulo}
 Modulo oder auch \textit{Division mit Rest} gibt den Rest von einer ganzzahligen Division an. Modulo erklärt sich am einfachsten an einem Beispiel.
 %
@@ -67,7 +68,7 @@ Als Formel geschrieben:
 % Satz von Euler
 %=====================
 \subsection{Satz von Euler}
-Der Satz von Euler sagt über zwei natürliche, teilfremde Zahlen Folgendes aus:
+Der Satz von Euler sagt über zwei natürliche, teilfremde Zahlen, hier $n$ und $m$, Folgendes aus:
 %
 \begin{equation}
   m^{\varphi(n)} \bmod(n) = 1
@@ -81,22 +82,28 @@ Nehmen wir für $n = 15$ und als m wählen wir 4 und setzten das ganze in die ob
   4^8 \bmod(15) = 1
 \end{flalign*}
 %
-Wenn wir jetzt eine natürliche Zahl k nehmen, gilt für diese folgende Gleichung (Erleuterung siehe Buch \textit{Kryptologie}):
 %
-\begin{equation}
-  m^{1 + k \cdot \varphi(n)} \bmod(n)  = m \cdot 1 \\
-  \label{eqn:satz_von_euler_erweitert}
-\end{equation}
+% Kleiner Satz von Verma
 %
-
-Hat man zwei verschiedene Primzahlen p und q und eine natürliche Zahl m, die kleiner ist als $p \cdot q$, dann gilt für jede natürliche Zahl k:
+%Wenn wir jetzt eine natürliche Zahl k nehmen, gilt für diese folgende Gleichung (Erleuterung siehe Buch \textit{Kryptologie}):
 %
-\begin{equation}
-  m^{k \cdot (p - 1) \cdot (q - 1) +1} \bmod(p \cdot q) = m
-  \label{eqn:kleiner_satz_fermat}
-\end{equation}
+%\begin{equation}
+%  \begin{split}
+%    m^{1 + k \cdot \varphi(N)} \bmod(N)  &= m \cdot 1 \\
+%    m \cdot m^{k \cdot \varphi(N)} \bmod(N) &= m \cdot 1
+%    \label{eqn:satz_von_euler_erweitert}
+%  \end{split}
+%\end{equation}
 %
-Dieser Satz wird in der Mathematik auch \textit{kleiner Satz von Fermat} genannt.
+%
+%Hat man zwei verschiedene Primzahlen p und q und eine natürliche Zahl m, die kleiner ist als $p \cdot q$, dann gilt für jede natürliche Zahl k:
+%
+%\begin{equation}
+%  m^{k \cdot (p - 1) \cdot (q - 1) +1} \bmod(p \cdot q) = m
+%  \label{eqn:kleiner_satz_fermat}
+%\end{equation}
+%
+%Dieser Satz wird in der Mathematik auch \textit{kleiner Satz von Fermat} genannt.
 % Buch S 109 / 110
 %
 %******************************************************************************
@@ -104,6 +111,7 @@ Dieser Satz wird in der Mathematik auch \textit{kleiner Satz von Fermat} genannt
 %******************************************************************************
 \subsection{Euklidischer Algorithmus}
 Der Euklidische Algorithmus errechnet den grössten gemeinsamen Teiler (ggT) von zwei natürlichen Zahlen. Um den grössten gemeinsamen Teiler herauszufinden gibt es zwei Methoden: dass etwas ältere Subtraktionsverfahren und das moderne Modulo-Verfahren. Da das Subtraktions-Verfahren nicht die gleiche Effizenz hat, konzentrieren wir uns auf das Modulo-Verfahren.\\
+
 Die Formel für das Modulo-Verfahren lautet:
 %
 \begin{equation}
@@ -112,7 +120,7 @@ Die Formel für das Modulo-Verfahren lautet:
 \end{equation}
 %
 und ist, wie es der Name schon sagt, eine modulo Rechnung. Der Rest r wird zum neuen q, und q wird zum neuen p. \\
-Zur Veranschaulichung nehmen wir zwei Zahlen $q = 302$ und $p = 146$ und setzen diese in usere Gleichung ein.
+Zur Veranschaulichung nehmen wir zwei Zahlen $p = 302$ und $q = 146$ und setzen diese in usere Gleichung ein.
 %
 \begin{equation}
   \begin{split}
@@ -129,7 +137,8 @@ Der grösste gemeinsame Teiler von 302 und 146 ist somit 2. \\[2ex]
 Um dieses Verfahren zu beweisen, gehen wir davon aus, dass q, p, r und a alles natürliche Zahlen sind. Da wir im zweiten Schritt den grössten gemeinsamen Teiler von q und r errechnet haben, kann man folgende Gleichung aufstellen:
 %
 \begin{equation}
-  ggT(q,p) = ggT(q,r)
+  ggT(p,q) = ggT(q,r)
+  \label{eqn:ggT}
 \end{equation}
 %
 Wenn also eine Zahl q und p teilt, muss diese Zahl auch r teilen. Ansonsten würde die Gleichung \ref{eqn:euqulid_beweis} nicht aufgehen. Umgekehrt muss eine Zahl die q und r teilt auch p teilen. 
@@ -144,7 +153,7 @@ Gehen wir zurück zu unserem Beispiel. Da diese Gleichung stimmt, stimmt auch un
 % Erweiterter Euklidischer Algorithmus
 %******************************************************************************
 \subsubsection{Erweiterter Euklidischer Algorithmus}
-Der erweiterte Euklidische Algorithmus, berechnet den grössten gemeinsamen Teiler aus zwei natürlichen Zahlen und die dazu gehörigen natürlichen Zahlen x und y, dass folgende Gleichung stimmt.
+Der erweiterte Euklidische Algorithmus, berechnet den grössten gemeinsamen Teiler $d$ aus zwei natürlichen Zahlen und die dazu gehörigen natürlichen Zahlen x und y, dass folgende Gleichung stimmt.
 %
 \begin{equation}
   d = x \cdot q + y \cdot p 
@@ -152,26 +161,23 @@ Der erweiterte Euklidische Algorithmus, berechnet den grössten gemeinsamen Teil
 \end{equation}
 %
 Dieser Algorithmus wird auch \textit{Vielfachsummendarstellung} gennant, denn um auf die Zahlen x und y zu kommen, muss man die Vielfachsummendarstellung anwenden.\\
-Es ist eine erweiterte Form des Euklidischen Algorithmus folglich benötigt man den Euklidischen Algorithmus auch.
-Das wollen wir an einem Beispiel zeigen. Wir nehem dazu die gleichen Zahlen wie vorhin beim Euklidischen Algorithmus (Siehe Rechnung \ref{eqn:euqulid_beweis}).\\
-% TODO: Viel besser schreiben
-Der ganze Prozess ist ein herauf angeln. Wir fangen bei der untersten Gleichung an. Da d der grösste gemeinsame Teiler ist, 
-Um x und y heraus zu finden, schreibt man sich eine neue Gleichung, bei der der Rest alleine auf der rechten Seite steht.
+Es ist eine erweiterte Form des Euklidischen Algorithmus folglich benötigt man den Euklidischen Algorithmus auch. Wir schreiben jetzt die Rechnung \ref{eqn:euqulid_beweis} so um, dass wir den Rest allein auf einer Seite haben.\\ 
+\begin{equation}
+  r = p - a \cdot q
+  \label{eqn:form_erw_euklid}
+\end{equation}
+%
 %
 \begin{flalign*}
-  2 & = 6 - 1 \cdot 4  \\
-  4 & = 10 - 1 \cdot 6  \\
+  10 & = 302 - 2 \cdot 146 \\
   6 & = 146 - 14 \cdot 10 \\
-  10 & = 302 - 2 \cdot 146
-  \label{eqn:erw_eukl_rest}
+  4 & = 10 - 1 \cdot 6  \\
+  2 & = 6 - 1 \cdot 4
+  \label{eqn:erw_euklid_10}
 \end{flalign*}
 %
 % TODO: AUSSCHREIBEN
-Dann startet man vom kleinsten Rest aus.\\
-\begin{equation}
-  2 = 6 - 1 \cdot 4
-\end{equation}
-Wir nehmen die Gleichung  $2 = 6 - 1 \cdot 4$  und ersetzen 4 mit der Formel  $4 = 10 - 1 \cdot 6$. So erhalten wir:
+Man startet bei der Untersten Rechnung und ersetzt die Zahl, die den nächsten oberen Rest beschreibt, durch die Gleichung. Das heisst man ersetzt in der ersten Gleichung die Zahl $4$ mit der Gleichung $10 - 1 \cdot 6$. Das macht man immer so weiter, bis man die letze Gleichun eingesetz hat. Man darf nicht zuviel vereinfachen, denn sonst kommt die Gleichung $2 = 2$ heraus.\\
 %
 \begin{flalign*}
   2  &= 6 - 1 \cdot 4  =  6 - 1 \cdot (10 - 1 \cdot 6) =  6 - 1 \cdot 10 + 1 \cdot 6 = 2 \cdot 6 - 1 \cdot 10 \\
@@ -183,21 +189,42 @@ Wir nehmen die Gleichung  $2 = 6 - 1 \cdot 4$  und ersetzen 4 mit der Formel  $4
 Jetzt haben wir unsere Formel
 %
 \begin{equation}
- 2 = 60 \cdot 146 + (-29) \cdot 302 = (-29) \cdot 302 + 60 \cdot 146  
+ 2 = 60 \cdot 146 + (-29) \cdot 302
 \end{equation}
+%
+Um das zu beweisen schauen wir uns nochmal die Formel \ref{eqn:euklidischer_algo} an. Aus einer Vielfachsummendarstellung von $q$ und $r$, lässt sich dei Vielfachsummendarstellung von $p$ und $q$ ableiten. Man kann die Formel
+%{eqn:ggT}
+\begin{equation*}
+  2 = x \cdot p + y \cdot q
+  \label{eqn:erw_eukl_fertig}
+\end{equation*}
+%
+auch mit r und a darstellen.
+%
+\begin{equation*}
+  2 = x \cdot r + y \cdot a
+\end{equation*}
+%
+Jetzt setzen wir die Formel \ref{eqn:form_erw_euklid} anstatt r ein und erhalten diese Gleichung
+\begin{equation*}
+  2 = x \cdot (p - a \cdot q)  + y \cdot a = x \cdot p + (y - xa) \cdot q
+\end{equation*}
+%
+Somit haben wie die Vielfachsummendarstellung für $p$ und $q$.
 %
 \subsubsection{Modulare Inverse}
-Haben wir nun die Vielfachsumme gebildet, bilden wir aus diesen Zahlen die modulare Inverse. Die modulare Inverse drückt folgende Gleichung aus:
+Haben wir zwei natürliche, teilfremde Zahlen, gibt es eine Zahl x, sodass die Formel
+%
+\begin{equation*}
+  p \cdot x \bmod(q) \equiv 1
+\end{equation*}
+%
+Es gibt zwei ganze Zahlen $x$ und $y$ sodass die Gleichung \ref{eqn:erw_eukl_fertig} entsteht.
+Weil $y cdot q$ durch $q$ teilbar ist, gibt es bei der Divison von $x \cdot p$ durch $q$ immer 1. Somit kann man sagen
 %
 \begin{equation}
- a \cdot x \bmod n = 1
- \label{eqn:mod_inverse}
+  p \cdot x \bmod q = 1
+  \label{eqn:mod_inverse}
 \end{equation}
 %
-Das geht nur wen der grösste gemeiname Teiler von a und n 1 ist, also diese Zahlen teilfremd sind. a ist folglich modulo n inventierbar.
-%
-\begin{equation}
-  1 = x \cdot a + y \cdot b
-\end{equation}
-%
-Weil $n \cdot y$ teilbar durch n ist, ergibt $ (a \cdot x) / N $ einen Rest von 1. Deshalb gilt die Formel \ref{eqn:mod_inverse}. So hat man mit x die modulare Inverse von $ a \bmod n $.
+Die Modulareinverse von zwei teilfremden natürlichen Zahlen $p$ und $q$, errechnet man mit dem erweiterten Euklidischen Algorithmus. Dann ist $x$ die modulare Inverse von $p$ und $q$.
