@@ -83,7 +83,7 @@ Die Gleichsetzung der Entschlüsselung und Verschlüsselung dient uns als Grundl
 Wir könnnen durch die modulare Inverse $ e \cdot d $ anders ausdrücken, siehe [\ref{eqn:mod_inverse}]. Diese lösen wir nach $ e \cdot d $ auf:\\
 \begin{flalign*}
  e \cdot d &= 1 \bmod{\varphi(N)}  \\
- e \cdot d - k \cdot \varphi(N) &= 1  \\
+ e \cdot d + k \cdot \varphi(N) &= 1  \\
  e \cdot d &= k \cdot \varphi(N)+1  
 \end{flalign*}
 Wenn die Formel Modulo beinhaltet, kann diese jeweils auch mit k Mal den Rest ausgedrückt werden. \\
@@ -113,16 +113,18 @@ Daraus resultiert das $ 1 \bmod N $ das gleiche ist wie $ m^\varphi(N) $ und ent
  {1 \bmod N }^k \cdot m \bmod(N) &= m  \\
  1^k \cdot m \bmod(N) &= m \\
  1 \cdot m \bmod(N) &= m \\
- m + k \cdot k * N &= m \\
+ m + k \cdot N &= m \\
  m + 0 \cdot N &= m \\
  m &= m 
 \end{flalign*}
-%
-Wir stellen fest, dass m = m ist und beweisen somit die korrekte Funktionsweise des RSA-Algorithmus. Die Verschlüsselung und darauffolgende Entschlüsselung ergibt immer die Ursprungsnachricht.
-% ToDo Denis: Warum geht nur zugehöriger Schlüssel?
-% Falls versucht wird ein anderer privater Schlüssel zu einem nicht zugehörigen Öffentlichen Schlüssel zu verwenden %funktioniert die Entschlüsselung nicht korrekt. Es kommt eine andere Zahl heraus, 
-%
-%Falls der bei korrektem öffentlichen und privaten Schlüssel.
+Wir wissen das $ k = 0 $ sein muss, da m kleiner als N ist. Falls m grösser gleich N ist, würde der RSA-Algorithmus nicht funktionieren. In diesem Fall würden die Nachricht geteilt und danach wieder zusammengesetzt.\\
+Schlussendlich stellen wir fest, dass m = m ist und beweisen somit die korrekte Funktionsweise des RSA-Algorithmus. Die Verschlüsselung und darauffolgende Entschlüsselung ergibt die Ursprungsnachricht.\\
+Die Entschlüsselung der Nachricht funktioniert nur mit dem zugehörigen privaten Schlüssel, da mit dem euklidischen Algorithmus d so bestimmt wurde, das folgendes zählt: 
+\begin{flalign*}
+ e \cdot d + k \cdot \varphi(N) &= 1	
+\end{flalign*}
+Mit der modularen Inverse wurde d so bestimmt, das keine negative Zahl entsteht. Aus der vorherigen Formel ist ersichtlich, dass nur ein ganz bestimmtes d zu einem e und N gehört. Jeder andere Entschlüsselungexponent würde die Formel nicht korrekt erfüllen und zu einem anderen Ergebnis nach der Entschlüsselung führen. 
+
 
 \section{Beispiel}
 \subsection{Einfaches Zahlenbeispiel}
