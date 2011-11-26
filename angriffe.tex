@@ -1,0 +1,22 @@
+%
+\subsection{Side Channel Attack}
+Eine side channel attack ist einen Angriff auf die Implementierung des Verschlüsselungssystem. Es greift als nicht den RSA-Algorithmus direkt an.
+Dieses Verfahren wurde 1996 von Herrn Paul C. Kocher, einem amerikanischen Kryptologen vorgestellt.
+Im wesentlichen geht es bei einer side channel attacke darum, das kryptographische Gerät beim Ausführen ders Algorithmus zu beobachten und Korrelationen. bzw beziehungen feststellt zwischen den beobachteten Daten und dem Schlüssel zu finden.
+Man beobachtet zum Beispiel die Laufzeit des Algorithmus, den Energieverbrauch des Prozessors während der Berechunung oder der elektromagnetische Ausstrahlung
+%
+% http://www.usna.edu/Users/math/wdj/book/node45.html
+\subsubsection{Timing Attack}
+Die Timing Attack ist eine side channel attack (Seitenkanalattacke). 
+Bei ihr mistt man die Rechenzeit, die der Computer bzw. die CPU für die verschieden implementierungen des RSA-Verfahrens braucht. Die meisten Verschlüsselugns implementationen sind so geschrieben, dass sie möglichst schnell rechenen, da man grosse Primzahlen hat. Bei einer CPU, braucht jede Recheneinheit die exakt gleiche Zeit. Durch diese Analyse kann man den Schlüssel nach rekonstruieren. Das geht 
+%
+Verschiedene Berechnungen werden durchgeführt und ihre Zeiten notiert. Aus dieser Analyse werden Entschidungskriterin aufgestellt, die nur eine mögliche Lösung möglich ist. Diese Lösung hängt von dem gewählten Schlüssel ab.
+%
+Um sich von solchen Angriffen zu wehren, baut man in die Implementierung geeisse Berechnungen ein, damit jede Berechnung gleich lang dauert. So ist es nicht mehr möglich verschiedene Zeiten festzu stellen.
+%
+Diese Angriffe sind besonders bei Smart Cards effektiv, da man die Zeit sehr genau messen kann.
+%
+\subsection{Exponent Attack}
+Bei der Exponent Attack, geht man davon aus, dass der private Schlüssel also d klein gewählt wurde. Zur veranschaulichung nehmen wir d = 3.
+Die Nachricht m muss kleiner sein als N. Die entschüsselung würde dann so a
+\section{Ausblick in die Zukunft}
