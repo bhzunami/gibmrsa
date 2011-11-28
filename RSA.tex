@@ -9,6 +9,8 @@
 %
 \documentclass[12pt,a4paper,german]{article}
 %
+\author{Denis Augsburger & Nicolas Mauchle}
+%
 \usepackage[left=3cm,right=2cm,bottom=3cm,includeheadfoot]{geometry}
 \usepackage[pdftex]{graphicx}
 \usepackage{babel}
@@ -90,5 +92,7 @@
 %-----------------------------------------------------------
 \newpage
 \input{./schluss.tex}
+\bibliographystyle{plain}	% (uses file "plain.bst")
+\bibliography{myrefs}		% expects file "myrefs.bib"
 %
 \end{document}

@@ -1,35 +1,34 @@
 \newpage
 \section{Moderne Kryptographie}
 Dieses Kapitel wurde mit Hilfe des Buches \textit{Moderne Verfahren der Kryptographie} erarbeitet.\\[2ex]
-Die moderne Kryptographie unterscheidet sich von der klassischen Kryptographie in der Technik. Was früher mechanisch errechnet wurde, wird in der modernen Kryptographie digital errechnet. Mit dieser technischen Hilfe ist es möglich, komplexe Rechnungen in vernünftiger Zeit zu berechnen. Die grossen Chiffriermaschienen werden durch den Computer abgelöst.\\
-Die immer besseren, bzw. schnelleren Computer machen die klassische Kryptographie sehr unsicher, da der Schlüssel durch Brute-Force\footnote{Brute-Force nennt man ein Vorgehen, wenn man ein Passwort durch ausprobieren knackt.} Angriffe schnell gefunden werden kann.\\
+Die moderne Kryptographie unterscheidet sich von der klassischen Kryptographie in der Technik. Was früher mechanisch errechnet wurde, wird in der modernen Kryptographie elektronisch erledigt. Mit dieser technischen Hilfe ist es möglich, komplexe Berechnungen in vernünftiger Zeit durchzuführen. Die grossen Chiffriermaschienen werden durch den Computer abgelöst.\\
+Die immer besseren, bzw. schnelleren Computer machen die klassische Kryptographie sehr unsicher, da der Schlüssel durch Brute-Force-Angriffe\footnote{Brute-Force nennt man ein Vorgehen, wenn man ein Passwort durch ausprobieren knackt.} schnell gefunden werden kann.\\
 Man brauchte also sichere Verschlüssselungs-Methoden, die durch ausprobieren nicht geknackt werden konnten.\\
 Einen grossen Fortschritt machte die moderne Krypographie in den Jahren 1976 und 1985.\\
+% Public Key Verfahren erwähnen.
 1976 wurde das Problem, dass immer beide Seiten einen \textbf{gemeinsamen} Schlüssel benötigen gelöst. Das ist die Geburtstunde des RSA-Algorithmus.\\
-1985 entwickelten drei Mathematiker/Innen das \textbf{Zero-Knowlede-Verfahren}. Mit diesem Verfahren ist es möglich, mit jemanden über ein Geheimniss kommuniziere, ohne dass dieser etwas über das eigene Geheimnis erfährt. Das Zero-Knowlede-Verfahren baut auf die Public Key-Kryptographie auf. Der wesentliche Unterschied liegt im Protokol.
+1985 entwickelten drei Mathematiker/Innen das \textbf{Zero-Knowlede-Verfahren}. Das Zero-Knowlede-Verfahren baut auf die Public Key-Kryptographie auf. Mit diesem Verfahren ist es möglich, mit jemanden über ein Geheimniss kommuniziere, ohne dass dieser etwas über das eigene Geheimnis erfährt. Der wesentliche Unterschied liegt im Protokol.
 %
 \subsection{Symmetrische Verschlüsselung}
-Grundsätzlich braucht es für eine einfache symmetrische Verschlüsselung einen Schlüssel, Text zum verschlüsseln und eine Verschlüsselungsfunktion.
-Die Verschlüsselungsfunktion verschlüsselt mit Hilfe des Schlüssel den Text. In einer Formel ausgedrückt heisst das
+Grundsätzlich braucht es für eine einfache symmetrische Verschlüsselung einen Schlüssel, den zu verschlüsselten Text und eine Verschlüsselungsfunktion.
+Die Verschlüsselungsfunktion übersetzt den Klartext mit Hilfe des Schlüssel. In einer Formel ausgedrückt:
 \begin{equation*}
   c = f ( k, m )
 \label{eqn:sym_versch}
 \end{equation*}
-wobei \textit{c} für den verschlüsselten Text steht, \textit{f} für die Verschlüsselungsfunktion, \textit{k} für den Schlüssel und \textit{m} für den Text den man verschlüsseln möchte.\\
+\textit{c} steht für den verschlüsselten  (eng.: \textit{crypted}) Text, \textit{f} für die Verschlüsselungsfunktion (eng.: \textit{function}), \textit{k} für den Schlüssel (eng.: \textit{key}) und \textit{m} für den Text (eng.: \textit{message}) den man verschlüsseln möchte.\\
 %
-Dieser verschlüsselte Text wird nun dem Empfänger übergeben. Hat der Empfänger keinen Schlüssel (k), um die Nachricht zu entschlüsseln, kann die Nachricht nicht lesen. Somit braucht der Empfänger \textbf{denselben} Schlüssel (k), die verschlüsselte Nachricht (c) und eine Umkehrfunktion von (f).\\
+Der verschlüsselte Text wird nun dem Empfänger übergeben. Hat der Empfänger keinen Schlüssel \textit{k}, um die Nachricht zu entschlüsseln, kann er die Nachricht nicht lesen. Somit braucht der Empfänger \textbf{denselben} Schlüssel \textit{k}, die verschlüsselte Nachricht \textit{c} und eine Umkehrfunktion von \textit{f}.\\
 Daraus ensteht die Formel:
 \begin{equation*}
   m = f^*(k ,c)
 \label{eqn:sym_entsch}
 \end{equation*}
 %Kerckoff's Prinzip bei  Schwachstellen DENIS
-Man geht davon aus, dass die Funktion der Ver- und Entschlüsslung bekannt sind, was jedoch kein Sicherheitsproblem darstellt.\\
-Nach dem Kerckoffs' Prinzip geht der Grundsatz hervor, dass die Sicherheit eines Verschlüsslungsverfahren nicht auf der Geheimhaltung des Algorithmus beruht, sondern auf die Geheimhaltung des Schlüssels.
-Denn ein Algorithmus kann durch Reverse-Engineering\footnote{Unter dem Begriff Reverse-Engineering versteht man, dass aus einem fertigen Produkt durch Untersuchen der Strukturen und der Verhaltensweise den Source-Code heraus zu finden.} rekonstruiert werden.\\
-Auch hat die Geschichte gezeigt, dass bis heute viele Verschlüsselungsalgorithmus gebrochen werden konnte. \textit{(siehe Kryptographie, Kapitel 2.3)}.\\
+Man geht davon aus, dass die Funktionen der Ver- und Entschlüsslung öffentlich bekannt sind, was überraschenderweise kein Sicherheitsproblem darstellt. Aus dem Kerckhoffs' Prinzip geht der Grundsatz hervor, dass die Sicherheit eines Verschlüsslungsverfahren nicht auf der Geheimhaltung des Algorithmus, sondern auf die Geheimhaltung des Schlüssels beruht, denn ein Algorithmus kann durch Reverse-Engineering\footnote{Unter dem Begriff Reverse-Engineering versteht man den Vorgang, aus einem fertigen Produkt durch Untersuchung der Strukturen und Verhaltensweisen den Source Code herauszufinden.} rekonstruiert werden.\\
+Auch hat die Geschichte gezeigt, dass bis heute viele Verschlüsselungsalgorithmus gebrochen werden konnte. \cite{chicago}\textit{(siehe Kryptographie, Kapitel 2.3)}.\\
 %
-Somit muss die Verschlüsselungsfunktion so komplex sein, dass man nur mit dem Schlüssel das richtige Ergebnis erhaltet.
+Somit muss die Verschlüsselungsfunktion so komplex sein, dass man nur mit dem Schlüssel das richtige Ergebnis erhält.
 %
 %******************************************
 %  Asymetrische Verschlüsselung
@@ -40,34 +39,39 @@ Vor den 70er Jahren, als es die asymmetrische Verschlüsselung noch nicht gab, w
 Es waren vor allem Die Botschaften, die einen solchen Transport mehrfach absicherten, indem sie dem Überbringer den Koffer mit Handschellen am Handgelenk festmachten und ihn von diversen Bodyguards beschützt in einer panzerfesten Limousine zum Zielort fuhren.\\
 Dieses Verfahren war sehr umständlich. Es kostete viel und dauerte zu lang. Wie aber sollte man einen Schlüssel sicher von einem Ort zum andern transportieren und dabei sicher sein, dass niemand einen Blick auf den Schlüssel werfen kann?\\
 %
-Anfang 1976 stellten Whitfield Diffe und Martin Hellman ein Konzept vor, das die Grundidee von einer asymmetrischen Verschlüsselung darlegte. Sie kannten das Verfahren jedoch nicht exakt. Sie stellten das \textbf{Diffle-Hellman-Problem} vor \textit{(Siehe Understanding Cryptography)}.\\ % Stellten das Prinzip vor
-Schon viel früher entwickelten James Ellis, Clifford Cockes und Malcom Willamson, alle vom Britischen Geheimdienst, ein asymmetrisches Verschlüsselungsverfahren. Sie durften aber ihre Ergebnisse nicht veröffentlichen, noch ein Patent anmelden. 
+Anfang 1976 stellten Whitfield Diffe und Martin Hellman ein Konzept vor, das die Grundidee von einer asymmetrischen Verschlüsselung darlegte. Sie kannten das Verfahren jedoch nicht exakt. Sie stellten das \textbf{Diffle-Hellman-Problem} vor \textit(Siehe {Understanding Cryptography}).\\ % Stellten das Prinzip vor
+Schon viel früher entwickelten James Ellis, Clifford Cockes und Malcom Willamson, alle vom Britischen Geheimdienst, ein asymmetrisches Verschlüsselungsverfahren. Sie durften aber ihre Ergebnisse weder veröffentlichen noch ein Patent anmelden. 
 Der Erfolg gelang Ronald L. \textbf{R}ivest, Adi \textbf{S}hamir und Leonard M. \textbf{A}dleman im Jahre 1977. Sie entwickelten den RSA-Algorithmus, der bis heute als einer der sichersten asymmetrischen Verfahren gilt.\\[2ex]
 %
-Bei einem assymetrischen Verfahren kann der Sender dem Empfänger eine verschlüsselte Nachricht senden, die nur der Empfänger entschlüsseln kann.\\
+Bei einem asymetrischen Verfahren kann der Sender dem Empfänger eine verschlüsselte Nachricht senden, die nur der Empfänger entschlüsseln kann.\\
 %
-Das funktioniert dank einem öffentlichen Schlüssel dem \textbf{Public-Key} und einem privaten Schlüssel dem \textbf{Private-Key}. \\
-Deshalb spricht man auch von einer \textbf{Public Key-Kryptographie}.
+Das funktioniert dank einem öffentlichen Schlüssel, dem \textbf{Public-Key}, und einem privaten Schlüssel, dem \textbf{Private-Key}. Beide zusammen bilden das Schlüsselpaar.\\
+Für dieses Verfahren hat sich der Name \textbf{Public Key-Kryptographie} durchgesetzt.
 %
 % Bei der Formel für die verschlüsselung ist f_e und m verantwortlich für c das heisst es sind beide wichtig!!
-\paragraph{Verschlüsseln} Der Sender braucht den öffentlichen Schlüssel von dem Empfänger. Mit diesem Schlüssel und dem Verschlüsslungsverfahren, kann jetzt der Sender eine Nachricht verschlüsseln und dem Empfänger senden.\\
-Aus dieser Idee kann man eine Funktion erstellen, die das Verschlüssen schematisch darstellt.\\
-Der Verschlüsselungsalgorithmus f verschlüsselt den Klartext m in ein verschlüsselten Text c mit Hilfe des öffentlichen Schlüssels e.
+
+Um jemandem eine verschlüsste Nachricht zu senden, benötigt man den öffentlichen Schlüssel des Empfängers. Mit diesem öffentlichen Schlüssel und der Verschlüsselungsfunktion wird der Klartext in ein Chiffrat übersetzt. Nur der Besitzer des pirvaten Schlüssels ist in der Lage, aus dem Chiffrat den Klartext zu erzeugen.\\
+Die Verschlüsselung in einer Formel ausgedrückt:\\
+%Aus dieser Idee kann man eine Funktion erstellen, die das Verschlüssen schematisch darstellt.\\
 \begin{equation*}
   c = f_e (m)
   \label{eqn:asy_versch}
 \end{equation*}
+Der Verschlüsselungsalgorithmus \textit{f} verschlüsselt den Klartext \textit{m} in den verschlüsselten Text \textit{c} mit Hilfe des öffentlichen Schlüssels \textit{e} (eng.: \textit{encription exponent}).
 % c = f(e,m)
-\paragraph{Entschlüsseln}
-Der Empfänger empfängt den verschlüsselten Text und entschlüsselt ihn mit Hilfe seines privaten Schlüssel und erhält den Klartext.
-Auch hier läst sich dieses Vorgehen in einer Funktion beschreiben.\\
-Mit der Entschlüsselungsfunktion f und dem privaten Schlüssel d wird aus dem verschlüsseltem Text c den Klartext m' gewonnen.
+%\paragraph{Entschlüsseln}
+%Der Empfänger empfängt den verschlüsselten Text und entschlüsselt ihn mit Hilfe seines privaten Schlüssel und erhält den Klartext.
+%Auch hier läst sich dieses Vorgehen in einer Funktion beschreiben.\\
+%Mit der Entschlüsselungsfunktion f und dem privaten Schlüssel d wird aus dem verschlüsseltem Text c den Klartext m' gewonnen.
+Die Entschlüsselung in einer Formel ausgedrückt:
 \begin{equation*}
   m' = f_d (c) 
   \label{eqn:asy_entsch}
 \end{equation*}
-Das wichtigste bei der asymmetrischen Verschlüsselung ist, dass beim Entschlüsseln wieder der \textbf{gleiche} Text reproduziert wird, auch wenn zwei unterschiedliche Schlüssel verwendet wurden.\\
-Damit dies der Fall ist, kann man c parametrisieren und erhält
+Mit der Entschlüsselungsfunktion \textit{f} und dem privaten Schlüssel \textit{d} (eng.: \textit{decription exponent} wird aus dem verschlüsseltem Text \textit{c} den Klartext \textit{m'} gewonnen.
+%
+Das Wichtigste bei der asymmetrischen Verschlüsselung ist, dass beim Entschlüsseln wieder der \textbf{gleiche} Text reproduziert wird, auch wenn zun Ver- und Entschlüsseln zwei unterschiedliche Schlüssel verwendet wurden.\\
+Der ganze Vorgang in einer Gleichung ausgedrückt ( c parametrisiert ):
 \begin{equation*}
   m' = f_d (c) = f_d (f_e (m) ) = m \\
   \label{eqn:asy_togh}
@@ -77,9 +81,9 @@ gekürzt\\
   m = f_d ( f_e (m) )
   \label{eqn:asy_togh_shortForm}
 \end{equation*}
-\paragraph{Beispiel \footnotemark}
-Herr Müller möchte gern Herrn Spinnler seine sensiblen Daten übergeben. Dafür benötigt er den öffentlichen Schlüssel von Herr Spinnler.\\
-Jetzt verschlüsselt Herr Müller mit dem öffentlichen Schlüssel seine Daten und sendet das Paket an Herrn Spinnler. Dieser wiederum entschlüsselt das Paket mit seinem geheimen, gut aufbewarten, privaten Schlüssel. Jetzt ist er im Stande die Nachricht von Herrn Müller zu lesen.
+%\paragraph{Beispiel \footnotemark}
+%Herr Müller möchte gern Herrn Spinnler seine sensiblen Daten übergeben. Dafür benötigt er den öffentlichen Schlüssel von Herr Spinnler.\\
+%Jetzt verschlüsselt Herr Müller mit dem öffentlichen Schlüssel seine Daten und sendet das Paket an Herrn Spinnler. Dieser wiederum entschlüsselt das Paket mit seinem geheimen, gut aufbewarten, privaten Schlüssel. Jetzt ist er im Stande die Nachricht von Herrn Müller zu lesen.
 
 \footnotetext{Dieses Beispiel zeigt einen schematischen Ablauf. Es geht nicht auf das Verschlüsselungsverfahren ein.}
 % Erwähnen dass man bei der Asymetrischen Verschlüsselung Einwegfunktionen benötigt
