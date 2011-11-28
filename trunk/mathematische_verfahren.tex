@@ -1,27 +1,27 @@
 \section{Mathematisches Verfahren}
-Dieses Kapitel wurde mit Hilfe von dem Buch \textit{Moderne Verfahren der Kryptographie} und \textit{Kryptologie} erarbeitet\\[2ex]
+Dieses Kapitel wurde mit Hilfe des Buches \textit{Moderne Verfahren der Kryptographie} und \textit{Kryptologie} erarbeitet.\\[2ex]
 %
-Der RSA-Algorithmus baut grundsätzlich auf Primzahlen, Modulo, Eulersche-Funktion, den Satz von Euler und den erweiterten euklidischen Algorithmus auf. Versteht man diese mathematischen Verfahren nicht, kann man ebensowenig den RSA-Algorithmus verstehen oder verwenden. \\
+Der RSA-Algorithmus baut grundsätzlich auf Primzahlen, der Modulo und Eulerschen-Funktion, dem Satz von Euler und dem erweiterten euklidischen Algorithmus auf.\\
 Im nächsten Abschnitt werden die einzelnen mathematischen Verfahren kurz in ihren Funktionen erläutert.\\
-Wir werden durchgehend für die beiden Primzahlen die Variabeln $p$ und $q$ verwenden. $N$ steht immer für das Produkt von $p \cdot q$. Die Variable $r$ wird für den Rest bei Modulorechungen verwendet.
+Wir werden für die beiden Primzahlen durchgehend die Variabeln $p$ und $q$ verwenden. $N$ steht immer für das Produkt von $p \cdot q$. Die Variable $r$ wird für das Resultat der Modulo-Berechnungen verwendet.
 \subsection{Modulo}
-Modulo oder auch \textit{Division mit Rest} gibt den Rest von einer ganzzahligen Division an. Modulo erklärt sich am einfachsten an einem Beispiel.
+Modulo oder auch \textit{Division mit Rest} gibt den ganzzahligen Rest einer Division zweier natürlichen Zahlen an. Modulo erklärt sich am einfachsten an einem Beispiel.
 %
 \begin{equation*}
   21 \bmod(5) = 1
 \end{equation*}
 %
-Man sucht die nächst kleinere Zahl die durch 5 eine natürliche Zahl ergibt. Der Rest, der bis zu 21 fehlt, ist dann das Resultat.
+Es gilt herauszufinden, wieviele Male 5 ganz in 21 vorhanden ist, das heisst wir Teilen 21 durch 5 und schneiden den Dezimalrest ab. Um den ganzzahligen Rest zu berechnen subtrahieren wir von 21 das Produkt aus 4 mal 5.
 %
-\begin{equation*}
-  4 * 5 = 20
-\end{equation*}
-%
-Bis auf 21 fehlt genau 1. Somit ist 
-%
-\begin{equation*}
-  21 \bmod(5) = 1
-\end{equation*}
+\begin{flalign*}
+  21 \colon 5 &= 4.2\\
+  21 - 4 \cdot 5 &= 1\\
+  21 &= 4 \cdot 5 + 1
+\end{flalign*}
+Oder veralgemeinert:
+\begin{flalign*}
+  p &= a \cdot q + r
+\end{flalign*}
 %
 \paragraph{Kongruent Modulo}
 Kongruent Modulo bedeutet nichts anders, als dass zwei verschiedene Zahlen modulo einer gleichen Zahl den selben Rest haben. Man sagt auch, dass sie in der gleichen Restklasse sind.\\
@@ -30,53 +30,57 @@ Als Beispiel nehmen wir die Zahlen 9 und 7 die modulo 2 gerechnet werden.
 \begin{flalign*}
   9 \bmod(2) &= 1 \\
   7 \bmod(2) &= 1  \\
-  9 \bmod(2) & \equiv 7 \bmod(2)
+  9 & \equiv 7 \bmod(2)
 \end{flalign*}
 %
 %******************************************************************************
 % Eulersche Funktion
 %******************************************************************************
-%Verbessern die Zahlen sind kleiner als die Zahl -> HAHA
+%Verbessern die Zahlen sind kleiner als die Zahl
 \subsection{Eulersche Funktion}
-Die Eulersche Funktion sagt aus, wieviele teilfremde \footnote{Zahlen sind sich teilfremd, wenn ihr grösster gemeinsamer Teiler 1 ist.} natürliche Zahlen zu einer Zahl es gibt.(Wikipedia)\\
-Für den RSA-Algorithmus verwenden wir die Eulersche Funktion nur bei Primzahlen. Deshalb schauen wir uns nur die Spezialformel bei Primzahlen an.\\
-Primzahlen sind durch sich selbst und durch 1 dividierbar und ihr grösster gemeinsamer Teiler ist immer 1. Somit ist die Eulersche Funktion einer Primzahl p immer $p - 1$.
+
+Die Eulersche Funktion zählt die natürlichen, teilerfremden\footnote{Zwei Zahlen sind teilerfremd zueinander, wenn ihr grösster gemeinsamer Teiler 1 ist.}  Zahlen von n, die kleiner als n sind.\\
+Für die Eulersche Funktion stellen die Primzahlen einen spezial Fall dar.
+Primzahlen sind nur durch 1 und sich selbst ohne Rest dividierbar. Somit ist die Eulersche Funktion einer Primzahl p immer $p - 1$. 
 %
 \begin{equation*}
   \varphi(p) = p - 1
 \end{equation*}
 %
-Wenn wir jetzt also zwei verschiedene Primzahlen haben, gilt
+Der grösster gemeinsamer Teiler zweier Primzahlen ist immer 1.
+Für die Eulersche Funktion zweier Primzahlen gilt:
 \begin{equation}
-  \varphi(pq) = (p - 1) \cdot (q - 1)
+  \varphi(pq) = \varphi(p) \cdot \varphi(q) = (p - 1) \cdot (q - 1)
   \label{eqn:eulersche_func}
 \end{equation}
 Der Beweis dafür liefert folgende Überlegung. Es gibt insgesamt $p \cdot q -1$ ganze Zahlen die kleiner sind als $p \cdot q$.\\
-Es ist bei Primzahlen einfacher, die \textbf{nicht teilfremden} Zahlen zu zählen und diese dann von allen möglichen Zahlen abzuziehen, als alle teilfremden Zahlen zu zählen. Nicht teilfremd zu p sind $(q - 1) \cdot p$ und für q gilt $ (p - 1) \cdot q$.\\
+Es ist bei Primzahlen einfacher, die \textbf{nicht teilerfremden} Zahlen zu zählen und diese dann von allen möglichen Zahlen abzuziehen, als alle teilerfremden Zahlen zu zählen. Nicht teilerfremd zu p sind $(q - 1) \cdot p$ und für q gilt $ (p - 1) \cdot q$.\\
 Als Formel geschrieben:
 %
 \begin{equation*}
   \begin{split}
     \varphi(pq) & = p \cdot q -1 - (p - 1) - (q - 1)  \\
-    \varphi(pq) & = p \cdot q -1 - p + 1 - q + 1  \\
-    \varphi(pq) & = p \cdot q -q - p + 1  \\
-    \varphi(pq) & = (p -1) \cdot (q - 1)
+     & = p \cdot q -1 - p + 1 - q + 1  \\
+     & = p \cdot q -q - p + 1  \\
+     & = (p -1) \cdot (q - 1)
     \label{eqn:herleitung_eulersche_func}
   \end{split}
 \end{equation*}
 %
 % Satz von Euler
 %=====================
+%Verweis auf Buch Beutelspacher
 \subsection{Satz von Euler}
-Der Satz von Euler sagt über zwei natürliche, teilfremde Zahlen, hier $n$ und $m$, Folgendes aus:
+Der Satz von Euler sagt über zwei natürliche, teilerfremde Zahlen, hier $n$ und $m$, folgendes aus:
 %
 \begin{equation}
   m^{\varphi(n)} \bmod(n) = 1
   \label{eqn:satz_von_euler}
 \end{equation}
 %
-Nehmen wir für $n = 15$ und als m wählen wir 4 und setzten das ganze in die obige Formel ein.
+Nehmen wir für $n = 15$ und m $\colon 4$ und setzen Formel [\ref{eqn:satz_von_euler}] ein.
 %
+% Zeigen das varphi 15 = 8 ist
 \begin{flalign*}
   4^{\varphi(15)} \bmod(15) = 1  \\
   4^8 \bmod(15) = 1
@@ -110,8 +114,8 @@ Nehmen wir für $n = 15$ und als m wählen wir 4 und setzten das ganze in die ob
 % Euklidischer Algorithmus
 %******************************************************************************
 \subsection{Euklidischer Algorithmus}
-Der Euklidische Algorithmus errechnet den grössten gemeinsamen Teiler (ggT) von zwei natürlichen Zahlen. Um den grössten gemeinsamen Teiler herauszufinden gibt es zwei Methoden: dass etwas ältere Subtraktionsverfahren und das moderne Modulo-Verfahren. Da das Subtraktions-Verfahren nicht die gleiche Effizenz hat, konzentrieren wir uns auf das Modulo-Verfahren.\\
-
+Mit den Euklidischen Algorithmen lassen sich der grösste gemeinsame Teiler (ggT) zweier natürlichen Zahlen berrechnen. Es existiert das etwas ältere Subtraktionsverfahren und das moderne Modulo-Verfahren. Da das Subtraktions-Verfahren nicht die gleiche Effizenz hat wie das Subtraktionsverfahren, konzentrieren wir uns auf das Modulo-Verfahren.\\
+%
 Die Formel für das Modulo-Verfahren lautet:
 %
 \begin{equation}
@@ -119,7 +123,7 @@ Die Formel für das Modulo-Verfahren lautet:
   p = a \cdot q + r
 \end{equation}
 %
-und ist, wie es der Name schon sagt, eine modulo Rechnung. Der Rest r wird zum neuen q, und q wird zum neuen p. \\
+Der Rest r wird zum neuen q, und q wird zum neuen p. \\
 Zur Veranschaulichung nehmen wir zwei Zahlen $p = 302$ und $q = 146$ und setzen diese in usere Gleichung ein.
 %
 \begin{equation}
@@ -213,7 +217,7 @@ Jetzt setzen wir die Formel \ref{eqn:form_erw_euklid} anstatt r ein und erhalten
 Somit haben wie die Vielfachsummendarstellung für $p$ und $q$.
 %
 \subsubsection{Modulare Inverse}
-Haben wir zwei natürliche, teilfremde Zahlen, gibt es eine Zahl x, sodass die Formel
+Haben wir zwei natürliche, teilerfremde Zahlen, gibt es eine Zahl x, sodass die Formel
 %
 \begin{equation*}
   p \cdot x \bmod(q) \equiv 1
@@ -227,4 +231,4 @@ Weil $y cdot q$ durch $q$ teilbar ist, gibt es bei der Divison von $x \cdot p$ d
   \label{eqn:mod_inverse}
 \end{equation}
 %
-Die Modulareinverse von zwei teilfremden natürlichen Zahlen $p$ und $q$, errechnet man mit dem erweiterten Euklidischen Algorithmus. Dann ist $x$ die modulare Inverse von $p$ und $q$.
+Die Modulareinverse von zwei teilerfremden natürlichen Zahlen $p$ und $q$, errechnet man mit dem erweiterten Euklidischen Algorithmus. Dann ist $x$ die modulare Inverse von $p$ und $q$.
