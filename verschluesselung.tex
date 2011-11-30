@@ -1,14 +1,14 @@
 \part{Verschlüsselung Allgemein}
 \section{Sinn und Zweck der Verschlüsselung}
-Die Verschlüsselung bzw. die Geheimhaltung von Informationen gibt es schon lange. Die Frage ist, wie kann ich eine Information vor aussenstehende so darstellen dass es für sie keinen Sinn ergibt. Ich, oder andere, mit einem geheimen Schlüssel die Information lesen können. Im realen Leben können wir zum Beispiel unser Haus vor Dieben sichern, indem wir eine Türe mit einem stabilen Schloss einbauen. Möchte man noch weiter gehen, kann man eine Alarmanlage einabauen.\\[2ex]
+Die Verschlüsselung bzw. die Geheimhaltung von Informationen gibt es schon sehr lange. Die Frage ist, wie kann ich eine Information vor aussenstehenden so darstellen, dass es für sie keinen Sinn ergibt. Ich, oder andere, mit einem geheimen Schlüssel die Information jedoch lesen können. Im realen Leben können wir zum Beispiel unser Haus vor Dieben sichern, indem wir eine Türe mit einem stabilen Schloss einbauen. Möchte man noch weiter gehen, kann man eine Alarmanlage einbauen.\\[2ex]
 %
 In der Digitalen Welt geht das nicht so einfach. Obwohl man seinen Rechner mit einem Benutzername und Passwort für unbefugte Personen schützen kann, gibt es Techniken, mit der lassen sich ganze Festplatten Bit für Bit kopieren. Hier setzt die Verschlüsselung an. Denn wenn man etwas verschlüsselt auf die Festplatte speichert, kann der unbefugte die gestohlenen Daten nicht brauchen.
 \section{Geschichte der Verschlüsselung}
 \subsection{Klassische Kryptografie}
 Die Kryptographie bezeichnet die Entwicklung von Methoden zur Verheimlichung von Nachrichten.
-Solche Methoden wurden schon 3000 Jahre vor Christus bei den Ägyptern verwendet(Hyrogliphen). \\
+Solche Methoden wurden schon 3000 Jahre vor Christus bei den Ägyptern verwendet(Hieroglyphen). \\
 Die Hebräer haben 600 vor Christus das Atbash entwickelt. Dabei wurde das Alphabet umgekehrt und entsprechend verschlüsselt.
-Als kleines Beispiel
+Als kleines Beispiel:
 
 \begin{table}[ht]
 \caption{Atbash Verschlüsselung}
@@ -36,11 +36,10 @@ da das Alphabet aus 26 Zeichen besteht, ist die Verschlüsselung und Entschlüss
 \end{center}
 \end{table}
 
-All diese Verfahren können ziemlich eifach geknackt werden. Da bestimmte Buchstaben in einer Sprache öfter vorkommen, kann durch Textanalyse die Verschiebung herausgefunden werden. Ebenfalls wird der Grundsatz verletzt, dass die Sicherheit nicht von der Geheimhaltung
-des Algorythmus abhängen 
+All diese Verfahren können ziemlich einfach geknackt werden. Da bestimmte Buchstaben in einer Sprache öfter vorkommen, kann durch Textanalyse die Verschiebung herausgefunden werden. Ebenfalls wird der Grundsatz verletzt, dass die Sicherheit nicht von der Geheimhaltung des Algorithmus abhängt
 
 \subsection{Kryptographie im zweiten Weltkrieg}
-Im zweiten Weltkrieg nutzten die Deutsche Wehrmacht die ENIGMA zur Verschlüsselung ihres Funkverkehrs. Die ENIGMA ist wie eine Schreibmaschine zu bedienen. Die ENIGMA besteht aus der Tastatur, einem Walzensatz und einer Anzeige über Lampen. 
+Im zweiten Weltkrieg nutzten die Deutsche Wehrmacht die ENIGMA zur Verschlüsselung ihres Funkverkehrs. Die ENIGMA ist wie eine Schreibmaschine zu bedienen und besteht aus der Tastatur, einem Walzensatz und einer Anzeige über Lampen. 
 
 \begin{figure}[ht]
 \begin{center}
@@ -50,7 +49,7 @@ Im zweiten Weltkrieg nutzten die Deutsche Wehrmacht die ENIGMA zur Verschlüssel
 \end{figure}
 
 \subsubsection{Funktion der ENIGMA Maschine}
-Die Walzen können sich drehen und sind mit Elektrischen Kontakten miteinander verbunden. Wird eine Taste gedrückt, fliesst Strom durch den Walzenssatz und es leuchtet die Lampe des verschlüsselten Buchstabens auf. Die Walze dreht sich bei jedem Tastendruck weiter, so das der gleiche Buchstaben jeweils anders verschlüsselt wird. Z. B. AAA wird zu DEF. Nach 26 Umdrehungen der ersten Walze wird die zweite Walze gedreht. \\
+Die Walzen können sich drehen und sind mit elektrischen Kontakten miteinander verbunden. Wird eine Taste gedrückt, fliesst Strom durch den Walzensatz und es leuchtet die Lampe des verschlüsselten Buchstabens auf. Die Walze dreht sich bei jedem Tastendruck weiter, so das der gleiche Buchstaben jeweils anders verschlüsselt wird z. B. AAA wird zu DXB. Nach 26 Umdrehungen der ersten Walze wird die zweite Walze gedreht. \\
 
 \begin{figure}[ht]
 \begin{center}
@@ -76,14 +75,14 @@ Tag & UKW & Walzenlage & Ringstellung &  ---- Steckerverbindungen ---- \\
 \end{center}
 \end{table}
 
-Die eigentliche Verschlüsselung war relativ simpel zu bewerkstelligen. Es musste nur die entsprechende Funknachricht eingegeben werden und die ENIGMA erledigte die Verschlüsselung. Der Austausch der aktuellen Walzenstellung und das Morsen der Nachricht waren jedoch wesentlich komplizierter.
+Die eigentliche Verschlüsselung war relativ simpel zu bewerkstelligen. Es musste nur die entsprechende Funknachricht eingegeben werden und die ENIGMA erledigte die Verschlüsselung. Der Austausch der aktuellen Walzenstellung und das Morsen der Nachricht waren jedoch komplizierter.
 
-Vor der Eigentlichen Nachricht wurde ein Nachrichtenkopf gemorst. In diesem wurde die länge des Textes bekannt gegeben, die Walzenstellung und die Nachrichtenart. 
+Vor der eigentlichen Nachricht wurde ein Nachrichtenkopf gemorst. In diesem wurde die Länge des Textes bekannt gegeben, die Walzenstellung und die Nachrichtenart. 
 Der eigentliche Text wurde in Gruppen aus 5 Buchstaben gemorst. Bei den ersten 5 Buchstaben wurde bestimmt, an wenn die Nachricht geht. Dabei wurden die ersten zwei Buchstaben zufällig ausgewählt und die letzten 3 durchmischt. Nach der Alphabetischen Ordnung, konnte über eine Tabelle festgestellt werden, ob die Nachricht einem was angeht, bevor man sie entschlüsselt.
-Die Walzenstellung wurde ebenfalls nicht einfach übertragen. Wenn im Kopf z. B. QWE EWG angegeben wurde, hiess das man soll die Walze auf die Buchstaben QWE einstellen und EWG eingeben. Was dabei verschlüsselt heraus kam, war die Anfangsstellung der Walzen. Jetzt konnte mit der Decodierung der Nachricht begonnen werden.
+Die Walzenstellung wurde ebenfalls nicht einfach übertragen. Wenn im Kopf z. B. QWE EWG angegeben wurde, musste man die Walze auf die Buchstaben QWE einstellen und EWG eingeben. Was dabei verschlüsselt heraus kam, war die Anfangsstellung der Walzen um die Nachricht zu entschlüsseln. Jetzt konnte mit der Decodierung der Nachricht begonnen werden.
 
 \subsubsection{Schwachstelle der ENIGMA}
-Die Enigma benutzte ein Symetrisches Verfahren, wobei die Verschlüsselung und Entschlüsselung gleich sind. %Siehe Kapitel Symetrische Verfahren%
+Die Enigma benutzte ein symmetrisches Verfahren, wobei die Verschlüsselung und Entschlüsselung gleich sind. %Siehe Kapitel Symetrische Verfahren%
 Die Geheimhaltung der Walzen war wichtig, da sie einen wesentlichen Teil der Verschlüsselung ausmachen.
 Dadurch das ein Buchstabe nicht in sich selbst verschlüsselt werden kann (Strom kann nicht zurück fliessen) konnte ein wesentlicher Teil ausgeschlossen werden.
 Durch einsetzen bestimmter Wörter, welche im Text vermutet wurden, konnte ein grosser Teil der möglichen Positionen ausgeschlossen werden. Dafür wurde z. B. OBERKOMMANDODERWEHRMACHT eingesetzt und falls an einer Position der Buchstabe in sich selbst verschlüsselt war, konnte das Wort an dieser Position nicht sein.
@@ -91,6 +90,6 @@ Durch einsetzen bestimmter Wörter, welche im Text vermutet wurden, konnte ein g
 \subsection{Probleme der früheren Verschlüsselungen}
 Die Verfahren bis zum zweiten Weltkrieg konnten einfach geknackt werden. Wenn die Art der Verschlüsselung bekannt war, konnte der Schlüssel einfach ermittelt werden. 
 Die Enigma revolutionierte die Kryptographie. Obwohl die Art der Verschlüsselung und sogar die Walzen bekannt waren, mussten die Engländer grosse Anstrengungen unternehmen, damit die Texte entschlüsselt werden konnten. Um der Enigma zu begegnen wurden Maschinen gebaut, welche diese Arbeit vereinfachten. Die sogannte Turing Bombe konnte innert 6 Stunden die Verschlüsselung knacken. 
-Mit mehreren Turing Bomben wurde die Verschlüsselung in vernüfntiger Zeit geknackt. \\[2ex]
+Mit mehreren Turing Bomben wurde die Verschlüsselung in kurzer Zeit geknackt. \\[2ex]
 %
-Die früheren Verschlüsselungen hielten sich nicht an das Kerckhoff's Prinzip. Dieses besagt, das die Sicherhiet der Verschlüsselung nicht von der Geheimhaltung des Algorithmus abhängig gemacht werden darf. Die Sicherheit ist durch den Schlüssel gegeben. 
+Die früheren Verschlüsselungen hielten sich nicht an das Kerckhoff's Prinzip. Dieses besagt, dass die Sicherheit der Verschlüsselung nicht von der Geheimhaltung des Algorithmus abhängig gemacht werden darf. Die Sicherheit ist durch den Schlüssel gegeben. 
