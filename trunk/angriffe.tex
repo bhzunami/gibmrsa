@@ -1,21 +1,26 @@
 %
 \subsection{Side Channel Attack}
-Eine side channel attack ist einen Angriff auf die Implementierung des Verschlüsselungssystem und nicht auf den RSA-Algorithmus. Dieses Verfahren wurde 1996 von Herrn Paul C. Kocher, einem amerikanischen Kryptologen entwickelt und vorgestellt.
-Im wesentlichen geht es bei einer side channel attacke darum, das kryptographische Gerät beim Ausführen des Algorithmus zu beobachten und Zusammenhönge feststellt zwischen den beobachteten Daten und dem Schlüssel zu finden.
-Man beobachtet zum Beispiel die Laufzeit des Algorithmus, den Energieverbrauch des Prozessors während der Berechunung oder der elektromagnetische Ausstrahlung
+Eine Side Channel Attack (deutch: \textit{Seitenkanalattacke}) ist einen Angriff auf die Implementierung des Verschlüsselungssystem und nicht auf den RSA-Algorithmus. Dieses Verfahren wurde 1996 von Herrn Paul C. Kocher, einem amerikanischen Kryptologen entwickelt und vorgestellt.
+Im wesentlichen geht es bei einer Side Channel Attacke darum, das kryptographische Gerät beim Ausführen des Algorithmus zu beobachten.
+Man versucht aus den Beobachtungen einen Zusammenhabbg zwischen Daten und Schlüssel zu finden.
+Unter die Beobachtung fallen zum Beispiel die Laufzeit des Algorithmus, den Energieverbrauch des Prozessors während der Berechunung oder der elektromagnetische Ausstrahlung.
 %
 % http://www.usna.edu/Users/math/wdj/book/node45.html
 \subsubsection{Timing Attack}
-Die Timing Attack ist eine side channel attack (Seitenkanalattacke). 
-Bei ihr mistt man die Rechenzeit, die der Computer bzw. die CPU für die verschieden implementierungen des RSA-Verfahrens braucht. Die meisten Verschlüsselugns implementationen sind so geschrieben, dass sie möglichst schnell rechenen, da man grosse Primzahlen hat. Bei einer CPU, braucht jede Recheneinheit die exakt gleiche Zeit. Durch diese Analyse kann man den Schlüssel nach rekonstruieren. Das geht 
-%
-Verschiedene Berechnungen werden durchgeführt und ihre Zeiten notiert. Aus dieser Analyse werden Entschidungskriterin aufgestellt, die nur eine mögliche Lösung möglich ist. Diese Lösung hängt von dem gewählten Schlüssel ab.
+Die Timing Attack ist eine Side Channel Attack. 
+Bei ihr misst man die Rechenzeit, die der Computer beziehungsweise die CPU für die verschieden implementierungen des RSA-Verfahrens braucht. Die meisten Verschlüsselugns implementationen sind so geschrieben, dass sie möglichst schnell rechenen, da man grosse Primzahlen hat. Bei einer CPU, braucht jede Recheneinheit die exakt gleiche Zeit. Durch diese Analyse kann man den Schlüssel nach und nach rekonstruieren.
 %
 Um sich von solchen Angriffen zu wehren, baut man in die Implementierung geeisse Berechnungen ein, damit jede Berechnung gleich lang dauert. So ist es nicht mehr möglich verschiedene Zeiten festzu stellen.
 %
-Diese Angriffe sind besonders bei Smart Cards effektiv, da man die Zeit sehr genau messen kann.
+%Diese Angriffe sind besonders bei Smart Cards effektiv, da man die Zeit sehr genau messen kann.
 %
 \subsection{Exponent Attack}
-Bei der Exponent Attack, geht man davon aus, dass der private Schlüssel also d klein gewählt wurde. Zur veranschaulichung nehmen wir d = 3.
-Die Nachricht m muss kleiner sein als N. Die entschüsselung würde dann so a
+Bei der Exponent Attack, geht man davon aus, dass der Verschlüsselungsexponenten e zu klein gewählt wurde. Das Problem liegt in der Modulo-Rechnung. Ist N grösser als $m^e$ ergibt der RSA-Verschlüsselungs Algorithmus als Resulatat $m^e$. Somit kann man beim knacken die n-te Wurzel aus der Verschlüsselte Nachricht ziehen. \\
+Wenn wir für $e = 3$, unsere Nachricht $m = 4$ und für $N = 357$ erhalten wir zum Verschlüsseln folgende Formel.
+\begin{equation*}
+  4^3 \bmod(357) \equiv c
+\end{equation*}
+Da $4^3 = 64$ ergibt, ergibt die ganze Rechnung 64. Denn 64 ist kleiner als 357 und somit ist $64 \bmod(357) = 64$.\\
+Da man e als Exponent im öffentlichen Schlüssel hat, kann man bequem $\sqrt[3]{64}$ und erhaltet als Resulatat die korrekte Nachricht.\\
 %
+Um sich vor solchen Angriffen zu Schützen, ist es sinnvoll eine grösser Zahl für e zu nehmen. Man muss einfach beachten je grösser der Verschlüsselungsexponent destor Rechenintensiver die Verschlüsselung.
