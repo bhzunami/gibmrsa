@@ -54,7 +54,7 @@ Für die Eulersche Funktion zweier Primzahlen gilt:
   \label{eqn:eulersche_func}
 \end{equation}
 Der Beweis dafür liefert folgende Überlegung. Es gibt insgesamt $p \cdot q -1$ ganze Zahlen die kleiner sind als $p \cdot q$.\\
-Es ist bei Primzahlen einfacher, die \textbf{nicht teilerfremden} Zahlen zu zählen und diese dann von allen möglichen Zahlen abzuziehen, als alle teilerfremden Zahlen zu zählen. Nicht teilerfremd zu p sind $(q - 1) \cdot p$ und für q gilt $ (p - 1) \cdot q$.\\
+Es ist bei Primzahlen einfacher, die \textbf{nicht teilerfremden} Zahlen zu zählen und diese dann von allen möglichen Zahlen abzuziehen, als alle teilerfremden Zahlen zu zählen. Nicht teilerfremd zu p sind $(q - 1) \cdot p$ und für q gilt $ (p - 1) \cdot q$. \cite{kryptologie}\\
 Als Formel geschrieben:
 %
 \begin{equation*}
@@ -71,14 +71,14 @@ Als Formel geschrieben:
 %=====================
 %Verweis auf Buch Beutelspacher
 \subsection{Satz von Euler}
-Der Satz von Euler sagt über zwei natürliche, teilerfremde Zahlen, hier $n$ und $m$, folgendes aus:
+Der Satz von Euler sagt über zwei natürliche, teilerfremde Zahlen, hier $n$ und $m$, folgendes aus: \cite{}
 %
 \begin{equation}
   m^{\varphi(n)} \bmod(n) = 1
   \label{eqn:satz_von_euler}
 \end{equation}
 %
-Nehmen wir für $n = 15$ und m $\colon 4$ und setzen Formel [\ref{eqn:satz_von_euler}] ein.
+Nehmen wir für $n = 15$ und $m = 4$ und setzen Formel [\ref{eqn:satz_von_euler}] ein.
 %
 % Zeigen das varphi 15 = 8 ist
 \begin{flalign*}
@@ -120,37 +120,38 @@ Die Formel für das Modulo-Verfahren lautet:
 %
 \begin{equation}
   \label{eqn:euklidischer_algo}
-  p = a \cdot q + r
+  \varphi(N) = a \cdot e + r
 \end{equation}
 %
 Der Rest r wird zum neuen q, und q wird zum neuen p. \\
-Zur Veranschaulichung nehmen wir zwei Zahlen $p = 302$ und $q = 146$ und setzen diese in usere Gleichung ein.
+Zur Veranschaulichung nehmen wir zwei Zahlen $\varphi(N) = 839$ und $e = 199$ und setzen diese in usere Gleichung ein.
 %
 \begin{equation}
   \begin{split}
-    302 & = 2 \cdot 146 + 10 \\
-    146 & = 14 \cdot 10 + 6  \\
-    10 & = 1 \cdot 6 + 4  \\
-    6 & = 1 \cdot 4 + 2  \\
-    4 & = 2 \cdot 2 + 0
+    839 &= 4 \cdot 199 + 43\\
+    199 &= 4 \cdot 43 + 27\\
+    43 &= 1 \cdot 27 + 16\\
+    27 &= 1 \cdot 16 + 11\\
+    16 &= 1 \cdot 11 + 5\\
+    11 &= 2 \cdot 5 + 1\\
     \label{eqn:euqulid_beweis}
   \end{split}
 \end{equation}
 %
-Der grösste gemeinsame Teiler von 302 und 146 ist somit 2. \\[2ex]
-Um dieses Verfahren zu beweisen, gehen wir davon aus, dass q, p, r und a alles natürliche Zahlen sind. Da wir im zweiten Schritt den grössten gemeinsamen Teiler von q und r errechnet haben, kann man folgende Gleichung aufstellen:
+Der grösste gemeinsame Teiler von 839 und 199 ist somit 1. \\[2ex]
+Um dieses Verfahren zu beweisen, gehen wir davon aus, dass $\varphi(N)$, e, r und a alles natürliche Zahlen sind. Da wir im zweiten Schritt den grössten gemeinsamen Teiler von q und r errechnet haben, kann man folgende Gleichung aufstellen:
 %
 \begin{equation}
-  ggT(p,q) = ggT(q,r)
+  ggT(\varphi(N),e) = ggT(e,r)
   \label{eqn:ggT}
 \end{equation}
 %
-Wenn also eine Zahl q und p teilt, muss diese Zahl auch r teilen. Ansonsten würde die Gleichung \ref{eqn:euqulid_beweis} nicht aufgehen. Umgekehrt muss eine Zahl die q und r teilt auch p teilen. 
+Wenn also eine Zahl $\varphi(N)$ und e teilt, muss diese Zahl auch r teilen. Ansonsten würde die Gleichung \ref{eqn:euqulid_beweis} nicht aufgehen. Umgekehrt muss eine Zahl die e und r teilt auch $\varphi(N)$ teilen. 
 % TODO: Besser schreiben
 Gehen wir zurück zu unserem Beispiel. Da diese Gleichung stimmt, stimmt auch unseres Verfahren.
 %
 \begin{equation*}
- ggT(5984,302) = ggT(302,146) = ggT(146,10) = ggT(10,6) = ggT(6,4) = 2 
+ ggT(839,199) = ggT(199,43) = ggT(43,27) = ggT(27,16) = ggT(16,11) = ggT(11,5) = 1
 \end{equation*}
 %
 %******************************************************************************
