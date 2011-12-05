@@ -1,9 +1,9 @@
 \section{Mathematisches Verfahren}
-Dieses Kapitel wurde mit Hilfe des Buches \textit{Moderne Verfahren der Kryptographie} und \textit{Kryptologie} erarbeitet.\\[2ex]
+Dieses Kapitel wurde mit Hilfe des Buches \textit{Moderne Verfahren der Kryptographie}\cite{mod_kry}, \textit{Zahlentheorie für Einsteiger}\cite{zahlentheorie_fuer_einsteiger} und \textit{Kryptologie}\cite{kryptologie} erarbeitet.\\[2ex]
 %
 Der RSA-Algorithmus baut grundsätzlich auf Primzahlen, der Modulo und Eulerschen-Funktion, dem Satz von Euler und dem erweiterten euklidischen Algorithmus auf.\\
 Im nächsten Abschnitt werden die einzelnen mathematischen Verfahren kurz in ihren Funktionen erläutert.\\
-Wir werden für die beiden Primzahlen durchgehend die Variabeln $p$ und $q$ verwenden. $N$ steht immer für das Produkt von $p \cdot q$. Die Variable $r$ wird für das Resultat der Modulo-Berechnungen verwendet.
+Wir werden für die beiden Primzahlen durchgehend die Variabeln $p$ und $q$ verwenden. $N$ steht immer für das Produkt von $p \cdot q$. Die Variable $r$ wird für das Resultat der Modulo-Berechnungen verwendet. $e$ steht für den verschlüsselungs Exponenten und $d$ für den entschlüsselungs Exponenten.
 \subsection{Modulo}
 Modulo oder auch \textit{Division mit Rest} gibt den ganzzahligen Rest einer Division zweier natürlichen Zahlen an. Modulo erklärt sich am einfachsten an einem Beispiel.
 %
@@ -18,9 +18,9 @@ Es gilt herauszufinden, wieviele Male 5 ganz in 21 vorhanden ist, das heisst wir
   21 - 4 \cdot 5 &= 1\\
   21 &= 4 \cdot 5 + 1
 \end{flalign*}
-Oder veralgemeinert:
+Oder veralgemeinert für den RSA Algorithmus (\ref{euklidischer_Algorithmus}):
 \begin{flalign*}
-  p &= a \cdot q + r
+  \varphi(N)  &= a \cdot e + r
 \end{flalign*}
 %
 \paragraph{Kongruent Modulo}
@@ -71,7 +71,7 @@ Als Formel geschrieben:
 %=====================
 %Verweis auf Buch Beutelspacher
 \subsection{Satz von Euler}
-Der Satz von Euler sagt über zwei natürliche, teilerfremde Zahlen, hier $n$ und $m$, folgendes aus: \cite{}
+Der Satz von Euler sagt über zwei natürliche, teilerfremde Zahlen, hier $n$ und $m$, folgendes aus: \cite{kryptologie}
 %
 \begin{equation}
   m^{\varphi(n)} \bmod(n) = 1
@@ -113,19 +113,35 @@ Nehmen wir für $n = 15$ und $m = 4$ und setzen Formel [\ref{eqn:satz_von_euler}
 %******************************************************************************
 % Euklidischer Algorithmus
 %******************************************************************************
-\subsection{Euklidischer Algorithmus}
-Mit den Euklidischen Algorithmen lassen sich der grösste gemeinsame Teiler (ggT) zweier natürlichen Zahlen berrechnen. Es existiert das etwas ältere Subtraktionsverfahren und das moderne Modulo-Verfahren. Da das Subtraktions-Verfahren nicht die gleiche Effizenz hat wie das Subtraktionsverfahren, konzentrieren wir uns auf das Modulo-Verfahren.\\
+\subsection{Euklidischer Algorithmus}\label{euklidischer_Algorithmus}
+Mit den Euklidischen Algorithmen lassen sich der grösste gemeinsame Teiler (ggT) zweier natürlichen Zahlen berrechnen. Es existiert das etwas ältere Subtraktionsverfahren und das moderne Modulo-Verfahren. Da das Subtraktions-Verfahren nicht die gleiche Effizenz hat wie das Subtraktionsverfahren, konzentrieren wir uns auf das Modulo-Verfahren. \cite{zahlentheorie_fuer_einsteiger}\\
 %
 Die Formel für das Modulo-Verfahren lautet:
 %
 \begin{equation}
   \label{eqn:euklidischer_algo}
-  \varphi(N) = a \cdot e + r
+  \varphi(N) = a \cdot e + r 
 \end{equation}
+dabei muss 
+\begin{equation*}
+  0 \leq r \leq e - 1
+\end{equation*}
 %
-Der Rest r wird zum neuen q, und q wird zum neuen p. \\
+Wir gehen davon aus das $\varphi(N)$ grösser ist als e. Wäre das nicht der Fall, müsste e auf die linke Seite des Gleichheitszeichen.
 Zur Veranschaulichung nehmen wir zwei Zahlen $\varphi(N) = 839$ und $e = 199$ und setzen diese in usere Gleichung ein.
+\begin{enumerate}
+  \item Schritt: Zahlen in Gleichung einsetzen, a und r ausrechnen.\\
+    \begin{equation}
+      839 = 4 \cdot 199 + 43
+    \end{equation}
+  \item Schritt: 199 als neues $\varphi(N)$ und 43 als neues e einsetzten und wieder a und r ausrechnen.\\
+    \begin{equation}
+      199 = 4 \cdot 43 + 27
+    \end{equation}
+\end{enumerate}
+Den zweiten Schritt solange wiederholen bis man auf Rest 1 oder 0 kommt. Falls die Zahl 0 herauskommt, nehmen wir den Rest der vorigen Gleichung als Grössten Gemeinsamen Teiler.\\
 %
+Ganze Gleichung:
 \begin{equation}
   \begin{split}
     839 &= 4 \cdot 199 + 43\\
@@ -139,16 +155,16 @@ Zur Veranschaulichung nehmen wir zwei Zahlen $\varphi(N) = 839$ und $e = 199$ un
 \end{equation}
 %
 Der grösste gemeinsame Teiler von 839 und 199 ist somit 1. \\[2ex]
-Um dieses Verfahren zu beweisen, gehen wir davon aus, dass $\varphi(N)$, e, r und a alles natürliche Zahlen sind. Da wir im zweiten Schritt den grössten gemeinsamen Teiler von q und r errechnet haben, kann man folgende Gleichung aufstellen:
+Um dieses Verfahren zu beweisen, gehen wir davon aus, dass $\varphi(N)$, e, r und a alles natürliche nicht negative Zahlen sind. Da wir im zweiten Schritt den grössten gemeinsamen Teiler von q und r errechnet haben, kann man folgende Überlegung aufstellen:
 %
 \begin{equation}
   ggT(\varphi(N),e) = ggT(e,r)
   \label{eqn:ggT}
 \end{equation}
 %
-Wenn also eine Zahl $\varphi(N)$ und e teilt, muss diese Zahl auch r teilen. Ansonsten würde die Gleichung \ref{eqn:euqulid_beweis} nicht aufgehen. Umgekehrt muss eine Zahl die e und r teilt auch $\varphi(N)$ teilen. 
+Wenn also eine Zahl $\varphi(N)$ und e teilt, muss diese Zahl auch r teilen. Sonst würde die Gleichung \ref{eqn:euqulid_beweis} nicht aufgehen. Umgekehrt muss eine Zahl die e und r teilt auch $\varphi(N)$ teilen. 
 % TODO: Besser schreiben
-Gehen wir zurück zu unserem Beispiel. Da diese Gleichung stimmt, stimmt auch unseres Verfahren.
+Gehen wir zurück zu unserem Beispiel. Da diese Gleichung stimmt, stimmt auch das Verfahren.
 %
 \begin{equation*}
  ggT(839,199) = ggT(199,43) = ggT(43,27) = ggT(27,16) = ggT(16,11) = ggT(11,5) = 1
@@ -158,78 +174,97 @@ Gehen wir zurück zu unserem Beispiel. Da diese Gleichung stimmt, stimmt auch un
 % Erweiterter Euklidischer Algorithmus
 %******************************************************************************
 \subsubsection{Erweiterter Euklidischer Algorithmus}
-Der erweiterte Euklidische Algorithmus, berechnet den grössten gemeinsamen Teiler $d$ aus zwei natürlichen Zahlen und die dazu gehörigen natürlichen Zahlen x und y, dass folgende Gleichung stimmt.
+Der Erweiterte Euklidische Algorithmus, berechnet den grössten gemeinsamen Teiler $r$ zwei natürlichen Zahlen und die dazugehörigen natürlichen Zahlen d und k, dass folgende Gleichung stimmt.
 %
 \begin{equation}
-  d = x \cdot q + y \cdot p 
+  r = d \cdot e + k \cdot \varphi(N) 
   \label{eqn:erw_euklid_algo}
 \end{equation}
 %
-Dieser Algorithmus wird auch \textit{Vielfachsummendarstellung} gennant, denn um auf die Zahlen x und y zu kommen, muss man die Vielfachsummendarstellung anwenden.\\
-Es ist eine erweiterte Form des Euklidischen Algorithmus folglich benötigt man den Euklidischen Algorithmus auch. Wir schreiben jetzt die Rechnung \ref{eqn:euqulid_beweis} so um, dass wir den Rest allein auf einer Seite haben.\\ 
+Dieser Algorithmus wird auch \textit{Vielfachsummendarstellung} gennant, denn um auf die Zahlen d und k zu kommen, muss man die Vielfachsummendarstellung anwenden.\\
+Es ist eine erweiterte Form des Euklidischen Algorithmus. Folglich benötigt man den Euklidischen Algorithmus auch. Wir schreiben jetzt die Rechnung \ref{eqn:euqulid_beweis} so um, dass wir den Rest allein auf einer Seite haben.\\ 
 \begin{equation}
-  r = p - a \cdot q
+  r = \varphi(N) - a \cdot e
   \label{eqn:form_erw_euklid}
 \end{equation}
 %
-%
 \begin{flalign*}
-  10 & = 302 - 2 \cdot 146 \\
-  6 & = 146 - 14 \cdot 10 \\
-  4 & = 10 - 1 \cdot 6  \\
-  2 & = 6 - 1 \cdot 4
+  43 &= 839 - 4 \cdot 199\\
+  27 &= 199 - 4 \cdot 43\\
+  16 &= 43 - 1 \cdot 27\\
+  11 &= 27 - 1 \cdot 16\\
+  5 &= 16 - 1 \cdot 11\\
+  1 &= 11 - 2 \cdot 5
   \label{eqn:erw_euklid_10}
 \end{flalign*}
 %
 % TODO: AUSSCHREIBEN
-Man startet bei der Untersten Rechnung und ersetzt die Zahl, die den nächsten oberen Rest beschreibt, durch die Gleichung. Das heisst man ersetzt in der ersten Gleichung die Zahl $4$ mit der Gleichung $10 - 1 \cdot 6$. Das macht man immer so weiter, bis man die letze Gleichun eingesetz hat. Man darf nicht zuviel vereinfachen, denn sonst kommt die Gleichung $2 = 2$ heraus.\\
+Man startet bei der untersten Rechnung und ersetzt die Zahl, die den nächsten oberen Rest beschreibt, durch die Gleichung. Das heisst man ersetzt in der ersten Gleichung die Zahl $5$ mit der Gleichung $16 - 1 \cdot 11$. Das macht man immer so weiter, bis man die letze Gleichun eingesetz hat. 
+Man darf nicht zuviel vereinfachen, denn sonst kommt die Gleichung $2 = 2$ heraus.\\
 %
 \begin{flalign*}
-  2  &= 6 - 1 \cdot 4  =  6 - 1 \cdot (10 - 1 \cdot 6) =  6 - 1 \cdot 10 + 1 \cdot 6 = 2 \cdot 6 - 1 \cdot 10 \\
-%  &= 2 \cdot 6 - 1 \cdot 10  = 2 \cdot (146 - 14 \cdot 10) - 1 \cdot 10 = 2 \cdot 146 - 2 \cdot 14 \cdot 10 - 1 \cdot 10 = 2 \cdot 146 - 29 \cdot 10   \\
-  &= 2 \cdot 6 - 1 \cdot 10  = 2 \cdot 146 - 2 \cdot 14 \cdot 10 - 1 \cdot 10 = 2 \cdot 146 - 29 \cdot 10   \\
-  &= 2 \cdot 146 - 29 \cdot 10 = 2 \cdot 146 - 29 \cdot 302 + 58 \cdot 146 = 60 \cdot 146 - 29 \cdot 302
+  1  &= 11 - 2 \cdot 5 = 11 - 2 \cdot 16 + 2 \cdot 11 = 3 \cdot 11 - 2 \cdot 16 \\
+  &= 3 \cdot 11 - 2 \cdot 16 = 3 \cdot 27 - 3 \cdot 1 \cdot 16 - 2 \cdot 16 = 3 \cdot 27 - 5 \cdot 16\\
+  &= 3 \cdot 27 - 5 \cdot 16 = 3 \cdot 27 - 5 \cdot 43 + 5 \cdot 1 \cdot 27 = 8 \cdot 27 - 5 \cdot 43\\
+  &= 8 \cdot 27 - 5 \cdot 43 = 8 \cdot 199 - 8 \cdot 4 \cdot 43 - 5 \cdot 43 = 8 \cdot 199 - 37 \cdot 43\\
+  &= 8 \cdot 199 - 37 \cdot 43 = 8 \cdot 199 - 37 \cdot 839 + 37 \cdot 4 \cdot 199 = 156 \cdot 199 - 37 \cdot 839
 \end{flalign*}
 %
-Jetzt haben wir unsere Formel
+Jetzt bekommen wir die Formel
 %
 \begin{equation}
- 2 = 60 \cdot 146 + (-29) \cdot 302
+ 1 = 156 \cdot 199 + (-37) \cdot 839
 \end{equation}
 %
-Um das zu beweisen schauen wir uns nochmal die Formel \ref{eqn:euklidischer_algo} an. Aus einer Vielfachsummendarstellung von $q$ und $r$, lässt sich dei Vielfachsummendarstellung von $p$ und $q$ ableiten. Man kann die Formel
+Diese Gleichung können wir umwandeln, damit wir die Gleichung der modularen Inverse erhalten:
+\begin{equation}
+  e \cdot d \bmod(\varphi(N)) \equiv 1
+\end{equation}
+%
+Dazu rechnern wir $(-37) \cdot 839$ auf die Linke Seite. 
+\begin{equation*}
+ 1 - 37 \cdot 839 = 156 \cdot 199
+\end{equation*}
+Da wir wissen das 839 teilbar durch 199 ist, kann man die Gleichung umschreiben.
+%
+\begin{equation*}
+ 1 \equiv 156 \cdot 199 \bmod(839)
+\end{equation*}
+Wir haben jetzt unser Entschlüsselungs Exponente $d = 156$.
+%
+%Um das zu beweisen schauen wir uns nochmal die Formel \ref{eqn:euklidischer_algo} an. Aus einer Vielfachsummendarstellung von $q$ und $r$, lässt sich dei Vielfachsummendarstellung von $p$ und $q$ ableiten. Man kann die Formel
 %{eqn:ggT}
-\begin{equation*}
-  2 = x \cdot p + y \cdot q
-  \label{eqn:erw_eukl_fertig}
-\end{equation*}
+%\begin{equation*}
+%  2 = x \cdot p + y \cdot q
+%  \label{eqn:erw_eukl_fertig}
+%\end{equation*}
 %
-auch mit r und a darstellen.
+%auch mit r und a darstellen.
 %
-\begin{equation*}
-  2 = x \cdot r + y \cdot a
-\end{equation*}
+%\begin{equation*}
+%  2 = x \cdot r + y \cdot a
+%\end{equation*}
 %
-Jetzt setzen wir die Formel \ref{eqn:form_erw_euklid} anstatt r ein und erhalten diese Gleichung
-\begin{equation*}
-  2 = x \cdot (p - a \cdot q)  + y \cdot a = x \cdot p + (y - xa) \cdot q
-\end{equation*}
+%Jetzt setzen wir die Formel \ref{eqn:form_erw_euklid} anstatt r ein und erhalten diese Gleichung
+%\begin{equation*}
+%  2 = x \cdot (p - a \cdot q)  + y \cdot a = x \cdot p + (y - xa) \cdot q
+%\end{equation*}
 %
-Somit haben wie die Vielfachsummendarstellung für $p$ und $q$.
+%Somit haben wie die Vielfachsummendarstellung für $p$ und $q$.
 %
-\subsubsection{Modulare Inverse}
-Haben wir zwei natürliche, teilerfremde Zahlen, gibt es eine Zahl x, sodass die Formel
+%\subsubsection{Modulare Inverse}
+%Haben wir zwei natürliche, teilerfremde Zahlen, gibt es eine Zahl x, sodass die Formel
 %
-\begin{equation*}
-  p \cdot x \bmod(q) \equiv 1
-\end{equation*}
+%\begin{equation*}
+%  p \cdot x \bmod(q) \equiv 1
+%\end{equation*}
 %
-Es gibt zwei ganze Zahlen $x$ und $y$ sodass die Gleichung \ref{eqn:erw_eukl_fertig} entsteht.
-Weil $y cdot q$ durch $q$ teilbar ist, gibt es bei der Divison von $x \cdot p$ durch $q$ immer 1. Somit kann man sagen
+%Es gibt zwei ganze Zahlen $x$ und $y$ sodass die Gleichung \ref{eqn:erw_eukl_fertig} entsteht.
+%Weil $y cdot q$ durch $q$ teilbar ist, gibt es bei der Divison von $x \cdot p$ durch $q$ immer 1. Somit kann man sagen
 %
-\begin{equation}
-  p \cdot x \bmod q = 1
-  \label{eqn:mod_inverse}
-\end{equation}
+%\begin{equation}
+%  p \cdot x \bmod q = 1
+%  \label{eqn:mod_inverse}
+%\end{equation}
 %
-Die Modulareinverse von zwei teilerfremden natürlichen Zahlen $p$ und $q$, errechnet man mit dem erweiterten Euklidischen Algorithmus. Dann ist $x$ die modulare Inverse von $p$ und $q$.
+%Die Modulareinverse von zwei teilerfremden natürlichen Zahlen $p$ und $q$, errechnet man mit dem erweiterten Euklidischen Algorithmus. Dann ist $x$ die modulare Inverse von $p$ und $q$.
