@@ -9,14 +9,13 @@ Der Mathematische Beweis ist jeweils eine Reduktion des Problems. Es wird dabei 
 % Primzahlen und Faktorisierungsproblem
 %#######################################################
 \section{Faktorisierungsproblem}
-\subsection{Schwierigkeit}
 Die Sicherheit der RSA-Verschlüsselung beruht auf dem Faktorisierungsproblem. Es wurde bisher noch keine effektive Methode gefunden um grosse Zahlen in ihre Primzahlen zu faktorisieren. Besonders schwer ist es wenn die Zahl aus zwei grossen Primzahlen besteht. 
 Ein kleines Beispiel:
 Die Faktorisierung von 14 in die beiden Primzahlen 2 und 7 fällt nicht sehr schwer\\
 Die Faktorisierung von 30518 ist ebenfalls einfach, da nur eine Primzahl gross gewählt wurde. Es handelt sich um 2 und 15259. \\
 Die Faktorisierung von 771'151 ist schon wesentlich schwerer. Obwohl es die kleinen Zahlen 823 und 937 sind. Das RSA-Modul N wird aus zwei Primzahlen mit einer Länge von 2048 Bit (617 Dezimalstellen) erstellt. Wir sehen hier das die Sicherheit von RSA wesentlich von der gewählten Schlüssellänge abhängt. Aus diesem RSA Modul wieder die zwei Primzahlen zu finden kann aktuell nicht effizient bewerkstelligt werden.
 %
-\section{Angriffe auf die Implementierung des RSA-Algorithmus}
+\section{Implementierungs-Angriffe}
 Das Faktorisierungsproblem selbst konnte bisher nicht gelöst werden. Jedoch gibt es verschiedene Ansätze um bei bestimmten Konstellationen das Problem effizient zu lösen. 
 Bei diesen Angriffen wurden die Primzahlen p und q falsch gewählt.
 Falls die Primzahlen p und q zu nahe beieinander liegen, kann das Faktorisierungsproblem mit versuchen in einem bestimmten Zahlenspektrum überlistet werden. Das RSA-Modul N ist 753'343. Von dieser Zahl ziehen wir die Wurzel und erhalten $ \sqrt{753323} \approx 867.95 $. Wir können  ein Spektrum von +-100 bestimmen und erhalten 768 - 968. Die Zahl 753'343 versuchen wir durch die einzelnen Zahlen des Spektrums zu teilen. Bei der Zahl 859 erhalten wir die Zahl 877 und haben somit das Problem gelöst. Wir machen hier kein Primzahlentest da dies zusätzliche Rechenleistung benötigt und somit die Effizienz verringern würde. Daraus ist ersichtlich das die Primzahlen nicht nahe beieinander liegen dürfen.%

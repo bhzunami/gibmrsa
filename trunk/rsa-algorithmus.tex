@@ -1,19 +1,17 @@
 \part{Der RSA-Algorithmus}
+%
 \input{./mathematische_verfahren.tex}
-
+%
 \input{./schluessel.tex}
-\section{RSA Verschlüsselung}
-Die RSA Verschlüsselung wurde 1977 von Ronald L. Riverst, Adi Shamir und Leonard Adleman entwickelt. Der Name RSA setzt sich aus den Anfangsbuchstaben der Nachnamen der Entwickler zusammen. Es handelt sich um ein asymmetrisches Verfahren. (Siehe Kapitel moderne Kryptographie) %Verweis%
-Das RSA Verfahren wird auch heute noch oft eingesetzt. Das Verfahren gilt bei einer bestimmten Schlüssellänge als sicher. Es gibt verschiedenste Angriffsmöglichkeiten, diese führen jedoch nicht in einem vernünftigen Zeitraum zu Ergebnissen. Das Verfahren wird zur Signierung und zur Verschlüsselung verwendet. (Siehe Anwendung) %Verweis%
-
+%
 \subsection{Formel Verschlüsselung}
 Wenn der Schlüssel erstellt wurde kann ein Text einfach verschlüsselt werden. Dazu dient folgende Formel:
 $ C \equiv m^e  \bmod N $\\
 C steht für Cipher und bezeichnet den Geheimtext. Dieser ist abhängig von der Nachricht m, dem öffentlichen Schlüssel e und dem RSA-Modul N.
 
-\section{RSA Entschlüsselung}
-Die RSA Entschlüsselung ist ohne den Geheimschlüssel zu wissen nicht möglich. Da die Sicherheit von diesem Geheimschlüssel abhängt, gilt es diesen möglichst lang zu wählen und geheim zu halten. Aktuell gilt eine Schlüssellänge von 2048 Bit als sicher. Als Dezimalzahl ausgedrückt, ist dies eine Zahl von $ 3,2 \cdot 10^{616} $
-Die Angriffe auf die RSA Verschlüsselung zielen darauf ab, den Geheimschlüssel zu ermitteln. Das Problem dabei ist die Primfaktoren Zerlegung von grossen Zahlen. Mehr dazu im Kapitel Angriffe %Verweis%
+%\subsection{RSA Entschlüsselung}
+%Die RSA Entschlüsselung ist ohne den Geheimschlüssel zu wissen nicht möglich. Da die Sicherheit von diesem Geheimschlüssel abhängt, gilt es diesen möglichst lang zu wählen und geheim zu halten. Aktuell gilt eine Schlüssellänge von 2048 Bit als sicher. Als Dezimalzahl ausgedrückt, ist dies eine Zahl von $ 3,2 \cdot 10^{616} $
+%Die Angriffe auf die RSA Verschlüsselung zielen darauf ab, den Geheimschlüssel zu ermitteln. Das Problem dabei ist die Primfaktoren Zerlegung von grossen Zahlen. Mehr dazu im Kapitel Angriffe %Verweis%
 
 \subsection{Formel Entschlüsselung}
 Die Entschlüsselung der Nachricht wird mit folgender Formel realisiert
@@ -21,6 +19,7 @@ $ m \equiv C^d \bmod N $ \\
 Der Klartext m hängt in diesem Fall vom verschlüsselten Text C, dem privaten Schlüssel d und dem RSA-Modul N ab. 
 %
 %
+\newpage
 %******************************************************************************
 % Mathematischer Beweis
 %******************************************************************************

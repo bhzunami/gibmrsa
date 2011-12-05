@@ -1,21 +1,25 @@
 \newpage
-\section{Der Schlüssel}
+\section{RSA Ver- und Entschlüsselung}
+Der Name RSA setzt sich aus den Anfangsbuchstaben der Nachnamen der Entwickler zusammen. Das RSA Verfahren wird auch heute noch oft eingesetzt. Das Verfahren gilt bei einer bestimmten Schlüssellänge als sehr sicher. Es gibt verschiedenste Angriffsmöglichkeiten, diese führen jedoch nicht in einem vernünftigen Zeitraum zu Ergebnissen.\\
+Das RSA Verfahren ist verwandt mit dem Rabin-Kryptosystem, dass auch auf Primzahlen beruht. Das Verfahren wird zur Signierung und zur Verschlüsselung verwendet. %Verweis%
+
+\subsection{Der Schlüssel}
 Dieses Kapitel wurde mit Hilfe des Buches \textit{RSA and Public-Key Cryptography} erarbeitet.\\[2ex]
 %
 Für eine sichere Verschlüsslung braucht es auf einen guten Schlüssel. Denn nur mit diesem Schlüssel, kann man die verschlüsselte Nachricht entschlüsseln. Der Schlüssel spielt also eine zentrale und wichtige Rolle. Dazu muss er so komplex sein, dass man ihn nicht erraten kann, oder durch Ausprobieren entdeckt.\\
 Darum ist es auch sehr wichtig, dass man Zufallszahlen nimmt, die man nicht vorhersagen kann, beziehungsweise im Nachhinein berechnen kann.
 %
-\subsection{Zufallszahlen generieren}
+\subsubsection{Zufallszahlen generieren}
 In der Informatik sind Zufallszahlen eine sehr komplexe Angelegenheit. Um solche Zufallszahlen zu generieren, haben grössere Firmen einen Zufallszahlengeneratoren (eng. \textit{random number generator} RNG) entwickelt. Diese messen den radioaktiven Zerfall oder beobachteten die atmosphärischen Bedingungen in der Umgebung. Die Zahlen, die der RNG auswertet, nennt man \textbf{Seed-Zahlen}. Mit den gewonnen Seed-Zahlen, kann man jetzt einen Algorithums füttern, der eine Zahl oder eine Zahlenfolge zurückgibt. Hat man eine solche Zufallszahl, muss noch überprüft werden, ob es eine Primzahl ist. Zur überprüfung gibt es extra Verfahren, die wir hier nicht weiter erleutern werden. Mehr Informationen dazu im Buch \textit{RSA and Public-Key Cryptography - Kapitel 4}.\\
 %
 Für den normalen Benutzer sind solche Apparate viel zu aufwendig und zu teuer. Deshalb entwickelten Computerhersteller einen Pseudozufallszahlengenerator (eng. \textit{pseudo random number generator} PRNG). Dieser PRNG erstellt die Seed-Zahlen zum Beispiel aus der momentanen Position der Maus, momentane CPU Auslastung oder andere nicht vorhersehbare Elemente.\\
 Ob die Zufallszahlen geeignet sind oder nicht ist schwierig zu sagen. Denn wie will man eine Folge von Zufallszahlen beurteilen?\\
 Das Einzige, was man errechnen kann, ist die Entopie\footnote{Die Entropie beschreibt das Mass der Unordnung.}. Je höher die Entropie, desto unwarscheinlicher ist es, dass diese Zahlenfolge ein zweites Mal vorkommt.
 %Buch RSA and Public-Key Seite 61 
-\subsection{RSA-Schlüssel generieren}
+\subsubsection{RSA-Schlüssel generieren}
 Für eine RSA-Verschlüsselung brauchen wir zwei Schlüssel, die voneinander abhängig sind. Einen private Key und einen public Key. Im nächsten Abschnitt werden wir erläutern, wie man diese zwei Schlüsser errechnen kann.
 %
-\subsubsection{Public-Key erstellen}\label{sec:public_key}
+\paragraph{Public-Key erstellen}\label{sec:public_key}
 Als erstes brauchen wir zwei Primzahlen p und q die etwa gleich lang sind. Je grösser desto besser und sicherer. Wie man solche Primzahlen erstellt möchten wir hier nicht erläutern. Es gibt Methoden, bei denen man mit grosser Wahrscheinlichkeit eine Primzahl generieren kann. Man muss die Zahl nachher immer überprüfen.\\
 Sind beide Primzahlen gefunden, errechnen wir uns N auch als RSA-Modul genannt.
 %
@@ -27,7 +31,7 @@ Sind beide Primzahlen gefunden, errechnen wir uns N auch als RSA-Modul genannt.
 Als nächstes rechnen wir mit der Eulerschen Funktion [\ref{eqn:eulersche_func}] $\varphi$(N) von p und q aus.\\
 Zu der Zahl $\varphi$(N) nehmen wir eine weitere zufällige, \textbf{teilfremde} Zahl e die den RSA verschlüsselungs Exponent bildet.\\
 So nun haben wir unseren öffentlichen Schlüssel mit den Zahlen N und e.
-\subsubsection{Private-Key erstellen}
+\paragraph{Private-Key erstellen}
 Wir haben vorher bei der Erstellung des public Keys die Zahlen N und e errechnet. Als nächstes wird aus diesen beiden Zahlen d errechent. d wird als enschlüsselungs Exponent im pirvate Key benötigt.\\
 Mit dem erweiterten Euklidischen Algorithmus [\ref{eqn:erw_euklid_algo}] wird d berechnet so dass die Formel
 %
