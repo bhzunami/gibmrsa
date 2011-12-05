@@ -120,13 +120,21 @@ Die Formel für das Modulo-Verfahren lautet:
 %
 \begin{equation}
   \label{eqn:euklidischer_algo}
-  \varphi(N) = a \cdot e + r 
+  a = b \cdot q + r 
 \end{equation}
+%
 dabei muss 
 \begin{equation*}
   0 \leq r \leq e - 1
 \end{equation*}
 %
+Auf den RSA-Algorithmus bezogen sieht die Formel so aus:
+\begin{equation}
+  \label{eqn:euklidischer_algo_RSA}
+  \varphi(N) = a \cdot e + r 
+\end{equation}
+%
+Dabei sind $\varphi(N)$ und e die beiden Zahlen von denen wir den grössten gemeinsamen Teiler ausrechnen.
 Wir gehen davon aus das $\varphi(N)$ grösser ist als e. Wäre das nicht der Fall, müsste e auf die linke Seite des Gleichheitszeichen.
 Zur Veranschaulichung nehmen wir zwei Zahlen $\varphi(N) = 839$ und $e = 199$ und setzen diese in usere Gleichung ein.
 \begin{enumerate}
@@ -139,9 +147,9 @@ Zur Veranschaulichung nehmen wir zwei Zahlen $\varphi(N) = 839$ und $e = 199$ un
       199 = 4 \cdot 43 + 27
     \end{equation}
 \end{enumerate}
-Den zweiten Schritt solange wiederholen bis man auf Rest 1 oder 0 kommt. Falls die Zahl 0 herauskommt, nehmen wir den Rest der vorigen Gleichung als Grössten Gemeinsamen Teiler.\\
+Den zweiten Schritt solange wiederholen bis man auf Rest 1 oder 0 kommt. Falls die Zahl 0 herauskommt, nehmen wir den Rest der vorangegangenen Gleichung als grössten gemeinsamen Teiler.\\
 %
-Ganze Gleichung:
+Ganzer Ablauf:
 \begin{equation}
   \begin{split}
     839 &= 4 \cdot 199 + 43\\
@@ -154,17 +162,20 @@ Ganze Gleichung:
   \end{split}
 \end{equation}
 %
-Der grösste gemeinsame Teiler von 839 und 199 ist somit 1. \\[2ex]
-Um dieses Verfahren zu beweisen, gehen wir davon aus, dass $\varphi(N)$, e, r und a alles natürliche nicht negative Zahlen sind. Da wir im zweiten Schritt den grössten gemeinsamen Teiler von q und r errechnet haben, kann man folgende Überlegung aufstellen:
+Der grösste gemeinsame Teiler von 839 und 199 ist somit 1. Sie sind somit Teilerfremd. \\[2ex]
+Um dieses Verfahren zu beweisen, gehen wir davon aus, dass $\varphi(N)$, e, r und a alles natürliche nicht negative Zahlen sind. Da wir im zweiten Schritt den grössten gemeinsamen Teiler von $e$ und r errechnet haben, kann man basierend auf Formel \ref{eqn:euklidischer_algo_RSA} folgende Behauptung aufstellen:
 %
 \begin{equation}
   ggT(\varphi(N),e) = ggT(e,r)
   \label{eqn:ggT}
 \end{equation}
 %
-Wenn also eine Zahl $\varphi(N)$ und e teilt, muss diese Zahl auch r teilen. Sonst würde die Gleichung \ref{eqn:euqulid_beweis} nicht aufgehen. Umgekehrt muss eine Zahl die e und r teilt auch $\varphi(N)$ teilen. 
-% TODO: Besser schreiben
-Gehen wir zurück zu unserem Beispiel. Da diese Gleichung stimmt, stimmt auch das Verfahren.
+Nur der grösste gemeinsame Teiler von $\varphi(N)$ und $e$ 
+teilt sowohl $\varphi(N)$ als auch e und r ohne Rest. Auf unser Beispiel angewendet ergibt das $ggT(839,199) \leq ggT(199,43)$\\
+Und es gilt: Nur der grösste gemeinsame Teiler von e und r teilt auch $\varphi(N)$ ohne Rest.\\
+Das heisst: $ggT(199,43) \leq ggT(839,199)$.
+Somit stimmen die beiden grössten gemeinsamen Teiler überein.\\[2ex]
+Gehen wir zurück zu unserem Beispiel:
 %
 \begin{equation*}
  ggT(839,199) = ggT(199,43) = ggT(43,27) = ggT(27,16) = ggT(16,11) = ggT(11,5) = 1
@@ -174,15 +185,15 @@ Gehen wir zurück zu unserem Beispiel. Da diese Gleichung stimmt, stimmt auch da
 % Erweiterter Euklidischer Algorithmus
 %******************************************************************************
 \subsubsection{Erweiterter Euklidischer Algorithmus}
-Der Erweiterte Euklidische Algorithmus, berechnet den grössten gemeinsamen Teiler $r$ zwei natürlichen Zahlen und die dazugehörigen natürlichen Zahlen d und k, dass folgende Gleichung stimmt.
-%
+Der Erweiterte Euklidische Algorithmus, berechnet den grössten gemeinsamen Teiler $r$ zwei natürlichen Zahlen und die dazugehörigen natürlichen Zahlen d und k, dass folgende Gleichung stimmt.:
+% TODO RICHTIGE FORMEL
 \begin{equation}
   r = d \cdot e + k \cdot \varphi(N) 
   \label{eqn:erw_euklid_algo}
 \end{equation}
 %
 Dieser Algorithmus wird auch \textit{Vielfachsummendarstellung} gennant, denn um auf die Zahlen d und k zu kommen, muss man die Vielfachsummendarstellung anwenden.\\
-Es ist eine erweiterte Form des Euklidischen Algorithmus. Folglich benötigt man den Euklidischen Algorithmus auch. Wir schreiben jetzt die Rechnung \ref{eqn:euqulid_beweis} so um, dass wir den Rest allein auf einer Seite haben.\\ 
+Es ist eine erweiterte Form des Euklidischen Algorithmus.Wir schreiben jetzt die Rechnung \ref{eqn:euqulid_beweis} so um, dass wir den Rest auf einer Seite isolieren.\\ 
 \begin{equation}
   r = \varphi(N) - a \cdot e
   \label{eqn:form_erw_euklid}
@@ -199,8 +210,8 @@ Es ist eine erweiterte Form des Euklidischen Algorithmus. Folglich benötigt man
 \end{flalign*}
 %
 % TODO: AUSSCHREIBEN
-Man startet bei der untersten Rechnung und ersetzt die Zahl, die den nächsten oberen Rest beschreibt, durch die Gleichung. Das heisst man ersetzt in der ersten Gleichung die Zahl $5$ mit der Gleichung $16 - 1 \cdot 11$. Das macht man immer so weiter, bis man die letze Gleichun eingesetz hat. 
-Man darf nicht zuviel vereinfachen, denn sonst kommt die Gleichung $2 = 2$ heraus.\\
+Man startet bei der untersten Zeile und ersetzt die Zahl, die den nächsten oberen Rest beschreibt, durch die Gleichung. Das heisst man ersetzt in der ersten Gleichung die Zahl $5$ mit dem Term $16 - 1 \cdot 11$. Das wiederholt man so lange, bis man die letzte Gleichung eingesetzt hat. 
+Es ist zu beachten, dass auf der rechten Seite eine Summe aus zwei Produkten stehen bleibt.
 %
 \begin{flalign*}
   1  &= 11 - 2 \cdot 5 = 11 - 2 \cdot 16 + 2 \cdot 11 = 3 \cdot 11 - 2 \cdot 16 \\
@@ -210,7 +221,7 @@ Man darf nicht zuviel vereinfachen, denn sonst kommt die Gleichung $2 = 2$ herau
   &= 8 \cdot 199 - 37 \cdot 43 = 8 \cdot 199 - 37 \cdot 839 + 37 \cdot 4 \cdot 199 = 156 \cdot 199 - 37 \cdot 839
 \end{flalign*}
 %
-Jetzt bekommen wir die Formel
+Am Schluss bekommen wir die Formel
 %
 \begin{equation}
  1 = 156 \cdot 199 + (-37) \cdot 839
@@ -221,7 +232,7 @@ Diese Gleichung können wir umwandeln, damit wir die Gleichung der modularen Inv
   e \cdot d \bmod(\varphi(N)) \equiv 1
 \end{equation}
 %
-Dazu rechnern wir $(-37) \cdot 839$ auf die Linke Seite. 
+Dazu stellen wir $(-37) \cdot 839$ auf die linke Seite. 
 \begin{equation*}
  1 - 37 \cdot 839 = 156 \cdot 199
 \end{equation*}
