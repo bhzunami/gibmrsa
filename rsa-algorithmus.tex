@@ -147,7 +147,7 @@ Wir berechnen nun das RSA-Modul N [\ref{eqn:rsa_modul}] und $\varphi(N) $ [\ref{
   216 = (13 - 1) \cdot (19 - 1)
 \end{equation*}
 %
-Zu $ \varphi(N) $ suchen wir uns eine zweite Zahl e, die teilerfremd zu $ \varphi(N) $ ist, sprich den ggT(N,e) = 1. Am Besten man verwendet eine weitere Primzahl. Wir nehmen für e die Primzahl 23.
+Zu $ \varphi(N) $ suchen wir uns eine zweite Zahl e, die teilerfremd zu $ \varphi(N) $ ist, sprich den $ggT(\varphi(N),e) = 1$. Am Besten man verwendet eine weitere Primzahl. Wir nehmen für e die Primzahl 23.
 %
 \begin{equation*}
     e = 23
@@ -168,31 +168,46 @@ Jetzt weneden wir den Erweiterter Euklidischer Algorithmus [\ref{eqn:erw_euklid_
   1 &= 2 \cdot 5 - 1 \cdot 9 = 2 \cdot (23 - 2 \cdot 9) - 1 \cdot 9 = 2 \cdot 23 - 4 \cdot 9 - 1 \cdot 9 = 2 \cdot 23 - 5 \cdot 9\\
   1 &= 2 \cdot 23 - 5 \cdot 9 = 2 \cdot 23 - 5 \cdot (216 - 9 \cdot 23) = 2 \cdot 23 - 5 \cdot 216 + 45 \cdot 23 = \textbf{47} \cdot 23 \textbf{- 5} \cdot 216
 \end{flalign*}
-Aus der letzen Formel können wir d und k herauslesen.
-\begin{flalign*}
-  d = 47\\
-  k = -5
-\end{flalign*}
+Wenden die Modulare Inverse auf die letzte Gleichun an und erhalten $d = 47$.
+%
 Jetzt haben wir alle nötigen Zahlen die wir für eine Verschlüsselung sowie Entschlüsselung benötigen.
 \subsubsection{Verschlüsseln}
-Da man Text nicht verschlüsseln kann, braucht man für den Text Zahlen. Wir nehmen jetzt zur Vereinfachung eine Zahl.\\
-$ m = 15 $ \\
-$ 15^{23} \bmod 247 = 59$ \\
+Da man Text nicht verschlüsseln kann, braucht man für den Text Zahlen. Wir nehmen jetzt zur Vereinfachung eine Zahl.
+\begin{flalign*}
+  m &= 15 \\
+  15^{23} \bmod 247 &= 59
+\end{flalign*}
 Die Zahl 15 verschlüsselt mit unserem öffentlichen Schlüssel (23,247) ergibt die Zahl 59.
+%
 \subsubsection{Entschlüsseln}
 Um zu überprüfen ob unserer privater Schlüssel auch wirklich funktioniert, entschlüsseln wir die Zahl 59 mit unserem privaten Schlüssel.\\
-$ c = 59 $ \\
-$ 59^{47} \bmod 247 = 15$ \\
+\begin{flalign*}
+  c &= 59  \\
+  59^{47} \bmod 247 &= 15
+\end{flalign*}
 Somit sehen wir, dass unser kleines Beispiel funktioniert hat.
-%\subsection{Komplexeres Zahlenbeispiel}
+%
 \subsection{Beispiel an einem Text}
-Wir nehmen für unser Beispiel an unserem Text das gleiche Schlüssel Paar wie aus unserem obigen Beispiel.
-$ N = 247 $\\
-$ e = 23 $\\
-$ d = 47 $\\
+Damit wir einen Text verschlüsseln können, brauchen wir grössere Zahlen. Für das nächste Beispiel sind folgende Zahlen gegeben.
+\begin{flalign*}
+  p &= 101\\
+  q &= 349\\
+  N &= 35'249\\
+  \varphi(N) &= 34'800\\
+  e &= 509\\
+  d &= 7'589
+\end{flalign*}
 Wir müssen nur noch ein Verfahren wählen, wie wir einen Buchstaben in eine Zahl umwandeln. Für das gibt es \textit{ASCII} Tabellen, die für jedes Zeichen, eine Zahl darstellen.\\
-Wir würden gerne das Wort \textit{Hello World} verschlüsseln. Als erstes müssen wir unseren Text in Zahlen umwandeln. Dazu verwenden wir die Dezimalschreibweise.\\
-\textit{Hello World} würde in dieser Schreibweise \textit{721011081081113287111114108100} heissen. Jetzt ist das natürlich eine viel zu hohe Zahl. Deshalb wird sie immer nach zwei Ziffern getrennt. Unser Text zum verschlüsseln würde dann so aussehen \textit{72 10 11 08 10 81 11 32 87 11 11 14 10 81 00}. Jetzt können wir uns ans Verschlüsseln machen. \\
+Wir würden gerne das Wort \textit{GIBM MUTTENZ} verschlüsseln. Als erstes müssen wir unseren Text in Zahlen umwandeln. Dazu verwenden wir die Dezimalschreibweise.\\
+\textit{GIBM MUTTENZ} würde in dieser Schreibweise \textit{717366773277858484697890} heissen. Da $m < N$ sein muss, müssen wir unsere Zahl in Blöcke aufteillen. Wir machen uns immer 4er Blöcke und verschlüsseln sie.
+\begin{flalign*}
+  7173^509 \bmod(35'249) = 2330\\
+  6677^509 \bmod(35'249) = \\
+  3277^509 \bmod(35'249) = \\
+  8584^509 \bmod(35'249) = \\
+  8469^509 \bmod(35'249) = \\
+  7890^509 \bmod(35'249) = \\
+\end{flalign*}
 $ 72^{23} \bmod 247 = 002 $ \\
 $ 10^{23} \bmod 247 = 212 $ \\
 $ 11^{23} \bmod 247 = 045 $ \\

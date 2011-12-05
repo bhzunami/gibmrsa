@@ -6,8 +6,8 @@ Das RSA Verfahren ist verwandt mit dem Rabin-Kryptosystem, dass auch auf Primzah
 \subsection{Der Schlüssel}
 Dieses Kapitel wurde mit Hilfe des Buches \textit{RSA and Public-Key Cryptography} erarbeitet.\\[2ex]
 %
-Für eine sichere Verschlüsslung braucht es auf einen guten Schlüssel. Denn nur mit diesem Schlüssel, kann man die verschlüsselte Nachricht entschlüsseln. Der Schlüssel spielt also eine zentrale und wichtige Rolle. Dazu muss er so komplex sein, dass man ihn nicht erraten kann, oder durch Ausprobieren entdeckt.\\
-Darum ist es auch sehr wichtig, dass man Zufallszahlen nimmt, die man nicht vorhersagen kann, beziehungsweise im Nachhinein berechnen kann.
+Für eine sichere Verschlüsslung braucht es einen guten Schlüssel. Der Schlüssel spielt also eine zentrale und wichtige Rolle. Dazu muss er so komplex sein, dass man ihn nicht erraten, oder durch Ausprobieren entdecken kann.\\
+Darum ist es auch sehr wichtig, dass man Zufallszahlen nimmt, die nicht im Nachhinein berechnet werden können.
 %
 \subsubsection{Zufallszahlen generieren}
 In der Informatik sind Zufallszahlen eine sehr komplexe Angelegenheit. Um solche Zufallszahlen zu generieren, haben grössere Firmen einen Zufallszahlengeneratoren (eng. \textit{random number generator} RNG) entwickelt. Diese messen den radioaktiven Zerfall oder beobachteten die atmosphärischen Bedingungen in der Umgebung. Die Zahlen, die der RNG auswertet, nennt man \textbf{Seed-Zahlen}. Mit den gewonnen Seed-Zahlen, kann man jetzt einen Algorithums füttern, der eine Zahl oder eine Zahlenfolge zurückgibt. Hat man eine solche Zufallszahl, muss noch überprüft werden, ob es eine Primzahl ist. Zur überprüfung gibt es extra Verfahren, die wir hier nicht weiter erleutern werden. Mehr Informationen dazu im Buch \textit{RSA and Public-Key Cryptography - Kapitel 4}.\\
