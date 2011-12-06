@@ -5,11 +5,11 @@
 \input{./schluessel.tex}
 %
 \subsection{Formel Verschlüsselung}
-Wenn die Schlüssel erstellt wurden, kann ein Text einfach verschlüsselt werden.\\
+Sind die Schlüssel erstellt, kann ein Text m einfach verschlüsselt werden.\\
 Dazu dient folgende Formel:
 %
 \begin{equation}
-  c \equiv m^e  \bmod N
+  c \equiv m^e  \bmod(N)
   \label{eqn:rsa_encription}
 \end{equation}
 %
@@ -21,11 +21,11 @@ Dazu dient folgende Formel:
 Die Entschlüsselung der Nachricht wird mit folgender Formel realisiert:
 %
 \begin{equation}
-  m \equiv c^d \bmod N
+  m \equiv c^d \bmod(N)
   \label{eqn:rsa_decription}
 \end{equation}
 %
-Der Klartext m hängt in diesem Fall vom verschlüsselten Text C, dem privaten Schlüssel d und dem RSA-Modul N ab. 
+Der Klartext m hängt in diesem Fall vom verschlüsselten Text c, dem privaten Schlüssel d und dem RSA-Modul N ab. 
 %
 %
 \newpage
