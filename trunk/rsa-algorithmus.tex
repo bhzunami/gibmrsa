@@ -145,18 +145,18 @@ Mit der modularen Inverse wurde d so bestimmt, das keine negative Zahl entsteht.
 % BEISPIEL
 %***************************************
 \section{Beispiel}
-
+Nachdem wir nun das ganze Wissen für den RSA-Algorithmus haben, ist es an der Zeit ein kleines Beispiel durchzugehen.
 \subsection{Einfaches Zahlenbeispiel}
-Ein einfaches Beispiel für den RSA-Algorithmus
-\subsubsection{Schlüssel-Paar erstellen}
-Ein einfaches Zahlenbeispiel. Wir suchen uns zwei kleine Primzahlen.
+Wir starten mit einem einfachen Zahlenbeispiel. Auf die mathematischen Methoden wird nur noch verwiesen. Wir erklären sie hier nicht mehr.\\
+Für dieses Beispiel nehmen wir die Zahlen
 %
 \begin{flalign*}
   p = 13 \\
   q = 19
 \end{flalign*}
 %
-Wir berechnen nun das RSA-Modul N [\ref{eqn:rsa_modul}] und $\varphi(N) $ [\ref{eqn:eulersche_func}] aus p und q.
+\paragraph{Schlüssel-Paar erstellen}
+Wir berechnen nun das RSA-Modul N [siehe Formel \ref{eqn:rsa_modul}] und $\varphi(N) $ [siehe Formel \ref{eqn:eulersche_func}] aus p und q.
 \begin{equation*}
   \tag{RSA-Modul}
   247 = 13 \cdot 19
@@ -167,48 +167,54 @@ Wir berechnen nun das RSA-Modul N [\ref{eqn:rsa_modul}] und $\varphi(N) $ [\ref{
   216 = (13 - 1) \cdot (19 - 1)
 \end{equation*}
 %
-Zu $ \varphi(N) $ suchen wir uns eine zweite Zahl e, die teilerfremd zu $ \varphi(N) $ ist, sprich den $ggT(\varphi(N),e) = 1$. Am Besten man verwendet eine weitere Primzahl. Wir nehmen für e die Primzahl 23.
+Zu $ \varphi(N) $ suchen wir uns eine zweite Zahl e, die teilerfremd zu $ \varphi(N) $ ist, sprich den $ggT(\varphi(N),e) = 1$ hat. Am Besten man verwendet für e eine weitere Primzahl.
 %
 \begin{equation*}
     e = 23
 \end{equation*}
 %
-Der öffentliche Schlüssel ist nun berechnet [siehe Section \ref{sec:public_key}]\\
-Um den entschlüsselungs Exponenten zu errechnen, müssen wir zuerst den ggT [\ref{eqn:euklidischer_algo}] aus 23 und 216 ausrechnen.
+Der öffentliche Schlüssel $N = 247$ und $e = 23$ ist nun berechnet [siehe Section \ref{sec:public_key}]\\
+Um den Entschlüsselungs-Exponenten zu berechnen, müssen wir zuerst den ggT(216,23) [siehe Formel \ref{eqn:euklidischer_algo}] ausrechnen.
 \begin{flalign*}
-  216 & = 9 * 23 + 9 \\
-  23 & = 2 *  9 + 5 \\
-  9 & = 1 *  5 + 4 \\
-  5 & = 1 *  4 + 1
+  216 & = 9 \cdot 23 + 9 \\
+  23 & = 2 \cdot  9 + 5 \\
+  9 & = 1 \cdot  5 + 4 \\
+  5 & = 1 \cdot  4 + 1
 \end{flalign*}
 %
-Jetzt weneden wir den Erweiterter Euklidischer Algorithmus [\ref{eqn:erw_euklid_algo}] an.
+Jetzt weneden wir den Erweiterter Euklidischer Algorithmus [siehe Formel \ref{eqn:erw_euklid_algo}] an.
 \begin{flalign*}
   1 &= 5 - 1 \cdot 4 = 5 - 1 \cdot(9 - 1 \cdot 5) = 5 - 1 \cdot 9 + 1 \cdot 5 = 2 \cdot 5 - 1 \cdot 9\\
-  1 &= 2 \cdot 5 - 1 \cdot 9 = 2 \cdot (23 - 2 \cdot 9) - 1 \cdot 9 = 2 \cdot 23 - 4 \cdot 9 - 1 \cdot 9 = 2 \cdot 23 - 5 \cdot 9\\
-  1 &= 2 \cdot 23 - 5 \cdot 9 = 2 \cdot 23 - 5 \cdot (216 - 9 \cdot 23) = 2 \cdot 23 - 5 \cdot 216 + 45 \cdot 23 = \textbf{47} \cdot 23 \textbf{- 5} \cdot 216
+  &= 2 \cdot 5 - 1 \cdot 9 = 2 \cdot (23 - 2 \cdot 9) - 1 \cdot 9 = 2 \cdot 23 - 4 \cdot 9 - 1 \cdot 9 = 2 \cdot 23 - 5 \cdot 9\\
+  &= 2 \cdot 23 - 5 \cdot 9 = 2 \cdot 23 - 5 \cdot (216 - 9 \cdot 23) = 2 \cdot 23 - 5 \cdot 216 + 45 \cdot 23 = \textbf{47} \cdot 23 \textbf{- 5} \cdot 216
 \end{flalign*}
-Wenden die Modulare Inverse auf die letzte Gleichun an und erhalten $d = 47$.
+Modulare Inverse auf letzte Gleichung anwenden und wir erhalten:
+\begin{equation*}
+  1 \equiv 47 \cdot 23 \bmod(216)
+\end{equation*}
+Und dadurch unseren privatern Schlüssel $N = 216$ und $d = 47$\\
 %
-Jetzt haben wir alle nötigen Zahlen die wir für eine Verschlüsselung sowie Entschlüsselung benötigen.
-\subsubsection{Verschlüsseln}
-Da man Text nicht verschlüsseln kann, braucht man für den Text Zahlen. Wir nehmen jetzt zur Vereinfachung eine Zahl.
-\begin{flalign*}
-  m &= 15 \\
-  15^{23} \bmod 247 &= 59
-\end{flalign*}
+Jetzt haben wir unseren privaten als auch öffentlichen Schlüssel die wir für eine Ver- Entschlüsselung benötigen.
+\paragraph{Verschlüsseln}
+Zur Einfachheit verschlüsseln wir die Zahl 15.\\
+Verschlüsselungsfunktion anwenden:
+\begin{equation*}
+  15^{23} \bmod 247 = 59
+\end{equation*}
 Die Zahl 15 verschlüsselt mit unserem öffentlichen Schlüssel (23,247) ergibt die Zahl 59.
 %
-\subsubsection{Entschlüsseln}
+\paragraph{Entschlüsseln}
 Um zu überprüfen ob unserer privater Schlüssel auch wirklich funktioniert, entschlüsseln wir die Zahl 59 mit unserem privaten Schlüssel.\\
-\begin{flalign*}
-  c &= 59  \\
-  59^{47} \bmod 247 &= 15
-\end{flalign*}
-Somit sehen wir, dass unser kleines Beispiel funktioniert hat.
+\begin{equation*}
+  59^{47} \bmod 247 = 15
+\end{equation*}
+Als Resultat erhalten wir 15 und können dadurch sehen, dass unser kleines Beispiel funktioniert hat.
+%
+% Beispiel TEXT
 %
 \subsection{Beispiel an einem Text}
-Damit wir einen Text verschlüsseln können, brauchen wir grössere Zahlen. Für das nächste Beispiel sind folgende Zahlen gegeben.
+Nun möchten wir ein Beispiel an einem Text zeigen. Da man Buchstaben nicht verschlüsseln, denn mit ihnen lässt sich nicht rechnen, müssen wir den Text in Zahlen umzuwandeln. Dafür gibt es viele verschiedene Möglichkeiten. Wir verwednen in diesem Beispiel die \textit{ASCII-Tabelle}\footnote{Die ASCII-Tabelle ordnet jedem Buchstaben eine eindeutige Zahl zu.}.\\
+Weiter gilt zu beachten, dass man bei Text-Verschlüsselung grössere Schlüssel braucht. Deshalb nehmen wir für das nächste Beispiel neue Zahlen:
 \begin{flalign*}
   p &= 101\\
   q &= 349\\
@@ -217,52 +223,31 @@ Damit wir einen Text verschlüsseln können, brauchen wir grössere Zahlen. Für
   e &= 509\\
   d &= 7'589
 \end{flalign*}
-Wir müssen nur noch ein Verfahren wählen, wie wir einen Buchstaben in eine Zahl umwandeln. Für das gibt es \textit{ASCII} Tabellen, die für jedes Zeichen, eine Zahl darstellen.\\
-Wir würden gerne das Wort \textit{GIBM MUTTENZ} verschlüsseln. Als erstes müssen wir unseren Text in Zahlen umwandeln. Dazu verwenden wir die Dezimalschreibweise.\\
-\textit{GIBM MUTTENZ} würde in dieser Schreibweise \textit{717366773277858484697890} heissen. Da $m < N$ sein muss, müssen wir unsere Zahl in Blöcke aufteillen. Wir machen uns immer 4er Blöcke und verschlüsseln sie.
+Wir verschlüsseln das Wort \textit{GIBM MUTTENZ}. Als erstes müssen wir unseren Text in Zahlen umwandeln.\\
+\textit{GIBM MUTTENZ} würde in der ASCII-Schreibweise \textit{717366773277858484697890} heissen.\\
+Da $m < N$ sein muss, müssen wir unsere grosse Zahl in Blöcke aufteillen. Wir machen uns immer 4er Blöcke und verschlüsseln sie einzeln mit unserem öffentlichen Schlüssel (35'249,509).
 \begin{flalign*}
-  7173^509 \bmod(35'249) = 2330\\
-  6677^509 \bmod(35'249) = \\
-  3277^509 \bmod(35'249) = \\
-  8584^509 \bmod(35'249) = \\
-  8469^509 \bmod(35'249) = \\
-  7890^509 \bmod(35'249) = \\
+  7173^{509} \bmod(35'249) &= 2330\\
+  6677^{509} \bmod(35'249) &= 21891\\
+  3277^{509} \bmod(35'249) &= 10955\\
+  8584^{509} \bmod(35'249) &= 403\\
+  8469^{509} \bmod(35'249) &= 32164\\
+  7890^{509} \bmod(35'249) &= 34762
 \end{flalign*}
-$ 72^{23} \bmod 247 = 002 $ \\
-$ 10^{23} \bmod 247 = 212 $ \\
-$ 11^{23} \bmod 247 = 045 $ \\
-$ 08^{23} \bmod 247 = 031 $ \\
-$ 10^{23} \bmod 247 = 212 $ \\
-$ 81^{23} \bmod 247 = 009 $ \\
-$ 11^{23} \bmod 247 = 045 $ \\
-$ 32^{23} \bmod 247 = 128 $ \\
-$ 87^{23} \bmod 247 = 159 $ \\
-$ 11^{23} \bmod 247 = 045 $ \\
-$ 11^{23} \bmod 247 = 045 $ \\
-$ 14^{23} \bmod 247 = 105 $ \\
-$ 10^{23} \bmod 247 = 212 $ \\
-$ 81^{23} \bmod 247 = 009 $ \\
-$ 00^{23} \bmod 247 = 000 $ \\
-Somit würde der Text verschlüsselt \textit{002212045031212009045128159045045105212009000} lauten.
-Um zu testen ob es stimmt verschlüsseln wir unser Text. Auch hier wieder die Zahlen in Unterteilen.
-$ 002^{47} \bmod 247 = 72 $ \\
-$ 212^{47} \bmod 247 = 10 $ \\
-$ 045^{47} \bmod 247 = 11 $ \\
-$ 031^{47} \bmod 247 = 08 $ \\
-$ 212^{47} \bmod 247 = 10 $ \\
-$ 009^{47} \bmod 247 = 81 $ \\
-$ 045^{47} \bmod 247 = 11 $ \\
-$ 128^{47} \bmod 247 = 32 $ \\
-$ 159^{47} \bmod 247 = 87 $ \\
-$ 045^{47} \bmod 247 = 11 $ \\
-$ 045^{47} \bmod 247 = 11 $ \\
-$ 105^{47} \bmod 247 = 14 $ \\
-$ 212^{47} \bmod 247 = 10 $ \\
-$ 009^{47} \bmod 247 = 81 $ \\
-$ 000^{47} \bmod 247 = 00 $ \\
-Das 000 ist ein bisschen problematisch, denn eigentlich gibt es nur 0 aber da wir ja auf zwei Stellen kommen müssen, wissen wir dass es 00 sein muss. Wie wir sehen haben wir unseren Text \textit{721011081081113287111114108100}  wieder.
-
-
+Der verschlüsselte Text \textit{233021891109554033216434762} kann somit zum Empfänger gesendet werden.\\
+Leider gibt es nicht immer gleich lange Zahlen. Das wird dann zum Problem, wenn wir den verschlüsselten Text zurück entschlüsseln. Dieses Problem wird bei einer richtigen Verschlüsselung in der Implementierung gelöst. Entweder werden die Zahlen aufgefüllt, oder man verwendet ein eindeutiges Trennzeichen.\\
+Der Empfänger entschlüsselt jetzt mit seinem private Key (35'240,7589) die Nachricht. Damit er die Originalnachricht erhaltet, müssen die gleichen Blöcke genommen werden, wie bei der Verschlüsselung.
+%
+\begin{flalign*}
+  2330^{7589} \bmod(35'249) &= 7173\\
+  21891^{7589} \bmod(35'249) &= 6677\\
+  10955^{7589} \bmod(35'249) &= 3277\\
+  403^{7589} \bmod(35'249) &= 8584\\
+  32164^{7589} \bmod(35'249) &= 8469\\
+  34762^{7589} \bmod(35'249) &= 7890
+\end{flalign*}
+%
+Der Empfänger hat seine geheime Nachricht erfolgreich entschlüsseln können. 
 \section{Anwendung}
 Asymmetrische Verschlüsselungen werden häufig verwendet.  Obwohl verschiedene neue asymmetrische Verschlüsselungen erfunden wurden, deckt der RSA-Algorithmus weiterhin eine grosse Menge der asymmetrischen Verschlüsselung ab.\\
 Wir möchten hier einige Beispiele aufzeigen, in denen der RSA-Algorithmus zu tragen kommt. Prinzipiell kommt ein asymmetrisches Verfahren dann zum Einsatz, wenn sich zwei Parteien ohne vorherigen Kontakt eine sichere Kommunikation aufbauen möchten. Es ist naheliegend, dass im IT-Bereich, über ein Netzwerk bzw. das Internet, solche Anforderungen bestehen.
