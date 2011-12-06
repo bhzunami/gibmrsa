@@ -9,7 +9,7 @@ Dieses Kapitel wurde mit Hilfe des Buches \textit{RSA and Public-Key Cryptograph
 Für eine sichere Verschlüsslung braucht es einen langen und möglichst zufällig ausgewählten Schlüssel. Der Schlüssel spielt also eine zentrale und wichtige Rolle. Dazu muss er so komplex sein, dass man ihn nicht erraten, oder durch Ausprobieren entdecken kann. Um dies zu erreichen verwendet man Zufallszahlen.
 %
 \subsubsection{Zufallszahlen generieren}
-Zufallszahlen sind eine sehr komplexes Thema. Um sichere Zufallszahlen zu generieren, haben grössere Firmen ein Zufallszahlengenerator (eng. \textit{random number generator} RNG) entwickelt. Diese messen den radioaktiven Zerfall oder beobachteten die atmosphärischen Bedingungen in der Umgebung. Die Zahlen, die der RNG auswertet, nennt man \textbf{Seed-Zahlen}. Mit den gewonnen Seed-Zahlen kann man jetzt einen Algorithums füttern, der eine Zahl oder eine Zahlenfolge zurückgibt.\\
+Zufallszahlen sind eine sehr komplexes Thema. Um sichere Zufallszahlen zu generieren, haben spezialisierte Firmen ein Zufallszahlengenerator (eng. \textit{random number generator} RNG) entwickelt. Diese messen den radioaktiven Zerfall oder beobachteten die atmosphärischen Bedingungen in der Umgebung. Die Zahlen, die der RNG auswertet, nennt man \textbf{Seed-Zahlen}. Mit den gewonnen Seed-Zahlen kann man jetzt einen Algorithums füttern, der eine Zahl oder eine Zahlenfolge zurückgibt.\\
 Speziell bei der RSA-Verschlüsselung muss man die Zahl/en überprüfen ob es eine Primzahl ist. Zur überprüfung gibt es extra Verfahren, die wir hier nicht weiter erleutern werden. Mehr Informationen dazu im Buch \textit{RSA and Public-Key Cryptography - Kapitel 4}.\\
 %
 Für die meisten Benutzer sind solche Generatoren viel zu aufwendig und teuer. Deshalb entwickelten Computerhersteller einen Pseudozufallszahlengenerator (eng. \textit{pseudo random number generator} PRNG). Der PRNG erstellt die Seed-Zahlen zum Beispiel aus der momentanen CPU Auslastung oder anderen, nicht vorhersehbaren Elementen.\\
@@ -20,7 +20,7 @@ Das Einzige, was man errechnen kann, ist die Entropie\footnote{Die Entropie besc
 Für eine RSA-Verschlüsselung brauchen wir zwei Schlüssel, die voneinander abhängig sind. Einen private und einen public Key. Im nächsten Abschnitt wird erläutert, wie man dieses Schlüsselpaar ermittelt.% zwei Schlüsser zeugen kann.
 %
 \paragraph{Public-Key erstellen}\label{sec:public_key}
-Als erstes brauchen wir zwei Primzahlen p und q die weit voneinander weg liegen. Je grösser desto besser und sicherer. Wie man solche Primzahlen erstellt, möchten wir hier nicht erläutern. Es gibt Methoden, bei denen man mit grosser Wahrscheinlichkeit eine Primzahl generieren kann. Man muss die Zahl nachher immer überprüfen.\\
+Als erstes brauchen wir zwei Primzahlen p und q die weit voneinander weg liegen. Je grösser sie sind, desto besser und sicherer wird das Schlüsselpaar. Wie man solche Primzahlen erstellt, möchten wir hier nicht erläutern. Es gibt Methoden, bei denen man mit grosser Wahrscheinlichkeit eine Primzahl generieren kann. Man muss die Zahl nachher immer überprüfen.\\
 Sind beide Primzahlen gefunden, errechnen wir uns das RSA-Modul N. %, auch RSA-Modul genannt.
 %
 \begin{equation}
