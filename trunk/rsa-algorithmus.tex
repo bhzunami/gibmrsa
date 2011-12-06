@@ -5,17 +5,26 @@
 \input{./schluessel.tex}
 %
 \subsection{Formel Verschlüsselung}
-Wenn der Schlüssel erstellt wurde kann ein Text einfach verschlüsselt werden. Dazu dient folgende Formel:
-$ C \equiv m^e  \bmod N $\\
-C steht für Cipher und bezeichnet den Geheimtext. Dieser ist abhängig von der Nachricht m, dem öffentlichen Schlüssel e und dem RSA-Modul N.
-
+Wenn die Schlüssel erstellt wurden, kann ein Text einfach verschlüsselt werden.\\
+Dazu dient folgende Formel:
+%
+\begin{equation}
+  c \equiv m^e  \bmod N
+  \label{eqn:rsa_encription}
+\end{equation}
+%
 %\subsection{RSA Entschlüsselung}
 %Die RSA Entschlüsselung ist ohne den Geheimschlüssel zu wissen nicht möglich. Da die Sicherheit von diesem Geheimschlüssel abhängt, gilt es diesen möglichst lang zu wählen und geheim zu halten. Aktuell gilt eine Schlüssellänge von 2048 Bit als sicher. Als Dezimalzahl ausgedrückt, ist dies eine Zahl von $ 3,2 \cdot 10^{616} $
 %Die Angriffe auf die RSA Verschlüsselung zielen darauf ab, den Geheimschlüssel zu ermitteln. Das Problem dabei ist die Primfaktoren Zerlegung von grossen Zahlen. Mehr dazu im Kapitel Angriffe %Verweis%
 
 \subsection{Formel Entschlüsselung}
-Die Entschlüsselung der Nachricht wird mit folgender Formel realisiert
-$ m \equiv C^d \bmod N $ \\
+Die Entschlüsselung der Nachricht wird mit folgender Formel realisiert:
+%
+\begin{equation}
+  m \equiv c^d \bmod N
+  \label{eqn:rsa_decription}
+\end{equation}
+%
 Der Klartext m hängt in diesem Fall vom verschlüsselten Text C, dem privaten Schlüssel d und dem RSA-Modul N ab. 
 %
 %
@@ -123,9 +132,12 @@ Die Entschlüsselung der Nachricht funktioniert nur mit dem zugehörigen private
  e \cdot d + k \cdot \varphi(N) &= 1	
 \end{flalign*}
 Mit der modularen Inverse wurde d so bestimmt, das keine negative Zahl entsteht. Aus der vorherigen Formel ist ersichtlich, dass nur ein ganz bestimmtes d zu einem e und N gehört. Jeder andere Entschlüsselungexponent würde die Formel nicht korrekt erfüllen und zu einem anderen Ergebnis nach der Entschlüsselung führen. 
-
-
+%
+%***************************************
+% BEISPIEL
+%***************************************
 \section{Beispiel}
+
 \subsection{Einfaches Zahlenbeispiel}
 Ein einfaches Beispiel für den RSA-Algorithmus
 \subsubsection{Schlüssel-Paar erstellen}
