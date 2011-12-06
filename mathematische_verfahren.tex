@@ -6,8 +6,8 @@ Im nächsten Abschnitt werden die einzelnen mathematischen Verfahren kurz in ihr
 Wir werden für die beiden Primzahlen durchgehend die Variabeln $p$ und $q$ verwenden. $N$ steht immer für das Produkt von $p \cdot q$. Die Variable $r$ wird für das Resultat der Modulo-Berechnungen verwendet. $e$ steht für den Verschlüsselungs-Exponenten und $d$ für den Entschlüsselungs-Exponenten.
 %
 \subsection{Modulo}
-Modulo oder auch \textit{Division mit Rest} gibt den ganzzahligen Rest einer Division zweier natürlichen Zahlen an. Er wird beim RSA-Algorithmus bei der berechnung des Entschlüsselungs-Exponenten sowie in der Verschlüsselung gebraucht.\\
-Modulo erklärt sich am einfachsten an einem Beispiel.
+Modulo oder auch \textit{Division mit Rest} gibt den ganzzahligen Rest einer Division zweier natürlichen Zahlen an. Er wird beim RSA-Algorithmus bei der Berechnung des Entschlüsselungs-Exponenten sowie in der Verschlüsselung gebraucht.\\
+Modulo erklärt sich am einfachsten an einem Beispiel:
 %
 \begin{equation*}
   21 \bmod(5) = 1
@@ -20,15 +20,15 @@ Es gilt herauszufinden, wieviele Male 5 ganz in 21 vorhanden ist, das heisst wir
   21 - 4 \cdot 5 &= 1\\
   21 &= 4 \cdot 5 + 1
 \end{flalign*}
-Oder für den RSA Algorithmus veralgemeinert:
-\begin{equation}
-  \varphi(N) = a \cdot e + r
-  \label{eqn:mod_rsa}
-\end{equation}
+%Oder für den RSA Algorithmus veralgemeinert:
+%\begin{equation}
+%  \varphi(N) = q \cdot e + r
+%  \label{eqn:mod_rsa}
+%\end{equation}
 %
 \paragraph{Kongruent Modulo}
-Kongruent Modulo bedeutet nichts anders, als dass zwei verschiedene Zahlen modulo einer gleichen Zahl den selben Rest haben. Man sagt auch, dass sie in der gleichen Restklasse sind.\\
-Als Beispiel nehmen wir die Zahlen 9 und 7 die modulo 2 gerechnet werden.
+Kongruent Modulo bedeutet nichts anders, als dass zwei verschiedene Zahlen Modulo einer gleichen Zahl den selben Rest haben. Man sagt auch, dass sie in der gleichen Restklasse sind.\\
+Als Beispiel nehmen wir die Zahlen 9 und 7 die Modulo 2 gerechnet werden.
 %
 \begin{flalign*}
   9 \bmod(2) &= 1 \\
@@ -43,9 +43,9 @@ Als Beispiel nehmen wir die Zahlen 9 und 7 die modulo 2 gerechnet werden.
 \subsection{Eulersche Funktion}
 
 Die Eulersche Funktion zählt die natürlichen, teilerfremden\footnote{Zwei Zahlen sind teilerfremd zueinander, wenn ihr grösster gemeinsamer Teiler 1 ist.}  Zahlen von n, die kleiner als n sind.\\
-Für die Eulersche Funktion stellen die Primzahlen einen spezial Fall dar.
-Primzahlen sind nur durch 1 und sich selbst ohne Rest dividierbar. Somit ist die Eulersche Funktion einer Primzahl p immer $p - 1$.\\
-Um den privaten Schlüssel zu errechnen, muss man $\varphi(N)$ beziehungsweise $\varphi(pq)$ berechnen. Aus diesem Grund erläutern wir die Eulersche Funktion.
+Für die Eulersche Funktion stellen die Primzahlen einen Spezialfall dar.
+Primzahlen sind nur durch 1 und sich selbst ohne Rest dividierbar. Somit ist das Resultat der die Eulerschen Funktion einer Primzahl p immer $p - 1$.\\
+Um den privaten Schlüssel zu errechnen, muss man $\varphi(N)$ beziehungsweise $\varphi(pq)$ berechnen. Aus diesem Grund erläutern wir die Eulersche Funktion:
 %
 \begin{equation*}
   \varphi(p) = p - 1
@@ -75,7 +75,7 @@ Als Formel geschrieben:
 %=====================
 %Verweis auf Buch Beutelspacher
 \subsection{Satz von Euler}
-Der Satz von Euler gewährleistet, die korrekte Ver- und Entschlüsselung. Somit hat eine grosse Wichtigkeit für den RSA-Algorithmus\cite{zahlentheorie_fuer_einsteiger}. Wir gehen hier nicht weiter auf den Satz von Euler ein und werden später beim Beweis nochmals auf ihn zurückkommen.\\
+Der Satz von Euler gewährleistet die korrekte Ver- und Entschlüsselung.\cite{zahlentheorie_fuer_einsteiger}. Wir gehen hier nicht weiter auf den Satz von Euler ein und werden später beim Beweis nochmals auf ihn zurückkommen.\\
 Der Satz von Euler sagt über zwei natürliche, teilerfremde Zahlen, hier $n$ und $m$, folgendes aus: \cite{kryptologie}
 %
 \begin{equation}
@@ -119,7 +119,7 @@ Nehmen wir für $n = 15$ und $m = 4$ und setzen Formel [\ref{eqn:satz_von_euler}
 % Euklidischer Algorithmus
 %******************************************************************************
 \subsection{Euklidischer Algorithmus}\label{euklidischer_Algorithmus}
-Mit den Euklidischen Algorithmen lassen sich der grösste gemeinsame Teiler (ggT) zweier natürlichen Zahlen berrechnen. Es existiert das etwas ältere Subtraktionsverfahren und das moderne Modulo-Verfahren. Da das Subtraktions-Verfahren nicht die gleiche Effizenz hat wie das Subtraktionsverfahren, konzentrieren wir uns auf das Modulo-Verfahren. \cite{zahlentheorie_fuer_einsteiger}\\
+Mit den Euklidischen Algorithmen lässt sich der grösste gemeinsame Teiler (ggT) zweier natürlichen Zahlen berrechnen. Es existiert das etwas ältere Subtraktionsverfahren und das moderne Modulo-Verfahren. Da das Subtraktions-Verfahren nicht die gleiche Effizenz hat wie das Subtraktionsverfahren, konzentrieren wir uns auf das Modulo-Verfahren. \cite{zahlentheorie_fuer_einsteiger}\\
 Für den RSA-Algorithmus ist es wichtig, dass wir zwei teilfremde Zahlen $\varphi(N)$ und $e$ haben.\\
 %
 Die Formel für das Modulo-Verfahren lautet:
@@ -129,10 +129,11 @@ Die Formel für das Modulo-Verfahren lautet:
   a = b \cdot q + r 
 \end{equation}
 %
-dabei muss 
+wobei
 \begin{equation*}
   0 \leq r \leq e - 1
 \end{equation*}
+gelten.\\
 %
 Auf den RSA-Algorithmus bezogen sieht die Formel so aus:
 \begin{equation}
@@ -142,7 +143,7 @@ Auf den RSA-Algorithmus bezogen sieht die Formel so aus:
 %
 Dabei sind $\varphi(N)$ und e die beiden Zahlen von denen wir den grössten gemeinsamen Teiler ausrechnen.
 Wir gehen davon aus das $\varphi(N)$ grösser ist als e. Wäre das nicht der Fall, müsste e auf die linke Seite des Gleichheitszeichen.
-Zur Veranschaulichung nehmen wir zwei Zahlen $\varphi(N) = 839$ und $e = 199$ und setzen diese in usere Gleichung ein.
+Zur Veranschaulichung nehmen wir zwei Zahlen $\varphi(N) = 839$ und $e = 199$ und setzen diese in unsere Gleichung ein.
 \begin{enumerate}
   \item Schritt: Zahlen in Gleichung einsetzen, q und r ausrechnen.\\
     \begin{equation}
@@ -168,7 +169,7 @@ Ganzer Ablauf:
   \end{split}
 \end{equation}
 %
-Der grösste gemeinsame Teiler von 839 und 199 ist somit 1. Sie sind somit Teilerfremd. \\[2ex]
+Der grösste gemeinsame Teiler von 839 und 199 ist 1. Sie sind daher teilerfremd. \\[2ex]
 Um dieses Verfahren zu beweisen, gehen wir davon aus, dass $\varphi(N)$, e, r und q alles natürliche nicht negative Zahlen sind. Da wir im zweiten Schritt den grössten gemeinsamen Teiler von $e$ und r errechnet haben, kann man basierend auf Formel \ref{eqn:euklidischer_algo_RSA} folgende Behauptung aufstellen:
 %
 \begin{equation}
@@ -190,7 +191,7 @@ Gehen wir zurück zu unserem Beispiel:
 % Erweiterter Euklidischer Algorithmus
 %******************************************************************************
 \subsubsection{Erweiterter Euklidischer Algorithmus}
-Der Erweiterte Euklidische Algorithmus, berechnet neben dem grössten gemeinsamen Teiler $r$ zwei natürlichen Zahlen auch noch die dazugehörigen natürlichen Zahlen d und k, dass folgende Gleichung stimmt:
+Der erweiterte Euklidische Algorithmus berechnet neben dem grössten gemeinsamen Teiler $r$ zweier natürlichen Zahlen auch noch die dazugehörigen natürlichen Zahlen d und k, dass folgende Gleichung stimmt:
 %
 \begin{equation}
   ggT(a,b) = s \cdot a + t \cdot b
@@ -204,7 +205,7 @@ Auf den RSA-Algorithmus angewendet sieht die Formel so aus:
   \label{eqn:erw_euklid_algo_RSA}
 \end{equation}
 %
-Mit seiner Hilfe lässt sich der Entschlüsselungs-Exponent d berechnen, denn wir für den privaten Schlüssel brauchen.\\
+Mit seiner Hilfe lässt sich der Entschlüsselungs-Exponent d berechnen, den wir für den privaten Schlüssel brauchen.\\
 Dieser Algorithmus wird auch \textit{Vielfachsummendarstellung} gennant, denn um auf die Zahlen d und k zu kommen, muss man die Vielfachsummendarstellung anwenden.\\
 Es ist eine erweiterte Form des Euklidischen Algorithmus.\\
 Wir schreiben jetzt die Rechnung \ref{eqn:euqulid_beweis} so um, dass wir den Rest auf einer Seite isolieren.\\ 
@@ -253,11 +254,11 @@ Wir gehen von Formel \ref{eqn:erw_euklid_end} aus und setzen den Term $(-37) \cd
 \begin{equation*}
  1 - 37 \cdot 839 = 156 \cdot 199
 \end{equation*}
-Damit man den nächsten Schritt versteht, muss man wissen, dass man eine Gleichung:
+Damit man den nächsten Schritt versteht, muss man wissen, dass man eine Gleichung
 \begin{equation*}
   1 + k \cdot \varphi(N) = d \cdot e
 \end{equation*}
-Mit Modulo ausdürcken kann.
+mit Modulo ausdrücken kann.
 \begin{equation*}
   1 \equiv d \cdot e \bmod(\varphi(N))
 \end{equation*}
