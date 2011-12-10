@@ -1,16 +1,16 @@
 \part{Verschlüsselung Allgemein}
 \section{Sinn und Zweck der Verschlüsselung}
-Die Verschlüsselung bzw. die Geheimhaltung von Informationen wurde schon lange vor Christi Geburt gebraucht. Es ist wichtig wie ich eine Information vor Unbefugten so darstellen kann, dass es für sie keinen Sinn ergibt. Ich, oder andere, mit einem geheimen Schlüssel können die Information jedoch einfach lesen. Der Zweck hinter der Verschlüsselung ist, dass das Lesen von Daten von Unbefugten verunmöglicht wird. \\
-Als Beispiel nehmen wir einen Brief, welcher nur einen Nachbarn etwas angeht. Da sie dem Briefträger und der Schweizerischen Post vertrauen, verschlüsseln wir in der Regel die Briefe nicht. Mit einem Siegel und dem Briefumschlag würden wir bemerken, falls jemand den Brief vorzeitig geöffnet hat. Bei einer Email können wir uns auf diese Sicherheiten nicht verlassen. Eine Email wird über verschiedenste Server und Länder geschickt, bis sie über einen Weg aus mehreren Knotenpunkten beim Empfänger ankommt. Wer diese Nachricht sonst noch kopiert oder geöffnet hat ist nicht nachvollziehbar. Daher brauchen wir eine Verschlüsselung, damit nur der gewünschte Empfänger diese Nachricht entschlüsseln und somit auch lesen kann.
-
-
+Die Verschlüsselung bzw. die Geheimhaltung von Informationen wurde schon lange vor Christi Geburt gebraucht. Es ist wichtig wie ich eine Information vor Unbefugten so darstellen kann, dass es für sie keinen Sinn ergibt. Ich, oder andere, mit einem geheimen Schlüssel können die Information jedoch lesen. Der Zweck hinter der Verschlüsselung ist, dass das Lesen von Daten von Unbefugten verunmöglicht wird. \\
+Als Beispiel stellen wir uns den Briefverkehr zwischen zwei Nachbarn vor. Da sie dem Briefträger und der Schweizerischen Post vertrauen, verschlüsseln wir in der Regel die Briefe nicht. Mit einem Siegel und dem Briefumschlag würden wir bemerken, falls jemand den Brief vorzeitig geöffnet hat. Zusätzlich könnte mit einem Siegel die Authentizität des Absenders verifiziert werden.\\
+Im Gegensatz zu dem Brief können wir uns bei einer Email nicht auf diese Sicherheiten verlassen. Eine Email wird über verschiedenste Server und Länder geschickt, bis sie über einen Weg aus mehreren Knotenpunkten beim Empfänger ankommt. Wer und ob diese Nachricht sonst noch kopiert geöffnet oder gelesen wurde ist nicht nachvollziehbar. Daher brauchen wir eine Verschlüsselung, damit nur der gewünschte Empfänger diese Nachricht entschlüsseln und somit auch lesen kann.
+%
 %Im realen Leben können wir zum Beispiel unser Haus vor Dieben sichern, indem wir eine Türe mit einem stabilen Schloss einbauen. Möchte man noch weiter gehen, kann man eine Alarmanlage einbauen.\\[2ex]
 %
 % In der Digitalen Welt geht das nicht so einfach. Obwohl man seinen Rechner mit einem Benutzername und Passwort für unbefugte Personen schützen kann, gibt es Techniken, mit der lassen sich ganze Festplatten Bit für Bit kopieren. Hier setzt die Verschlüsselung an. Denn wenn man etwas verschlüsselt auf die Festplatte speichert, kann der unbefugte die gestohlenen Daten nicht brauchen.
 %\section{Geschichte der Verschlüsselung}
 \section{Klassische Kryptographie}
-Die Kryptographie bezeichnet die Entwicklung von Methoden zur Verheimlichung von Nachrichten. Das Wort Kryptographie setzt sich aus dem Griechischen Wort kryptos und graphein zusammen, was so viel wie "verborgen schreiben" heisst.  \\
-Die Hebräer haben 600 vor Christus das Atbash entwickelt. Dabei wurde das Alphabet umgekehrt und entsprechend verschlüsselt.
+Die Kryptographie bezeichnet die Entwicklung von Methoden zur Verheimlichung von Nachrichten. Das Wort Kryptographie setzt sich aus dem Griechischen Wort kryptos und graphein zusammen, was so viel wie "verborgen schreiben" heisst.  \cite{kryptographie_Grundlagen} \\
+Die Hebräer haben 600 vor Christus das Atbash entwickelt. Dabei wurde das Alphabet umgekehrt und entsprechend verschlüsselt. \\
 %
 \begin{table}[ht]
 \caption{Atbash Verschlüsselung}
@@ -22,9 +22,9 @@ Die Hebräer haben 600 vor Christus das Atbash entwickelt. Dabei wurde das Alpha
 \end{center}
 \end{table}
 %
-Das Wort GIBM wird zu TRYN\\
+Das Wort GIBM wird mit Atbash zu TRYN \\
 Die Caesar-Verschlüsselung wurde nach Julius Caesar benannt und zur militärischen Korrespondenz im Römischen Reich gebraucht.\\
-Dafür wurde das Alphabet um 3 Stellen nach hinten verschoben. Aus einem D wird somit ein A. Dieses Verfahren wurde im 15.-Jahrhundert mit einer Chiffrierscheibe verbessert und ist bis heute noch als Caesar Verschlüsselung bekannt. Die Verschiebung um 13 Stellen wird auch als Rot13 bezeichnet, da das Alphabet aus 26 Zeichen besteht, ist die Verschlüsselung und Entschlüsselung bei Rot13 die selbe.
+Dafür wurde das Alphabet um 3 Stellen nach hinten verschoben. Aus einem D wird somit ein A. Dieses Verfahren wurde im 15.-Jahrhundert mit einer Chiffrierscheibe verbessert und ist bis heute noch als Caesar Verschlüsselung bekannt. Die Verschiebung um 13 Stellen wird auch als rot13 bezeichnet, da das Alphabet aus 26 Zeichen besteht, ist die Verschlüsselung und Entschlüsselung bei rot13 die selbe. \\
 
 \begin{table}[ht]
 \caption{Caesar Verschlüsselung}
@@ -35,15 +35,17 @@ Dafür wurde das Alphabet um 3 Stellen nach hinten verschoben. Aus einem D wird 
 \end{tabular}
 \end{center}
 \end{table}
-Aus GIBM wird DFYJ
+Aus GIBM wird mit der Ceasar Verschlüsselung DFYJ \\
 %
-All diese Verfahren können ziemlich einfach geknackt werden. Da bestimmte Buchstaben in einer Sprache öfter vorkommen, kann durch Textanalyse die Verschiebung herausgefunden werden. Ebenfalls wird der Grundsatz verletzt, dass die Sicherheit nicht von der Geheimhaltung des Algorithmus abhängen darf. 
+All diese Verfahren können ziemlich einfach geknackt werden. Da bestimmte Buchstaben in einer Sprache öfter vorkommen, kann durch Textanalyse die Verschiebung herausgefunden werden. Ebenfalls wird der Grundsatz verletzt, dass die Sicherheit nicht von der Geheimhaltung des Algorithmus abhängen darf. \cite{kerckhoffsprinzip}
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ENIGMA und 2ter Weltkrieg
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 \subsection{Kryptographie im zweiten Weltkrieg}
+Für dieses Kapitel wurde die Dissertation "Chiffriermaschinen und Entzifferungsgeräte
+im Zweiten Weltkrieg: Technikgeschichte und informatikhistorische Aspekte" \cite{enigma} verwendet, da diese Arbeit alle Bereiche abdeckt. \\
 Im zweiten Weltkrieg nutzte die Deutsche Wehrmacht die ENIGMA zur Verschlüsselung ihres Funkverkehrs. Die ENIGMA ist einer Schreibmaschine ähnlich und besteht aus einer Tastatur, einem Walzensatz und einer Anzeige über Lampen. 
 %
 \begin{figure}[ht]
@@ -63,8 +65,8 @@ Die Walzen können sich drehen und sind mit elektrischen Kontakten miteinander v
 \end{center}
 \end{figure}
 %
-Dabei gehen jeweils elektrische Impulse durch die Walze. Nach jeder Drehung legt der Strom eine andere Strecke durch die Walzen zurück. 
-Über das Steckbrett konnte der verschlüsselte Buchstaben nochmals ersetzt werden. Wenn E mit J verbunden ist und nach dem verschlüsseln ein E herauskam, wurde dieses mit einem J angezeigt. 
+Die elektrischen Impulse durch die Walze legen nach jeder Drehung eine andere Strecke zurück. 
+Über das Steckbrett konnte der verschlüsselte Buchstaben nochmals ersetzt werden. Wenn E mit J verbunden ist und nach dem verschlüsseln ein E herauskam, wurde dieses mit einem J verschlüsselt. 
 %
 \subsubsection{Anwendung}
 Die Deutsche Wehrmacht nutzte die ENIGMA um ihre Funksprüche zu verschlüsseln. Dazu wurden jeweils um Mitternacht die Walzen und die Steckverbindungen ausgetauscht bzw. umgesteckt. Ein neuer Schlüsselsatz sah beispielsweise so aus:
