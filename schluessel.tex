@@ -32,8 +32,14 @@ Als nächstes rechnen wir mit der Eulerschen Funktion [\ref{eqn:eulersche_func}]
 Zu der Zahl $\varphi$(N) nehmen wir eine weitere zufällige, zu $\varphi(N)$ \textbf{teilerfremde} Zahl e, die den RSA Verschlüsselungs-Exponent bildet.\\
 Die Zahlen N und e bilden zusammen den öffentlichen Schlüssel.
 \paragraph{Private-Key erstellen}
-Wir haben vorher bei der Erstellung des public Keys die Zahlen für N und e berechnet. Als nächstes wird aus diesen beiden Zahlen d errechnet. d wird als Enschlüsselungs-Exponent im privaten Schlüssel benötigt.\\
+Wir haben vorher bei der Erstellung des public Keys die Zahlen für N und e berechnet. Als nächstes wird aus diesen beiden Zahlen d errechnet. d wird als Entschlüsselungs-Exponent im privaten Schlüssel benötigt.\\
 Mit dem erweiterten Euklidischen Algorithmus [\ref{eqn:erw_euklid_algo}] und der Modularen Inverse wird d berechnet.\\
+% Has grad dri gno fürs label, bitte überprüefe. Denis
+\begin{equation}
+	e \cdot d = 1 \bmod{ \varphi(N) } 
+	\label{eqn:rsa_private_key_erstellen}
+\end{equation}
+%
 %
 % TODO: Auf modulare inverse hinweisen!!!!!
 %\begin{flalign*}
