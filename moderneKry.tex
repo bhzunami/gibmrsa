@@ -30,6 +30,13 @@ Auch hat die Geschichte gezeigt, dass bis heute viele Verschlüsselungsalgorithm
 %
 Somit muss die Verschlüsselungsfunktion so komplex sein, dass man nur mit dem Schlüssel das richtige Ergebnis erhält.
 %
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[width=15cm]{images/symmetrischeVerschluesselung.png}
+\caption{Symmetrische Verschlüsselung}
+\end{center}
+\end{figure}
+%
 %******************************************
 %  Asymetrische Verschlüsselung
 %******************************************
@@ -71,16 +78,24 @@ Die Entschlüsselung in einer Formel ausgedrückt:
 Mit der Entschlüsselungsfunktion \textit{f} und dem entschlüsselungs Exponenten \textit{d} (eng.: \textit{decription exponent}) wird aus dem verschlüsseltem Text \textit{c} den Klartext \textit{m'} gewonnen.
 %
 Das Wichtigste bei der asymmetrischen Verschlüsselung ist, dass beim Entschlüsseln wieder der \textbf{gleiche} Text reproduziert wird, auch wenn zum Ver- und Entschlüsseln zwei unterschiedliche Schlüssel verwendet wurden.\\
-Der ganze Vorgang in einer Gleichung ausgedrückt (c parametrisiert):
-\begin{equation*}
-  m' = f_d (c) = f_d (f_e (m) ) = m \\
-  \label{eqn:asy_togh}
-\end{equation*}
-gekürzt\\
-\begin{equation*}
-  m = f_d ( f_e (m) )
-  \label{eqn:asy_togh_shortForm}
-\end{equation*}
+%Der ganze Vorgang in einer Gleichung ausgedrückt (c parametrisiert):
+%\begin{equation*}
+%  m' = f_d (c) = f_d (f_e (m) ) = m \\
+%  \label{eqn:asy_togh}
+%\end{equation*}
+%gekürzt\\
+%\begin{equation*}
+%  m = f_d ( f_e (m) )
+%  \label{eqn:asy_togh_shortForm}
+%\end{equation*}
+%
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[width=15cm]{images/asymmetrischeVerschluesselung.png}
+\caption{Asymmetrische Verschlüsselung}
+\end{center}
+\end{figure}
+%
 %\paragraph{Beispiel \footnotemark}
 %Herr Müller möchte gern Herrn Spinnler seine sensiblen Daten übergeben. Dafür benötigt er den öffentlichen Schlüssel von Herr Spinnler.\\
 %Jetzt verschlüsselt Herr Müller mit dem öffentlichen Schlüssel seine Daten und sendet das Paket an Herrn Spinnler. Dieser wiederum entschlüsselt das Paket mit seinem geheimen, gut aufbewarten, privaten Schlüssel. Jetzt ist er im Stande die Nachricht von Herrn Müller zu lesen.
