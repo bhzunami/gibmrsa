@@ -39,13 +39,13 @@ Bisher nahmen wir an, dass der RSA-Algorithmus korrekt arbeitet. Diese Annahme m
 \subsection{Verschlüsselung und Entschlüsselung gleichsetzen}
 Für den Beweis benötigen wir die ursprünglichen Formeln zur Verschlüsselung und Entschlüsselung. Diese lauten:
 \begin{flalign*}
-  c & = m^e mod N \\
-  m & = c^d mod N
+  c & \equiv m^e \bmod(N) \\
+  m & \equiv c^d \bmod(N)
 \end{flalign*}
 Da in beiden Formeln die Ursprungsnachricht m und die verschlüsselte Nachricht c vorkommen, können wir diese Formeln gleichsetzen. Dazu lösen wir die Entschlüsselungsformel nach c auf:
 \begin{flalign*}
-  m &= c^d mod N \\
-  m &= c^d - k * N \\
+  m &\equiv c^d \bmod(N) \\
+  m & c^d - k * N \\
   m + k \cdot N & = c^d \\
   \sqrt[d]{m + k \cdot N} & = c
 \end{flalign*}
@@ -53,16 +53,16 @@ Modulo ergibt jeweils den Rest einer ganzzahligen Division. Durch Umformung kann
 Nun können wir c anders ausdrücken und in der Verschlüsselungsformel einsetzen.
 %Wir setzen nun die beiden Formeln gleich, so das nur noch die Ursprungsnachricht m in der Gleichung vorhanden ist:
 \begin{flalign*}
-  m^e mod N & = \sqrt[d]{m + k \cdot N}\\
-  m^{e \cdot d} mod N & = m + k \cdot N\\
-  m^{e \cdot d} mod N & = m 
+  m^e \bmod(N) &\equiv \sqrt[d]{m + k \cdot N}\\
+  m^{e \cdot d} \bmod(N) &\equiv m + k \cdot N\\
+  m^{e \cdot d} \bmod(N) &\equiv m 
   %{m^e}^d mod N & = m \\
   %{m^d}^e mod N & = m
 \end{flalign*}
-Die Formel $ m^{e \cdot d} mod N = m + k \cdot N $ kann gekürzt werden, da k in jedem Fall 0 sein muss. Dies liegt daran, dass wir auf der rechten Seite mit Modulo N den Rest ausgeben. Der Rest kann 0 bis N-1 gross sein. Da m einen Wert hat, muss k in diesem Fall 0 sein. \\
+Die Formel $ m^{e \cdot d} \bmod(N) \equiv m + k \cdot N $ kann gekürzt werden, da k in jedem Fall 0 sein muss. Dies liegt daran, dass wir auf der rechten Seite mit Modulo N den Rest ausgeben. Der Rest kann 0 bis N-1 gross sein. Da m einen Wert hat, muss k in diesem Fall 0 sein. \\
 Wir möchten beweisen, dass die Verschlüsselung (hoch e) und nachherige Entschlüsselung (hoch d) wieder die ursprüngliche Nachricht ergibt:
 \begin{equation*}
- m^{e \cdot d} mod N = m 
+ m^{e \cdot d} \bmod(N) \equiv m 
 \end{equation*}
 %
 %\subsection{Grundlagen zur Erklärung}
@@ -89,53 +89,56 @@ Wir möchten beweisen, dass die Verschlüsselung (hoch e) und nachherige Entschl
 \subsection{Beweis der Funktionsweise}
 Die Gleichsetzung der Entschlüsselung und Verschlüsselung dient uns als Grundlage des Beweises:
 \begin{equation*}   
- m^{e \cdot d} mod N = m
+ m^{e \cdot d} \bmod(N) \equiv m
 \end{equation*}
 %
 Durch die Anwendung des erweiterten Euklidischen Algorithmus \ref{eqn:erw_eukl_fertig} bei der Erstellung des Schlüssels \ref{eqn:rsa_private_key_erstellen} wurde folgendes bestimmt:
 %Wir könnnen durch die modulare Inverse $ e \cdot d $ anders ausdrücken, siehe [\ref{eqn:mod_inverse}]. Diese lösen wir nach $ e \cdot d $ auf:\\
 \begin{flalign*}
- e \cdot d &= 1 \bmod{\varphi(N)}  \\
+ e \cdot d &\equiv 1 \bmod(\varphi(N))  \\
  % e \cdot d + k \cdot \varphi(N) &= 1  \\
  e \cdot d &= 1 + k \cdot \varphi(N) \\
  e \cdot d &= k \cdot \varphi(N) + 1
 \end{flalign*}
 Wenn die Formel Modulo beinhaltet, kann diese jeweils auch mit k Mal den Rest ausgedrückt werden. \\
 %
-Nun ersetzen wir in unserer Ausgangslage $ e \cdot d $ durch $ k \cdot \varphi(N)+1 $ und erhalten die Gleichung wie in Formel [\ref{eqn:kleiner_satz_fermat}].
+Nun ersetzen wir in unserer Ausgangslage $ e \cdot d $ durch $ k \cdot \varphi(N)+1 $ und lösen die Gleichung auf:
 \begin{flalign*}
- m^{e \cdot d} \bmod(N) &= m \\
- m^{ k \cdot \varphi(N) + 1} \bmod(N) &= m  \\
- m^{k \cdot \varphi(N)} \cdot m \bmod(N) &= m  \\
- { m^{ \varphi(N) }} ^k \cdot m \bmod(N) &= m \\
- { m^{ \varphi((p-1)\cdot(q-1)) }} ^k \cdot m \bmod((p-1)\cdot(q-1)) &= m
+ m^{e \cdot d} \bmod(N) &\equiv m \\
+ m^{ k \cdot \varphi(N) + 1} \bmod(N) &\equiv m  \\
+ m^{k \cdot \varphi(N)} \cdot m \bmod(N) &\equiv m  \\
+ { m^{ \varphi(N) }} ^k \cdot m \bmod(N) &\equiv m \\
+ { m^{ \varphi((p-1)\cdot(q-1)) }} ^k \cdot m \bmod((p-1)\cdot(q-1)) &\equiv m
 \end{flalign*}
 %
 %Durch den kleinen Satz von Fermat wissen wir dass $ \varphi(N) $ 1 sein muss. 
-Mit dem kleinen fermatschen Satz können wir nun nach $ m^{\varphi(N)} $ auflösen.\ref{eqn:kleiner_satz_fermat}
+Mit dem Satz von Euler können wir nun nach $ m^{\varphi(N)} $ auflösen. (Siehe Satz von Euler \ref{eqn:satz_von_euler} und Formel \ref{eqn:eulersche_func}).
 %TODO: Kleiner Satz von Fermat erklären
 \begin{flalign*}
-  m^{(p-1)} &= 1 \bmod p \\
+%  m^{(p-1)} &= 1 \bmod p \\
   m^{(p-1) \cdot (q-1)} &= 1 \bmod(p \cdot q) \\
   m^{\varphi(N)} &= 1 \bmod N
 \end{flalign*}
-1. Die Nachricht hoch die Anzahl der Teilerfremden Zahlen bei einer Primzahl ergibt 1 Modulo die Zahl \\
-2. Bei der RSA-Verschlüsselung haben wir die Kombination aus zwei Primzahlen.
-%nicht hoch eine Primzahl gerechnet, sondern hoch $ (p-1) \cdot (q-1) $. 
-Daher können wir laut dem kleinen fermatschen Satz die Gleichung so darstellen.\\
-3. $ p \cdot q $ ist das RSA-Modul N, siehe \ref{eqn:rsa_modul}. $ (p-1) \cdot (q-1) $ sind die Teilerfremden Zahlen von N, da es sich bei p und q um Primzahlen handelt, siehe Eulersche Funktion \ref{eqn:eulersche_func}. \\
 %
-Daraus resultiert das $ 1 \bmod N $ das gleiche ist wie $ m^\varphi(N) $ und entsprechend eingesetzt werden kann. Danach lösen wir die Formel auf. 
+%\begin{enumerate}
+%1. Die Nachricht hoch die Anzahl der Teilerfremden Zahlen bei einer Primzahl ergibt 1 Modulo die Zahl \\
+%\item Der Satz von Euler in Anwendung auf den RSA-Algorithmus kann Bei der RSA-Verschlüsselung haben wir die Kombination aus zwei Primzahlen.
+%nicht hoch eine Primzahl gerechnet, sondern hoch $ (p-1) \cdot (q-1) $. 
+%Daher können wir laut dem Satz von Euler die Gleichung so darstellen wie oben dargestellt.
+%\item $ p \cdot q $ ist das RSA-Modul N, siehe \ref{eqn:rsa_modul}. $ (p-1) \cdot (q-1) $ sind die Teilerfremden Zahlen von N, da es sich bei p und q um Primzahlen handelt, siehe Eulersche Funktion \ref{eqn:eulersche_func}.
+%\end{enumerate}
+%
+Daraus resultiert das $ 1 \bmod(N) $ das gleiche ist wie $ m^\varphi(N) $ und entsprechend eingesetzt werden kann. Danach lösen wir die Formel auf. 
 \begin{flalign*}
- { m^{ \varphi(N) }} ^k \cdot m \bmod(N) &= m  \\
- {1 \bmod N }^k \cdot m \bmod(N) &= m  \\
- 1^k \cdot m \bmod(N) &= m \\
- 1 \cdot m \bmod(N) &= m \\
+ { m^{ \varphi(N) }} ^k \cdot m \bmod(N) &\equiv m  \\
+ {1 \bmod N }^k \cdot m \bmod(N) &\equiv m  \\
+ 1^k \cdot m \bmod(N) &\equiv m \\
+ 1 \cdot m \bmod(N) &\equiv m \\
  m + x \cdot N &= m \\
  m + 0 \cdot N &= m \\
  m &= m 
 \end{flalign*}
-$ 1 \bmod N $ muss 1 ergeben da der Rest höchstens 1 sein kann und das RSA-Modul N grösser als 1 ist. \\
+$ 1 \bmod(N) $ muss 1 ergeben da der Rest höchstens 1 sein kann und das RSA-Modul N grösser als 1 ist. \\
 $ 1^k $ ergibt immer 1, da die Basis 1 hoch eines beliebigen Exponenten 1 ergibt. \\
 Wir wissen das $ x = 0 $ sein muss, da m immer kleiner als N gewählt wird. Falls m grösser gleich N ist, würde der RSA-Algorithmus nicht funktionieren. In diesem Fall wird die Nachricht aufgeteilt und später wieder zusammengesetzt.\\
 Schlussendlich stellen wir fest, dass m = m ist und beweisen somit die korrekte Funktionsweise des RSA-Algorithmus. Die Verschlüsselung und darauffolgende Entschlüsselung ergibt die Ursprungsnachricht.\\
@@ -146,6 +149,7 @@ Die Entschlüsselung der Nachricht funktioniert nur mit dem zugehörigen private
 Mit der modularen Inverse wurde d so bestimmt, das keine negative Zahl entsteht. Aus der vorherigen Formel ist ersichtlich, dass nur ein ganz bestimmtes d zu einem e und N gehört. Jeder andere Entschlüsselungexponent würde die Formel nicht korrekt erfüllen und zu einem anderen Ergebnis führen. 
 %
 %
+\newpage
 %***************************************
 % BEISPIEL
 %***************************************
@@ -161,7 +165,7 @@ Für dieses Beispiel nehmen wir die Zahlen
 \end{flalign*}
 %
 \paragraph{Schlüssel-Paar erstellen}
-Wir berechnen nun das RSA-Modul N [siehe Formel \ref{eqn:rsa_modul}] und $\varphi(N) $ [siehe Formel \ref{eqn:eulersche_func}] aus p und q.
+Wir berechnen nun das RSA-Modul N (siehe Formel \ref{eqn:rsa_modul}) und $\varphi(N) $ (siehe Formel \ref{eqn:eulersche_func}) aus p und q.
 \begin{equation*}
   \tag{RSA-Modul}
   247 = 13 \cdot 19
@@ -179,7 +183,7 @@ Zu $ \varphi(N) $ suchen wir uns eine zweite Zahl e, die teilerfremd zu $ \varph
 \end{equation*}
 %
 Der öffentliche Schlüssel $N = 247$ und $e = 23$ ist nun berechnet [siehe Section \ref{sec:public_key}]\\
-Um den Entschlüsselungs-Exponenten zu berechnen, müssen wir zuerst den ggT(216,23) [siehe Formel \ref{eqn:euklidischer_algo}] ausrechnen.
+Um den Entschlüsselungs-Exponenten zu berechnen, müssen wir zuerst den ggT(216,23) (siehe Formel \ref{eqn:euklidischer_algo}) ausrechnen.
 \begin{flalign*}
   216 & = 9 \cdot 23 + 9 \\
   23 & = 2 \cdot  9 + 5 \\
@@ -187,7 +191,7 @@ Um den Entschlüsselungs-Exponenten zu berechnen, müssen wir zuerst den ggT(216
   5 & = 1 \cdot  4 + 1
 \end{flalign*}
 %
-Jetzt weneden wir den Erweiterter Euklidischer Algorithmus [siehe Formel \ref{eqn:erw_euklid_algo}] an.
+Jetzt wenden wir den Erweiterter Euklidischer Algorithmus (siehe Formel \ref{eqn:erw_euklid_algo}) an.
 \begin{flalign*}
   1 &= 5 - 1 \cdot 4 = 5 - 1 \cdot(9 - 1 \cdot 5) = 5 - 1 \cdot 9 + 1 \cdot 5 = 2 \cdot 5 - 1 \cdot 9\\
   &= 2 \cdot 5 - 1 \cdot 9 = 2 \cdot (23 - 2 \cdot 9) - 1 \cdot 9 = 2 \cdot 23 - 4 \cdot 9 - 1 \cdot 9 = 2 \cdot 23 - 5 \cdot 9\\
@@ -197,16 +201,16 @@ Modulare Inverse auf letzte Gleichung anwenden und wir erhalten:
 \begin{equation*}
   1 \equiv 47 \cdot 23 \bmod(216)
 \end{equation*}
-Und dadurch unseren privatern Schlüssel $N = 216$ und $d = 47$\\
+Und dadurch unseren privaten Schlüssel $d = 47$ und $N = 216$.\\
 %
 Jetzt haben wir unseren privaten als auch öffentlichen Schlüssel die wir für eine Ver- Entschlüsselung benötigen.
 \paragraph{Verschlüsseln}
-Zur Einfachheit verschlüsseln wir die Zahl 15.\\
+Wir verschlüsseln die Zahl 15\\
 Verschlüsselungsfunktion anwenden:
 \begin{equation*}
   15^{23} \bmod 247 = 59
 \end{equation*}
-Die Zahl 15 verschlüsselt mit unserem öffentlichen Schlüssel (23,247) ergibt die Zahl 59.
+Die Zahl 15 verschlüsselt mit unserem öffentlichen Schlüssel (23, 247) ergibt die Zahl 59.
 %
 \paragraph{Entschlüsseln}
 Um zu überprüfen ob unserer privater Schlüssel auch wirklich funktioniert, entschlüsseln wir die Zahl 59 mit unserem privaten Schlüssel.\\
@@ -218,7 +222,7 @@ Als Resultat erhalten wir 15 und können dadurch sehen, dass unser kleines Beisp
 % Beispiel TEXT
 %
 \subsection{Beispiel an einem Text}
-Nun möchten wir ein Beispiel an einem Text zeigen. Da man Buchstaben nicht verschlüsseln, denn mit ihnen lässt sich nicht rechnen, müssen wir den Text in Zahlen umzuwandeln. Dafür gibt es viele verschiedene Möglichkeiten. Wir verwenden in diesem Beispiel die \textit{ASCII-Tabelle}\footnote{Die ASCII-Tabelle ordnet jedem Buchstaben eine eindeutige Zahl zu.}.\\
+Nun möchten wir ein Beispiel an einem Text zeigen. Da man Buchstaben nicht verschlüsseln kann, denn mit ihnen lässt sich nicht rechnen, müssen wir den Text in Zahlen umzuwandeln. Dafür gibt es viele verschiedene Möglichkeiten. Wir verwenden in diesem Beispiel die \textit{ASCII-Tabelle}\footnote{Die ASCII-Tabelle ordnet jedem Buchstaben eine eindeutige Zahl zu.}.\\
 Weiter gilt zu beachten, dass man bei Text-Verschlüsselung grössere Schlüssel braucht. Deshalb nehmen wir für das nächste Beispiel neue Zahlen:
 \begin{flalign*}
   p &= 101\\
@@ -230,7 +234,7 @@ Weiter gilt zu beachten, dass man bei Text-Verschlüsselung grössere Schlüssel
 \end{flalign*}
 Wir verschlüsseln das Wort \textit{GIBM MUTTENZ}. Als erstes müssen wir unseren Text in Zahlen umwandeln.\\
 \textit{GIBM MUTTENZ} würde in der ASCII-Schreibweise \textit{717366773277858484697890} heissen.\\
-Da $m < N$ sein muss, müssen wir unsere grosse Zahl in Blöcke aufteillen. Wir machen uns immer 4er Blöcke und verschlüsseln sie einzeln mit unserem öffentlichen Schlüssel (35'249,509).
+Da $m < N$ sein muss, müssen wir unsere grosse Zahl in Blöcke aufteilen. Wir machen uns immer vierer Blöcke und verschlüsseln sie einzeln mit unserem öffentlichen Schlüssel (35'249, 509).
 \begin{flalign*}
   7173^{509} \bmod(35'249) &= 2330\\
   6677^{509} \bmod(35'249) &= 21891\\
@@ -241,7 +245,7 @@ Da $m < N$ sein muss, müssen wir unsere grosse Zahl in Blöcke aufteillen. Wir 
 \end{flalign*}
 Der verschlüsselte Text \textit{233021891109554033216434762} kann somit zum Empfänger gesendet werden.\\
 Leider gibt es nicht immer gleich lange Zahlen. Das wird dann zum Problem, wenn wir den verschlüsselten Text zurück entschlüsseln. Dieses Problem wird bei einer richtigen Verschlüsselung in der Implementierung gelöst. Entweder werden die Zahlen aufgefüllt, oder man verwendet ein eindeutiges Trennzeichen.\\
-Der Empfänger entschlüsselt jetzt mit seinem private Key (35'240,7589) die Nachricht. Damit er die Originalnachricht erhaltet, müssen die gleichen Blöcke genommen werden, wie bei der Verschlüsselung.
+Der Empfänger entschlüsselt jetzt mit seinem private Key (35'240, 7589) die Nachricht. Damit er die Originalnachricht erhaltet, müssen die gleichen Blöcke genommen werden, wie bei der Verschlüsselung.
 %
 \begin{flalign*}
   2330^{7589} \bmod(35'249) &= 7173\\
