@@ -13,7 +13,7 @@ Modulo erklärt sich am einfachsten an einem Beispiel:
   21 \bmod(5) = 1
 \end{equation*}
 %
-Es gilt herauszufinden, wie viele Male 5 ganz in 21 vorhanden ist, das heisst wir Teilen 21 durch 5 und schneiden den Dezimalrest ab. Um den ganzzahligen Rest zu berechnen subtrahieren wir von 21 das Produkt aus 4 mal 5.
+Es gilt herauszufinden, wie viel Mal 5 ganz in 21 vorhanden ist, das heisst wir Teilen 21 durch 5 und schneiden den Dezimalrest ab. Um den ganzzahligen Rest zu berechnen subtrahieren wir von 21 das Produkt aus 4 mal 5.
 %
 \begin{flalign*}
   21 \colon 5 &= 4.2\\
@@ -44,14 +44,14 @@ Als Beispiel nehmen wir die Zahlen 9 und 7 die Modulo 2 gerechnet werden.
 
 Die Eulersche Funktion zählt die natürlichen, teilerfremden\footnote{Zwei Zahlen sind teilerfremd zueinander, wenn ihr grösster gemeinsamer Teiler 1 ist.}  Zahlen von n, die kleiner als n sind.\\
 Für die Eulersche Funktion stellen die Primzahlen einen Spezialfall dar.
-Primzahlen sind nur durch 1 und sich selbst ohne Rest dividierbar. Somit ist das Resultat der die Eulerschen Funktion einer Primzahl p immer $p - 1$.\\
+Primzahlen sind nur durch 1 und sich selbst ohne Rest teilbar. Somit ist das Resultat der die Eulerschen Funktion einer Primzahl p immer $p - 1$.\\
 Um den privaten Schlüssel zu errechnen, muss man $\varphi(N)$ beziehungsweise $\varphi(pq)$ berechnen. Aus diesem Grund erläutern wir die Eulersche Funktion:
 %
 \begin{equation*}
   \varphi(p) = p - 1
 \end{equation*}
 %
-Der grösster gemeinsamer Teiler zweier Primzahlen ist immer 1.
+Der grösste gemeinsame Teiler zweier Primzahlen ist immer 1.
 Für die Eulersche Funktion zweier Primzahlen gilt:
 \begin{equation}
   \varphi(pq) = \varphi(p) \cdot \varphi(q) = (p - 1) \cdot (q - 1)
@@ -119,8 +119,8 @@ Nehmen wir für $n = 15$ und $m = 4$ und setzen Formel [\ref{eqn:satz_von_euler}
 % Euklidischer Algorithmus
 %******************************************************************************
 \subsection{Euklidischer Algorithmus}\label{euklidischer_Algorithmus}
-Mit den Euklidischen Algorithmen lässt sich der grösste gemeinsame Teiler (ggT) zweier natürlichen Zahlen berrechnen. Es existiert das etwas ältere Subtraktionsverfahren und das moderne Modulo-Verfahren. Da das Subtraktions-Verfahren nicht die gleiche Effizienz hat wie das Subtraktionsverfahren, konzentrieren wir uns auf das Modulo-Verfahren. \cite{zahlentheorie_fuer_einsteiger}\\
-Für den RSA-Algorithmus ist es wichtig, dass wir zwei teilfremde Zahlen $\varphi(N)$ und $e$ haben.\\
+Mit den Euklidischen Algorithmen lässt sich der grösste gemeinsame Teiler (ggT) zweier natürlichen Zahlen berechnen. Es existiert das etwas ältere Subtraktionsverfahren und das moderne Modulo-Verfahren. Da das Subtraktions-Verfahren nicht die gleiche Effizienz hat wie das Subtraktionsverfahren, konzentrieren wir uns auf das Modulo-Verfahren. \cite{zahlentheorie_fuer_einsteiger}\\
+Für den RSA-Algorithmus ist es wichtig, dass wir zwei teilerfremde Zahlen $\varphi(N)$ und $e$ haben.\\
 %
 Die Formel für das Modulo-Verfahren lautet:
 %
@@ -157,7 +157,7 @@ Zur Veranschaulichung nehmen wir zwei Zahlen $\varphi(N) = 839$ und $e = 199$ un
 Den zweiten Schritt solange wiederholen bis man auf Rest 1 oder 0 kommt. Falls die Zahl 0 herauskommt, nehmen wir den Rest der vorangegangenen Gleichung als grössten gemeinsamen Teiler.\\
 %
 Ganzer Ablauf:
-\begin{equation}
+\begin{equation*}
   \begin{split}
     839 &= 4 \cdot 199 + 43\\
     199 &= 4 \cdot 43 + 27\\
@@ -167,7 +167,7 @@ Ganzer Ablauf:
     11 &= 2 \cdot 5 + 1\\
     \label{eqn:euqulid_beweis}
   \end{split}
-\end{equation}
+\end{equation*}
 %
 Der grösste gemeinsame Teiler von 839 und 199 ist 1. Sie sind daher teilerfremd. \\[2ex]
 Um dieses Verfahren zu beweisen, gehen wir davon aus, dass $\varphi(N)$, e, r und q alles natürliche nicht negative Zahlen sind. Da wir im zweiten Schritt den grössten gemeinsamen Teiler von $e$ und r errechnet haben, kann man basierend auf Formel \ref{eqn:euklidischer_algo_RSA} folgende Behauptung aufstellen:
@@ -238,10 +238,10 @@ Es ist zu beachten, dass auf der rechten Seite eine Summe aus zwei Produkten ste
 %
 Am Schluss bekommen wir die Formel
 %
-\begin{equation}
+\begin{equation*}
  1 = 156 \cdot 199 + (-37) \cdot 839
  \label{eqn:erw_euklid_end}
-\end{equation}
+\end{equation*}
 %
 Damit wir jetzt den Entschlüsselungs-Exponenten d bekommen, müssen wir die Gleichung in die Modulare Inverse umschreiben. Wir berechnen somit die Modulare Inverse von $\varphi(N)$ und e.\\
 Die Formel der modularen Inverse auf den RSA-Algorithmus angewendet lautet:
@@ -269,7 +269,7 @@ Aufgrund dessen können wir die Modulare Inverse von $\varphi(N)$ und e so ausdr
 \begin{equation*}
  1 \equiv 156 \cdot 199 \bmod(839)
 \end{equation*}
-Wir erhalten unsern Entschlüsselungs-Exponent $d = 156$.
+Wir erhalten den Entschlüsselungs-Exponent $d = 156$.
 %
 %Um das zu beweisen schauen wir uns nochmal die Formel \ref{eqn:euklidischer_algo} an. Aus einer Vielfachsummendarstellung von $q$ und $r$, lässt sich dei Vielfachsummendarstellung von $p$ und $q$ ableiten. Man kann die Formel
 %{eqn:ggT}
