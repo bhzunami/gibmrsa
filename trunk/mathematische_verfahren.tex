@@ -3,7 +3,7 @@ Dieses Kapitel wurde mit Hilfe des Buches \textit{Moderne Verfahren der Kryptogr
 %
 Der RSA-Algorithmus baut grundsätzlich auf Primzahlen, der Modulo und Eulerschen-Funktion, dem Satz von Euler und dem erweiterten euklidischen Algorithmus auf.\\
 Im nächsten Abschnitt werden die einzelnen mathematischen Verfahren kurz in ihren Funktionen erläutert.\\
-Wir werden für die beiden Primzahlen durchgehend die Variabeln $p$ und $q$ verwenden. $N$ steht immer für das Produkt von $p \cdot q$. Die Variable $r$ wird für das Resultat der Modulo-Berechnungen verwendet. $e$ steht für den Verschlüsselungs-Exponenten und $d$ für den Entschlüsselungs-Exponenten.
+Wir werden für die beiden Primzahlen durchgehend die Variablen $p$ und $q$ verwenden. $N$ steht immer für das Produkt von $p \cdot q$. Die Variable $r$ wird für das Resultat der Modulo-Berechnungen verwendet. $e$ steht für den Verschlüsselungs-Exponenten und $d$ für den Entschlüsselungs-Exponenten.
 %
 \subsection{Modulo}
 Modulo oder auch \textit{Division mit Rest} gibt den ganzzahligen Rest einer Division zweier natürlichen Zahlen an. Er wird beim RSA-Algorithmus bei der Berechnung des Entschlüsselungs-Exponenten sowie in der Verschlüsselung gebraucht.\\
@@ -13,7 +13,7 @@ Modulo erklärt sich am einfachsten an einem Beispiel:
   21 \bmod(5) = 1
 \end{equation*}
 %
-Es gilt herauszufinden, wieviele Male 5 ganz in 21 vorhanden ist, das heisst wir Teilen 21 durch 5 und schneiden den Dezimalrest ab. Um den ganzzahligen Rest zu berechnen subtrahieren wir von 21 das Produkt aus 4 mal 5.
+Es gilt herauszufinden, wie viele Male 5 ganz in 21 vorhanden ist, das heisst wir Teilen 21 durch 5 und schneiden den Dezimalrest ab. Um den ganzzahligen Rest zu berechnen subtrahieren wir von 21 das Produkt aus 4 mal 5.
 %
 \begin{flalign*}
   21 \colon 5 &= 4.2\\
@@ -119,7 +119,7 @@ Nehmen wir für $n = 15$ und $m = 4$ und setzen Formel [\ref{eqn:satz_von_euler}
 % Euklidischer Algorithmus
 %******************************************************************************
 \subsection{Euklidischer Algorithmus}\label{euklidischer_Algorithmus}
-Mit den Euklidischen Algorithmen lässt sich der grösste gemeinsame Teiler (ggT) zweier natürlichen Zahlen berrechnen. Es existiert das etwas ältere Subtraktionsverfahren und das moderne Modulo-Verfahren. Da das Subtraktions-Verfahren nicht die gleiche Effizenz hat wie das Subtraktionsverfahren, konzentrieren wir uns auf das Modulo-Verfahren. \cite{zahlentheorie_fuer_einsteiger}\\
+Mit den Euklidischen Algorithmen lässt sich der grösste gemeinsame Teiler (ggT) zweier natürlichen Zahlen berrechnen. Es existiert das etwas ältere Subtraktionsverfahren und das moderne Modulo-Verfahren. Da das Subtraktions-Verfahren nicht die gleiche Effizienz hat wie das Subtraktionsverfahren, konzentrieren wir uns auf das Modulo-Verfahren. \cite{zahlentheorie_fuer_einsteiger}\\
 Für den RSA-Algorithmus ist es wichtig, dass wir zwei teilfremde Zahlen $\varphi(N)$ und $e$ haben.\\
 %
 Die Formel für das Modulo-Verfahren lautet:
@@ -146,13 +146,13 @@ Wir gehen davon aus das $\varphi(N)$ grösser ist als e. Wäre das nicht der Fal
 Zur Veranschaulichung nehmen wir zwei Zahlen $\varphi(N) = 839$ und $e = 199$ und setzen diese in unsere Gleichung ein.
 \begin{enumerate}
   \item Schritt: Zahlen in Gleichung einsetzen, q und r ausrechnen.\\
-    \begin{equation}
+    \begin{equation*}
       839 = 4 \cdot 199 + 43
-    \end{equation}
+    \end{equation*}
   \item Schritt: 199 als neues $\varphi(N)$ und 43 als neues e einsetzten und wieder q und r ausrechnen.\\
-    \begin{equation}
+    \begin{equation*}
       199 = 4 \cdot 43 + 27
-    \end{equation}
+    \end{equation*}
 \end{enumerate}
 Den zweiten Schritt solange wiederholen bis man auf Rest 1 oder 0 kommt. Falls die Zahl 0 herauskommt, nehmen wir den Rest der vorangegangenen Gleichung als grössten gemeinsamen Teiler.\\
 %

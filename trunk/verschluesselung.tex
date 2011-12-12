@@ -25,7 +25,7 @@ Die Hebräer haben 600 vor Christus das Atbash entwickelt. Dabei wurde das Alpha
 Das Wort GIBM wird mit Atbash zu TRYN \\
 Die Caesar-Verschlüsselung wurde nach Julius Caesar benannt und zur militärischen Korrespondenz im Römischen Reich gebraucht.\\
 Dafür wurde das Alphabet um 3 Stellen nach hinten verschoben. Aus einem D wird somit ein A. Dieses Verfahren wurde im 15.-Jahrhundert mit einer Chiffrierscheibe verbessert und ist bis heute noch als Caesar Verschlüsselung bekannt. Die Verschiebung um 13 Stellen wird auch als rot13 bezeichnet, da das Alphabet aus 26 Zeichen besteht, ist die Verschlüsselung und Entschlüsselung bei rot13 die selbe. \\
-
+%
 \begin{table}[ht]
 \caption{Caesar Verschlüsselung}
 \begin{center}
@@ -35,6 +35,7 @@ Dafür wurde das Alphabet um 3 Stellen nach hinten verschoben. Aus einem D wird 
 \end{tabular}
 \end{center}
 \end{table}
+%
 Aus GIBM wird mit der Ceasar Verschlüsselung DFYJ \\
 %
 All diese Verfahren können ziemlich einfach geknackt werden. Da bestimmte Buchstaben in einer Sprache öfter vorkommen, kann durch Textanalyse die Verschiebung herausgefunden werden. Ebenfalls wird der Grundsatz verletzt, dass die Sicherheit nicht von der Geheimhaltung des Algorithmus abhängen darf. \cite{kerckhoffsprinzip}
@@ -46,22 +47,24 @@ All diese Verfahren können ziemlich einfach geknackt werden. Da bestimmte Buchs
 \subsection{Kryptographie im zweiten Weltkrieg}
 Für dieses Kapitel wurde die Dissertation "Chiffriermaschinen und Entzifferungsgeräte
 im Zweiten Weltkrieg: Technikgeschichte und informatikhistorische Aspekte" \cite{enigma} verwendet, da diese Arbeit alle Bereiche abdeckt. \\
-Im zweiten Weltkrieg nutzte die Deutsche Wehrmacht die ENIGMA zur Verschlüsselung ihres Funkverkehrs. Die ENIGMA ist einer Schreibmaschine ähnlich und besteht aus einer Tastatur, einem Walzensatz und einer Anzeige über Lampen. 
+Im zweiten Weltkrieg nutzte die Deutsche Wehrmacht die ENIGMA  zur Verschlüsselung ihres Funkverkehrs. Die ENIGMA ist einer Schreibmaschine ähnlich und besteht aus einer Tastatur, einem Walzensatz und einer Anzeige über Lampen. 
 %
 \begin{figure}[ht]
 \begin{center}
-\includegraphics[width=5cm]{images/Enigma_Verkehrshaus_Luzern_cropped.jpg}
+\includegraphics[height=5cm]{images/Enigma_Verkehrshaus_Luzern_cropped.jpg}
 \caption{Enigma Maschine}
+\label{fig:enigma}
 \end{center}
 \end{figure}
 %
 \subsubsection{Funktion der ENIGMA Maschine}
-Die Walzen können sich drehen und sind mit elektrischen Kontakten miteinander verbunden. Wird eine Taste gedrückt, fliesst Strom durch den Walzensatz und es leuchtet die Lampe des verschlüsselten Buchstabens auf. Die Walze dreht sich bei jedem Tastendruck weiter, so das der gleiche Buchstaben jeweils anders verschlüsselt wird, somit kann aus AAA z. B. DXB werden. Nach 26 Umdrehungen der ersten Walze wird die zweite Walze gedreht. \\
+Die Walzen können sich drehen und sind mit elektrischen Kontakten miteinander verbunden. Wird eine Taste gedrückt, fliesst Strom durch den Walzensatz und es leuchtet die Lampe des verschlüsselten Buchstabens auf. Dieser Stromfluss wird in Abblidung \ref{fig:stromfluss} gezeigt. Die Walze dreht sich bei jedem Tastendruck weiter, so das der gleiche Buchstaben jeweils anders verschlüsselt wird, somit kann aus AAA z. B. DXB werden. Nach 26 Umdrehungen der ersten Walze wird die zweite Walze gedreht. \\
 %
 \begin{figure}[ht]
 \begin{center}
 \includegraphics[width=5cm]{images/Enigma-action.png}
 \caption{Enigma Stromfluss}
+\label{fig:stromfluss}
 \end{center}
 \end{figure}
 %
@@ -69,7 +72,7 @@ Die elektrischen Impulse durch die Walze legen nach jeder Drehung eine andere St
 Über das Steckbrett konnte der verschlüsselte Buchstaben nochmals ersetzt werden. Wenn E mit J verbunden ist und nach dem verschlüsseln ein E herauskam, wurde dieses mit einem J verschlüsselt. 
 %
 \subsubsection{Anwendung}
-Die Deutsche Wehrmacht nutzte die ENIGMA um ihre Funksprüche zu verschlüsseln. Dazu wurden jeweils um Mitternacht die Walzen und die Steckverbindungen ausgetauscht bzw. umgesteckt. Ein neuer Schlüsselsatz sah beispielsweise so aus:
+Die Deutsche Wehrmacht nutzte die ENIGMA um ihre Funksprüche zu verschlüsseln. Dazu wurden jeweils um Mitternacht die Walzen und die Steckverbindungen ausgetauscht bzw. umgesteckt. Ein neuer Schlüsselsatz sah beispielsweise so aus:\\
 %
 %Quelle Wikipedia%
 \begin{table}[ht]
@@ -82,6 +85,7 @@ Tag & UKW & Walzenlage & Ringstellung &  ---- Steckerverbindungen ---- \\
 \end{center}
 \end{table}
 %
+\\
 Die eigentliche Verschlüsselung war relativ simpel zu bewerkstelligen. Es musste nur die entsprechende Funknachricht eingegeben werden und die ENIGMA erledigte die Verschlüsselung. Der Austausch der aktuellen Walzenstellung und das Morsen der Nachricht waren jedoch komplizierter.
 %
 Vor der eigentlichen Nachricht wurde ein Nachrichtenkopf gemorst. In diesem wurde die Länge des Textes bekannt gegeben, die Walzenstellung und die Nachrichtenart. 
