@@ -1,8 +1,9 @@
 \part{Verschlüsselung Allgemein}
 \section{Sinn und Zweck der Verschlüsselung}
-Die Verschlüsselung beziehungsweise die Geheimhaltung von Informationen wurde schon lange vor Christi Geburt gebraucht. Es ist wichtig, wie ich eine Information vor Unbefugten so darstellen kann, dass es für sie keinen Sinn ergibt. Ich, oder Andere, mit einem geheimen Schlüssel, können die Information jedoch lesen. Der Zweck der Verschlüsselung ist, dass das Lesen von Daten durch Unbefugte verunmöglicht wird. \\
-Als Beispiel stellen wir uns den Briefverkehr zwischen zwei Freunden vor. Da sie dem Briefträger und der Schweizerischen Post vertrauen, verschlüsseln sie in der Regel die Briefe nicht. Mit einem Siegel auf dem Briefumschlag würden wir bemerken, falls jemand den Brief vorzeitig geöffnet hätte. Zusätzlich können wir mit einem Siegel und der Unterschrift die Authentizität des Absenders verifizieren.\\
-Im Gegensatz zum Brief können wir uns bei einer Email nicht auf diese Sicherheiten verlassen. Eine Email wird über verschiedenste Server und Länder gesendet, bis sie über einen Weg aus mehreren Knotenpunkten beim Empfänger ankommt. Wer und ob diese Nachricht sonst noch kopiert, geöffnet oder gelesen wurde, ist nicht nachvollziehbar. Daher brauchen wir eine Verschlüsselung, damit nur der gewünschte Empfänger diese Nachricht entschlüsseln und lesen kann.
+Die Verschlüsselung bzw. die Geheimhaltung von Informationen wurde schon lange vor Christi Geburt gebraucht. Es ist wichtig wie ich eine Information vor Unbefugten so darstellen kann, dass es für sie keinen Sinn ergibt. Mit dem geheimen Schlüssel können die Informationen jedoch gelesen werden. %Ich, oder Andere, mit einem geheimen Schlüssel können die Information jedoch lesen. 
+Der Zweck der Verschlüsselung ist, dass das Lesen von Daten durch Unbefugte verunmöglicht wird. \\
+Als Beispiel stellen wir uns den vertraulichen Briefverkehr zwischen zwei Freunden vor. Da sie dem Briefträger und der Schweizerischen Post vertrauen, verschlüsseln wir in der Regel die Briefe nicht. Mit einem Siegel und dem Briefumschlag würden wir bemerken, falls jemand den Brief vorzeitig geöffnet hat. Zusätzlich können wir mit einem Siegel und der Unterschrift die Authentizität des Absenders verifizieren.\\
+Im Gegensatz zu dem Brief können wir uns bei einer Email nicht auf diese Sicherheiten verlassen. Eine Email wird über verschiedenste Server und Länder gesendet, bis sie über einen Weg aus mehreren Knotenpunkten beim Empfänger ankommt. Wer und ob diese Nachricht sonst noch kopiert, geöffnet oder gelesen wurde ist nicht nachvollziehbar. Daher brauchen wir eine Verschlüsselung, damit nur der gewünschte Empfänger diese Nachricht entschlüsseln und somit auch lesen kann.
 %
 %Im realen Leben können wir zum Beispiel unser Haus vor Dieben sichern, indem wir eine Türe mit einem stabilen Schloss einbauen. Möchte man noch weiter gehen, kann man eine Alarmanlage einbauen.\\[2ex]
 %
@@ -41,13 +42,13 @@ Aus GIBM wird mit der Ceasar Verschlüsselung DFYJ \\
 Diese Verfahren können einfach geknackt werden. Da bestimmte Buchstaben in einer Sprache öfter vorkommen, kann durch Textanalyse die Verschiebung herausgefunden werden. Ebenfalls wird der Grundsatz verletzt, dass die Sicherheit nicht von der Geheimhaltung des Algorithmus abhängen darf. \cite{kerckhoffsprinzip}
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% ENIGMA und 2ter Weltkrieg
+% Enigma und 2ter Weltkrieg
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 \subsection{Kryptographie im zweiten Weltkrieg}
 Für dieses Kapitel wurde die Dissertation \textit{Chiffriermaschinen und Entzifferungsgeräte
 im Zweiten Weltkrieg: Technikgeschichte und informatikhistorische Aspekte} \cite{enigma} verwendet, da diese Arbeit alle Bereiche der Enigma abdeckt. \\
-Im zweiten Weltkrieg nutzte die Deutsche Wehrmacht die Enigma zur Verschlüsselung ihres Funkverkehrs. Die ENIGMA ist einer Schreibmaschine ähnlich und besteht aus einer Tastatur, einem Walzensatz und einer Anzeige über Lampen. 
+Im zweiten Weltkrieg nutzte die Deutsche Wehrmacht die Enigma zur Verschlüsselung ihres Funkverkehrs. Die Enigma ist einer Schreibmaschine ähnlich und besteht aus einer Tastatur, einem Walzensatz und einer Anzeige über Lampen. 
 %
 \begin{figure}[ht]
 \begin{center}
@@ -57,7 +58,7 @@ Im zweiten Weltkrieg nutzte die Deutsche Wehrmacht die Enigma zur Verschlüsselu
 \end{center}
 \end{figure}
 %
-\subsubsection{Funktion der ENIGMA Maschine}
+\subsubsection{Funktion der Enigma Maschine}
 Die Walzen können sich drehen und sind mit elektrischen Kontakten miteinander verbunden. Wird eine Taste gedrückt, fliesst Strom durch den Walzensatz und es leuchtet die Lampe des verschlüsselten Buchstabens auf. Dieser Stromfluss wird in Abbildung \ref{fig:stromfluss} gezeigt. Die Walze dreht sich nach jedem Tastendruck weiter, so das der gleiche Buchstabe jeweils anders verschlüsselt wird, somit kann aus AAA z. B. DXB werden. Nach 26 Umdrehungen der ersten Walze wird die zweite Walze gedreht. \\
 %
 \begin{figure}[ht]
@@ -95,12 +96,14 @@ Die Walzenstellung wurde verschlüsselt übertragen. Wenn im Kopf z. B. QWE EWG 
 \subsubsection{Schwachstelle der Enigma}
 Die Enigma benutzte ein symmetrisches Verfahren, daher war der Schlüssel für die Entschlüsselung und Verschlüsselung identisch. %TODO: Siehe Kapitel \ref{moderne Kryptographie %
 Die Geheimhaltung der Walzen war wichtig, da sie einen wesentlichen Teil der Verschlüsselung ausmachen.
-Dadurch, dass ein Buchstabe nicht in sich selbst verschlüsselt werden kann (Strom kann nicht zurück fliessen) konnte eine wesentliche Schwachstelle ausgeschlossen werden.
-Durch Einsetzen bestimmter Wörter, welche im Text vermutet wurden, konnte ein grosser Teil der möglichen Positionen ausgeschlossen werden. Dafür wurde z. B. OBERKOMMANDODERWEHRMACHT eingesetzt und falls an einer Position der Buchstabe in sich selbst verschlüsselt war, konnte das Wort an dieser Position nicht sein.
+%Dadurch das ein Buchstabe nicht in sich selbst verschlüsselt werden kann (Strom kann nicht zurück fliessen) konnte ein wesentlicher Teil ausgeschlossen werden.
+Ein Buchstabe kann nicht in sich selbst verschlüsselt werden, da der Stromfluss immer einen Anfangs- und Endpunkt benötigt. Diese Punkte können nach der Bauart der Maschine nicht gleich sein. Siehe Abbildung \ref{fig:stromfluss}
+Nun konnte durch einsetzen bestimmter Wörter, welche im Text vermutet wurden, ein grosser Teil der möglichen Positionen ausgeschlossen werden. Dafür wurde z. B. OBERKOMMANDODERWEHRMACHT eingesetzt und falls an einer Position der Buchstabe in sich selbst verschlüsselt war, konnte das Wort an dieser Position nicht sein. Für die Ausnützung dieser Schwachstelle bauten die Engländer Maschinen, welche diese Arbeit vereinfachten. Die sogenannte Turing Bombe konnte nun mit den entsprechenden Walzen in 6 Stunden die Verschlüsselung knacken. 
+Mit mehreren Turing Bomben wurde die Verschlüsselung in kurzer Zeit geknackt. 
 %
 \subsection{Probleme der früheren Verschlüsselungen}
 Die Verfahren bis zum zweiten Weltkrieg konnten einfach geknackt werden. Wenn die Art der Verschlüsselung bekannt war, konnte der Schlüssel einfach ermittelt werden. 
-Die Enigma revolutionierte die Kryptographie. Obwohl die Art der Verschlüsselung und sogar die Walzen bekannt waren, mussten die Engländer grosse Anstrengungen unternehmen, damit die Texte entschlüsselt werden konnten. Um der Enigma zu begegnen, wurden Maschinen gebaut, welche diese Arbeit vereinfachten. Die sogenannte Turing Bombe konnte innert 6 Stunden die Verschlüsselung knacken. 
+Die Enigma revolutionierte die Kryptographie. Obwohl die Art der Verschlüsselung und sogar die Walzen bekannt waren, mussten die Engländer grosse Anstrengungen unternehmen, damit sie die Texte entschlüsseln konnten. \\[2ex]
 Mit mehreren Turing Bomben wurde die Verschlüsselung in kurzer Zeit geknackt. \\[2ex]
 %
 Die früheren Verschlüsselungen hielten sich nicht an das Kerckhoff's Prinzip. Dieses besagt, dass die Sicherheit der Verschlüsselung nicht von der Geheimhaltung des Algorithmus abhängig gemacht werden darf. Die Sicherheit ist durch den Schlüssel gegeben. \cite{kerckhoffsprinzip}
