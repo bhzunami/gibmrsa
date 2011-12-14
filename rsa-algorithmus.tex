@@ -144,14 +144,15 @@ Der Empfänger hat seine geheime Nachricht erfolgreich entschlüsseln können.
 % Mathematischer Nachweis (Beweis war zu hoch gegriffen)
 %******************************************************************************
 \section{Mathematischer Nachweis der Funktionsweise}
+Dieses Kapitel wurde mit Hilfe der Webseite \textit{Kuno-Kohn} \cite{kuno-kohn} erstellt. Nachdem wir die Webseite überprüft haben und auch ein Buch gefunden haben, welches im Quellenverzeichnis auf diese Webseite verweist, können wir davon ausgehen, dass diese Informationen gut recherchiert sind. \\
 Bisher nahmen wir an, dass der RSA-Algorithmus korrekt arbeitet. Auf diese Annahme möchten wir nun eingehen und aufzeigen, warum der Algorithmus funktioniert. Der Algorithmus arbeitet korrekt, wenn die Verschlüsselung und nachherige Entschlüsselung wieder das gleiche ergibt. Dies darf nur mit dem passenden privaten und öffentlichen Schlüssel möglich sein.\\
 Auf das vorherige, erarbeitete Wissen wird nicht mehr im Detail eingegangen. \\
 Folgende Zusatzbedingungen müssen beim RSA-Algorithmus zwingend eingehalten werden:
 \begin{enumerate}
-  \item . Die Nachricht muss immer kleiner als das RSA-Modul N sein.
+  \item . Die Nachricht muss immer kleiner als das RSA-Modul N gewählt werden.
   \item . Die Nachricht muss grösser als 1 sein.
 \end{enumerate}
-
+%
 %
 \subsection{Verschlüsselung und Entschlüsselung gleichsetzen}
 Für den Nachweis benötigen wir die ursprünglichen Formeln zur Verschlüsselung (siehe Formel \ref{eqn:rsa_encription}) und Entschlüsselung (siehe Formel \ref{eqn:rsa_decription}). Diese lauten:
@@ -164,24 +165,27 @@ Da in beiden Formeln die Ursprungsnachricht m und die verschlüsselte Nachricht 
   m &\equiv c^d \bmod(N) \\
   m &= c^d - k \cdot N \\
   m + k \cdot N &= c^d \\
-  \sqrt[d]{m + k \cdot N} &= c = m^e \bmod(N)
+  \sqrt[d]{m' + k \cdot N} &= c = m^e \bmod(N)
 \end{flalign*}
-Modulo ergibt jeweils den Rest einer ganzzahligen Division. Durch Umformung kann diese jeweils als $ k \cdot N $ dargestellt werden, wobei k eine ganze Zahl sein muss.\\
+Modulo ergibt jeweils den Rest einer ganzzahligen Division. Durch Umformung kann diese jeweils als $ k \cdot N $ dargestellt werden, wobei k eine ganze Zahl sein muss.
+%
+\newpage
+%
 Nun können wir c durch $ \sqrt[d]{m + k \cdot N} $ in der Verschlüsselungsformel \ref{eqn:rsa_encription} einsetzen.
 %Wir setzen nun die beiden Formeln gleich, so das nur noch die Ursprungsnachricht m in der Gleichung vorhanden ist:
 \begin{flalign*}
-  m^e \bmod(N) &\equiv \sqrt[d]{m + k \cdot N} \\
-  {m^{e} \bmod(N)}^d &\equiv m + k \cdot N \\
-  m^{e \cdot d} \bmod(N) &\equiv m + k \cdot N \\
-  m^{e \cdot d} \bmod(N) &\equiv m 
+  m^e \bmod(N) &\equiv \sqrt[d]{m' + k \cdot N} \\
+  {m^{e} \bmod(N)}^d &\equiv m' + k \cdot N \\
+  m^{e \cdot d} \bmod(N) &\equiv m' + k \cdot N \\
+  m^{e \cdot d} \bmod(N) &\equiv m' 
   %{m^e}^d mod N & = m \\
   %{m^d}^e mod N & = m
 \end{flalign*}
-Die Restklasse bleibt beim erhöhen des Exponenten gleich. Daher kann die Nachricht m direkt hoch $ e \cdot d $ gerechnet werden. 
-Die Formel $ m^{e \cdot d} \bmod(N) \equiv m + k \cdot N $ kann gekürzt werden, da k in jedem Fall 0 sein muss. Dies liegt daran, dass wir auf der rechten Seite mit Modulo N den Rest ausgeben. Der Rest kann 0 bis N-1 gross sein. Da m einen Wert hat, muss k in diesem Fall 0 sein. \\
+Die Zahl $m^e$ und $m^{e \cdot d}$ können beide mit dem gleichen Rest durch N geteilt werden. Dies liegt daran, dass beide in der gleichen Restklasse befinden.  Aus diesem Grund kann die Form als $m^{e \cdot d} \bmod N $ dargestellt werden. 
+Die Formel $ m^{e \cdot d} \bmod(N) \equiv m + k \cdot N $ kann gekürzt werden, da $ k = 0 $ sein muss. Dies liegt daran, dass wir auf der rechten Seite mit Modulo N den Rest ausgeben. Der Rest kann 0 bis N-1 gross sein. Da m einen Wert hat, muss k in diesem Fall 0 sein. \\
 Wir möchten aufzeigen, dass die Verschlüsselung (hoch e) und nachherige Entschlüsselung (hoch d) wieder die ursprüngliche Nachricht ergibt:
 \begin{equation*}
- m^{e \cdot d} \bmod(N) \equiv m 
+ m^{e \cdot d} \bmod(N) \equiv m' 
 \end{equation*}
 %
 %\subsection{Grundlagen zur Erklärung}
@@ -208,10 +212,10 @@ Wir möchten aufzeigen, dass die Verschlüsselung (hoch e) und nachherige Entsch
 \subsection{Nachweis der Funktionsweise}
 Die Gleichsetzung der Entschlüsselung und Verschlüsselung dient uns als Grundlage des Nachweises:
 \begin{equation*}   
- m^{e \cdot d} \bmod(N) \equiv m
+ m^{e \cdot d} \bmod(N) \equiv m'
 \end{equation*}
 %
-Durch die Anwendung des erweiterten Euklidischen Algorithmus \ref{eqn:erw_eukl_fertig} bei der Erstellung des Schlüssels \ref{eqn:rsa_private_key_erstellen} wurde folgendes bestimmt:
+Durch die Anwendung des erweiterten Euklidischen Algorithmus (siehe Kapitel \ref{eqn:erw_eukl_fertig}) bei der Erstellung des Schlüssels (siehe Kapitel \ref{eqn:rsa_private_key_erstellen}) wurde folgendes bestimmt:
 %Wir könnnen durch die modulare Inverse $ e \cdot d $ anders ausdrücken, siehe [\ref{eqn:mod_inverse}]. Diese lösen wir nach $ e \cdot d $ auf:\\
 \begin{flalign*}
  e \cdot d &\equiv 1 \bmod(\varphi(N))  \\
@@ -223,15 +227,15 @@ Wenn die Formel Modulo beinhaltet, kann diese jeweils auch mit k Mal den Rest au
 %
 Nun ersetzen wir in unserer Ausgangslage $ e \cdot d $ durch $ k \cdot \varphi(N)+1 $ und lösen die Gleichung auf:
 \begin{flalign*}
- m^{e \cdot d} \bmod(N) &\equiv m \\
- m^{ k \cdot \varphi(N) + 1} \bmod(N) &\equiv m  \\
- m^{k \cdot \varphi(N)} \cdot m \bmod(N) &\equiv m  \\
- { m^{ \varphi(N) }} ^k \cdot m \bmod(N) &\equiv m \\
- { m^{ \varphi((p-1)\cdot(q-1)) }} ^k \cdot m \bmod((p-1)\cdot(q-1)) &\equiv m
+ m^{e \cdot d} \bmod(N) &\equiv m' \\
+ m^{ k \cdot \varphi(N) + 1} \bmod(N) &\equiv m'  \\
+ m^{k \cdot \varphi(N)} \cdot m \bmod(N) &\equiv m'  \\
+ { m^{ \varphi(N) }} ^k \cdot m \bmod(N) &\equiv m' \\
+ %{ m^{ \varphi((p-1)\cdot(q-1)) }} ^k \cdot m \bmod((p-1)\cdot(q-1)) &\equiv m'
 \end{flalign*}
 %
 %Durch den kleinen Satz von Fermat wissen wir dass $ \varphi(N) $ 1 sein muss. 
-Mit dem Satz von Euler können wir nun nach $ m^{\varphi(N)} $ auflösen. (Siehe Satz von Euler \ref{eqn:satz_von_euler} und Formel \ref{eqn:eulersche_func}).
+Mit dem Satz von Euler können wir nun nach $ m^{\varphi(N)} $ auflösen. (siehe Satz von Euler Formel \ref{eqn:satz_von_euler} und Formel \ref{eqn:eulersche_func}).
 %TODO: Kleiner Satz von Fermat erklären
 \begin{flalign*}
 %  m^{(p-1)} &= 1 \bmod p \\
@@ -247,25 +251,26 @@ Mit dem Satz von Euler können wir nun nach $ m^{\varphi(N)} $ auflösen. (Siehe
 %\item $ p \cdot q $ ist das RSA-Modul N, siehe \ref{eqn:rsa_modul}. $ (p-1) \cdot (q-1) $ sind die Teilerfremden Zahlen von N, da es sich bei p und q um Primzahlen handelt, siehe Eulersche Funktion \ref{eqn:eulersche_func}.
 %\end{enumerate}
 %
-Daraus resultiert das $ 1 \bmod(N) $ das gleiche ist wie $ m^\varphi(N) $ und entsprechend eingesetzt werden kann. Danach lösen wir die Formel auf. 
+Daraus resultiert das $ 1 \bmod(N) $ das gleiche ist wie $ m^{\varphi(N)} $ und entsprechend eingesetzt werden kann. Danach lösen wir die Formel auf. 
 \begin{flalign*}
- { m^{ \varphi(N) }} ^k \cdot m \bmod(N) &\equiv m  \\
- {1 \bmod N }^k \cdot m \bmod(N) &\equiv m  \\
- 1^k \cdot m \bmod(N) &\equiv m \\
- 1 \cdot m \bmod(N) &\equiv m \\
- m + x \cdot N &= m \\
- m + 0 \cdot N &= m \\
- m &= m 
+ { m^{ \varphi(N) }} ^k \cdot m \bmod(N) &\equiv m'  \\
+ {1 \bmod N }^k \cdot m \bmod(N) &\equiv m'  \\
+ 1^k \cdot m \bmod(N) &\equiv m' \\
+ 1 \cdot m \bmod(N) &\equiv m' \\
+ m + x \cdot N &= m' \\
+ m + 0 \cdot N &= m' \\
+ m &= m' 
 \end{flalign*}
-$ 1 \bmod(N) $ muss 1 ergeben da der Rest höchstens 1 sein kann und das RSA-Modul N grösser als 1 ist . \\
+$ 1 \bmod(N) $ muss 1 ergeben, da der Rest höchstens 1 sein kann und das RSA-Modul N grösser als 1 ist. (siehe Formel \ref{eqn:rsa_modul}) \\
 $ 1^k $ ergibt immer 1, da die Basis 1 hoch ein beliebiger Exponent 1 ergibt. \\
-Wir wissen das $ x = 0 $ sein muss, da m immer kleiner als N gewählt wird (Siehe Zusatzbedingung 1). Falls m grösser gleich N ist, würde der RSA-Algorithmus nicht funktionieren. In diesem Fall wird die Nachricht aufgeteilt und später wieder zusammengesetzt. \\
-Schlussendlich stellen wir fest, dass m = m ist und weisen somit die korrekte Funktionsweise des RSA-Algorithmus nach. Die Verschlüsselung und darauffolgende Entschlüsselung ergibt die Ursprungsnachricht.\\
+Wir wissen das $ x = 0 $ sein muss, da m immer kleiner als N gewählt wird (Siehe Zusatzbedingung 1). 
+Falls m gleich N ist, würde nach der Verschlüsselung 0 herauskommen und die Entschlüsselung somit nicht mehr funktionieren. Falls m grösser N ist wäre die Nachricht nach der Verschlüsselung falsch wieder entschlüsselt. In beiden Fall wird die Nachricht aufgeteilt und später wieder zusammengesetzt. \\
+Schlussendlich stellen wir fest, dass m = m' ist und weisen somit die korrekte Funktionsweise des RSA-Algorithmus nach. Die Verschlüsselung und darauffolgende Entschlüsselung ergibt die Ursprungsnachricht.\\
 Die Entschlüsselung der Nachricht funktioniert nur mit dem zugehörigen privaten Schlüssel, da mit dem euklidischen Algorithmus, d so bestimmt wurde, das folgendes zählt:
 \begin{flalign*}
  e \cdot d + k \cdot \varphi(N) &= 1	
 \end{flalign*}
-Mit der modularen Inverse wurde d als positive Zahl bestimmt. Aus der vorherigen Formel ist ersichtlich, dass nur ein ganz bestimmtes d zu einem e und N gehört. Jeder andere Entschlüsselungs-Exponent würde die Formel nicht korrekt erfüllen und zu einem anderen Ergebnis führen. 
+Mit der modularen Inverse wurde d als positive Zahl bestimmt. Aus dieser Formel ist ersichtlich, dass nur ein ganz bestimmtes d zu einem e und N gehört. Jeder andere Entschlüsselungs-Exponent würde die Formel nicht korrekt erfüllen und zu einem anderen Ergebnis führen. 
 %
 \newpage
 %
