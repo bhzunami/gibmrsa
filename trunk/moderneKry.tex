@@ -10,13 +10,13 @@ Einen grossen Fortschritt machte die moderne Kryptographie in den Jahren 1976 un
 1985 entwickelten drei Mathematiker/-Innen das \textbf{Zero-Knowledge-Verfahren}. \cite{} Das Zero-Knowlede-Verfahren baut auf dem RSA-Algorithmus auf und Unterscheidet sich in der Implementierung des Protokolls. Mit diesem Verfahren ist es möglich, dass zwei Personen auf einem Rechner miteinander kommunizieren, ohne dass der Rechner davon etwas erfährt.
 %
 \subsection{Symmetrische Verschlüsselung}
-Grundsätzlich braucht es für eine einfache symmetrische Verschlüsselung einen Schlüssel, den zu verschlüsselten Text und eine Verschlüsselungsfunktion.
+Grundsätzlich braucht es für eine einfache symmetrische Verschlüsselung einen Schlüssel, den zu verschlüsselnden Text und eine Verschlüsselungsfunktion.
 Die Verschlüsselungsfunktion übersetzt den Klartext mit Hilfe des Schlüssel. In einer Formel ausgedrückt:
 \begin{equation*}
   c = f ( k, m )
 \label{eqn:sym_versch}
 \end{equation*}
-\textit{c} steht für den verschlüsselten  (eng.: \textit{crypted}) Text, \textit{f} für die Verschlüsselungsfunktion (eng.: \textit{function}), \textit{k} für den Schlüssel (eng.: \textit{key}) und \textit{m} für den Text (eng.: \textit{message}) den man verschlüsseln möchte.\\
+\textit{c} steht für den verschlüsselten  (eng.: \textit{crypted}) Text, \textit{f} für die Verschlüsselungsfunktion (eng.: \textit{function}), \textit{k} für den Schlüssel (eng.: \textit{key}) und \textit{m} für den Text (eng.: \textit{message}) der verschlüsselt wird.\\
 %
 Der verschlüsselte Text wird nun dem Empfänger übergeben. Hat der Empfänger keinen Schlüssel \textit{k}, um die Nachricht zu entschlüsseln, kann er die Nachricht nicht lesen. Somit braucht der Empfänger \textbf{denselben} Schlüssel \textit{k}, die verschlüsselte Nachricht \textit{c} und eine Umkehrfunktion von \textit{f}.\\
 Daraus entsteht die Formel:
@@ -25,7 +25,7 @@ Daraus entsteht die Formel:
 \label{eqn:sym_entsch}
 \end{equation*}
 %Kerckoff's Prinzip bei  Schwachstellen DENIS
-Man geht davon aus, dass die Funktionen der Ver- und Entschlüsslung öffentlich bekannt sind, was überraschenderweise kein Sicherheitsproblem darstellt. Aus dem Kerckhoffs' Prinzip geht der Grundsatz hervor, dass die Sicherheit eines Verschlüsselungsverfahren nicht auf der Geheimhaltung des Algorithmus, sondern auf die Geheimhaltung des Schlüssels beruht, denn ein Algorithmus kann durch Reverse-Engineering\footnote{Unter dem Begriff Reverse-Engineering versteht man den Vorgang, aus einem fertigen Produkt durch Untersuchung der Strukturen und Verhaltensweisen den Source Code herauszufinden.} rekonstruiert werden.\\
+Die Funktionen der Ver- und Entschlüsselung sollte öffentlich bekannt sein, was überraschenderweise kein Sicherheitsproblem darstellt. Aus dem Kerckhoffs' Prinzip geht der Grundsatz hervor, dass die Sicherheit eines Verschlüsselungsverfahren nicht auf der Geheimhaltung des Algorithmus, sondern auf die Geheimhaltung des Schlüssels beruht, denn ein Algorithmus kann durch Reverse-Engineering\footnote{Unter dem Begriff Reverse-Engineering versteht man den Vorgang, aus einem fertigen Produkt durch Untersuchung der Strukturen und Verhaltensweisen den Source Code herauszufinden.} rekonstruiert werden.\\
 Auch hat die Geschichte gezeigt, dass bis heute viele Verschlüsselungsalgorithmen gebrochen werden konnten. \cite{mod_kry}\\
 %
 Somit muss die Verschlüsselungsfunktion so komplex sein, dass man nur mit dem Schlüssel das richtige Ergebnis erhält.
@@ -46,7 +46,8 @@ In Abbilding \ref{fig:symVersch} wird ein Klartext mit einem Schlüssel verschl�
 Vor 1970, als es die asymmetrische Verschlüsselung noch nicht gab, wurden Schlüssel für eine symmetrische Verschlüsselung unter grossem Schutz transportiert.
 %
 %Es waren vor allem die Botschaften, die einen solchen Transport mehrfach absicherten, indem sie dem Überbringer den Koffer mit Handschellen am Handgelenk festmachten und ihn von diversen Bodyguards beschützt in einer kugelsicheren Limousine zum Zielort fuhren.\\
-Dieses Verfahren war sehr umständlich. Es kostete viel und dauerte zu lang. Wie aber sollte man einen Schlüssel sicher von einem Ort zum andern transportieren und dabei sicher sein, dass niemand einen Blick auf den Schlüssel werfen konnte?\\
+Dieses Verfahren war sehr umständlich. %Es kostete viel und dauerte zu lang.
+Wie aber sollte man einen Schlüssel sicher von einem Ort zum anderen transportieren und dabei sicher sein, dass niemand einen Blick auf den Schlüssel werfen konnte?\\
 %
 Anfang 1976 stellten Whitfield Diffe und Martin Hellman ein Konzept vor, das die Grundidee von einer asymmetrischen Verschlüsselung darlegte. Sie kannten das Verfahren jedoch nicht exakt. Sie stellten das \textbf{Diffle-Hellman-Problem} vor. \cite{rsa_and_public_key}\\ % Stellten das Prinzip vor
 Schon viel früher entwickelten James Ellis, Clifford Cockes und Malcom Willamson, alle vom Britischen Geheimdienst, ein asymmetrisches Verschlüsselungsverfahren. Sie durften aber ihre Ergebnisse weder veröffentlichen noch ein Patent anmelden. 
