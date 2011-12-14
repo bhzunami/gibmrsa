@@ -5,6 +5,9 @@
 %
 \input{./schluessel.tex}
 %
+%***************************************
+% Verschlüsselung und Entschlüsselung
+%***************************************
 \subsection{Formel Verschlüsselung}
 Sind die Schlüssel erstellt, kann ein Text m einfach verschlüsselt werden.\\
 Dazu dient folgende Formel:
@@ -26,7 +29,114 @@ Die Entschlüsselung der Nachricht wird mit folgender Formel realisiert:
   \label{eqn:rsa_decription}
 \end{equation}
 %
-Der Klartext m hängt in diesem Fall vom verschlüsselten Text c, dem privaten Schlüssel d und dem RSA-Modul N ab. 
+%
+%***************************************
+% BEISPIEL
+%***************************************
+\section{Beispiel}
+Nachdem wir nun die Grundlagen für die Anwendung des RSA-Algorithmus erarbeitet haben, ist es an der Zeit ein kleines Beispiel durchzuführen.
+\subsection{Einfaches Zahlenbeispiel}
+Wir starten mit einem einfachen Zahlenbeispiel. Auf die mathematischen Methoden wird nur noch verwiesen. Wir erklären sie hier nicht mehr.\\
+Für dieses Beispiel nehmen wir die Zahlen
+%
+\begin{flalign*}
+  p = 13 \\
+  q = 19
+\end{flalign*}
+%
+\paragraph{Schlüssel-Paar erstellen}
+Wir berechnen nun das RSA-Modul N (siehe Formel \ref{eqn:rsa_modul}) und $\varphi(N) $ (siehe Formel \ref{eqn:eulersche_func}) aus p und q.
+\begin{equation*}
+  \tag{RSA-Modul}
+  247 = 13 \cdot 19
+\end{equation*}
+%
+\begin{equation*}
+  \tag{$\varphi(N)$}
+  216 = (13 - 1) \cdot (19 - 1)
+\end{equation*}
+%
+Zu $ \varphi(N) $ suchen wir uns eine zweite Zahl e, die teilerfremd zu $ \varphi(N) $ ist, sprich den $ggT(\varphi(N),e) = 1$ hat. Am Besten man verwendet für e eine weitere Primzahl.
+%
+\begin{equation*}
+    e = 23
+\end{equation*}
+%
+Der öffentliche Schlüssel $N = 247$ und $e = 23$ ist nun berechnet [siehe Section \ref{sec:public_key}]\\
+Um den Entschlüsselungs-Exponenten zu berechnen, müssen wir zuerst den ggT(216,23) (siehe Formel \ref{eqn:euklidischer_algo}) ausrechnen.
+\begin{flalign*}
+  216 & = 9 \cdot 23 + 9 \\
+  23 & = 2 \cdot  9 + 5 \\
+  9 & = 1 \cdot  5 + 4 \\
+  5 & = 1 \cdot  4 + 1
+\end{flalign*}
+%
+Jetzt wenden wir den Erweiterten Euklidischen Algorithmus (siehe Formel \ref{eqn:erw_euklid_algo}) an.
+\begin{flalign*}
+  1 &= 5 - 1 \cdot 4 = 5 - 1 \cdot(9 - 1 \cdot 5) = 5 - 1 \cdot 9 + 1 \cdot 5 = 2 \cdot 5 - 1 \cdot 9\\
+  &= 2 \cdot 5 - 1 \cdot 9 = 2 \cdot (23 - 2 \cdot 9) - 1 \cdot 9 = 2 \cdot 23 - 4 \cdot 9 - 1 \cdot 9 = 2 \cdot 23 - 5 \cdot 9\\
+  &= 2 \cdot 23 - 5 \cdot 9 = 2 \cdot 23 - 5 \cdot (216 - 9 \cdot 23) = 2 \cdot 23 - 5 \cdot 216 + 45 \cdot 23 = \textbf{47} \cdot 23 \textbf{- 5} \cdot 216
+\end{flalign*}
+Indem wir die Modulare Inverse auf letzte Gleichung anwenden erhalten wir:
+\begin{equation*}
+  1 \equiv 47 \cdot 23 \bmod(216)
+\end{equation*}
+Und dadurch unseren privaten Schlüssel $d = 47$ und $N = 216$.\\
+%
+Jetzt haben wir unseren privaten als auch öffentlichen Schlüssel die wir für eine Ver- Entschlüsselung benötigen.
+\paragraph{Verschlüsseln}
+Wir verschlüsseln die Zahl 15\\
+Verschlüsselungsfunktion anwenden siehe Formel \ref{eqn:rsa_decription}
+\begin{equation*}
+  15^{23} \bmod 247 = 59
+\end{equation*}
+Die Zahl 15 verschlüsselt mit unserem öffentlichen Schlüssel (23, 247) ergibt die Zahl 59.
+%
+\paragraph{Entschlüsseln}
+Um zu überprüfen ob unserer privater Schlüssel auch wirklich funktioniert, entschlüsseln wir die Zahl 59 mit unserem privaten Schlüssel. Siehe Formel \ref{eqn:rsa_decription}\\
+\begin{equation*}
+  59^{47} \bmod 247 = 15
+\end{equation*}
+Als Resultat erhalten wir 15 und stellen fest, dass unser kleines Beispiel funktioniert hat.
+%
+% Beispiel TEXT
+%
+\subsection{Beispiel an einem Text}
+Wir wenden ein Beispiel an einem Text an. Da Buchstaben nicht verschlüsselt werden können, denn mit ihnen lässt sich nicht rechnen, müssen wir den Text in Zahlen umwandeln. Dafür gibt es einige Möglichkeiten. Wir verwenden in diesem Beispiel die \textit{ASCII-Tabelle}\footnote{Die ASCII-Tabelle ordnet jedem Buchstaben eine eindeutige Zahl zu.}.\\
+Weiter gilt zu beachten, dass man bei Text-Verschlüsselungen grössere Schlüssel braucht. Deshalb nehmen wir für das nächste Beispiel neue Zahlen:
+\begin{flalign*}
+  p &= 101\\
+  q &= 349\\
+  N &= 35'249\\
+  \varphi(N) &= 34'800\\
+  e &= 509\\
+  d &= 7'589
+\end{flalign*}
+Wir verschlüsseln das Wort \textit{GIBM MUTTENZ}. Als erstes müssen wir unseren Text in Zahlen umwandeln.\\
+\textit{GIBM MUTTENZ} würde in der ASCII-Schreibweise \textit{717366773277858484697890} heissen.\\
+Da $m < N$ sein muss, müssen wir unsere grosse Zahl in Blöcke aufteilen. Wir machen uns immer vierer Blöcke und verschlüsseln sie einzeln mit unserem öffentlichen Schlüssel (35'249, 509).
+\begin{flalign*}
+  7173^{509} \bmod(35'249) &= 2330\\
+  6677^{509} \bmod(35'249) &= 21891\\
+  3277^{509} \bmod(35'249) &= 10955\\
+  8584^{509} \bmod(35'249) &= 403\\
+  8469^{509} \bmod(35'249) &= 32164\\
+  7890^{509} \bmod(35'249) &= 34762
+\end{flalign*}
+Der verschlüsselte Text \textit{233021891109554033216434762} kann somit zum Empfänger gesendet werden.\\
+Leider gibt es nicht immer gleich lange Zahlen. Das wird dann zum Problem, wenn wir den verschlüsselten Text entschlüsseln. Dieses Problem wird bei der Implementierung der Verschlüsselung gelöst. Entweder werden die Zahlen aufgefüllt, oder man verwendet ein eindeutiges Trennzeichen.\\
+Der Empfänger entschlüsselt jetzt mit seinem private Key (35'240, 7589) die Nachricht. Damit er die Originalnachricht erhaltet, müssen die gleichen Blöcke genommen werden, wie bei der Verschlüsselung.
+%
+\begin{flalign*}
+  2330^{7589} \bmod(35'249) &= 7173\\
+  21891^{7589} \bmod(35'249) &= 6677\\
+  10955^{7589} \bmod(35'249) &= 3277\\
+  403^{7589} \bmod(35'249) &= 8584\\
+  32164^{7589} \bmod(35'249) &= 8469\\
+  34762^{7589} \bmod(35'249) &= 7890
+\end{flalign*}
+%
+Der Empfänger hat seine geheime Nachricht erfolgreich entschlüsseln können. 
 %
 %
 \newpage
@@ -45,12 +155,12 @@ Für den Beweis benötigen wir die ursprünglichen Formeln zur Verschlüsselung 
 Da in beiden Formeln die Ursprungsnachricht m und die verschlüsselte Nachricht c vorkommen, können wir diese Formeln gleichsetzen. Dazu lösen wir die Entschlüsselungsformel nach c auf:
 \begin{flalign*}
   m &\equiv c^d \bmod(N) \\
-  m & c^d - k * N \\
-  m + k \cdot N & = c^d \\
-  \sqrt[d]{m + k \cdot N} & = c
+  m &= c^d - k \cdot N \\
+  m + k \cdot N &= c^d \\
+  \sqrt[d]{m + k \cdot N} &= c
 \end{flalign*}
 Modulo ergibt jeweils den Rest einer ganzzahligen Division. Durch Umformung kann diese jeweils als $ k \cdot N $ dargestellt werden, wobei k eine ganze Zahl sein muss.\\
-Nun können wir c anders ausdrücken und in der Verschlüsselungsformel einsetzen.
+Nun können wir c durch $ \sqrt[d]{m + k \cdot N} $ ausdrücken und in der Verschlüsselungsformel einsetzen.
 %Wir setzen nun die beiden Formeln gleich, so das nur noch die Ursprungsnachricht m in der Gleichung vorhanden ist:
 \begin{flalign*}
   m^e \bmod(N) &\equiv \sqrt[d]{m + k \cdot N}\\
@@ -139,135 +249,31 @@ Daraus resultiert das $ 1 \bmod(N) $ das gleiche ist wie $ m^\varphi(N) $ und en
  m &= m 
 \end{flalign*}
 $ 1 \bmod(N) $ muss 1 ergeben da der Rest höchstens 1 sein kann und das RSA-Modul N grösser als 1 ist. \\
-$ 1^k $ ergibt immer 1, da die Basis 1 hoch eines beliebigen Exponenten 1 ergibt. \\
+$ 1^k $ ergibt immer 1, da die Basis 1 hoch ein beliebiger Exponent 1 ergibt. \\
 Wir wissen das $ x = 0 $ sein muss, da m immer kleiner als N gewählt wird. Falls m grösser gleich N ist, würde der RSA-Algorithmus nicht funktionieren. In diesem Fall wird die Nachricht aufgeteilt und später wieder zusammengesetzt.\\
 Schlussendlich stellen wir fest, dass m = m ist und beweisen somit die korrekte Funktionsweise des RSA-Algorithmus. Die Verschlüsselung und darauffolgende Entschlüsselung ergibt die Ursprungsnachricht.\\
 Die Entschlüsselung der Nachricht funktioniert nur mit dem zugehörigen privaten Schlüssel, da mit dem euklidischen Algorithmus, d so bestimmt wurde, das folgendes zählt:
 \begin{flalign*}
  e \cdot d + k \cdot \varphi(N) &= 1	
 \end{flalign*}
-Mit der modularen Inverse wurde d so bestimmt, das keine negative Zahl entsteht. Aus der vorherigen Formel ist ersichtlich, dass nur ein ganz bestimmtes d zu einem e und N gehört. Jeder andere Entschlüsselungexponent würde die Formel nicht korrekt erfüllen und zu einem anderen Ergebnis führen. 
-%
+Mit der modularen Inverse wurde d als positive Zahl bestimmt. Aus der vorherigen Formel ist ersichtlich, dass nur ein ganz bestimmtes d zu einem e und N gehört. Jeder andere Entschlüsselungs-Exponent würde die Formel nicht korrekt erfüllen und zu einem anderen Ergebnis führen. 
 %
 \newpage
+%
 %***************************************
-% BEISPIEL
+% ANWENDUNG
 %***************************************
-\section{Beispiel}
-Nachdem wir nun das ganze Wissen für den RSA-Algorithmus haben, ist es an der Zeit ein kleines Beispiel durchzugehen.
-\subsection{Einfaches Zahlenbeispiel}
-Wir starten mit einem einfachen Zahlenbeispiel. Auf die mathematischen Methoden wird nur noch verwiesen. Wir erklären sie hier nicht mehr.\\
-Für dieses Beispiel nehmen wir die Zahlen
-%
-\begin{flalign*}
-  p = 13 \\
-  q = 19
-\end{flalign*}
-%
-\paragraph{Schlüssel-Paar erstellen}
-Wir berechnen nun das RSA-Modul N (siehe Formel \ref{eqn:rsa_modul}) und $\varphi(N) $ (siehe Formel \ref{eqn:eulersche_func}) aus p und q.
-\begin{equation*}
-  \tag{RSA-Modul}
-  247 = 13 \cdot 19
-\end{equation*}
-%
-\begin{equation*}
-  \tag{$\varphi(N)$}
-  216 = (13 - 1) \cdot (19 - 1)
-\end{equation*}
-%
-Zu $ \varphi(N) $ suchen wir uns eine zweite Zahl e, die teilerfremd zu $ \varphi(N) $ ist, sprich den $ggT(\varphi(N),e) = 1$ hat. Am Besten man verwendet für e eine weitere Primzahl.
-%
-\begin{equation*}
-    e = 23
-\end{equation*}
-%
-Der öffentliche Schlüssel $N = 247$ und $e = 23$ ist nun berechnet [siehe Section \ref{sec:public_key}]\\
-Um den Entschlüsselungs-Exponenten zu berechnen, müssen wir zuerst den ggT(216,23) (siehe Formel \ref{eqn:euklidischer_algo}) ausrechnen.
-\begin{flalign*}
-  216 & = 9 \cdot 23 + 9 \\
-  23 & = 2 \cdot  9 + 5 \\
-  9 & = 1 \cdot  5 + 4 \\
-  5 & = 1 \cdot  4 + 1
-\end{flalign*}
-%
-Jetzt wenden wir den Erweiterter Euklidischer Algorithmus (siehe Formel \ref{eqn:erw_euklid_algo}) an.
-\begin{flalign*}
-  1 &= 5 - 1 \cdot 4 = 5 - 1 \cdot(9 - 1 \cdot 5) = 5 - 1 \cdot 9 + 1 \cdot 5 = 2 \cdot 5 - 1 \cdot 9\\
-  &= 2 \cdot 5 - 1 \cdot 9 = 2 \cdot (23 - 2 \cdot 9) - 1 \cdot 9 = 2 \cdot 23 - 4 \cdot 9 - 1 \cdot 9 = 2 \cdot 23 - 5 \cdot 9\\
-  &= 2 \cdot 23 - 5 \cdot 9 = 2 \cdot 23 - 5 \cdot (216 - 9 \cdot 23) = 2 \cdot 23 - 5 \cdot 216 + 45 \cdot 23 = \textbf{47} \cdot 23 \textbf{- 5} \cdot 216
-\end{flalign*}
-Modulare Inverse auf letzte Gleichung anwenden und wir erhalten:
-\begin{equation*}
-  1 \equiv 47 \cdot 23 \bmod(216)
-\end{equation*}
-Und dadurch unseren privaten Schlüssel $d = 47$ und $N = 216$.\\
-%
-Jetzt haben wir unseren privaten als auch öffentlichen Schlüssel die wir für eine Ver- Entschlüsselung benötigen.
-\paragraph{Verschlüsseln}
-Wir verschlüsseln die Zahl 15\\
-Verschlüsselungsfunktion anwenden:
-\begin{equation*}
-  15^{23} \bmod 247 = 59
-\end{equation*}
-Die Zahl 15 verschlüsselt mit unserem öffentlichen Schlüssel (23, 247) ergibt die Zahl 59.
-%
-\paragraph{Entschlüsseln}
-Um zu überprüfen ob unserer privater Schlüssel auch wirklich funktioniert, entschlüsseln wir die Zahl 59 mit unserem privaten Schlüssel.\\
-\begin{equation*}
-  59^{47} \bmod 247 = 15
-\end{equation*}
-Als Resultat erhalten wir 15 und können dadurch sehen, dass unser kleines Beispiel funktioniert hat.
-%
-% Beispiel TEXT
-%
-\subsection{Beispiel an einem Text}
-Nun möchten wir ein Beispiel an einem Text zeigen. Da man Buchstaben nicht verschlüsseln kann, denn mit ihnen lässt sich nicht rechnen, müssen wir den Text in Zahlen umzuwandeln. Dafür gibt es viele verschiedene Möglichkeiten. Wir verwenden in diesem Beispiel die \textit{ASCII-Tabelle}\footnote{Die ASCII-Tabelle ordnet jedem Buchstaben eine eindeutige Zahl zu.}.\\
-Weiter gilt zu beachten, dass man bei Text-Verschlüsselung grössere Schlüssel braucht. Deshalb nehmen wir für das nächste Beispiel neue Zahlen:
-\begin{flalign*}
-  p &= 101\\
-  q &= 349\\
-  N &= 35'249\\
-  \varphi(N) &= 34'800\\
-  e &= 509\\
-  d &= 7'589
-\end{flalign*}
-Wir verschlüsseln das Wort \textit{GIBM MUTTENZ}. Als erstes müssen wir unseren Text in Zahlen umwandeln.\\
-\textit{GIBM MUTTENZ} würde in der ASCII-Schreibweise \textit{717366773277858484697890} heissen.\\
-Da $m < N$ sein muss, müssen wir unsere grosse Zahl in Blöcke aufteilen. Wir machen uns immer vierer Blöcke und verschlüsseln sie einzeln mit unserem öffentlichen Schlüssel (35'249, 509).
-\begin{flalign*}
-  7173^{509} \bmod(35'249) &= 2330\\
-  6677^{509} \bmod(35'249) &= 21891\\
-  3277^{509} \bmod(35'249) &= 10955\\
-  8584^{509} \bmod(35'249) &= 403\\
-  8469^{509} \bmod(35'249) &= 32164\\
-  7890^{509} \bmod(35'249) &= 34762
-\end{flalign*}
-Der verschlüsselte Text \textit{233021891109554033216434762} kann somit zum Empfänger gesendet werden.\\
-Leider gibt es nicht immer gleich lange Zahlen. Das wird dann zum Problem, wenn wir den verschlüsselten Text zurück entschlüsseln. Dieses Problem wird bei einer richtigen Verschlüsselung in der Implementierung gelöst. Entweder werden die Zahlen aufgefüllt, oder man verwendet ein eindeutiges Trennzeichen.\\
-Der Empfänger entschlüsselt jetzt mit seinem private Key (35'240, 7589) die Nachricht. Damit er die Originalnachricht erhaltet, müssen die gleichen Blöcke genommen werden, wie bei der Verschlüsselung.
-%
-\begin{flalign*}
-  2330^{7589} \bmod(35'249) &= 7173\\
-  21891^{7589} \bmod(35'249) &= 6677\\
-  10955^{7589} \bmod(35'249) &= 3277\\
-  403^{7589} \bmod(35'249) &= 8584\\
-  32164^{7589} \bmod(35'249) &= 8469\\
-  34762^{7589} \bmod(35'249) &= 7890
-\end{flalign*}
-%
-Der Empfänger hat seine geheime Nachricht erfolgreich entschlüsseln können. 
 \section{Anwendung}
-Asymmetrische Verschlüsselungen werden häufig verwendet.  Obwohl verschiedene neue asymmetrische Verschlüsselungen erfunden wurden, deckt der RSA-Algorithmus weiterhin eine grosse Menge der asymmetrischen Verschlüsselung ab.\\
-Wir möchten hier einige Beispiele aufzeigen, in denen der RSA-Algorithmus zu tragen kommt. Prinzipiell kommt ein asymmetrisches Verfahren dann zum Einsatz, wenn sich zwei Parteien ohne vorherigen Kontakt eine sichere Kommunikation aufbauen möchten. Es ist naheliegend, dass im IT-Bereich, über ein Netzwerk bzw. das Internet, solche Anforderungen bestehen.
-
+Asymmetrische Verschlüsselungen werden häufig verwendet.  Obwohl verbesserte asymmetrische Verschlüsselungen erfunden wurden, deckt der RSA-Algorithmus weiterhin einen grossen Anteil der asymmetrischen Verschlüsselungen ab.\\
+Wir möchten hier einige Beispiele aufzeigen, in denen der RSA-Algorithmus verwendet wird. Typischerweise kommt ein asymmetrisches Verfahren dann zum Einsatz, wenn zwei Parteien, ohne vorherigen Kontakt, eine sichere Verbindung aufbauen möchten. Es ist naheliegend, dass im IT-Bereich, über ein Netzwerk bzw. das Internet, solche Anforderungen bestehen.
+%
 \subsection{SSH - Secure Shell}
-Die secure shell dient zum Aufbau einer Verbindung auf ein Gerät. Dies sind meistens Netzwerkkomponente oder Server. Die shell ist eine Konsole mit der Befehle an das Gerät gesendet werden kann.\\
-Ohne RSA-Verschlüsselung müsste die Wartung vor Ort mit einem Kabel gemacht werden oder ein gleichbleibender Schlüssel vergeben werden. Aus Sicherheits- und Zeitgründen wären beide Möglichkeiten ziemlich schlecht.
-
+Die secure shell dient zum Aufbau einer Verbindung zu einem Gerät. Dies sind meistens Netzwerkkomponente oder Server. Die shell ist eine Konsole mit der Befehle an das Gerät gesendet werden können.\\
+Ohne RSA-Verschlüsselung müsste die Wartung vor Ort mit einem Kabel vorgenommen oder ein gleichbleibender Schlüssel vergeben werden. Aus Sicherheits- und Zeitgründen wären beide Möglichkeiten nicht ökonomisch.
+%
 \subsection{RFID}
-RFID ist eine Technologie für den Kontaktlosen Austausch von Informationen. Dies funktioniert über elektromagnetische Wellen. Der Einsatz ist sehr unterschiedlich. In der Logistik wird es gebraucht um Waren schneller zu finden und direkt mit Listen abzugleichen, ohne jedes Produkt einzeln über einen Strichcode zu scannen. Das RSA-Kryptosystem wird zum Austausch des Schlüssels bei RFID basierten Zugangssystemen verwendet. Ohne ein solches asymmetrisches Verfahren, könnte jemand die Verbindung abhören und die Karte somit kopieren bzw. den Schlüssel der Karte herausfinden.
+RFID ist eine Technologie für den kontaktlosen Austausch von Informationen. Dies funktioniert über elektromagnetische Wellen. Der Einsatz ist sehr unterschiedlich. In der Logistik wird es gebraucht um Waren schneller zu finden und direkt mit Listen abzugleichen, ohne jedes Produkt einzeln über einen Strichcode zu scannen. Das RSA-Kryptosystem wird zum Austausch des Schlüssels bei RFID basierten Zugangssystemen verwendet. Ohne ein solches asymmetrisches Verfahren, könnte jemand die Verbindung abhören und die Karte somit kopieren bzw. den Schlüssel der Karte abfangen.
 
 \subsection{PGP}
-PGP ist ein Programm zur Verschlüsselung von Daten mit verschiedenen Methoden. Seit der ersten Version 1991 kann RSA verwendet werden. Das Programm wurde ausserhalb der USA weiterentwickelt und liegt seit 1998 auch Quelloffen(open source) bereit. Da in den USA Exportbeschränkungen auf Kryptografische Software vorhanden sind, durfte die Software nicht in der üblichen Form vertrieben werden. Um dieses Exportverbot zu Umgehen, wurde der Quellcode der Software in Buchform vertrieben und exportiert. In Europa wurde er dann wieder abgeschrieben und kompiliert(ausführbar gemacht). 
+PGP ist ein Programm zur Verschlüsselung von Daten mit verschiedenen Methoden. Seit der ersten Version 1991 kann RSA verwendet werden. Das Programm wurde ausserhalb der USA weiterentwickelt und liegt seit 1998 auch Quelloffen(open source) bereit. Da in den USA Exportbeschränkungen auf Kryptographische Software verhängt wurden, durfte die Software nicht in der üblichen Form vertrieben werden. Um dieses Exportverbot zu umgehen, wurde der Quellcode der Software in Buchform vertrieben und exportiert. In Europa wurde er dann wieder abgeschrieben und kompiliert(ausführbar gemacht). 
 

@@ -6,14 +6,14 @@ Im nächsten Abschnitt werden die einzelnen mathematischen Verfahren kurz in ihr
 Wir werden für die beiden Primzahlen durchgehend die Variablen $p$ und $q$ verwenden. $N$ steht immer für das Produkt von $p \cdot q$. Die Variable $r$ wird für das Resultat der Modulo-Berechnungen verwendet. $e$ steht für den Verschlüsselungs-Exponenten und $d$ für den Entschlüsselungs-Exponenten.
 %
 \subsection{Modulo}
-Modulo oder auch \textit{Division mit Rest} gibt den ganzzahligen Rest einer Division zweier natürlichen Zahlen an. Er wird beim RSA-Algorithmus bei der Berechnung des Entschlüsselungs-Exponenten sowie in der Verschlüsselung gebraucht.\\
-Modulo erklärt sich am einfachsten an einem Beispiel:
+Modulo oder auch \textit{Division mit Rest} gibt den ganzzahligen Rest einer Division zweier natürlichen Zahlen an. Er wird beim RSA-Algorithmus bei der Berechnung des Entschlüsselungs-Exponenten sowie in der Verschlüsselung verwendet.\\
+Modulo erklärt sich am Einfachsten an einem Beispiel:
 %
 \begin{equation*}
   21 \bmod(5) = 1
 \end{equation*}
 %
-Es gilt herauszufinden, wie viel Mal 5 ganz in 21 vorhanden ist, das heisst wir Teilen 21 durch 5 und schneiden den Dezimalrest ab. Um den ganzzahligen Rest zu berechnen subtrahieren wir von 21 das Produkt aus 4 mal 5.
+Es gilt herauszufinden, wie viel Mal 5 ganz in 21 vorhanden ist. Dafür teilen wir 21 durch 5 und schneiden den Dezimalrest ab. Um den ganzzahligen Rest zu berechnen subtrahieren wir von 21 das Produkt aus 4 mal 5.
 %
 \begin{flalign*}
   21 \colon 5 &= 4.2\\
@@ -205,7 +205,7 @@ Auf den RSA-Algorithmus angewendet sieht die Formel so aus:
   \label{eqn:erw_euklid_algo_RSA}
 \end{equation}
 %
-Mit seiner Hilfe lässt sich der Entschlüsselungs-Exponent d berechnen, den wir für den privaten Schlüssel brauchen.\\
+Mit seiner Hilfe lässt sich der Entschlüsselungs-Exponent d berechnen, welchen wir für die Berechnung des privaten Schlüssels brauchen.\\
 Dieser Algorithmus wird auch \textit{Vielfachsummendarstellung} genannt, denn um auf die Zahlen d und k zu kommen, muss man die Vielfachsummendarstellung anwenden.\\
 Es ist eine erweiterte Form des Euklidischen Algorithmus.\\
 Wir schreiben jetzt die Rechnung \ref{eqn:euqulid_beweis} so um, dass wir den Rest auf einer Seite isolieren.\\ 
