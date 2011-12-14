@@ -7,7 +7,7 @@ Man brauchte also sichere Verschlüsselungs-Methoden, die durch Ausprobieren nic
 Einen grossen Fortschritt machte die moderne Kryptographie in den Jahren 1976 und 1985.\\
 % TODO ZERO-KNOWLEDGGE Verweis
 1976 wurde das Problem, dass immer beide Seiten einen \textbf{gemeinsamen} Schlüssel benötigen gelöst. Das ist die Geburtsstunde des RSA-Algorithmus.\\
-1985 entwickelten drei Mathematiker/-Innen das \textbf{Zero-Knowledge-Verfahren}. \cite{} Das Zero-Knowlede-Verfahren baut auf dem RSA-Algorithmus auf und Unterscheidet sich in der Implementierung des Protokolls. Mit diesem Verfahren ist es möglich, dass zwei Personen auf einem Rechner miteinander kommunizieren, ohne dass der Rechner davon etwas erfährt.
+1985 entwickelten drei Mathematiker/-Innen das \textbf{Zero-Knowledge-Verfahren}. \cite{} Das Zero-Knowledge-Verfahren baut auf dem RSA-Algorithmus auf und unterscheidet sich in der Implementierung des Protokolls. Mit diesem Verfahren ist es möglich, dass zwei Personen auf einem Rechner miteinander kommunizieren, ohne dass der Rechner davon etwas abhören könnte.
 %
 \subsection{Symmetrische Verschlüsselung}
 Grundsätzlich braucht es für eine einfache symmetrische Verschlüsselung einen Schlüssel, den zu verschlüsselnden Text und eine Verschlüsselungsfunktion.
@@ -16,7 +16,7 @@ Die Verschlüsselungsfunktion übersetzt den Klartext mit Hilfe des Schlüssel. 
   c = f ( k, m )
 \label{eqn:sym_versch}
 \end{equation*}
-\textit{c} steht für den verschlüsselten  (eng.: \textit{crypted}) Text, \textit{f} für die Verschlüsselungsfunktion (eng.: \textit{function}), \textit{k} für den Schlüssel (eng.: \textit{key}) und \textit{m} für den Text (eng.: \textit{message}) der verschlüsselt wird.\\
+\textit{c} steht für den verschlüsselnden  (eng.: \textit{crypted}) Text, \textit{f} für die Verschlüsselungsfunktion (eng.: \textit{function}), \textit{k} für den Schlüssel (eng.: \textit{key}) und \textit{m} für den Text (eng.: \textit{message}) der verschlüsselt wird.\\
 %
 Der verschlüsselte Text wird nun dem Empfänger übergeben. Hat der Empfänger keinen Schlüssel \textit{k}, um die Nachricht zu entschlüsseln, kann er die Nachricht nicht lesen. Somit braucht der Empfänger \textbf{denselben} Schlüssel \textit{k}, die verschlüsselte Nachricht \textit{c} und eine Umkehrfunktion von \textit{f}.\\
 Daraus entsteht die Formel:
@@ -47,7 +47,7 @@ Vor 1970, als es die asymmetrische Verschlüsselung noch nicht gab, wurden Schl�
 %
 %Es waren vor allem die Botschaften, die einen solchen Transport mehrfach absicherten, indem sie dem Überbringer den Koffer mit Handschellen am Handgelenk festmachten und ihn von diversen Bodyguards beschützt in einer kugelsicheren Limousine zum Zielort fuhren.\\
 Dieses Verfahren war sehr umständlich. %Es kostete viel und dauerte zu lang.
-Wie aber sollte man einen Schlüssel sicher von einem Ort zum anderen transportieren und dabei sicher sein, dass niemand einen Blick auf den Schlüssel werfen konnte?\\
+Wie aber sollte man einen Schlüssel sicher von einem Ort zum anderen transportieren und dabei sicher sein, dass niemand einen Blick auf den Schlüssel werfen kann?\\
 %
 Anfang 1976 stellten Whitfield Diffe und Martin Hellman ein Konzept vor, das die Grundidee von einer asymmetrischen Verschlüsselung darlegte. Sie kannten das Verfahren jedoch nicht exakt. Sie stellten das \textbf{Diffle-Hellman-Problem} vor. \cite{rsa_and_public_key}\\ % Stellten das Prinzip vor
 Schon viel früher entwickelten James Ellis, Clifford Cockes und Malcom Willamson, alle vom Britischen Geheimdienst, ein asymmetrisches Verschlüsselungsverfahren. Sie durften aber ihre Ergebnisse weder veröffentlichen noch ein Patent anmelden. 
@@ -60,7 +60,7 @@ Für dieses Verfahren hat sich der Name \textbf{Public Key-Kryptographie} durchg
 %
 % Bei der Formel für die verschlüsselung ist f_e und m verantwortlich für c das heisst es sind beide wichtig!!
 %
-Um jemandem eine verschlüsselte Nachricht zu senden, benötigt man den öffentlichen Schlüssel des Empfängers. Mit diesem öffentlichen Schlüssel und der Verschlüsselungsfunktion wird der Klartext in ein Chiffrat übersetzt. Nur der Besitzer des privaten Schlüssels ist in der Lage, aus dem Chiffrat den Klartext zu erzeugen.\\
+Um jemandem eine verschlüsselte Nachricht zu senden, benötigt man den öffentlichen Schlüssel des Empfängers. Mit diesem öffentlichen Schlüssel und der Verschlüsselungsfunktion wird der Klartext in das Chiffrat übersetzt. Nur der Besitzer des privaten Schlüssels ist in der Lage, aus dem Chiffrat den Klartext zu erzeugen.\\
 Die Verschlüsselung in einer Formel ausgedrückt:
 %Aus dieser Idee kann man eine Funktion erstellen, die das Verschlüssen schematisch darstellt.\\
 \begin{equation*}
@@ -78,7 +78,7 @@ Die Entschlüsselung in einer Formel ausgedrückt:
   m' = f_d (c) 
   \label{eqn:asy_entsch}
 \end{equation*}
-Mit der Entschlüsselungsfunktion \textit{f} und dem Entschlüsselungs-Exponenten \textit{d} (eng.: \textit{decription exponent}) wird aus dem verschlüsseltem Text \textit{c} den Klartext \textit{m'} gewonnen.
+Mit der Entschlüsselungsfunktion \textit{f} und dem Entschlüsselungs-Exponenten \textit{d} (eng.: \textit{decription exponent}) wird aus dem verschlüsseltem Text \textit{c} der Klartext \textit{m'} gewonnen.
 %
 %Das Wichtigste bei der asymmetrischen Verschlüsselung ist, dass beim Entschlüsseln wieder der \textbf{gleiche} Text reproduziert wird, auch wenn zum Ver- und Entschlüsseln zwei unterschiedliche Schlüssel verwendet wurden.\\
 %Der ganze Vorgang in einer Gleichung ausgedrückt (c parametrisiert):

@@ -1,15 +1,15 @@
 \part{Verschlüsselung Allgemein}
 \section{Sinn und Zweck der Verschlüsselung}
-Die Verschlüsselung bzw. die Geheimhaltung von Informationen wurde schon lange vor Christi Geburt gebraucht. Es ist wichtig wie ich eine Information vor Unbefugten so darstellen kann, dass es für sie keinen Sinn ergibt. Ich, oder Andere, mit einem geheimen Schlüssel können die Information jedoch lesen. Der Zweck hinter der Verschlüsselung ist, dass das Lesen von Daten durch Unbefugte verunmöglicht wird. \\
-Als Beispiel stellen wir uns den Briefverkehr zwischen zwei Freunden vor. Da sie dem Briefträger und der Schweizerischen Post vertrauen, verschlüsseln wir in der Regel die Briefe nicht. Mit einem Siegel und dem Briefumschlag würden wir bemerken, falls jemand den Brief vorzeitig geöffnet hat. Zusätzlich können wir mit einem Siegel und der Unterschrift die Authentizität des Absenders verifizieren.\\
-Im Gegensatz zu dem Brief können wir uns bei einer Email nicht auf diese Sicherheiten verlassen. Eine Email wird über verschiedenste Server und Länder gesendet, bis sie über einen Weg aus mehreren Knotenpunkten beim Empfänger ankommt. Wer und ob diese Nachricht sonst noch kopiert, geöffnet oder gelesen wurde ist nicht nachvollziehbar. Daher brauchen wir eine Verschlüsselung, damit nur der gewünschte Empfänger diese Nachricht entschlüsseln und somit auch lesen kann.
+Die Verschlüsselung beziehungsweise die Geheimhaltung von Informationen wurde schon lange vor Christi Geburt gebraucht. Es ist wichtig, wie ich eine Information vor Unbefugten so darstellen kann, dass es für sie keinen Sinn ergibt. Ich, oder Andere, mit einem geheimen Schlüssel, können die Information jedoch lesen. Der Zweck der Verschlüsselung ist, dass das Lesen von Daten durch Unbefugte verunmöglicht wird. \\
+Als Beispiel stellen wir uns den Briefverkehr zwischen zwei Freunden vor. Da sie dem Briefträger und der Schweizerischen Post vertrauen, verschlüsseln sie in der Regel die Briefe nicht. Mit einem Siegel auf dem Briefumschlag würden wir bemerken, falls jemand den Brief vorzeitig geöffnet hätte. Zusätzlich können wir mit einem Siegel und der Unterschrift die Authentizität des Absenders verifizieren.\\
+Im Gegensatz zum Brief können wir uns bei einer Email nicht auf diese Sicherheiten verlassen. Eine Email wird über verschiedenste Server und Länder gesendet, bis sie über einen Weg aus mehreren Knotenpunkten beim Empfänger ankommt. Wer und ob diese Nachricht sonst noch kopiert, geöffnet oder gelesen wurde, ist nicht nachvollziehbar. Daher brauchen wir eine Verschlüsselung, damit nur der gewünschte Empfänger diese Nachricht entschlüsseln und lesen kann.
 %
 %Im realen Leben können wir zum Beispiel unser Haus vor Dieben sichern, indem wir eine Türe mit einem stabilen Schloss einbauen. Möchte man noch weiter gehen, kann man eine Alarmanlage einbauen.\\[2ex]
 %
 % In der Digitalen Welt geht das nicht so einfach. Obwohl man seinen Rechner mit einem Benutzername und Passwort für unbefugte Personen schützen kann, gibt es Techniken, mit der lassen sich ganze Festplatten Bit für Bit kopieren. Hier setzt die Verschlüsselung an. Denn wenn man etwas verschlüsselt auf die Festplatte speichert, kann der unbefugte die gestohlenen Daten nicht brauchen.
 %\section{Geschichte der Verschlüsselung}
 \section{Klassische Kryptographie}
-Die Kryptographie bezeichnet die Entwicklung von Methoden zur Verheimlichung von Nachrichten. Das Wort Kryptographie setzt sich aus dem Griechischen Wort kryptos und graphein zusammen, was so viel wie "verborgen schreiben" heisst.  \cite{kryptographie_Grundlagen} \\
+Die Kryptographie bezeichnet die Entwicklung von Methoden zur Verheimlichung von Nachrichten. Das Wort Kryptographie setzt sich aus dem Griechischen Wort \textit{kryptos} und \textit{graphein} zusammen, was so viel wie \textit{"verborgen schreiben"} heisst.  \cite{kryptographie_Grundlagen} \\
 Die Hebräer haben 600 vor Christus das Atbash entwickelt. Dabei wurde das Alphabet umgekehrt und entsprechend verschlüsselt.
 %
 \begin{table}[ht]
@@ -22,9 +22,9 @@ Die Hebräer haben 600 vor Christus das Atbash entwickelt. Dabei wurde das Alpha
 \end{center}
 \end{table} \\
 %
-Das Wort GIBM wird mit Atbash zu TRYN \\
+Das Wort GIBM wird mit Atbash zu TRYN.\\
 Die Caesar-Verschlüsselung wurde nach Julius Caesar benannt und zur militärischen Korrespondenz im Römischen Reich gebraucht.\\
-Dafür wurde das Alphabet um 3 Stellen nach hinten verschoben. Aus einem D wird somit ein A. Dieses Verfahren wurde im 15.-Jahrhundert mit einer Chiffrierscheibe verbessert und ist bis heute noch als Caesar Verschlüsselung bekannt. Die Verschiebung um 13 Stellen wird auch als rot13 bezeichnet, da unser Alphabet aus 26 Zeichen besteht, ist die Verschlüsselung und Entschlüsselung bei rot13 die selbe. \\
+Dafür wurde das Alphabet um 3 Stellen nach hinten verschoben. Aus einem D wird somit ein A. Dieses Verfahren wurde im 15. Jahrhundert mit einer Chiffrierscheibe verbessert und ist bis heute noch als Caesar Verschlüsselung bekannt. Die Verschiebung um 13 Stellen wird auch als rot13 bezeichnet, da unser Alphabet aus 26 Zeichen besteht, ist die Verschlüsselung und Entschlüsselung bei rot13 die selbe. \\
 %
 \begin{table}[ht]
 \caption{Caesar Verschlüsselung}
@@ -79,7 +79,7 @@ Die Deutsche Wehrmacht nutzte die Enigma um ihre Funksprüche zu verschlüsseln.
 \caption{Schlüsseltafel der Wehrmacht}
 \begin{center}
 \begin{tabular}{|l|l|l|l|l}
-Tag & UKW & Walzenlage & Ringstellung &  ---- Steckerverbindungen ---- \\
+Tag & UKW & Walzenlage & Ringstellung &  Steckerverbindungen \\
  31  &   B   &  I   IV III   &    16 26 08   &  AD CN ET FL GI JV KZ PU QY WX \\
 \end{tabular}
 \end{center}
@@ -90,17 +90,17 @@ Die eigentliche Verschlüsselung war relativ simpel zu bewerkstelligen. Es musst
 %
 Vor der eigentlichen Nachricht wurde ein Nachrichtenkopf gemorst. In diesem wurde die Länge des Textes bekannt gegeben, die Walzenstellung und die Nachrichtenart. 
 Der eigentliche Text wurde in Gruppen aus 5 Buchstaben gemorst. Bei den ersten 5 Buchstaben wurde bestimmt, an wen die Nachricht geht. Dabei wurden die ersten zwei Buchstaben zufällig ausgewählt und die letzten 3 durchmischt. Nach der Alphabetischen Ordnung, konnte über eine Tabelle festgestellt werden, ob die Nachricht entschlüsselt werden darf.
-Die Walzenstellung wurde verschlüsselt übertragen. Wenn im Kopf z. B. QWE EWG angegeben wurde, musste man die Walze auf die Buchstaben QWE einstellen und EWG eingeben. Was dabei verschlüsselt heraus kam, war die Anfangsstellung der Walzen um die Nachricht zu entschlüsseln. Jetzt konnte mit der Entschlüsselung der Nachricht begonnen werden.
+Die Walzenstellung wurde verschlüsselt übertragen. Wenn im Kopf z. B. QWE EWG angegeben wurde, musste man die Walze auf die Buchstaben QWE einstellen und EWG eingeben. Was dabei verschlüsselt heraus kam, war die Anfangsstellung der Walzen, um die Nachricht zu entschlüsseln. Jetzt konnte mit der Entschlüsselung der Nachricht begonnen werden.
 %
 \subsubsection{Schwachstelle der Enigma}
 Die Enigma benutzte ein symmetrisches Verfahren, daher war der Schlüssel für die Entschlüsselung und Verschlüsselung identisch. %TODO: Siehe Kapitel \ref{moderne Kryptographie %
 Die Geheimhaltung der Walzen war wichtig, da sie einen wesentlichen Teil der Verschlüsselung ausmachen.
-Dadurch das ein Buchstabe nicht in sich selbst verschlüsselt werden kann (Strom kann nicht zurück fliessen) konnte ein wesentlicher Teil ausgeschlossen werden.
-Durch einsetzen bestimmter Wörter, welche im Text vermutet wurden, konnte ein grosser Teil der möglichen Positionen ausgeschlossen werden. Dafür wurde z. B. OBERKOMMANDODERWEHRMACHT eingesetzt und falls an einer Position der Buchstabe in sich selbst verschlüsselt war, konnte das Wort an dieser Position nicht sein.
+Dadurch, dass ein Buchstabe nicht in sich selbst verschlüsselt werden kann (Strom kann nicht zurück fliessen) konnte eine wesentliche Schwachstelle ausgeschlossen werden.
+Durch Einsetzen bestimmter Wörter, welche im Text vermutet wurden, konnte ein grosser Teil der möglichen Positionen ausgeschlossen werden. Dafür wurde z. B. OBERKOMMANDODERWEHRMACHT eingesetzt und falls an einer Position der Buchstabe in sich selbst verschlüsselt war, konnte das Wort an dieser Position nicht sein.
 %
 \subsection{Probleme der früheren Verschlüsselungen}
 Die Verfahren bis zum zweiten Weltkrieg konnten einfach geknackt werden. Wenn die Art der Verschlüsselung bekannt war, konnte der Schlüssel einfach ermittelt werden. 
-Die Enigma revolutionierte die Kryptographie. Obwohl die Art der Verschlüsselung und sogar die Walzen bekannt waren, mussten die Engländer grosse Anstrengungen unternehmen, damit die Texte entschlüsselt werden konnten. Um der Enigma zu begegnen wurden Maschinen gebaut, welche diese Arbeit vereinfachten. Die sogenannte Turing Bombe konnte innert 6 Stunden die Verschlüsselung knacken. 
+Die Enigma revolutionierte die Kryptographie. Obwohl die Art der Verschlüsselung und sogar die Walzen bekannt waren, mussten die Engländer grosse Anstrengungen unternehmen, damit die Texte entschlüsselt werden konnten. Um der Enigma zu begegnen, wurden Maschinen gebaut, welche diese Arbeit vereinfachten. Die sogenannte Turing Bombe konnte innert 6 Stunden die Verschlüsselung knacken. 
 Mit mehreren Turing Bomben wurde die Verschlüsselung in kurzer Zeit geknackt. \\[2ex]
 %
 Die früheren Verschlüsselungen hielten sich nicht an das Kerckhoff's Prinzip. Dieses besagt, dass die Sicherheit der Verschlüsselung nicht von der Geheimhaltung des Algorithmus abhängig gemacht werden darf. Die Sicherheit ist durch den Schlüssel gegeben. \cite{kerckhoffsprinzip}

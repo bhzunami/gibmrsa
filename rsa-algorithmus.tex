@@ -34,9 +34,9 @@ Die Entschlüsselung der Nachricht wird mit folgender Formel realisiert:
 % BEISPIEL
 %***************************************
 \section{Beispiel}
-Nachdem wir nun die Grundlagen für die Anwendung des RSA-Algorithmus erarbeitet haben, ist es an der Zeit ein kleines Beispiel durchzuführen.
+Nachdem wir nun die Grundlagen für die Anwendung des RSA-Algorithmus erarbeitet haben, ist es an der Zeit, ein kleines Beispiel durchzuführen.
 \subsection{Einfaches Zahlenbeispiel}
-Wir starten mit einem einfachen Zahlenbeispiel. Auf die mathematischen Methoden wird nur noch verwiesen. Wir erklären sie hier nicht mehr.\\
+Wir starten mit einem einfachen Zahlenbeispiel. Auf die mathematischen Methoden wird nur noch verwiesen.\\
 Für dieses Beispiel nehmen wir die Zahlen
 %
 \begin{flalign*}
@@ -83,7 +83,7 @@ Indem wir die Modulare Inverse auf letzte Gleichung anwenden erhalten wir:
 \end{equation*}
 Und dadurch unseren privaten Schlüssel $d = 47$ und $N = 216$.\\
 %
-Jetzt haben wir unseren privaten als auch öffentlichen Schlüssel die wir für eine Ver- Entschlüsselung benötigen.
+Jetzt haben wir unseren privaten und den öffentlichen Schlüssel, die wir für eine Ver- Entschlüsselung benötigen.
 \paragraph{Verschlüsseln}
 Wir verschlüsseln die Zahl 15\\
 Verschlüsselungsfunktion anwenden siehe Formel \ref{eqn:rsa_decription}
@@ -114,7 +114,7 @@ Weiter gilt zu beachten, dass man bei Text-Verschlüsselungen grössere Schlüss
 \end{flalign*}
 Wir verschlüsseln das Wort \textit{GIBM MUTTENZ}. Als erstes müssen wir unseren Text in Zahlen umwandeln.\\
 \textit{GIBM MUTTENZ} würde in der ASCII-Schreibweise \textit{717366773277858484697890} heissen.\\
-Da $m < N$ sein muss, müssen wir unsere grosse Zahl in Blöcke aufteilen. Wir machen uns immer vierer Blöcke und verschlüsseln sie einzeln mit unserem öffentlichen Schlüssel (35'249, 509).
+Da $m < N$ sein muss, müssen wir unsere grosse Zahl in Blöcke aufteilen. Wir machen uns immer 4er-Blöcke und verschlüsseln sie einzeln mit unserem öffentlichen Schlüssel (35'249, 509).
 \begin{flalign*}
   7173^{509} \bmod(35'249) &= 2330\\
   6677^{509} \bmod(35'249) &= 21891\\
@@ -125,7 +125,7 @@ Da $m < N$ sein muss, müssen wir unsere grosse Zahl in Blöcke aufteilen. Wir m
 \end{flalign*}
 Der verschlüsselte Text \textit{233021891109554033216434762} kann somit zum Empfänger gesendet werden.\\
 Leider gibt es nicht immer gleich lange Zahlen. Das wird dann zum Problem, wenn wir den verschlüsselten Text entschlüsseln. Dieses Problem wird bei der Implementierung der Verschlüsselung gelöst. Entweder werden die Zahlen aufgefüllt, oder man verwendet ein eindeutiges Trennzeichen.\\
-Der Empfänger entschlüsselt jetzt mit seinem private Key (35'240, 7589) die Nachricht. Damit er die Originalnachricht erhaltet, müssen die gleichen Blöcke genommen werden, wie bei der Verschlüsselung.
+Der Empfänger entschlüsselt jetzt die Nachricht mit seinem private Key (35'240, 7589). Damit er die Originalnachricht erhält, müssen die gleichen Blöcke genommen werden wie bei der Verschlüsselung.
 %
 \begin{flalign*}
   2330^{7589} \bmod(35'249) &= 7173\\
@@ -136,7 +136,7 @@ Der Empfänger entschlüsselt jetzt mit seinem private Key (35'240, 7589) die Na
   34762^{7589} \bmod(35'249) &= 7890
 \end{flalign*}
 %
-Der Empfänger hat seine geheime Nachricht erfolgreich entschlüsseln können. 
+Der Empfänger hat die geheime Nachricht erfolgreich entschlüsseln können. 
 %
 %
 \newpage
@@ -268,12 +268,12 @@ Asymmetrische Verschlüsselungen werden häufig verwendet.  Obwohl verbesserte a
 Wir möchten hier einige Beispiele aufzeigen, in denen der RSA-Algorithmus verwendet wird. Typischerweise kommt ein asymmetrisches Verfahren dann zum Einsatz, wenn zwei Parteien, ohne vorherigen Kontakt, eine sichere Verbindung aufbauen möchten. Es ist naheliegend, dass im IT-Bereich, über ein Netzwerk bzw. das Internet, solche Anforderungen bestehen.
 %
 \subsection{SSH - Secure Shell}
-Die secure shell dient zum Aufbau einer Verbindung zu einem Gerät. Dies sind meistens Netzwerkkomponente oder Server. Die shell ist eine Konsole mit der Befehle an das Gerät gesendet werden können.\\
-Ohne RSA-Verschlüsselung müsste die Wartung vor Ort mit einem Kabel vorgenommen oder ein gleichbleibender Schlüssel vergeben werden. Aus Sicherheits- und Zeitgründen wären beide Möglichkeiten nicht ökonomisch.
+Die secure shell dient zum Aufbau einer Verbindung zu einem entfernten Gerät. Dies sind meistens Netzwerkkomponente oder Server. Die \textit{shell} ist eine Konsole, mit der Befehle an das Gerät gesendet werden können.\\
+Ohne RSA-Verschlüsselung müsste die Wartung vor Ort mit einem Kabel vorgenommen oder ein gleichbleibender Schlüssel vergeben werden. Aus Sicherheits- und Zeitgründen sind beide Möglichkeiten nicht ökonomisch.
 %
 \subsection{RFID}
-RFID ist eine Technologie für den kontaktlosen Austausch von Informationen. Dies funktioniert über elektromagnetische Wellen. Der Einsatz ist sehr unterschiedlich. In der Logistik wird es gebraucht um Waren schneller zu finden und direkt mit Listen abzugleichen, ohne jedes Produkt einzeln über einen Strichcode zu scannen. Das RSA-Kryptosystem wird zum Austausch des Schlüssels bei RFID basierten Zugangssystemen verwendet. Ohne ein solches asymmetrisches Verfahren, könnte jemand die Verbindung abhören und die Karte somit kopieren bzw. den Schlüssel der Karte abfangen.
+RFID ist eine Technologie für den kontaktlosen Austausch von Informationen. Dies funktioniert über elektromagnetische Wellen. Der Einsatz ist sehr unterschiedlich. In der Logistik wird es gebraucht, um Waren schneller zu finden und direkt mit Listen abzugleichen, ohne jedes Produkt einzeln über einen Strichcode zu scannen. Das RSA-Kryptosystem wird zum Austausch des Schlüssels bei RFID basierten Zugangssystemen verwendet. Ohne ein solches asymmetrisches Verfahren könnte jemand die Verbindung abhören und die Karte somit kopieren bzw. den Schlüssel der Karte abfangen.
 
 \subsection{PGP}
-PGP ist ein Programm zur Verschlüsselung von Daten mit verschiedenen Methoden. Seit der ersten Version 1991 kann RSA verwendet werden. Das Programm wurde ausserhalb der USA weiterentwickelt und liegt seit 1998 auch Quelloffen(open source) bereit. Da in den USA Exportbeschränkungen auf Kryptographische Software verhängt wurden, durfte die Software nicht in der üblichen Form vertrieben werden. Um dieses Exportverbot zu umgehen, wurde der Quellcode der Software in Buchform vertrieben und exportiert. In Europa wurde er dann wieder abgeschrieben und kompiliert(ausführbar gemacht). 
+PGP ist ein Programm zur Verschlüsselung von Daten mit verschiedenen Methoden. Seit der ersten Version 1991 kann RSA verwendet werden. Das Programm wurde ausserhalb der USA weiterentwickelt und liegt seit 1998 auch quelloffen (open source) bereit. Da in den USA Exportbeschränkungen auf kryptographische Software verhängt wurden, durfte die Software nicht in der üblichen Form vertrieben werden. Um dieses Exportverbot zu umgehen, wurde der Quellcode der Software in Buchform vertrieben und exportiert. In Europa wurde er dann wieder abgeschrieben und kompiliert(ausführbar gemacht). 
 

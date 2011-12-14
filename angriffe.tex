@@ -3,14 +3,14 @@
 Eine Side Channel Attack (deutch: \textit{Seitenkanalattacke}) ist ein Angriff auf die Implementierung des Verschlüsselungssystem und nicht auf den RSA-Algorithmus. Dieses Verfahren wurde 1996 von Herrn Paul C. Kocher, einem amerikanischen Kryptologen entwickelt und vorgestellt.
 Im wesentlichen geht es bei einer Side Channel Attacke darum, das kryptographische Gerät beim Ausführen des Algorithmus zu beobachten.
 Man versucht aus den Beobachtungen einen Zusammenhang zwischen Daten und Schlüssel zu finden.
-Unter die Beobachtung fallen zum Beispiel die Laufzeit des Algorithmus, den Energieverbrauch des Prozessors während der Berechnung oder die elektromagnetische Ausstrahlung.
+Unter die Beobachtung fallen zum Beispiel die Laufzeit des Algorithmus, der Energieverbrauch des Prozessors während der Berechnung oder die elektromagnetische Ausstrahlung.
 %
 % http://www.usna.edu/Users/math/wdj/book/node45.html
 \subsubsection{Timing Attack}
 Die Timing Attack ist eine Side Channel Attack. 
 Bei ihr misst man die Rechenzeit, die der Computer beziehungsweise die CPU für die Implementierung des RSA-Verfahrens braucht. Die meisten Verschlüsselungs-Implementationen sind so geschrieben, dass sie möglichst effizient arbeiten. Bei einer CPU braucht jede Recheneinheit die exakt gleiche Zeit. Durch diese Analyse kann man den Schlüssel nach und nach rekonstruieren.\\
 %
-Um sich von solchen Angriffen zu schützen, baut man in die Implementierung zusätzliche Berechnungen ein. So ist es nicht mehr möglich auf den Schlüssel zu schliessen.
+Um sich vor solchen Angriffen zu schützen, baut man in die Implementierung zusätzliche Berechnungen ein. So ist es nicht mehr möglich, auf den Schlüssel zu schliessen.
 %
 %Diese Angriffe sind besonders bei Smart Cards effektiv, da man die Zeit sehr genau messen kann.
 %
@@ -20,7 +20,7 @@ Wenn wir für $e = 3$, unsere Nachricht $m = 4$ und für $N = 357$ erhalten wir 
 \begin{equation*}
   4^3 \bmod(357) \equiv c
 \end{equation*}
-Da $4^3 = 64$ kleiner ist als 357 kann somit $64 \bmod(357) = 64$.\\
-Da man e als Exponent im öffentlichen Schlüssel hat, kann man bequem $\sqrt[3]{64}$ und erhält als Resultat die korrekte Nachricht.\\
+Da $4^3 = 64$ kleiner ist als 357, ist somit $64 \bmod(357) = 64$.\\
+e hat man als Exponent im öffentlichen Schlüssel und kann dadurch $\sqrt[3]{64}$ rechnen und erhält als Resultat die korrekte Nachricht.\\
 %
-Um sich vor solchen Angriffen zu schützen, ist es sinnvoll eine grösser Zahl für e zu verwenden.
+Um sich vor solchen Angriffen zu schützen, ist es sinnvoll, eine grösser Zahl für e zu verwenden.
