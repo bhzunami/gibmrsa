@@ -10,7 +10,7 @@ Im Gegensatz zu dem Brief können wir uns bei einer Email nicht auf diese Sicher
 % In der Digitalen Welt geht das nicht so einfach. Obwohl man seinen Rechner mit einem Benutzername und Passwort für unbefugte Personen schützen kann, gibt es Techniken, mit der lassen sich ganze Festplatten Bit für Bit kopieren. Hier setzt die Verschlüsselung an. Denn wenn man etwas verschlüsselt auf die Festplatte speichert, kann der unbefugte die gestohlenen Daten nicht brauchen.
 %\section{Geschichte der Verschlüsselung}
 \section{Klassische Kryptographie}
-Die Kryptographie bezeichnet die Entwicklung von Methoden zur Verheimlichung von Nachrichten. Das Wort Kryptographie setzt sich aus dem Griechischen Wort \textit{kryptos} und \textit{graphein} zusammen, was so viel wie \textit{"verborgen schreiben"} heisst.  \cite{kryptographie_Grundlagen} \\
+Die Kryptographie bezeichnet die Entwicklung von Methoden zur Verheimlichung von Nachrichten. Das Wort Kryptographie setzt sich aus dem Griechischen Wort \textit{kryptos} und \textit{graphein} zusammen, was so viel wie \textit{"verborgen schreiben"} heisst.% (Siehe Kapitel \cite{kryptographie_Grundlagen} ) \\
 Die Hebräer haben 600 vor Christus das Atbash entwickelt. Dabei wurde das Alphabet umgekehrt und entsprechend verschlüsselt.
 %
 \begin{table}[ht]
@@ -25,7 +25,7 @@ Die Hebräer haben 600 vor Christus das Atbash entwickelt. Dabei wurde das Alpha
 %
 Das Wort GIBM wird mit Atbash zu TRYN.\\
 Die Caesar-Verschlüsselung wurde nach Julius Caesar benannt und zur militärischen Korrespondenz im Römischen Reich gebraucht.\\
-Dafür wurde das Alphabet um 3 Stellen nach hinten verschoben. Aus einem D wird somit ein A. Dieses Verfahren wurde im 15. Jahrhundert mit einer Chiffrierscheibe verbessert und ist bis heute noch als Caesar Verschlüsselung bekannt. Die Verschiebung um 13 Stellen wird auch als rot13 bezeichnet, da unser Alphabet aus 26 Zeichen besteht, ist die Verschlüsselung und Entschlüsselung bei rot13 die selbe. \\
+Dafür wurde das Alphabet um 3 Stellen nach hinten verschoben. Aus einem D wird somit ein A. Dieses Verfahren wurde im 15. Jahrhundert mit einer Chiffrierscheibe verbessert und ist bis heute noch als Caesar Verschlüsselung bekannt. Die Verschiebung um 13 Stellen wird auch als rot13 bezeichnet, da unser Alphabet aus 26 Zeichen besteht, ist die Verschlüsselung und Entschlüsselung bei rot13 die selbe. (Siehe Kapitel 1.2 \cite{kryptographie_Grundlagen} ) \\
 %
 \begin{table}[ht]
 \caption{Caesar Verschlüsselung}
@@ -39,7 +39,7 @@ Dafür wurde das Alphabet um 3 Stellen nach hinten verschoben. Aus einem D wird 
 %
 Aus GIBM wird mit der Ceasar Verschlüsselung DFYJ \\
 %
-Diese Verfahren können einfach geknackt werden. Da bestimmte Buchstaben in einer Sprache öfter vorkommen, kann durch Textanalyse die Verschiebung herausgefunden werden. Ebenfalls wird der Grundsatz verletzt, dass die Sicherheit nicht von der Geheimhaltung des Algorithmus abhängen darf. \cite{kerckhoffsprinzip}
+Diese Verfahren können einfach geknackt werden. Da bestimmte Buchstaben in einer Sprache öfter vorkommen, kann durch Textanalyse die Verschiebung herausgefunden werden. Ebenfalls wird der Grundsatz verletzt, dass die Sicherheit nicht von der Geheimhaltung des Algorithmus abhängen darf. (Vergleiche Kerckhoff's Prinzip Kapitel \ref{sec:Probleme_der_frueheren_Verschluesselungen} )
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Enigma und 2ter Weltkrieg
@@ -102,9 +102,10 @@ Nun konnte durch einsetzen bestimmter Wörter, welche im Text vermutet wurden, e
 Mit mehreren Turing Bomben wurde die Verschlüsselung in kurzer Zeit geknackt. 
 %
 \subsection{Probleme der früheren Verschlüsselungen}
+\label{sec:Probleme_der_frueheren_Verschluesselungen}
 Die Verfahren bis zum zweiten Weltkrieg konnten einfach geknackt werden. Wenn die Art der Verschlüsselung bekannt war, konnte der Schlüssel einfach ermittelt werden. 
 Die Enigma revolutionierte die Kryptographie. Obwohl die Art der Verschlüsselung und sogar die Walzen bekannt waren, mussten die Engländer grosse Anstrengungen unternehmen, damit sie die Texte entschlüsseln konnten. \\[2ex]
 Mit mehreren Turing Bomben wurde die Verschlüsselung in kurzer Zeit geknackt. \\[2ex]
 %
-Die früheren Verschlüsselungen hielten sich nicht an das Kerckhoff's Prinzip. Dieses besagt, dass die Sicherheit der Verschlüsselung nicht von der Geheimhaltung des Algorithmus abhängig gemacht werden darf. Die Sicherheit ist durch den Schlüssel gegeben. \cite{kerckhoffsprinzip}
+Die früheren Verschlüsselungen hielten sich nicht an das Kerckhoff's Prinzip. Dieses besagt, dass die Sicherheit der Verschlüsselung nicht von der Geheimhaltung des Algorithmus abhängig gemacht werden darf. Die Sicherheit darf nur durch den Schlüssel gegeben sein. (Siehe Folie 6 \cite{kerckhoffsprinzip} )
 %
