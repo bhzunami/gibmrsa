@@ -88,14 +88,14 @@ Jetzt haben wir unseren privaten als auch öffentlichen Schlüssel die wir für 
 Wir verschlüsseln die Zahl 15\\
 Verschlüsselungsfunktion anwenden siehe Formel \ref{eqn:rsa_decription}
 \begin{equation*}
-  15^{23} \bmod 247 = 59
+  15^{23} \bmod (247) = 59
 \end{equation*}
 Die Zahl 15 verschlüsselt mit unserem öffentlichen Schlüssel (23, 247) ergibt die Zahl 59.
 %
 \paragraph{Entschlüsseln}
 Um zu überprüfen ob unserer privater Schlüssel auch wirklich funktioniert, entschlüsseln wir die Zahl 59 mit unserem privaten Schlüssel. Siehe Formel \ref{eqn:rsa_decription}\\
 \begin{equation*}
-  59^{47} \bmod 247 = 15
+  59^{47} \bmod (247) = 15
 \end{equation*}
 Als Resultat erhalten wir 15 und stellen fest, dass unser kleines Beispiel funktioniert hat.
 %
@@ -144,14 +144,16 @@ Der Empfänger hat seine geheime Nachricht erfolgreich entschlüsseln können.
 % Mathematischer Nachweis (Beweis war zu hoch gegriffen)
 %******************************************************************************
 \section{Mathematischer Nachweis der Funktionsweise}
-Dieses Kapitel wurde mit Hilfe der Webseite \textit{Kuno-Kohn} \cite{kuno-kohn} erstellt. Nachdem wir die Webseite überprüft haben und auch ein Buch gefunden haben, welches im Quellenverzeichnis auf diese Webseite verweist, können wir davon ausgehen, dass diese Informationen gut recherchiert sind. \\
+Dieses Kapitel wurde mit Hilfe des Buches \textit{Kryptologie} \cite{kryptologie} erstellt.\\[2ex]
+%
+Nachdem wir die Webseite überprüft haben und auch ein Buch gefunden haben, welches im Quellenverzeichnis auf diese Webseite verweist, können wir davon ausgehen, dass diese Informationen gut recherchiert sind. \\
 %TODO: Zusätzliches Buche angeben mit Beweis\\
 Bisher nahmen wir an, dass der RSA-Algorithmus korrekt arbeitet. Auf diese Annahme möchten wir nun eingehen und aufzeigen, warum der Algorithmus funktioniert. Der Algorithmus arbeitet korrekt, wenn die Verschlüsselung und nachherige Entschlüsselung wieder das gleiche ergibt. Dies darf nur mit dem passenden privaten und öffentlichen Schlüssel möglich sein.\\
 Auf das vorherige, erarbeitete Wissen wird nicht mehr im Detail eingegangen. \\
 Folgende Zusatzbedingungen müssen beim RSA-Algorithmus zwingend eingehalten werden:
 \begin{enumerate}
-  \item . Die Nachricht muss immer kleiner als das RSA-Modul N gewählt werden.
-  \item . Die Nachricht muss grösser als 1 sein.
+  \item Die Nachricht muss immer kleiner als das RSA-Modul N gewählt werden.
+  \item Die Nachricht muss grösser als 1 sein.
 \end{enumerate}
 %
 %
@@ -184,10 +186,30 @@ Nun können wir c durch $ \sqrt[d]{m + k \cdot N} $ in der Verschlüsselungsform
 \end{flalign*}
 Wir möchten aufzeigen warum $ {m^{e} \bmod(N)}^d $ auch als $ {m^{e \cdot d} \bmod(N)} $ dargestellt werden kann:\\
 Falls $m^e$ kleiner oder gleich $N$ ist, kann die Formel auch so dargestellt werden $ {m^e + 0 \cdot N}^d $. Nun kann $ 0 \cdot N  $ gestrichen werden.
-Falls $m^e$ grösser als $N$ ist, müssen wir die Erklärung über die identische Restklasse geben. Dazu überlegen wir uns falls $m^e$ durch $N$ teilbar ist, wäre der Rest immer 0. Hier ein kleines Zahlenbeispiel: \\
-$ 5^6 \bmod 5 \equiv 0 $ und $ 5^3 \bmod 5 \equiv 0 $. \\
-Beim RSA-Algorithmus ist $m^e$ meistens nicht durch N teilbar, aus vorheriger Überlegung resultiert daraus, dass immer der selbe Rest übrig bleibt. Als Beispiel: \\
-$5^6 \bmod 4 \equiv 1$ und $5^3 \bmod 4 \equiv 1$. \\
+Falls $m^e$ grösser als $N$ ist, müssen wir die Erklärung über die identische Restklasse geben. Dazu überlegen wir uns falls $m^e$ durch $N$ teilbar ist, wäre der Rest immer 0. Hier ein kleines Zahlenbeispiel:
+%
+\begin{equation*}
+5^6 \bmod(5) \equiv 0
+\end{equation*}
+%
+und
+%
+\begin{equation*}
+ 5^3 \bmod(5) \equiv 0
+\end{equation*}
+%
+Beim RSA-Algorithmus ist $m^e$ meistens nicht durch N teilbar, aus vorheriger Überlegung resultiert daraus, dass immer der selbe Rest übrig bleibt. Als Beispiel:
+%
+\begin{equation*}
+ 5^6 \bmod(4) \equiv 1
+\end{equation*}
+%
+und 
+%
+\begin{equation*}
+5^3 \bmod(4) \equiv 1
+\end{equation*}
+%
 %und $m^{e \cdot d}$ können beide mit dem gleichen Rest durch N geteilt werden. Dies liegt daran, dass beide in der gleichen Restklasse sind. Dies können wir durch folgende Überlegung nachweisen:\\
 %Falls ein vielfaches von a durch a geteilt wird, gibt dies immer Rest 0. In einer Formel ausgedrückt: $ a^b mod a = 0 $. Dies ist logisch, da das vielfache von a immer ebenfalls Rest 0 geteilt werden kann. In unserem Fall geben wir den Rest von $m^e$ und $m^{e \cdot d}$ aus, welches nicht durch N teilbar ist. 
 Die Formel $ m^{e \cdot d} \bmod(N) \equiv m + k \cdot N $ kann gekürzt werden, da $ k = 0 $ sein muss. Dies liegt daran, dass wir auf der rechten Seite mit Modulo N den Rest ausgeben. Der Rest kann 0 bis N-1 gross sein. Da m einen Wert hat, muss k in diesem Fall 0 sein. \\
@@ -250,7 +272,7 @@ Mit dem Satz von Euler können wir nun nach $ m^{\varphi(N)} $ auflösen. (siehe
 \begin{flalign*}
 %  m^{(p-1)} &= 1 \bmod p \\
   m^{(p-1) \cdot (q-1)} &= 1 \bmod(p \cdot q) \\
-  m^{\varphi(N)} &= 1 \bmod N
+  m^{\varphi(N)} &= 1 \bmod(N)
 \end{flalign*}
 %
 %\begin{enumerate}
@@ -264,7 +286,7 @@ Mit dem Satz von Euler können wir nun nach $ m^{\varphi(N)} $ auflösen. (siehe
 Daraus resultiert das $ 1 \bmod(N) $ das gleiche ist wie $ m^{\varphi(N)} $ und entsprechend eingesetzt werden kann. Danach lösen wir die Formel auf. 
 \begin{flalign*}
  { m^{ \varphi(N) }} ^k \cdot m \bmod(N) &\equiv m'  \\
- {1 \bmod N }^k \cdot m \bmod(N) &\equiv m'  \\
+ {1 \bmod(N) }^k \cdot m \bmod(N) &\equiv m'  \\
  1^k \cdot m \bmod(N) &\equiv m' \\
  1 \cdot m \bmod(N) &\equiv m' \\
  m + x \cdot N &= m' \\
@@ -280,7 +302,7 @@ Die Entschlüsselung der Nachricht funktioniert nur mit dem zugehörigen private
 \begin{flalign*}
  e \cdot d + k \cdot \varphi(N) &= 1	
 \end{flalign*}
-Mit der modularen Inverse wurde d als positive Zahl bestimmt. Aus dieser Formel ist ersichtlich, dass nur ein ganz bestimmtes d zu einem e und N gehört. Jeder andere Entschlüsselungs-Exponent d würde die Formel nicht korrekt erfüllen und zu einem anderen Ergebnis führen. 
+Mit der Modularen Inverse wurde d als positive Zahl bestimmt. Aus dieser Formel ist ersichtlich, dass nur ein ganz bestimmtes d zu einem e und N gehört. Jeder andere Entschlüsselungs-Exponent d würde die Formel nicht korrekt erfüllen und zu einem anderen Ergebnis führen. 
 %
 \newpage
 %

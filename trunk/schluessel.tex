@@ -1,6 +1,6 @@
 \newpage
 \section{RSA Ver- und Entschlüsselung}
-Der Name RSA setzt sich aus den Anfangsbuchstaben der Nachnamen der Entwickler zusammen. Das RSA Verfahren wird auch heute noch oft eingesetzt. Das Verfahren gilt ab einer bestimmten Schlüssellänge als sicher. Es gibt verschiedenste Angriffsmöglichkeiten, welche wir weiter unten vorstellen, diese führen jedoch nicht in einem vernünftigen Zeitraum zu einem Ergebnis. \\
+Der Name RSA setzt sich aus den Anfangsbuchstaben der Nachnamen der Entwickler Ronald L. \textbf{R}ivest, Adi \textbf{S}hamir und Leonard M. \textbf{A}dleman zusammen. Das RSA Verfahren wird auch heute noch oft eingesetzt. Das Verfahren gilt ab einer bestimmten Schlüssellänge als sicher. Es gibt verschiedenste Angriffsmöglichkeiten, welche wir weiter unten vorstellen, diese führen jedoch nicht in einem vernünftigen Zeitraum zu einem Ergebnis. \\
 Das RSA Verfahren ist verwandt mit dem Rabin-Kryptosystem, welches auch auf Primzahlen beruht. %Verweis%
 
 \subsection{Der Schlüssel}
@@ -12,7 +12,7 @@ Für eine sichere Verschlüsselung braucht es einen langen und möglichst zufäl
 Zufallszahlen sind ein sehr komplexes Thema. Um sichere Zufallszahlen zu generieren, haben spezialisierte Firmen einen Zufallszahlengenerator (eng. \textit{random number generator} RNG) entwickelt. Diese messen den radioaktiven Zerfall oder beobachten die atmosphärischen Bedingungen in der Umgebung. Die Zahlen, die der RNG auswertet, nennt man \textbf{Seed-Zahlen}. Mit den gewonnenen Seed-Zahlen kann man jetzt einen Algorithmus verwenden, der eine Zahl oder eine Zahlenfolge zurückgibt.\\
 %Speziell bei der RSA-Verschlüsselung muss man die Zahl/en überprüfen ob es eine Primzahl ist.
 Bei der RSA-Verschlüsselung muss zusätzlich ein Primzahltest durchgeführt werden.
-Zur Überprüfung gibt es Verfahren, die wir hier nicht weiter erläutern werden. Mehr Informationen dazu finden sie im Buch \textit{RSA and Public-Key Cryptography - Kapitel 4}.\\
+Zur Überprüfung gibt es Verfahren, die wir hier nicht weiter erläutern werden. (siehe Kapitel 4 \cite{rsa_and_public_key}).\\
 %
 Für die meisten Benutzer sind solche Generatoren viel zu aufwendig und teuer. Deshalb entwickelten Computerhersteller ein Pseudozufallszahlengenerator (eng. \textit{pseudo random number generator} PRNG). Der PRNG erstellt die Seed-Zahlen zum Beispiel aus der momentanen CPU Auslastung oder anderen, nicht vorhersehbaren Ereignissen.\\
 Ob die Zufallszahlen geeignet sind oder nicht, ist schwierig zu sagen. Denn wie will man eine Folge von Zufallszahlen beurteilen?\\

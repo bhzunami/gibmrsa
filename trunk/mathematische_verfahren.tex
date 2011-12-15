@@ -52,10 +52,10 @@ Um den privaten Schlüssel zu errechnen, muss man $\varphi(N)$ beziehungsweise $
 \end{equation*}
 %
 Beispiel mit der Primzahl 17:
-\begin{equation*}
-	\varphi(17) = 17 - 1 \\
-	\varphi(17) = 16 \\
-\end{equation*}
+\begin{flalign*}
+	\varphi(17) &= 17 - 1\\
+	\varphi(17) &= 16\\
+\end{flalign*}
 Der grösste gemeinsame Teiler zweier Primzahlen ist immer 1.
 Für die Eulersche Funktion auf zwei Primzahlen gilt:
 \begin{equation}
@@ -65,7 +65,7 @@ Für die Eulersche Funktion auf zwei Primzahlen gilt:
 Der Beweis dafür liefert folgende Überlegung. Es gibt insgesamt $p \cdot q -1$ ganze Zahlen die kleiner sind als $p \cdot q$.\\
 %TODO: Das stimmt irgendwie nicht ganz. Has umgschriebe, chasches nomol kontrolliere. Gruess Denis
 %Es ist bei Primzahlen einfacher, die \textbf{nicht teilerfremden} Zahlen zu zählen und diese dann von allen möglichen Zahlen abzuziehen, als alle teilerfremden Zahlen zu zählen. Nicht teilerfremd zu p sind $(q - 1) \cdot p$ und für q gilt $ (p - 1) \cdot q$. \cite{kryptologie}\\
-Es ist bei Primzahlen einfacher, die \textbf{teilerfremden} Zahlen zu zählen und diese dann von allen möglichen Zahlen abzuziehen, als alle nicht teilerfremden Zahlen zu zählen. Teilerfremd zu p sind $(p - 1) $ und für q gilt $ (q - 1) $. (siehe \cite{kryptologie} Kapitel 5)\\
+Es ist bei Primzahlen einfacher, die \textbf{nicht teilerfremden} Zahlen zu zählen und diese dann von allen möglichen Zahlen abzuziehen, als alle teilerfremden Zahlen zu zählen. Nicht Teilerfremd zu p sind $(q - 1)$ und für q gilt $ (p - 1) $. (siehe Kapitel 5 \cite{kryptologie} )\\
 Als Formel geschrieben:
 %
 \begin{equation*}
@@ -93,7 +93,7 @@ An einem Beispiel mit Primzahlen 17 und 7 ausgedrückt:
 %Verweis auf Buch Beutelspacher
 \subsection{Satz von Euler}
 Der Satz von Euler gewährleistet die korrekte Ver- und Entschlüsselung. Wir gehen hier nicht weiter auf den Satz von Euler ein und werden später beim Beweis nochmals auf ihn zurückkommen.\\
-Der Satz von Euler sagt über zwei natürliche, teilerfremde Zahlen, hier $n$ und $m$, folgendes aus: (siehe \cite{kryptologie} Kapitel 5 und \cite{zahlentheorie_fuer_einsteiger} Kapitel 2)
+Der Satz von Euler sagt über zwei natürliche, teilerfremde Zahlen, hier $n$ und $m$, folgendes aus: (siehe Kapitel 5 \cite{kryptologie} und Kapitel 2 \cite{zahlentheorie_fuer_einsteiger})
 %
 \begin{equation}
   m^{\varphi(n)} \bmod(n) = 1
@@ -138,8 +138,7 @@ Nehmen wir für $n = 15$ und $m = 4$ und setzen Formel [\ref{eqn:satz_von_euler}
 % Euklidischer Algorithmus
 %******************************************************************************
 \subsection{Euklidischer Algorithmus}\label{euklidischer_Algorithmus}
-Mit den Euklidischen Algorithmen lässt sich der grösste gemeinsame Teiler (ggT) zweier natürlichen Zahlen a und b berechnen. Es existiert das etwas ältere Subtraktionsverfahren und das moderne Modulo-Verfahren. Da das Subtraktions-Verfahren nicht die gleiche Effizienz hat wie das Subtraktionsverfahren, konzentrieren wir uns auf das Modulo-Verfahren. (siehe \cite{zahlentheorie_fuer_einsteiger} Kapitel 2 und \cite{kryptographie} Appendix C)\\
-Für den RSA-Algorithmus ist es wichtig, dass wir zwei teilerfremde Zahlen $\varphi(N)$ und $e$ haben.\\
+Mit den Euklidischen Algorithmen lässt sich der grösste gemeinsame Teiler (ggT) zweier natürlichen Zahlen a und b berechnen. Es existiert das etwas ältere Subtraktionsverfahren und das moderne Modulo-Verfahren. Da das Subtraktions-Verfahren nicht die gleiche Effizienz hat wie das Subtraktionsverfahren, konzentrieren wir uns auf das Modulo-Verfahren. (siehe  Kapitel 2 \cite{zahlentheorie_fuer_einsteiger} und  Appendix C \cite{kryptographie})\\
 %
 Die Formel für das Modulo-Verfahren lautet:
 %
@@ -155,7 +154,8 @@ Es gelten folgende Bedingungen:
 \end{equation*}
 \\
 %
-Auf den RSA-Algorithmus angewendet sieht die Formel folgendermassen aus:
+Für den RSA-Algorithmus ist es wichtig, dass wir zwei teilerfremde Zahlen $\varphi(N)$ und $e$ haben und erhalten dadurch folgende Formel:\\
+%Auf den RSA-Algorithmus angewendet sieht die Formel folgendermassen aus:
 \begin{equation}
   \label{eqn:euklidischer_algo_RSA}
   \varphi(N) = q \cdot e + r 
@@ -201,7 +201,7 @@ Zahlen sind. Da wir im zweiten Schritt den grössten gemeinsamen Teiler von $e$ 
 Nur der grösste gemeinsame Teiler von $\varphi(N)$ und $e$ teilt sowohl $\varphi(N)$ als auch e und r ohne Rest. Auf unser Beispiel angewendet ergibt das $ggT(839,199) \leq ggT(199,43)$.\\
 Und es gilt: Nur der grösste gemeinsame Teiler von e und r teilt auch $\varphi(N)$ ohne Rest.\\
 Das heisst: $ggT(199,43) \leq ggT(839,199)$.
-Somit stimmen die beiden grössten gemeinsamen Teiler überein. (siehe \cite{zahlentheorie_fuer_einsteiger} Kapitel 2)\\[2ex]
+Somit stimmen die beiden grössten gemeinsamen Teiler überein. (siehe Kapitel 2 \cite{zahlentheorie_fuer_einsteiger})\\[2ex]
 Gehen wir zurück zu unserem Beispiel:
 %
 \begin{equation*}
@@ -212,7 +212,7 @@ Gehen wir zurück zu unserem Beispiel:
 % Erweiterter Euklidischer Algorithmus
 %******************************************************************************
 \subsubsection{Erweiterter Euklidischer Algorithmus}
-Der erweiterte Euklidische Algorithmus berechnet neben dem grössten gemeinsamen Teiler $r$ zweier natürlichen Zahlen a und b auch noch die dazugehörigen natürlichen Zahlen s und t, dass folgende Gleichung stimmt: (siehe \cite{kryptologie} Kapitel 5)
+Der erweiterte Euklidische Algorithmus berechnet neben dem grössten gemeinsamen Teiler $r$ zweier natürlichen Zahlen a und b auch noch die dazugehörigen natürlichen Zahlen s und t, dass folgende Gleichung stimmt: (siehe Kapitel 5 \cite{kryptologie})
 %
 \begin{equation}
   ggT(a,b) = s \cdot a + t \cdot b
