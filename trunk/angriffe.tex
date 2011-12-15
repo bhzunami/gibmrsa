@@ -1,5 +1,5 @@
 %
-\subsection{Side Channel Attack}
+\subsection{Side Channel Attack \footnote{Siehe \cite{rsa_and_public_key} (Kapitel 6)} }
 Eine Side Channel Attack (deutch: \textit{Seitenkanalattacke}) ist ein Angriff auf die Implementierung des Verschlüsselungssystem und nicht auf den RSA-Algorithmus. Dieses Verfahren wurde 1996 von Herrn Paul C. Kocher, einem amerikanischen Kryptologen entwickelt und vorgestellt.
 Im wesentlichen geht es bei einer Side Channel Attacke darum, das kryptographische Gerät beim Ausführen des Algorithmus zu beobachten.
 Man versucht aus den Beobachtungen einen Zusammenhang zwischen Daten und Schlüssel zu finden.
@@ -14,7 +14,7 @@ Um sich vor solchen Angriffen zu schützen, baut man in die Implementierung zus�
 %
 %Diese Angriffe sind besonders bei Smart Cards effektiv, da man die Zeit sehr genau messen kann.
 %
-\subsection{Exponent Attack}
+\subsection{Exponent Attack \footnote{Siehe \cite{exponent_Attack}}}
 Bei der Exponent Attack geht man davon aus, dass der Verschlüsselungsexponent e zu klein gewählt wurde. Das Problem liegt in der Modulo-Rechnung. Ist N grösser als $m^e$ ergibt der RSA-Verschlüsselungs Algorithmus als Resultat $m^e$. Dadurch kann man die n-te Wurzel aus der verschlüsselten Nachricht ziehen. \\
 Wenn wir für $e = 3$, unsere Nachricht $m = 4$ und für $N = 357$ erhalten wir zum Verschlüsseln folgende Formel.
 \begin{equation*}
