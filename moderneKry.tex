@@ -1,17 +1,17 @@
 \newpage
 \section{Moderne Kryptographie}
-Dieses Kapitel wurde mit Hilfe des Buches \textit{Moderne Verfahren der Kryptographie} erarbeitet.\\[2ex]
+Dieses Kapitel wurde mit Hilfe des Buches \textit{Moderne Verfahren der Kryptographie} (Kapitel 2) erarbeitet.\\[2ex]
 Die moderne Kryptographie unterscheidet sich von der klassischen Kryptographie in der Technik. Was früher von Hand errechnet wurde, wird in der modernen Kryptographie elektronisch erledigt. Mit dieser technischen Hilfe ist es möglich, komplexe Berechnungen in vernünftiger Zeit durchzuführen. Die grossen Chiffriermaschinen werden durch den Computer abgelöst.\\
 Die immer besseren, beziehungsweise schnelleren Computer machen die klassische Kryptographie sehr unsicher, da der Schlüssel durch Brute-Force-Angriffe\footnote{Brute-Force nennt man dass Vorgehen, ein Passwort durch Ausprobieren aller möglichen Schlüssel zu knacken.} schnell gefunden werden kann.\\
 Man brauchte also sichere Verschlüsselungs-Methoden, die durch Ausprobieren nicht geknackt werden konnten.\\
 Einen grossen Fortschritt machte die moderne Kryptographie in den Jahren 1976 und 1985.\\
 % TODO ZERO-KNOWLEDGGE Verweis
-1976 wurde das Problem, dass immer beide Seiten einen \textbf{gemeinsamen} Schlüssel benötigen gelöst. Das ist die Geburtsstunde des RSA-Algorithmus.\\
-1985 entwickelten drei Mathematiker/-Innen das \textbf{Zero-Knowledge-Verfahren}. \cite{} Das Zero-Knowledge-Verfahren baut auf dem RSA-Algorithmus auf und unterscheidet sich in der Implementierung des Protokolls. Mit diesem Verfahren ist es möglich, dass zwei Personen auf einem Rechner miteinander kommunizieren, ohne dass der Rechner davon etwas abhören könnte.
+1976 wurde das Problem, dass immer beide Seiten einen \textbf{gemeinsamen} Schlüssel benötigen gelöst. Das ist die Geburtsstunde des RSA-Algorithmus.
+%1985 entwickelten drei Mathematiker/-Innen das \textbf{Zero-Knowledge-Verfahren}. \cite{} Das Zero-Knowledge-Verfahren baut auf dem RSA-Algorithmus auf und unterscheidet sich in der Implementierung des Protokolls. Mit diesem Verfahren ist es möglich, dass zwei Personen auf einem Rechner miteinander kommunizieren, ohne dass der Rechner davon etwas abhören könnte.
 %
 \subsection{Symmetrische Verschlüsselung}
 Grundsätzlich braucht es für eine einfache symmetrische Verschlüsselung einen Schlüssel, den zu verschlüsselnden Text und eine Verschlüsselungsfunktion.
-Die Verschlüsselungsfunktion übersetzt den Klartext mit Hilfe des Schlüssel. In einer Formel ausgedrückt:
+Die Verschlüsselungs\-funktion übersetzt den Klartext mit Hilfe des Schlüssel. In einer Formel ausgedrückt:
 \begin{equation*}
   c = f ( k, m )
 \label{eqn:sym_versch}
@@ -25,15 +25,15 @@ Daraus entsteht die Formel:
 \label{eqn:sym_entsch}
 \end{equation*}
 %Kerckoff's Prinzip bei  Schwachstellen DENIS
-Die Funktionen der Ver- und Entschlüsselung sollte öffentlich bekannt sein, was überraschenderweise kein Sicherheitsproblem darstellt. Aus dem Kerckhoffs' Prinzip geht der Grundsatz hervor, dass die Sicherheit eines Verschlüsselungsverfahren nicht auf der Geheimhaltung des Algorithmus, sondern auf die Geheimhaltung des Schlüssels beruht, denn ein Algorithmus kann durch Reverse-Engineering\footnote{Unter dem Begriff Reverse-Engineering versteht man den Vorgang, aus einem fertigen Produkt durch Untersuchung der Strukturen und Verhaltensweisen den Source Code herauszufinden.} rekonstruiert werden.\\
-Auch hat die Geschichte gezeigt, dass bis heute viele Verschlüsselungsalgorithmen gebrochen werden konnten. \cite{mod_kry}\\
+Die Funktionen der Ver- und Entschlüsselung sollte öffentlich bekannt sein, was über\-raschender\-weise kein Sicherheitsproblem darstellt. Aus dem Kerckhoffs' Prinzip geht der Grundsatz hervor, dass die Sicherheit eines Verschlüsselungsverfahren nicht auf der Geheimhaltung des Algorithmus, sondern auf die Geheimhaltung des Schlüssels beruht, denn ein Algorithmus kann durch Reverse-Engineering\footnote{Unter dem Begriff Reverse-Engineering versteht man den Vorgang, aus einem fertigen Produkt durch Untersuchung der Strukturen und Verhaltensweisen den Source Code herauszufinden.} rekonstruiert werden.\\
+Auch hat die Geschichte gezeigt, dass bis heute viele Verschlüsselungsalgorithmen gebrochen werden konnten. (Siehe \cite{kryptographie}, Kapitel 2.2)\\
 %
 Somit muss die Verschlüsselungsfunktion so komplex sein, dass man nur mit dem Schlüssel das richtige Ergebnis erhält.
 %
 \begin{figure}[ht]
 \begin{center}
 \includegraphics[width=15cm]{images/symmetrischeVerschluesselung.png}
-\caption{Symmetrische Verschlüsselung}
+\caption[Symmetrische Verschlüsselung Quelle:\newline ~~~~http://www.internet-sicherheit.de/typo3temp/pics/Schluesselaustausch\newline\_durch\_einen\_Kurier\_94b1b7125d.png]{Symmetrische Verschlüsselung}%
 \label{fig:symVersch}
 \end{center}
 \end{figure}
