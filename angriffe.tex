@@ -1,9 +1,9 @@
 %
-\subsection{Side Channel Attack \footnote{Siehe \cite{rsa_and_public_key} (Kapitel 6)} }
+\subsection{Side Channel Attack}
 Eine Side Channel Attack (deutch: \textit{Seitenkanalattacke}) ist ein Angriff auf die Implementierung des Verschlüsselungssystem und nicht auf den RSA-Algorithmus. Dieses Verfahren wurde 1996 von Herrn Paul C. Kocher, einem amerikanischen Kryptologen entwickelt und vorgestellt.
 Im wesentlichen geht es bei einer Side Channel Attacke darum, das kryptographische Gerät beim Ausführen des Algorithmus zu beobachten.
 Man versucht aus den Beobachtungen einen Zusammenhang zwischen Daten und Schlüssel zu finden.
-Unter die Beobachtung fallen zum Beispiel die Laufzeit des Algorithmus, der Energieverbrauch des Prozessors während der Berechnung oder die elektromagnetische Ausstrahlung.
+Unter die Beobachtung fallen zum Beispiel die Laufzeit des Algorithmus, der Energieverbrauch des Prozessors während der Berechnung oder die elektromagnetische Ausstrahlung. (siehe \cite{rsa_and_public_key} Kapitel 6)
 %
 % http://www.usna.edu/Users/math/wdj/book/node45.html
 \subsubsection{Timing Attack}
@@ -14,7 +14,7 @@ Um sich vor solchen Angriffen zu schützen, baut man in die Implementierung zus�
 %
 %Diese Angriffe sind besonders bei Smart Cards effektiv, da man die Zeit sehr genau messen kann.
 %
-\subsection{Exponent Attack \footnote{Siehe \cite{exponent_Attack}}}
+\subsection{Exponent Attack}
 Bei der Exponent Attack geht man davon aus, dass der Verschlüsselungsexponent e zu klein gewählt wurde. Das Problem liegt in der Modulo-Rechnung. Ist N grösser als $m^e$ ergibt der RSA-Verschlüsselungs Algorithmus als Resultat $m^e$. Dadurch kann man die n-te Wurzel aus der verschlüsselten Nachricht ziehen. \\
 Wenn wir für $e = 3$, unsere Nachricht $m = 4$ und für $N = 357$ erhalten wir zum Verschlüsseln folgende Formel.
 \begin{equation*}
@@ -23,4 +23,4 @@ Wenn wir für $e = 3$, unsere Nachricht $m = 4$ und für $N = 357$ erhalten wir 
 Da $4^3 = 64$ kleiner ist als 357, ist somit $64 \bmod(357) = 64$.\\
 e hat man als Exponent im öffentlichen Schlüssel und kann dadurch $\sqrt[3]{64}$ rechnen und erhält als Resultat die korrekte Nachricht.\\
 %
-Um sich vor solchen Angriffen zu schützen, ist es sinnvoll, eine grösser Zahl für e zu verwenden.
+Um sich vor solchen Angriffen zu schützen, ist es sinnvoll, eine grösser Zahl für e zu verwenden. (siehe \cite{exponent_Attack} )
