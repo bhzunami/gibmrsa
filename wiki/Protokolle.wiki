@@ -12,12 +12,12 @@
 
 *Wissensaustausch:*
 
-Wir haben die groben Mathematischen Themen zusammengefasst. Einzelne Funktionen wie zum Beispiel die Eulersche Funktion angeschaut.
-Zusammen den RSA Algorithmus angeschaut anhand eines Beispiels.
+Wir haben unser bisheriges Wissen über Verschlüsselung geteilt. Die benötigten mathematischen Themen wurden grob zusammengefasst. Einzelne Funktionen wie zum Beispiel die Eulersche Funktion wurden überschaut.
+Mit dem RSA Algorithmus haben wir anhand eines Beispieles Wissen erarbeitet.
 
 *Leitfrage erstellen:*
 
-Folgende Fragen haben sich in der Diskussion herausgefiltert.
+Folgende Fragen wurden diskutiert und eingebracht:
 
 - Ist RSA sicher, heute und in 20 Jahren?
 
@@ -38,7 +38,7 @@ Diese Themen sollten bis und mit 5. September 2011 fertig sein.
 
 *2. RSA Algorithmus erklären*
 
-Wie funktioniert der RSA Algorithmus für die Verschlüsselung wie auch Entschlüsselung. Wie muss ein Schlüssel aussehen damit er "sicher" ist.
+Wie funktioniert der RSA Algorithmus für die Verschlüsselung wie auch die Entschlüsselung. Wie muss ein Schlüssel gewählt werden damit er "sicher" ist.
 
 *3. Leitfrage bearbeiten und beantworten*
 
@@ -52,11 +52,11 @@ Wie funktioniert der RSA Algorithmus für die Verschlüsselung wie auch Entschl�
 
 - Wissensaustausch
 
-- Jeder hat an seinem Gebiet gearbeitet
+- Jeder arbeitet an seinem zugeteilten Themen
 
-- Vorbereitung Fixpunktgespräch
+- Vorbereitung für Fixpunktgespräch
 
-*Fixpunktgesprächt*
+*Fixpunktgespräch*
 
 
 
@@ -68,7 +68,7 @@ Wie funktioniert der RSA Algorithmus für die Verschlüsselung wie auch Entschl�
 
 - Wissensaustausch
 
-- Jeder hat an seinem Gebiet gearbeitet
+- Jeder arbeitet an seinem zugeteilten Themen
 
 - Aufteilung für 5. September
 
@@ -80,15 +80,15 @@ Wie funktioniert der RSA Algorithmus für die Verschlüsselung wie auch Entschl�
 
 *Traktanden:*
 
-- Milestone 1 abgeschlossen, muss noch überarbeitet werden.
+- Meilenstein 1: Allgemeiner Teil abgeschlossen, muss  jedoch überarbeitet werden.
 
 - Denis: RSA-Verschlüsselung angefangen
 
 - Nicolas: Schlüssel angefangen
 
-- Kurs für Layout der uns mind. 30 Minuten unserer sehr kostbaren Zeit geraubt hat. Völliger UNSINN!!!!!!!!!!
+- Teilnahme an einem Word-Kurs für die Layoutgestaltung, obwohl wir diesen weder brauchen noch Word einsetzen. Wir hoffen dieser Kurs wird für nächste Informatiker-Klassen nicht mehr obligatorisch angeboten. 
 
-- Weiteres Vorgehen besprochen: Bis in 3 Wochen muss Kapitel 3 abgeschlossen sein. Falls es nicht reicht, muss über die Ferien gearbeitet werden.
+- Weiteres Vorgehen besprochen: Bis in 3 Wochen muss Kapitel 3 abgeschlossen sein. Falls es nicht reicht, muss über die Ferien gearbeitet werden. 
 
 
 == Protokoll des 12.09.2011 ==
@@ -96,7 +96,7 @@ Wie funktioniert der RSA Algorithmus für die Verschlüsselung wie auch Entschl�
 *Anwesend:* Denis und Nicolas
 
 *Traktanden:*
-Bearbeitung der zugewiesenen Themen.
+- Bearbeitung der zugewiesenen Themen
 
 
 == Protokoll des 19.09.2011 ==
@@ -113,7 +113,7 @@ Arbeiten am RSA-Algorithmus und am Schlüssel erstellen
 *Anwesend:* Denis und Nicolas
 
 *Traktanden:*
-Bearbeitung der zugewiesenen Themen.
+Bearbeitung der zugewiesenen Themen
 - RSA-Verschlüsselung Beweis (Denis)
 
 - Schlüssel erstellen (Nicolas)
@@ -142,7 +142,7 @@ Bearbeitung der zugewiesenen Themen.
 
 - Denis arbeitet am Primfaktoren Problem und Nicolas an den Angriffen auf den RSA Algorithmus
 
-- Milestone 3: Beispiele und Anwendungen wurde erfolgreich erreicht!
+- Meilenstein 3: Beispiele und Anwendungen wurde erfolgreich erreicht!
 
 
 == Protokoll des 07.11.2011 ==
@@ -150,9 +150,9 @@ Bearbeitung der zugewiesenen Themen.
 *Anwesend:* Denis und Nicolas
 
 *Traktanden:*
-- Verknüpfung von Beweis des RSA und den mathematischen Grundwissen
+- Verknüpfung des Beweises mit dem erarbeiteten mathematischen Wissen
 
-- Anpassungen des Beweises und der 
+- Anpassungen des Beweises
 
 == Protokoll des 14.11.2011 ==
 
@@ -171,7 +171,7 @@ Bearbeitung der zugewiesenen Themen.
 *Traktanden:*
 - Start mit dem 4. Teil, der auf nächste Woche abgeschlossen werden sollte.
 
-- Englisch Zusammenfassung wird nächste Woche Angefangen sowie auch die Formatierung
+- Englisch Zusammenfassung wird nächste Woche angefangen sowie auch die Formatierung
 
 - Denis muss noch genauer auf das Thema "Sicherheit heute" eingehen
 
@@ -184,11 +184,13 @@ Bearbeitung der zugewiesenen Themen.
 *Traktanden:*
 - Aktueller Stand besprochen
 
-- Weiteres Vorgehen besprochen. Verschiedene Teile müssen nochmals überarbeitete werden. Jeder Überarbeitet seinen Teil.
+- Es wird nur ein Abstract verlangt
 
-- Denis arbeitet weiter am Abstract und Nicolas überarbeitet alle Formeln, dass diese Einheitlich sind.
+- Weiteres Vorgehen besprochen. Verschiedene Teile müssen nochmals überarbeitete werden. Jeder überarbeitet seinen Teil.
 
-- Einleitung wird noch von Denis geschrieben.
+- Denis arbeitet weiter am Abstract und Nicolas überarbeitet alle Formeln, dmait diese einheitlich sind.
+
+- Einleitung wird von Denis geschrieben.
 
 == Protokoll des 05.12.2011 ==
 
@@ -197,10 +199,27 @@ Bearbeitung der zugewiesenen Themen.
 *Traktanden:*
 - Aktueller Stand besprochen
 
-- Weiteres Vorgehen besprochen. Mehrheitlich sind alle Teile überarbeitet, es braucht bei gewissen noch der letzte Schliff.
+- Weiteres Vorgehen besprochen. Mehrheitlich sind alle Teile überarbeitet, es braucht bei gewissen Themen noch der letzte Schliff.
 
 - Denis ist fertig mit Abstract, muss noch korrigiert werden.
 
 - Alle Angriffe, die wir vorstellen wollten, sind fertig.
 
 - Auf nächsten Donnerstag wird die Arbeit so fertig sein, dass man sie zur Korrektur weiter geben kann.
+
+== Protokoll des 12.12.2011 ==
+
+*Anwesend:* Denis und Nicolas
+
+*Traktanden:*
+- Gesamte Arbeit wird verbessert und korrigiert.
+
+- Teilgebiete werden genauer beschrieben
+
+- Schluss angefangen und wird fertig gestellt
+
+- Bis Donnerstag ist die Arbeit fertig korrigiert
+
+- Donnerstagabend letzte Besprechung über ganze Arbeit
+
+- Schluss angefangen. Wird noch verbessert und erweitert
