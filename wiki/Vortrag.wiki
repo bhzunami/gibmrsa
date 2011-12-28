@@ -1,16 +1,9 @@
 = Ablauf =
-* Begrüssung (30 sek)
-
-* Einleitung (engl) (2min) _Nicolas_
-
-* Verschlüsselung Alg. (engl) (5min) _Denis_
-
-* Sym-Asym. Verschlüsselung (engl) (3min) _Nicolas_
-
-* Anwendungen (3min) _Denis_
-
-* Konkretes Beispiel (2min) _Nicolas_
-
-* Sicherheit, Angriffe (3min) _Denis_
-
-* Arbeit (2min) _Nicolas_
+ * Begrüssung (30 sek)
+ * Einleitung (engl) (2min) _Nicolas_
+ * Verschlüsselung Alg. (engl) (5min) _Denis_
+ * Sym-Asym. Verschlüsselung (engl) (3min) _Nicolas_
+ * Anwendungen (3min) _Denis_
+ * Konkretes Beispiel (2min) _Nicolas_
+ * Sicherheit, Angriffe (3min) _Denis_
+ * Arbeit (2min) _Nicolas_
